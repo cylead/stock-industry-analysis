@@ -1,4 +1,4 @@
-# Stock Five Forces
+# Stock Industry Analysis
 
 An evidence-driven Codex skill for analyzing public companies and industries with Porter Five Forces, industry-chain mapping, ecosystem-control assessment, and public filings.
 
@@ -17,12 +17,12 @@ Completed reports are saved in [`company-analyses/`](company-analyses/).
 
 ## Use with Codex
 
-Install this repository with Codex's Skill Installer, or place the repository directory at `~/.agents/skills/stock-five-forces`. Restart Codex if the skill does not appear immediately.
+Install this repository with Codex's Skill Installer, or place the repository directory at `~/.agents/skills/stock-industry-analysis`. Restart Codex if the skill does not appear immediately.
 
 Invoke it explicitly with a request such as:
 
 ```text
-$stock-five-forces analyze Costco and save the completed report.
+$stock-industry-analysis analyze Costco and save the completed report.
 ```
 
 Codex can also select the skill automatically when a request matches the description in [`SKILL.md`](SKILL.md).

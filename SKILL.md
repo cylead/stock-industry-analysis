@@ -1,5 +1,5 @@
 ---
-name: stock-five-forces
+name: stock-industry-analysis
 description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, ecosystem-control assessment, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
 ---
 
