@@ -1,5 +1,10 @@
 # Repository Instructions
 
+## Analysis workflow
+
+- For every company, stock, or industry Five Forces request, read and follow the complete root [`SKILL.md`](SKILL.md) before researching or drafting the report.
+- Treat `SKILL.md` as the sole canonical methodology. Do not create or use alternate, legacy, or non-optimized skill files.
+
 ## Analysis outputs
 
 - Save every completed company, stock, or industry analysis as a Markdown file before sending the final response.
