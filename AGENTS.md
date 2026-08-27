@@ -14,6 +14,15 @@
 - Preserve source links, include the research date or data cutoff near the top, and state that the report is not investment advice.
 - In the final response, link to the saved Markdown report.
 
+## Maintenance logs
+
+- Before completing any repository change, assess whether [`PROJECT_LOG.md`](PROJECT_LOG.md) or [`ISSUE_LOG.md`](ISSUE_LOG.md) must be updated. Include required log updates in the same commit as the related change.
+- Update `PROJECT_LOG.md` only when `SKILL.md` materially changes the analysis scope, methodology, evidence standards, research workflow, rating framework, or required output structure.
+- Do not update `PROJECT_LOG.md` for routine analysis additions or refreshes, typo corrections, formatting changes, or link-only edits.
+- Add an `ISSUE_LOG.md` entry when an issue requires meaningful investigation or judgment and affects correctness, methodology, reproducibility, output compatibility, or workflow. Do not log trivial errors with an immediate, obvious fix.
+- Use the templates and conventions defined in each log. Keep entries newest first, use ISO dates (`YYYY-MM-DD`), and use only `Open` or `Resolved` for issue status.
+- Assign issue IDs sequentially, update the existing entry as an issue progresses, and never duplicate an issue. Use `Pending` for unknown fields while an issue is open, and replace every `Pending` value when it is resolved.
+
 ## Version-control completion
 
 - Treat this file as standing authorization to make an ordinary commit and non-force push to the repository's configured upstream after each successful run that changes files.

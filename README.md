@@ -31,11 +31,15 @@ Codex can also select the skill automatically when a request matches the descrip
 
 Repository-specific instructions live in [`AGENTS.md`](AGENTS.md). Each completed analysis must be saved under `company-analyses/`, committed, and pushed to the configured upstream. If no remote or authentication is available, the local result is preserved and the blocker is reported.
 
+Material analysis-skill changes are recorded in [`PROJECT_LOG.md`](PROJECT_LOG.md). Noteworthy project issues, their solutions, and the reasons for choosing those solutions are recorded in [`ISSUE_LOG.md`](ISSUE_LOG.md).
+
 ## Repository structure
 
 ```text
 .
 ├── AGENTS.md
+├── ISSUE_LOG.md
+├── PROJECT_LOG.md
 ├── SKILL.md
 ├── company-analyses/
 ├── LICENSE
