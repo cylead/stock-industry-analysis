@@ -17,6 +17,13 @@ Add an entry when `SKILL.md` materially changes the analysis scope, methodology,
 - **Compatibility/action:** Migration, compatibility, or follow-up required; use `None` when no action is needed.
 ```
 
+## 2026-09-05 — Short-term volatility catalyst mapping
+
+- **Change:** Added a required final section that maps evidence-based Increase and Decrease news scenarios for listed stocks over a 1–5-trading-day horizon.
+- **Significance:** Extends the methodology from structural business analysis to conditional identification of potential short-term volatility sources while avoiding price targets and deterministic forecasts.
+- **Affected behavior:** Future listed-company analyses and reruns must rank 3–5 scenarios in each direction by qualitative sensitivity, explain the repricing mechanism, identify confirming indicators, cite supporting evidence, and distinguish sensitivity from confidence.
+- **Compatibility/action:** Existing reports remain unchanged until rerun; private-company and pure-industry reports mark the section not applicable when no directly traded stock exists.
+
 ## 2026-08-27 — Project and issue logging introduced
 
 - **Change:** Added project and issue logs with repository rules defining when and how they are maintained.

@@ -1,13 +1,13 @@
 ---
 name: stock-industry-analysis
-description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, ecosystem-control assessment, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
+description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, ecosystem-control assessment, short-term volatility-catalyst mapping for listed stocks, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
 ---
 
 # Porter Five Forces Stock Analysis
 
 ## Purpose
 
-Use this skill to analyze a public company or stock that the user is not familiar with. The goal is to understand the business, industry chain, ecosystem control, industry structure, durability of profits, and key risks using Porter Five Forces and public information such as 10-Ks, 10-Qs, annual reports, investor presentations, transcripts, proxy filings, competitor filings, government data, and reputable industry sources.
+Use this skill to analyze a public company or stock that the user is not familiar with. The goal is to understand the business, industry chain, ecosystem control, industry structure, durability of profits, key risks, and potential short-term news-driven volatility using Porter Five Forces and public information such as 10-Ks, 10-Qs, annual reports, investor presentations, transcripts, proxy filings, competitor filings, government data, and reputable industry sources.
 
 Do **not** give a buy/sell recommendation, price target, or valuation unless the user asks for it. Focus on business quality, industry structure, and evidence.
 
@@ -181,6 +181,23 @@ Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, R
 
 Explicitly state whether the analysis avoided the common mistakes listed at the end of this skill.
 
+### 10. Short-Term Volatility Catalysts
+
+For a listed company, end the report with a conditional map of news that could drive the stock's initial reaction over **1–5 trading days**. Include **3–5 Increase scenarios and 3–5 Decrease scenarios**, group them by expected direction, and order each group from highest to lowest sensitivity.
+
+| Potential news or surprise | Expected direction | Sensitivity | Repricing mechanism | Indicators to monitor | Confidence |
+|---|---|---|---|---|---|
+
+Apply these rules:
+
+- Phrase each scenario relative to market expectations when relevant, such as a guidance beat or miss rather than absolute growth.
+- Use only **Increase / Decrease** for expected direction and **Low / Medium / High** for sensitivity and confidence.
+- Define sensitivity as the likely intensity of the initial stock reaction if the event occurs. Define confidence as the strength of the evidence supporting the expected direction and repricing mechanism.
+- Explain the causal path from the news to changed expectations for growth, margins, cash flow, capital needs, risk, or competitive position. Name measurable indicators that would confirm the scenario.
+- Derive the scenarios from the Five Forces, ecosystem, profitability, and stock-takeaway findings, and cite the supporting evidence. Include company, competitor, regulatory, supply-chain, or macro news only when the transmission mechanism to the stock is clear.
+- Treat each row as a conditional scenario, not a prediction that the event will occur. Do not give an event probability, percentage stock move, price target, deterministic claim, or automatic buy/sell recommendation.
+- For a private company or pure industry analysis without a directly traded security, write **“Not applicable — no directly traded stock.”**
+
 ---
 
 # Force 1 — Threat of New Entrants
@@ -323,7 +340,7 @@ Force rating guide:
 
 # Required Completion Check
 
-Before finalizing, verify that **every row defined in the canonical Industry Chain, Ecosystem Control, and Five Forces tables above appears exactly once in its required analysis section**. Add any missing row before giving the final answer.
+Before finalizing, verify that **every row defined in the canonical Industry Chain, Ecosystem Control, and Five Forces tables above appears exactly once in its required analysis section**. Add any missing row before giving the final answer. For a listed-company report, also verify that Section 10 is the final section, includes both Increase and Decrease scenarios, applies the 1–5-trading-day horizon, and distinguishes sensitivity from confidence.
 
 ---
 
@@ -338,6 +355,7 @@ After all sub-points are analyzed, summarize:
 5. **Stock implications:** how the structure affects pricing power, margins, reinvestment needs, growth quality, and risk.
 6. **Disconfirming evidence:** what facts would make the conclusion wrong.
 7. **Ecosystem position:** whether the company controls, shares, merely participates in, or lacks an ecosystem; name the controlled bottlenecks, external dependencies, and peer advantage.
+8. **Short-term volatility catalysts:** for a listed company, translate the completed analysis into evidence-based news scenarios that could cause an initial Increase or Decrease over 1–5 trading days.
 
 Use the **Overall Force Ratings** table in Section 6 as the final force-level summary; do not repeat the same five ratings in a second table. Keep the synthesis and Stock-Relevant Takeaways consistent with that table and the ecosystem verdict; do not add ecosystem as a sixth force row.
 
@@ -362,6 +380,7 @@ Check these before finalizing the analysis:
 13. Do not call vertical integration, a product suite, or a supply chain an ecosystem without reinforcing third-party participation or feedback loops.
 14. Do not infer ecosystem control from partner or reseller counts alone; test governance, customer access, data, multi-homing, and value capture.
 15. Do not confuse participating in another company’s ecosystem with controlling one.
+16. Do not assume generally positive or negative news guarantees a stock move; frame short-term direction relative to expectations and explain the repricing mechanism.
 
 ---
 

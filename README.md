@@ -11,6 +11,7 @@ The skill focuses on business quality and industry structure. It does not provid
 - Five-year profitability baseline
 - Every required Porter Five Forces sub-point
 - Force-level ratings, trends, confidence, and stock-relevant implications
+- Evidence-based Increase and Decrease news catalysts for potential 1–5-day volatility in listed stocks
 - Source links and an explicit completion check
 
 Completed reports are saved in [`company-analyses/`](company-analyses/).
