@@ -1,54 +1,61 @@
 ---
 name: stock-industry-analysis
-description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, brand-power and ecosystem-control assessment, short-term volatility-catalyst mapping for listed stocks, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
+description: Analyze companies, stocks, and industries with Porter Five Forces, industry-chain mapping, brand power, ecosystem control, and public evidence. Include conditional short-term volatility catalysts for listed stocks. Use for business-quality and industry-structure research, not automatic buy/sell recommendations or standalone valuation.
 ---
 
 # Porter Five Forces Stock Analysis
 
 ## Purpose
 
-Use this skill to analyze a public company or stock that the user is not familiar with. The goal is to understand the business, industry chain, brand power, ecosystem control, industry structure, durability of profits, key risks, and potential short-term news-driven volatility using Porter Five Forces and public information such as 10-Ks, 10-Qs, annual reports, investor presentations, transcripts, proxy filings, competitor filings, government data, and reputable industry sources.
+Explain a company's business quality and profit durability, or an industry's structure, using Porter Five Forces and public evidence. Assess the industry chain, brand power, ecosystem control, key risks, and, for listed stocks, conditional short-term news-driven volatility. Cover public and private companies and industries; adapt the evidence sources to the subject.
 
 Do **not** give a buy/sell recommendation, price target, or valuation unless the user asks for it. Focus on business quality, industry structure, and evidence.
 
 ---
 
-## Non-Negotiable Rules
+## Analysis Requirements
 
-1. **Analyze every industry-chain layer, brand-power test, ecosystem test, and Five Forces sub-point listed in this skill.** Do not skip or combine required rows.
-2. Show each required item as its own table row; do not summarize only at the force level.
-3. Compare the company with key competitors when possible, separate facts from judgment, and explain how industry structure affects long-term profitability.
-4. When listing buyers, sellers, suppliers, or counterparties by segment, include approximate proportions where available. If exact percentages are unavailable, state the majority/minority groups and the proxy used.
-5. Treat industry-chain, brand-power, and ecosystem analysis as strategic overlays that inform the five forces, not as additional forces.
+1. **Keep each required item as a separate row in its designated table:** 6 industry-chain layers, 4 brand-power tests, 8 ecosystem tests, and 38 Five Forces sub-points. Missing evidence does not justify dropping or combining rows; apply the evidence-status rules below.
+2. Compare with relevant peers and explain how industry structure affects long-term profitability. Distinguish industry-wide pressure from the company's relative position.
+3. For buyer, seller, supplier, and counterparty mixes, give supported proportions or majority/minority groups. Identify the period, denominator, and proxy used; if the mix is unknown, say so rather than infer an unsupported majority.
+4. Treat industry-chain, brand-power, and ecosystem analysis as strategic overlays, not additional forces. Reuse evidence where it supports the specific mechanism, without counting the same economic effect more than once in the overall judgment.
 
 ## Global Conventions
 
 Apply these conventions throughout unless a section explicitly says otherwise:
 
-- If evidence is limited or unavailable, write **“Not found in public filings”** and use the best public proxy.
-- For each Five Forces sub-point, include evidence, up to **three** important statistics or proxies, a short interpretation, pressure on industry profitability, and confidence.
-- Use **Low / Medium / High** for pressure, economic control/control strength, brand strength, and confidence as applicable.
+- Use **Low / Medium / High** for supported pressure, economic control/control strength, brand strength, and confidence assessments. Higher pressure means worse industry profitability, not a stronger company position.
+- Confidence measures the quality, relevance, and consistency of the evidence supporting the judgment: **High** for direct or well-corroborated evidence of the mechanism; **Medium** for credible but partial or indirect support; **Low** for limited support or material unresolved uncertainty. Missing statistics alone do not invalidate a supported qualitative conclusion.
+- If no defensible assessment is possible, retain the row, explain the gap, and write **“Not assessable”** in the unsupported rating, trend, or verdict field. Use **Low** confidence. Do not default to Medium pressure, a Stable trend, or a weak brand/ecosystem merely because evidence is absent. For genuinely inapplicable items, use **“Not applicable”** with a reason and leave ratings/confidence as **—**.
 - Overall force ratings must use economically weighted judgment from the sub-point evidence, never a simple average.
 - Prefer 3- to 5-year data or full-cycle averages over one-year snapshots when possible.
-- Use simple language and explain unavoidable jargon.
-- Keep facts/evidence distinct from interpretation/judgment.
+- Keep table cells concise, use simple language, and explain unavoidable jargon. Put synthesis in Sections 6–8 instead of repeating full arguments across rows.
+
+### Evidence and missing-data conventions
+
+- Place direct Markdown source links beside material factual claims and statistics. Inspect the supporting source; search snippets and old reports are leads, not verification. Record the reporting period and units, and distinguish reported figures, calculated values, proxy estimates, management claims, and analytical judgments.
+- Use **“Not found in inspected public filings”** only after checking the relevant accessible filings; identify those filings. For other inspected sources, use **“Not found in inspected public sources.”** Neither phrase asserts that the information is unavailable everywhere.
+- Use **“Source inaccessible”** when a source could not be inspected, naming the access limitation. Seek an accessible primary equivalent or a clearly identified secondary source; do not imply that an inaccessible source supports the claim.
+- A proxy must have a cited basis and an explanation of what it measures and where comparability is limited. If no defensible proxy exists, state the gap. The suggested statistics in the tables are options, not a requirement to supply three numbers or manufacture missing values.
+- Distinguish absent data from an economically inapplicable metric or mechanism. Explain material conflicts between sources, including differences in period, scope, or definitions, and lower confidence when unresolved.
 
 ## Evidence-Efficient Research Protocol
 
-Collect evidence source by source using the steps below, then develop the assessments in this order: **industry-chain mapping → brand power → ecosystem control → Five Forces**. Reuse the mapped participants, channels, dependencies, and economics in later assessments, preserving source links. Each conclusion needs evidence that supports its specific mechanism; an earlier finding alone does not establish brand power or ecosystem control.
+Collect evidence by source, then develop the assessments in this order: **industry-chain mapping → brand power → ecosystem control → Five Forces**.
 
-1. Start with the company’s latest 10-K, latest 10-Q, and relevant investor materials; extract evidence for **all applicable required rows** from each source before opening another source.
-2. Review filings from the 2–3 most relevant competitors and reuse them across applicable rows.
-3. Use government, regulatory, trade-association, and reputable industry sources for market-wide evidence.
-4. After mining the core sources, run targeted searches only for required rows that still lack adequate evidence or corroboration.
-5. Reuse the same evidence across relevant rows when economically appropriate, but do not double-count it in force-level judgments.
-6. Do not launch a separate search for a sub-point when existing sources already support a well-corroborated conclusion at the required confidence level.
+1. Establish the subject, relevant markets, and research cutoff. Default to the research date unless the user specifies an earlier cutoff. Verify which annual and interim disclosures were available by that date; keep reporting periods distinct from publication dates and exclude later information from historical-cutoff analyses.
+2. Start with the latest annual and interim filings and relevant investor materials. Use 10-K/10-Q for US issuers and applicable equivalents, such as 20-F, relevant 6-K disclosures, or local annual/interim reports, for other issuers. For private companies, use accessible public disclosures and industry evidence. For a pure industry, start with market-wide sources and representative company filings.
+3. Retrieve independent sources in parallel when the available tools allow it. Extract evidence across relevant rows from each inspected source without requiring exhaustive extraction before opening another. Keep working notes mapping required rows to evidence, source links, reporting/publication dates, calculation inputs, and unresolved gaps so work can resume without repeating research.
+4. Review disclosures from the 2–3 most relevant competitors where available, and government, regulatory, trade-association, and reputable industry sources for market-wide evidence. Select peers by economic relevance and explain material comparability limits.
+5. Use targeted searches for gaps, corroboration, and material contradictions. Stop researching a row once its conclusion is adequately supported, or a targeted search of the relevant disclosures and credible alternatives leaves a clearly documented limitation. Reopen research when conflicting evidence could change the judgment; do not repeat searches solely to fill an unavailable statistic.
+
+Prefer filings for financial facts, proxy filings for incentives and ownership, and government/regulatory or trade-association sources for market structure. Investor presentations and transcripts support management claims; reputable industry research and news can fill gaps and establish recent developments. Company marketing pages support basic descriptions, not independent proof of competitive advantage. If source access is broadly unavailable, disclose that current research could not be completed rather than present an unverified report as complete.
 
 ---
 
 ## Required Final Output Structure
 
-Use this structure unless the user requests something different.
+Use this ten-section structure unless the user requests something different. Put the research date or cutoff and an informational-purpose/not-investment-advice statement near the top. For a pure industry, adapt company-specific fields to representative participants; identify whose brand or ecosystem control is being assessed instead of inventing a single industry owner.
 
 ### 1. Company Snapshot
 
@@ -65,15 +72,13 @@ Use this structure unless the user requests something different.
 - Main competitors.
 - Main substitutes.
 - Main suppliers, seller/counterparty groups, and buyer groups.
-- Approximate buyer and seller/counterparty proportions by major segment. If exact percentages are unavailable, identify at least the majority group and explain the proxy used, such as revenue mix, volume mix, transaction count, marketplace GMV, processed units, listings, or public management commentary.
+- Buyer and seller/counterparty proportions by major segment, following the evidence conventions. Useful bases include revenue mix, volume mix, transaction count, marketplace GMV, processed units, listings, or public management commentary; do not present one basis as another.
 
 ### 3. Industry Chain, Brand Power, and Ecosystem Control
 
 Map how products, services, money, data, and control move through the full chain. Define ecosystem ownership as **economic control** of critical rules, access, customer relationships, data, bottlenecks, and value capture. Report legal ownership as evidence, but do not use it as the sole test.
 
 #### Industry-chain map
-
-Include each required layer as a separate row.
 
 | Chain layer | Main participants and proportions | Company role and legally owned assets | External dependencies / alternatives | Top statistics or proxies, max 3 | Economic control | Confidence |
 |---|---|---|---|---|---|---|
@@ -84,11 +89,11 @@ Include each required layer as a separate row.
 | Complementary products, services, and aftermarket |  |  |  |  |  |  |
 | Direct buyers, end users, and outcome owners |  |  |  |  |  |  |
 
-Apply the Global Conventions. Include revenue, profit-pool, volume, take-rate, installed-base, or participant-share proxies where available. If a layer is not applicable, write **“Not applicable”** and explain why.
+Use revenue, profit-pool, volume, take-rate, installed-base, or participant-share proxies where supported.
 
 #### Brand-power assessment
 
-Use the industry-chain map to identify whose purchasing decisions the brand influences and which participants capture the resulting value. Include every test as a separate row.
+Use the industry-chain map to identify whose purchasing decisions the brand influences and which participants capture the resulting value.
 
 | Test | Evidence + up to 3 key statistics/proxies | Interpretation | Brand strength | Confidence |
 |---|---|---|---|---|
@@ -97,13 +102,11 @@ Use the industry-chain map to identify whose purchasing decisions the brand infl
 | Retention and repeat purchasing |  |  |  |  |
 | Bargaining power with distribution channels |  |  |  |  |
 
-Apply the Global Conventions and compare with relevant peers. Use preference or win-rate evidence, realized prices for comparable offerings, repeat-purchase or retention data, and channel terms or evidence of customer demand through channels where available. Distinguish brand effects from product quality, customer or product mix, switching costs, contractual lock-in, and channel ownership. Advertising spending or awareness alone does not establish brand power. Where attribution is uncertain, explain the limitation and reflect it in confidence; missing evidence is not proof of weak brand power.
+Use preference or win-rate evidence, realized prices for comparable offerings, repeat-purchase or retention data, and channel terms or evidence of customer demand through channels where available. Distinguish brand effects from product quality, customer or product mix, switching costs, contractual lock-in, and channel ownership. Advertising spending or awareness alone does not establish brand power. Explain uncertainty in attribution and reflect it in confidence.
 
-Carry relevant findings into the ecosystem assessment and the Five Forces rows on incumbency advantages, distribution access, buyer differentiation and switching, substitutes, and non-price rivalry. Reference the evidence without double-counting the same economic effect. Assess brand power and ecosystem control separately: a strong brand can lack an ecosystem, and ecosystem control can exist without a strong consumer brand. Do not assign brand power a pressure-on-profitability rating.
+Carry relevant findings into the ecosystem assessment and the Five Forces rows on incumbency advantages, distribution access, buyer differentiation and switching, substitutes, and non-price rivalry. Assess brand power and ecosystem control separately: a strong brand can lack an ecosystem, and ecosystem control can exist without a strong consumer brand. Do not assign brand power a pressure-on-profitability rating.
 
 #### Ecosystem-control assessment
-
-Include every test as a separate row.
 
 | Test | Evidence + up to 3 key statistics/proxies | Interpretation | Control strength | Confidence |
 |---|---|---|---|---|
@@ -116,7 +119,7 @@ Include every test as a separate row.
 | Complementor dependence, incentives, and multi-homing |  |  |  |  |
 | Monetization, value capture, external bottlenecks, and durability |  |  |  |  |
 
-Apply the Global Conventions and compare with key peers. Reuse relevant chain and brand evidence to assess governance, access, dependencies, and value capture, while requiring separate support for ecosystem mechanisms. Require evidence that participant growth or activity strengthens the company’s customer proposition, distribution, data advantage, switching costs, or economics before claiming an ecosystem effect. Do not equate brand strength, vertical integration, a product suite, a supply chain, or a large partner/reseller count with ecosystem control.
+Use relevant chain and brand evidence to assess governance, access, dependencies, and value capture. Require evidence that participant growth or activity strengthens the company’s customer proposition, distribution, data advantage, switching costs, or economics before claiming an ecosystem effect. Brand strength, vertical integration, a product suite, a supply chain, or a large partner/reseller count alone does not establish ecosystem control.
 
 End with this verdict table:
 
@@ -131,7 +134,7 @@ Apply the verdicts as follows:
 - **Participant only:** An ecosystem exists, but another party controls its essential rules, customer access, or economics.
 - **No meaningful ecosystem:** The business lacks reinforcing third-party participation or feedback loops; integration or partnerships alone do not qualify.
 
-Use 3- to 5-year evidence for the trend when possible. Feed the findings into relevant Five Forces rows—especially network effects, switching costs, distribution access, supplier dependence, substitutes, and rivalry—without double-counting. Do not assign the ecosystem overlay a pressure-on-profitability rating.
+Use 3- to 5-year evidence for the trend when possible. Feed the findings into relevant Five Forces rows—especially network effects, switching costs, distribution access, supplier dependence, substitutes, and rivalry. Do not assign the ecosystem overlay a pressure-on-profitability rating.
 
 ### 4. Profitability Baseline
 
@@ -149,22 +152,21 @@ Required table format:
 
 Rules for this section:
 
-- Use the latest five completed fiscal years available from public filings.
-- Calculate the five-year average from the same five annual values shown in the table.
-- If the company reports ROIC, use the reported metric. If not, calculate a clearly labeled ROIC proxy and briefly define the numerator and denominator in the notes/source column.
-- If gross margin is not meaningful or not disclosed for the business model, use the closest disclosed equivalent and label it clearly.
+- Anchor the five-year window on the latest completed fiscal year with annual results available by the cutoff, followed by its four preceding fiscal years; display them chronologically with actual year labels. If no annual results are available, use the latest five completed fiscal years and mark the data gaps. Preserve the window when history is incomplete; do not invent values, substitute interim periods, or fill missing years with older ones.
+- Calculate the five-year arithmetic average from the same five comparable annual values shown in the table. If any value is unavailable or the definitions cannot be reconciled, mark the average unavailable and explain why. Use a consistent basis, identify restatements, and show units and source links.
+- If the company reports ROIC, use it and explain its definition. Otherwise, calculate a labeled ROIC proxy only when the available inputs and invested-capital denominator support an economically meaningful result. Define the numerator, denominator, tax treatment, and use of beginning/end or average capital in the notes so the calculation is reproducible. Do not force a ratio from zero, negative, or unsuitable capital merely to populate the row.
+- When conventional ROIC is not meaningful, as for some financial businesses, state that explicitly in the capital-return row. A consistently disclosed return measure such as ROE may be shown there as a labeled alternative, not as ROIC. For gross margin that is not meaningful or disclosed, use the closest meaningful disclosed equivalent and label it; if no defensible equivalent exists, state the limitation.
+- For a private company without public annual data, retain both rows with explicit gaps. For a pure industry, use a sourced comparable industry series or a clearly identified representative-company baseline; do not average incompatible company metrics into a supposed industry return.
 - Do not include EBIT margin, free cash flow margin, revenue growth, capex/revenue, or working capital needs in this section unless the user asks for them. Use those metrics elsewhere only when they are directly relevant to a Five Forces sub-point.
 
 ### 5. Five Forces Sub-Point Analysis
 
-For each force, include a table. Every listed sub-point must appear as a separate row.
-
-Under each force heading, use this table format:
+Under each force heading, use this table format, retaining the buyer and rivalry Part A/Part B groupings defined below:
 
 | Sub-point | Evidence + up to 3 statistics/proxies | Interpretation | Pressure | Confidence |
 |---|---|---|---|---|
 
-Apply the Global Conventions. Every listed sub-point must appear as a separate row; do not combine rows or replace the table with a force-level paragraph.
+For each sub-point, give cited evidence with up to three relevant statistics/proxies, a short causal interpretation, pressure on industry profitability, and confidence.
 
 ### 6. Overall Force Ratings
 
@@ -175,29 +177,35 @@ Required table format:
 | Force | Overall pressure | Confidence | Main drivers | Trend | Stock implication |
 |---|---|---|---|---|---|
 
-Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, Rivalry. Apply the Global Conventions. Main drivers must identify the most important sub-points behind the rating. Trend must be **Improving / Stable / Worsening**, based on 3- to 5-year evidence when possible.
+Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, Rivalry. Main drivers must identify the most important sub-points behind the rating. Trend uses **Improving / Stable / Worsening**, based on 3- to 5-year evidence when possible: Improving means declining pressure on industry profitability; Worsening means increasing pressure. Apply the missing-assessment convention when a rating or trend cannot be supported. This is the sole force-level ratings summary; do not repeat the five ratings in another table.
 
 ### 7. Most Important Forces
 
+- Overall industry structure: attractive, mixed, or unattractive, with reasons and any evidence limitations.
 - Which force matters most?
 - Which force is changing fastest?
 - Which force is most misunderstood by investors?
 - Are current profits protected, temporary, or likely to be competed away?
+- Whether the company is better or worse positioned than peers against each force, including the evidenced contribution and limits of brand power and ecosystem control.
+
+Support claims about investor misunderstanding with evidence, or label them as analytical hypotheses.
 
 ### 8. Stock-Relevant Takeaways
 
 - Pricing power.
 - Brand power and its contribution to customer choice, realized pricing, retention, and channel bargaining power.
 - Margin durability.
-- Capital intensity.
+- Capital intensity and reinvestment needs.
 - Growth quality.
-- Ecosystem control, value capture, and external dependencies.
+- Ecosystem verdict, controlled bottlenecks, value capture, external dependencies, and peer advantage.
 - Main risks.
 - What evidence would change the conclusion.
 
+Keep these takeaways consistent with Section 6, the brand assessment, and the ecosystem verdict. For private companies and industries, discuss business implications without implying a directly traded stock.
+
 ### 9. Mistakes to Avoid Check
 
-Explicitly state whether the analysis avoided the common mistakes listed at the end of this skill.
+Briefly state whether the analysis avoided the common mistakes listed at the end of this skill, identifying exceptions and material evidence limitations. Do not assert a blanket pass when a check remains unresolved.
 
 ### 10. Short-Term Volatility Catalysts
 
@@ -224,8 +232,6 @@ Simple question: **How easy is it for new companies to enter and take profits aw
 
 RBV lens: Ask whether incumbents hold resources or capabilities that entrants cannot easily buy, hire, license, copy, substitute, or organize around. Treat brands, data, patents, distribution, process know-how, customer relationships, and talent as entry barriers only when they are valuable to customers, rare among competitors, hard to imitate, and embedded in operations.
 
-Analyze every sub-point below.
-
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
 | Supply-side economies of scale | Do bigger firms have lower unit costs because of scale, learning curves, process know-how, yield advantages, or cumulative output? | COGS/revenue by company size; revenue per plant/store/facility/employee; fixed costs/revenue or yield/cost advantage. |
@@ -249,8 +255,6 @@ Force rating guide:
 Simple question: **Can suppliers raise prices or reduce quality/service?**
 
 Suppliers can include raw material providers, labor, technology vendors, landlords, logistics providers, content owners, and capital providers.
-
-Analyze every sub-point below.
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -306,8 +310,6 @@ Simple question: **Can customers solve the same problem in a different way?**
 
 A substitute may look very different from the company’s product. Include “doing nothing,” buying used, renting, outsourcing, or doing the task in-house if relevant.
 
-Analyze every sub-point below.
-
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
 | Substitute has attractive price-performance | Is the substitute cheaper, better, faster, or more convenient? | Substitute price vs industry price; performance per dollar; substitute market share growth. |
@@ -358,24 +360,14 @@ Force rating guide:
 
 # Required Completion Check
 
-Before finalizing, verify that **every row defined in the canonical Industry Chain, Brand Power, Ecosystem Control, and Five Forces tables above appears exactly once in its required analysis section**. Add any missing row before giving the final answer. Verify that Section 3 presents the chain map, brand assessment, and ecosystem assessment in that order, and that later Five Forces conclusions reuse relevant evidence without double-counting economic effects. For a listed-company report, also verify that Section 10 is the final section, includes both Increase and Decrease scenarios, applies the 1–5-trading-day horizon, and distinguishes sensitivity from confidence.
+Perform one focused review before finalizing; correct failures and recheck the affected parts:
 
----
+- **Coverage:** All ten sections are present, and every canonical analytical row appears exactly once in its required table. Check row identities as well as counts: chain 6, brand 4, ecosystem 8; new entrants 8, suppliers 6, buyers 9, substitutes 3, rivalry 12. Section 3 follows chain → brand → ecosystem, and Section 6 has only the five force rows.
+- **Evidence and arithmetic:** Material claims have supporting links and correct periods; proxies and gaps are labeled honestly. Verify derived metrics and averages from the cited inputs using a calculation tool or code. Check that no later disclosures entered a historical-cutoff report.
+- **Judgments:** Ratings follow the stated pressure direction and evidence-based confidence; Sections 6–8 agree with the detailed analysis without double-counting economic effects. Address disconfirming evidence and the common mistakes below.
+- **Catalysts:** Section 10 is last. For listed stocks, check 3–5 Increase and 3–5 Decrease scenarios, ranked within each group by sensitivity, with the 1–5-trading-day horizon, supporting sources, and confidence distinct from sensitivity. For subjects without a directly traded stock, use the specified not-applicable statement.
 
-# Final Synthesis Rules
-
-After all sub-points are analyzed, summarize:
-
-1. **Overall industry structure:** attractive, mixed, or unattractive — but explain why.
-2. **Controlling force:** the one or two forces that most explain profitability.
-3. **Company position:** whether this company is better or worse positioned than peers against each force, including the evidenced contribution and limits of brand power to customer choice, realized pricing, retention, and channel bargaining power.
-4. **Trend:** whether each force is improving, worsening, or stable.
-5. **Stock implications:** how the structure affects pricing power, margins, reinvestment needs, growth quality, and risk.
-6. **Disconfirming evidence:** what facts would make the conclusion wrong.
-7. **Ecosystem position:** whether the company controls, shares, merely participates in, or lacks an ecosystem; name the controlled bottlenecks, external dependencies, and peer advantage.
-8. **Short-term volatility catalysts:** for a listed company, translate the completed analysis into evidence-based news scenarios that could cause an initial Increase or Decrease over 1–5 trading days.
-
-Use the **Overall Force Ratings** table in Section 6 as the final force-level summary; do not repeat the same five ratings in a second table. Keep the synthesis and Stock-Relevant Takeaways consistent with that table, the brand assessment, and the ecosystem verdict; do not add brand power or ecosystem as additional force rows.
+Keep the full report in the saved Markdown artifact and the final chat response concise, linking to that report. Follow the repository's applicable output and version-control instructions and accurately report any completion blocker.
 
 ---
 
@@ -385,7 +377,7 @@ Check these before finalizing the analysis:
 
 1. Do not define competition only as direct competitors.
 2. Do not define the industry too broadly or too narrowly.
-3. Do not just make lists; explain causes using numbers.
+3. Do not just make lists; explain causes using supported numbers or qualitative evidence when numbers are unavailable.
 4. Do not give equal weight to all forces if one or two clearly matter more.
 5. Do not confuse the effect with the cause, such as saying “buyers are price sensitive” without explaining why.
 6. Do not assume fast growth means an attractive industry.
@@ -399,19 +391,3 @@ Check these before finalizing the analysis:
 14. Do not infer ecosystem control from partner or reseller counts alone; test governance, customer access, data, multi-homing, and value capture.
 15. Do not confuse participating in another company’s ecosystem with controlling one.
 16. Do not assume generally positive or negative news guarantees a stock move; frame short-term direction relative to expectations and explain the repricing mechanism.
-
----
-
-# Data Source Priority
-
-Use sources in this order when possible:
-
-1. Latest 10-K and 10-Q.
-2. Competitor 10-Ks and 10-Qs.
-3. Investor presentations and earnings transcripts.
-4. Proxy filings for incentives and ownership.
-5. Government, regulatory, and trade association data.
-6. Reputable industry research and news.
-7. Company websites only for basic descriptions, not final proof.
-
-Always cite sources or clearly name where each statistic came from.

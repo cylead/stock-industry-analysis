@@ -4,6 +4,9 @@
 
 - For every company, stock, or industry Five Forces request, read and follow the complete root [`SKILL.md`](SKILL.md) before researching or drafting the report.
 - Treat `SKILL.md` as the sole canonical methodology. Do not create or use alternate, legacy, or non-optimized skill files.
+- Resolve routine choices of sources, peers, proxies, and presentation using the skill and available evidence; state material assumptions in the report. Ask for clarification only when unresolved ambiguity materially changes the subject, scope, or result.
+- Carry authorized work through research, saving, verification, and version-control completion without repeated confirmation. Follow the active collaboration mode and permissions: Plan mode allows investigation and planning, not file changes, commits, or pushes.
+- Use one focused completion review against the skill's requirements. Repeat checks only after relevant changes, failures, or unresolved concerns; scale verification to the change.
 
 ## Analysis outputs
 
@@ -12,7 +15,7 @@
 - For a listed company, use `<TICKER>_Five_Forces_Analysis.md`, with the ticker in uppercase. For a private company or industry without a ticker, use a concise underscore-separated subject name followed by `_Five_Forces_Analysis.md`.
 - Update the existing report when rerunning the same subject instead of creating a duplicate.
 - Preserve source links, include the research date or data cutoff near the top, and state that the report is not investment advice.
-- In the final response, link to the saved Markdown report.
+- Keep the final response concise, link to the saved Markdown report, and report the actual commit/push outcome or blocker.
 
 ## Maintenance logs
 
