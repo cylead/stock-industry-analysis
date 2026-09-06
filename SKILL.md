@@ -1,13 +1,13 @@
 ---
 name: stock-industry-analysis
-description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, ecosystem-control assessment, short-term volatility-catalyst mapping for listed stocks, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
+description: Analyze public companies, stocks, and industries with Porter Five Forces, industry-chain mapping, brand-power and ecosystem-control assessment, short-term volatility-catalyst mapping for listed stocks, and evidence from public filings. Use for business-quality and industry-structure research; do not use for automatic buy/sell recommendations or valuation.
 ---
 
 # Porter Five Forces Stock Analysis
 
 ## Purpose
 
-Use this skill to analyze a public company or stock that the user is not familiar with. The goal is to understand the business, industry chain, ecosystem control, industry structure, durability of profits, key risks, and potential short-term news-driven volatility using Porter Five Forces and public information such as 10-Ks, 10-Qs, annual reports, investor presentations, transcripts, proxy filings, competitor filings, government data, and reputable industry sources.
+Use this skill to analyze a public company or stock that the user is not familiar with. The goal is to understand the business, industry chain, brand power, ecosystem control, industry structure, durability of profits, key risks, and potential short-term news-driven volatility using Porter Five Forces and public information such as 10-Ks, 10-Qs, annual reports, investor presentations, transcripts, proxy filings, competitor filings, government data, and reputable industry sources.
 
 Do **not** give a buy/sell recommendation, price target, or valuation unless the user asks for it. Focus on business quality, industry structure, and evidence.
 
@@ -15,11 +15,11 @@ Do **not** give a buy/sell recommendation, price target, or valuation unless the
 
 ## Non-Negotiable Rules
 
-1. **Analyze every industry-chain layer, ecosystem test, and Five Forces sub-point listed in this skill.** Do not skip or combine required rows.
+1. **Analyze every industry-chain layer, brand-power test, ecosystem test, and Five Forces sub-point listed in this skill.** Do not skip or combine required rows.
 2. Show each required item as its own table row; do not summarize only at the force level.
 3. Compare the company with key competitors when possible, separate facts from judgment, and explain how industry structure affects long-term profitability.
 4. When listing buyers, sellers, suppliers, or counterparties by segment, include approximate proportions where available. If exact percentages are unavailable, state the majority/minority groups and the proxy used.
-5. Treat industry-chain and ecosystem analysis as a strategic overlay that informs the five forces, not as a sixth force.
+5. Treat industry-chain, brand-power, and ecosystem analysis as strategic overlays that inform the five forces, not as additional forces.
 
 ## Global Conventions
 
@@ -27,13 +27,15 @@ Apply these conventions throughout unless a section explicitly says otherwise:
 
 - If evidence is limited or unavailable, write **“Not found in public filings”** and use the best public proxy.
 - For each Five Forces sub-point, include evidence, up to **three** important statistics or proxies, a short interpretation, pressure on industry profitability, and confidence.
-- Use **Low / Medium / High** for pressure, economic control/control strength, and confidence as applicable.
+- Use **Low / Medium / High** for pressure, economic control/control strength, brand strength, and confidence as applicable.
 - Overall force ratings must use economically weighted judgment from the sub-point evidence, never a simple average.
 - Prefer 3- to 5-year data or full-cycle averages over one-year snapshots when possible.
 - Use simple language and explain unavoidable jargon.
 - Keep facts/evidence distinct from interpretation/judgment.
 
 ## Evidence-Efficient Research Protocol
+
+Collect evidence source by source using the steps below, then develop the assessments in this order: **industry-chain mapping → brand power → ecosystem control → Five Forces**. Reuse the mapped participants, channels, dependencies, and economics in later assessments, preserving source links. Each conclusion needs evidence that supports its specific mechanism; an earlier finding alone does not establish brand power or ecosystem control.
 
 1. Start with the company’s latest 10-K, latest 10-Q, and relevant investor materials; extract evidence for **all applicable required rows** from each source before opening another source.
 2. Review filings from the 2–3 most relevant competitors and reuse them across applicable rows.
@@ -65,7 +67,7 @@ Use this structure unless the user requests something different.
 - Main suppliers, seller/counterparty groups, and buyer groups.
 - Approximate buyer and seller/counterparty proportions by major segment. If exact percentages are unavailable, identify at least the majority group and explain the proxy used, such as revenue mix, volume mix, transaction count, marketplace GMV, processed units, listings, or public management commentary.
 
-### 3. Industry Chain and Ecosystem Control
+### 3. Industry Chain, Brand Power, and Ecosystem Control
 
 Map how products, services, money, data, and control move through the full chain. Define ecosystem ownership as **economic control** of critical rules, access, customer relationships, data, bottlenecks, and value capture. Report legal ownership as evidence, but do not use it as the sole test.
 
@@ -84,6 +86,21 @@ Include each required layer as a separate row.
 
 Apply the Global Conventions. Include revenue, profit-pool, volume, take-rate, installed-base, or participant-share proxies where available. If a layer is not applicable, write **“Not applicable”** and explain why.
 
+#### Brand-power assessment
+
+Use the industry-chain map to identify whose purchasing decisions the brand influences and which participants capture the resulting value. Include every test as a separate row.
+
+| Test | Evidence + up to 3 key statistics/proxies | Interpretation | Brand strength | Confidence |
+|---|---|---|---|---|
+| Customer preference and differentiation |  |  |  |  |
+| Realized price premium |  |  |  |  |
+| Retention and repeat purchasing |  |  |  |  |
+| Bargaining power with distribution channels |  |  |  |  |
+
+Apply the Global Conventions and compare with relevant peers. Use preference or win-rate evidence, realized prices for comparable offerings, repeat-purchase or retention data, and channel terms or evidence of customer demand through channels where available. Distinguish brand effects from product quality, customer or product mix, switching costs, contractual lock-in, and channel ownership. Advertising spending or awareness alone does not establish brand power. Where attribution is uncertain, explain the limitation and reflect it in confidence; missing evidence is not proof of weak brand power.
+
+Carry relevant findings into the ecosystem assessment and the Five Forces rows on incumbency advantages, distribution access, buyer differentiation and switching, substitutes, and non-price rivalry. Reference the evidence without double-counting the same economic effect. Assess brand power and ecosystem control separately: a strong brand can lack an ecosystem, and ecosystem control can exist without a strong consumer brand. Do not assign brand power a pressure-on-profitability rating.
+
 #### Ecosystem-control assessment
 
 Include every test as a separate row.
@@ -99,7 +116,7 @@ Include every test as a separate row.
 | Complementor dependence, incentives, and multi-homing |  |  |  |  |
 | Monetization, value capture, external bottlenecks, and durability |  |  |  |  |
 
-Apply the Global Conventions and compare with key peers. Require evidence that participant growth or activity strengthens the company’s customer proposition, distribution, data advantage, switching costs, or economics before claiming an ecosystem effect. Do not equate vertical integration, a product suite, a supply chain, or a large partner/reseller count with ecosystem control.
+Apply the Global Conventions and compare with key peers. Reuse relevant chain and brand evidence to assess governance, access, dependencies, and value capture, while requiring separate support for ecosystem mechanisms. Require evidence that participant growth or activity strengthens the company’s customer proposition, distribution, data advantage, switching costs, or economics before claiming an ecosystem effect. Do not equate brand strength, vertical integration, a product suite, a supply chain, or a large partner/reseller count with ecosystem control.
 
 End with this verdict table:
 
@@ -170,6 +187,7 @@ Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, R
 ### 8. Stock-Relevant Takeaways
 
 - Pricing power.
+- Brand power and its contribution to customer choice, realized pricing, retention, and channel bargaining power.
 - Margin durability.
 - Capital intensity.
 - Growth quality.
@@ -340,7 +358,7 @@ Force rating guide:
 
 # Required Completion Check
 
-Before finalizing, verify that **every row defined in the canonical Industry Chain, Ecosystem Control, and Five Forces tables above appears exactly once in its required analysis section**. Add any missing row before giving the final answer. For a listed-company report, also verify that Section 10 is the final section, includes both Increase and Decrease scenarios, applies the 1–5-trading-day horizon, and distinguishes sensitivity from confidence.
+Before finalizing, verify that **every row defined in the canonical Industry Chain, Brand Power, Ecosystem Control, and Five Forces tables above appears exactly once in its required analysis section**. Add any missing row before giving the final answer. Verify that Section 3 presents the chain map, brand assessment, and ecosystem assessment in that order, and that later Five Forces conclusions reuse relevant evidence without double-counting economic effects. For a listed-company report, also verify that Section 10 is the final section, includes both Increase and Decrease scenarios, applies the 1–5-trading-day horizon, and distinguishes sensitivity from confidence.
 
 ---
 
@@ -350,14 +368,14 @@ After all sub-points are analyzed, summarize:
 
 1. **Overall industry structure:** attractive, mixed, or unattractive — but explain why.
 2. **Controlling force:** the one or two forces that most explain profitability.
-3. **Company position:** whether this company is better or worse positioned than peers against each force.
+3. **Company position:** whether this company is better or worse positioned than peers against each force, including the evidenced contribution and limits of brand power to customer choice, realized pricing, retention, and channel bargaining power.
 4. **Trend:** whether each force is improving, worsening, or stable.
 5. **Stock implications:** how the structure affects pricing power, margins, reinvestment needs, growth quality, and risk.
 6. **Disconfirming evidence:** what facts would make the conclusion wrong.
 7. **Ecosystem position:** whether the company controls, shares, merely participates in, or lacks an ecosystem; name the controlled bottlenecks, external dependencies, and peer advantage.
 8. **Short-term volatility catalysts:** for a listed company, translate the completed analysis into evidence-based news scenarios that could cause an initial Increase or Decrease over 1–5 trading days.
 
-Use the **Overall Force Ratings** table in Section 6 as the final force-level summary; do not repeat the same five ratings in a second table. Keep the synthesis and Stock-Relevant Takeaways consistent with that table and the ecosystem verdict; do not add ecosystem as a sixth force row.
+Use the **Overall Force Ratings** table in Section 6 as the final force-level summary; do not repeat the same five ratings in a second table. Keep the synthesis and Stock-Relevant Takeaways consistent with that table, the brand assessment, and the ecosystem verdict; do not add brand power or ecosystem as additional force rows.
 
 ---
 
