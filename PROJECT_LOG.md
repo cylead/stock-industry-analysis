@@ -17,6 +17,13 @@ Add an entry when `SKILL.md` materially changes the analysis scope, methodology,
 - **Compatibility/action:** Migration, compatibility, or follow-up required; use `None` when no action is needed.
 ```
 
+## 2026-09-06 — Enterprise lifecycle, investment risks, and valuation fit
+
+- **Change:** Added a required final Section 11, targeting 250–400 words, connecting enterprise lifecycle to material investment risks, capital allocation, suitable valuation metrics or methods, and observable transition indicators. Added stage- and business-specific valuation guidance and updated the purpose, synthesis rules, metric-use exception, and completion check.
+- **Significance:** Extends structural business analysis to lifecycle-dependent risks and valuation-tool selection while distinguishing method suitability from calculating current multiples or estimating fair value. Requires evidence for stage judgments and distinguishes cyclicality, segment differences, and uncertain renewal.
+- **Affected behavior:** Future analyses and reruns use eleven sections, retain catalysts in Section 10, and conclude with a brief lifecycle assessment and four-component table. The existing analytical rows and Section 4 profitability baseline remain intact; directly relevant growth, cash-flow, and reinvestment evidence is permitted in Section 11. Private-company disclosure gaps and differences among representative industry participants remain explicit.
+- **Compatibility/action:** Existing reports remain unchanged until rerun. Consumers of newly generated reports must accept the appended Section 11 and no longer assume catalysts are last. Current multiples, fair values, price targets, and recommendations still require a separate user request.
+
 ## 2026-09-06 — GPT-6 research workflow and evidence handling
 
 - **Change:** Consolidated repeated instructions, permitted independent source retrievals in parallel, and added evidence working notes, cutoff verification, non-US/private-company/industry source routing, and a research stopping condition. Distinguished absent disclosure, inaccessible sources, inapplicability, and unsupported assessments; clarified confidence, pressure/trend direction, proxy provenance, and comparable five-year calculations.
