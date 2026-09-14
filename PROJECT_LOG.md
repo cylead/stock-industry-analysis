@@ -17,6 +17,13 @@ Add an entry when `SKILL.md` materially changes the analysis scope, methodology,
 - **Compatibility/action:** Migration, compatibility, or follow-up required; use `None` when no action is needed.
 ```
 
+## 2026-09-14 — Subject-adaptive report structure and internal quality checks
+
+- **Change:** Reorganized the Five Forces definitions into the required sub-point section, moved intermediary influence from buyer price sensitivity to negotiating leverage, and made company, private-company, and pure-industry terminology and representative-participant treatment explicit. Removed the reader-facing mistakes self-certification, made short-term catalyst mapping conditional on a user request, consolidated investment implications, clarified the five-year missing-data fallback, and expanded the usual lifecycle target to 400–650 words.
+- **Significance:** Corrects a taxonomy error and removes structural instructions that encouraged duplicated implications, meta-reporting, forced stock language, and synthetic industry-level profitability or lifecycle conclusions.
+- **Affected behavior:** Future analyses retain all 56 canonical analytical rows and the chain → brand → ecosystem → Five Forces sequence. Applicable report sections are numbered consecutively; internal quality checks are not reproduced in the artifact; pure-industry reports identify representative participants and keep their profitability and lifecycle assessments distinct; short-term catalyst tables appear only when requested for a directly traded company or identified proxy.
+- **Compatibility/action:** Existing reports remain unchanged until rerun. Consumers should no longer require a mistakes-to-avoid section or a not-applicable catalyst section, and section numbering may differ depending on whether catalyst analysis was requested.
+
 ## 2026-09-06 — Enterprise lifecycle, investment risks, and valuation fit
 
 - **Change:** Added a required final Section 11, targeting 250–400 words, connecting enterprise lifecycle to material investment risks, capital allocation, suitable valuation metrics or methods, and observable transition indicators. Added stage- and business-specific valuation guidance and updated the purpose, synthesis rules, metric-use exception, and completion check.

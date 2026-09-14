@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-002 — Report schema mixed taxonomy, internal QA, and subject types
+
+- **Status:** Resolved
+- **Opened:** 2026-09-14
+- **Resolved:** 2026-09-14
+- **Affected area:** `SKILL.md` force taxonomy, required output order, company/industry adaptation, catalyst scope, and lifecycle guidance.
+- **Problem and impact:** The buyer-power taxonomy placed intermediary influence under price sensitivity; canonical force definitions appeared after the output specification at the document's top heading level; and the required schema exposed an internal mistakes checklist while forcing company and stock labels onto private-company and pure-industry reports. The schema also encouraged repeated implications and under-specified how representative profitability and lifecycle evidence should be handled.
+- **Root cause or hypothesis:** Successive methodology additions preserved earlier numbering and templates without a focused structural consolidation, so internal validation, reference material, and reader-facing output requirements became interleaved.
+- **Chosen solution:** Placed canonical force definitions inside the Five Forces output section with correct heading hierarchy, moved intermediary influence to buyer negotiating leverage, made terminology and representative-participant rules subject-specific, converted the mistakes list to an internal completion control, consolidated implications, made catalysts request-driven, and clarified profitability and lifecycle treatment.
+- **Rationale:** The revised structure keeps the full analytical coverage and evidence standards while reducing ambiguous execution, duplicated prose, irrelevant stock language, and unsupported aggregation for pure industries.
+- **Alternatives considered:** Keeping the eleven-section schema and only renaming headings would not remove the reader-facing self-audit or resolve conditional sections. Splitting company and industry analysis into separate skills would reduce ambiguity but duplicate most methodology and increase maintenance cost.
+- **Follow-up/prevention:** The completion check now verifies applicable-section order, subject-appropriate terminology, representative-participant treatment, canonical row identities, and conditional catalyst inclusion. Existing reports are migrated only when rerun.
+
 ## ISSUE-001 — Missing evidence and mandatory proxies were ambiguous
 
 - **Status:** Resolved

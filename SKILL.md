@@ -1,15 +1,15 @@
 ---
 name: stock-industry-analysis
-description: Analyze companies, stocks, and industries with Porter Five Forces, industry-chain mapping, brand power, ecosystem control, and public evidence. Include enterprise lifecycle, investment risks, valuation-method suitability, and conditional short-term volatility catalysts for listed stocks. Use for business-quality and industry-structure research, not automatic buy/sell recommendations or standalone valuation.
+description: Use when a user requests Porter Five Forces, business-quality, or industry-structure analysis of a listed company, private company, or defined industry; not for standalone valuation or automatic buy/sell recommendations.
 ---
 
-# Porter Five Forces Stock Analysis
+# Porter Five Forces Business and Industry Analysis
 
 ## Purpose
 
-Explain a company's business quality and profit durability, or an industry's structure, using Porter Five Forces and public evidence. Assess the industry chain, brand power, ecosystem control, key risks, and, for listed stocks, conditional short-term news-driven volatility. Conclude with enterprise lifecycle and its implications for investment risks, capital allocation, and valuation-method suitability. Cover public and private companies and industries; adapt the evidence sources to the subject.
+Explain a company's business quality and profit durability, or an industry's structure, using Porter Five Forces and public evidence. Assess the industry chain, brand power, ecosystem control, and key risks. Conclude with enterprise lifecycle and its implications for investment risks, capital allocation, and valuation-method suitability. For a listed company, add conditional short-term news-driven volatility catalysts only when the user requests short-term catalysts or market-reaction analysis. Cover public and private companies and industries; adapt the evidence, terminology, and output to the subject.
 
-Explain which valuation metrics and methods fit the subject as required in Section 11. Do **not** calculate current valuation multiples, estimate fair value, give a price target, or make a buy/sell recommendation unless the user asks for it. Focus on business quality, industry structure, and evidence.
+Explain which valuation metrics and methods fit the subject in the final lifecycle section. Do **not** calculate current valuation multiples, estimate fair value, give a price target, or make a buy/sell recommendation unless the user asks for it. Focus on business quality, industry structure, and evidence.
 
 ---
 
@@ -17,7 +17,7 @@ Explain which valuation metrics and methods fit the subject as required in Secti
 
 1. **Keep each required item as a separate row in its designated table:** 6 industry-chain layers, 4 brand-power tests, 8 ecosystem tests, and 38 Five Forces sub-points. Missing evidence does not justify dropping or combining rows; apply the evidence-status rules below.
 2. Compare with relevant peers and explain how industry structure affects long-term profitability. Distinguish industry-wide pressure from the company's relative position.
-3. For buyer, seller, supplier, and counterparty mixes, give supported proportions or majority/minority groups. Identify the period, denominator, and proxy used; if the mix is unknown, say so rather than infer an unsupported majority.
+3. For buyer and supplier mixes, give supported proportions or majority/minority groups where economically relevant. For two-sided platforms, exchanges, marketplaces, financial intermediaries, and similar businesses, also cover seller or counterparty mixes. Identify the period, denominator, and proxy used; if a relevant mix is unknown, say so rather than infer an unsupported majority.
 4. Treat industry-chain, brand-power, and ecosystem analysis as strategic overlays, not additional forces. Reuse evidence where it supports the specific mechanism, without counting the same economic effect more than once in the overall judgment.
 
 ## Global Conventions
@@ -29,7 +29,7 @@ Apply these conventions throughout unless a section explicitly says otherwise:
 - If no defensible assessment is possible, retain the row, explain the gap, and write **“Not assessable”** in the unsupported rating, trend, or verdict field. Use **Low** confidence. Do not default to Medium pressure, a Stable trend, or a weak brand/ecosystem merely because evidence is absent. For genuinely inapplicable items, use **“Not applicable”** with a reason and leave ratings/confidence as **—**.
 - Overall force ratings must use economically weighted judgment from the sub-point evidence, never a simple average.
 - Prefer 3- to 5-year data or full-cycle averages over one-year snapshots when possible.
-- Keep table cells concise, use simple language, and explain unavoidable jargon. Put structural synthesis in Sections 6–8 and the lifecycle conclusion in Section 11 instead of repeating full arguments across rows. Lifecycle is a strategic overlay, not another force or a mechanical investment-risk score.
+- Keep table cells concise, use simple language, and explain unavoidable jargon. Put structural synthesis and implications in their designated sections and the lifecycle conclusion at the end instead of repeating full arguments across rows. Lifecycle is a strategic overlay, not another force or a mechanical investment-risk score.
 
 ### Evidence and missing-data conventions
 
@@ -55,14 +55,19 @@ Prefer filings for financial facts, proxy filings for incentives and ownership, 
 
 ## Required Final Output Structure
 
-Use this eleven-section structure unless the user requests something different. Put the research date or cutoff and an informational-purpose/not-investment-advice statement near the top. For a pure industry, adapt company-specific fields to representative participants; identify whose brand or ecosystem control is being assessed instead of inventing a single industry owner.
+Use the sections below in order unless the user requests something different. Number applicable sections consecutively; omit the conditional catalyst section when it does not apply. Put the research date or cutoff and an informational-purpose/not-investment-advice statement near the top.
 
-### 1. Company Snapshot
+Use company terminology for a company and industry terminology for a pure industry:
 
-- Company name and ticker.
-- What the company does.
+- For a listed or private company, assess that company and note material segment differences. Use stock implications only for a directly traded company; otherwise use business implications.
+- For a pure industry, use an **Industry Snapshot**, identify the core representative participants used for brand, ecosystem, profitability, and lifecycle analysis, and explain why they are representative. Use the same core set across sections unless evidence availability or materially different submarkets justify a disclosed exception. Compare participants within each canonical brand, ecosystem, and Five Forces row rather than duplicating those rows. Do not invent one industry owner, one industry-wide enterprise lifecycle, or a synthetic profitability series from incompatible company metrics.
+
+### 1. Subject Snapshot
+
+- Subject name and ticker, if applicable.
+- What the company does, or what activities and participants the industry includes.
 - Main segments, customers, geographies, and revenue drivers.
-- Buyer and seller/counterparty mix by segment, including approximate proportions where available.
+- Buyer mix by segment, including approximate proportions where available; add seller/counterparty mix only for relevant two-sided or intermediary business models.
 - Main cost drivers.
 
 ### 2. Relevant Industry Definition
@@ -71,8 +76,8 @@ Use this eleven-section structure unless the user requests something different. 
 - Geographic scope.
 - Main competitors.
 - Main substitutes.
-- Main suppliers, seller/counterparty groups, and buyer groups.
-- Buyer and seller/counterparty proportions by major segment, following the evidence conventions. Useful bases include revenue mix, volume mix, transaction count, marketplace GMV, processed units, listings, or public management commentary; do not present one basis as another.
+- Main suppliers and buyer groups; add seller/counterparty groups for relevant two-sided or intermediary business models.
+- Relevant participant proportions by major segment, following the evidence conventions. Useful bases include revenue mix, volume mix, transaction count, marketplace GMV, processed units, listings, or public management commentary; do not present one basis as another.
 
 ### 3. Industry Chain, Brand Power, and Ecosystem Control
 
@@ -80,7 +85,7 @@ Map how products, services, money, data, and control move through the full chain
 
 #### Industry-chain map
 
-| Chain layer | Main participants and proportions | Company role and legally owned assets | External dependencies / alternatives | Top statistics or proxies, max 3 | Economic control | Confidence |
+| Chain layer | Main participants and proportions | Subject/representative roles and legally owned assets | External dependencies / alternatives | Top statistics or proxies, max 3 | Economic control | Confidence |
 |---|---|---|---|---|---|---|
 | Critical upstream inputs and capabilities |  |  |  |  |  |  |
 | Enabling technology and infrastructure |  |  |  |  |  |  |
@@ -123,9 +128,9 @@ Use relevant chain and brand evidence to assess governance, access, dependencies
 
 End with this verdict table:
 
-| Ecosystem verdict | Confidence | Trend | Controlled layers / bottlenecks | External dependencies | Stock implications |
-|---|---|---|---|---|---|
-| Company-controlled / Shared or contested / Participant only / No meaningful ecosystem | Low / Medium / High | Strengthening / Stable / Weakening |  |  |  |
+| Company/participant | Ecosystem verdict | Confidence | Control trend | Controlled layers / bottlenecks | External dependencies | Economic significance |
+|---|---|---|---|---|---|---|
+|  | Choose exactly one defined verdict | Low / Medium / High | Strengthening / Stable / Weakening |  |  |  |
 
 Apply the verdicts as follows:
 
@@ -134,7 +139,7 @@ Apply the verdicts as follows:
 - **Participant only:** An ecosystem exists, but another party controls its essential rules, customer access, or economics.
 - **No meaningful ecosystem:** The business lacks reinforcing third-party participation or feedback loops; integration or partnerships alone do not qualify.
 
-Use 3- to 5-year evidence for the trend when possible. Feed the findings into relevant Five Forces rows—especially network effects, switching costs, distribution access, supplier dependence, substitutes, and rivalry. Do not assign the ecosystem overlay a pressure-on-profitability rating.
+Create one verdict row for each company or representative participant being assessed and choose exactly one verdict, confidence level, and control trend. Use 3- to 5-year evidence for the trend when possible. Feed the findings into relevant Five Forces rows—especially network effects, switching costs, distribution access, supplier dependence, substitutes, and rivalry. Do not assign the ecosystem overlay a pressure-on-profitability rating.
 
 ### 4. Profitability Baseline
 
@@ -147,114 +152,30 @@ Required table format:
 
 | Metric | Year 1 | Year 2 | Year 3 | Year 4 | Year 5 | Five-year average | Notes/source |
 |---|---|---|---|---|---|---|---|
-| ROIC / return on invested capital |  |  |  |  |  |  |  |
-| Gross margin |  |  |  |  |  |  |  |
+| ROIC / return on invested capital — subject or representative |  |  |  |  |  |  |  |
+| Gross margin — subject or representative |  |  |  |  |  |  |  |
 
 Rules for this section:
 
-- Anchor the five-year window on the latest completed fiscal year with annual results available by the cutoff, followed by its four preceding fiscal years; display them chronologically with actual year labels. If no annual results are available, use the latest five completed fiscal years and mark the data gaps. Preserve the window when history is incomplete; do not invent values, substitute interim periods, or fill missing years with older ones.
+- Anchor the five-year window on the latest completed fiscal year whose annual results were available by the cutoff, followed by its four preceding fiscal years; display them chronologically with actual year labels. If no annual results were available by the cutoff, use the latest five completed fiscal years as the window and mark every unavailable value as a gap. Preserve the window when history is incomplete; do not invent values, substitute interim periods, or fill missing years with older ones.
 - Calculate the five-year arithmetic average from the same five comparable annual values shown in the table. If any value is unavailable or the definitions cannot be reconciled, mark the average unavailable and explain why. Use a consistent basis, identify restatements, and show units and source links.
 - If the company reports ROIC, use it and explain its definition. Otherwise, calculate a labeled ROIC proxy only when the available inputs and invested-capital denominator support an economically meaningful result. Define the numerator, denominator, tax treatment, and use of beginning/end or average capital in the notes so the calculation is reproducible. Do not force a ratio from zero, negative, or unsuitable capital merely to populate the row.
 - When conventional ROIC is not meaningful, as for some financial businesses, state that explicitly in the capital-return row. A consistently disclosed return measure such as ROE may be shown there as a labeled alternative, not as ROIC. For gross margin that is not meaningful or disclosed, use the closest meaningful disclosed equivalent and label it; if no defensible equivalent exists, state the limitation.
-- For a private company without public annual data, retain both rows with explicit gaps. For a pure industry, use a sourced comparable industry series or a clearly identified representative-company baseline; do not average incompatible company metrics into a supposed industry return.
-- Do not include EBIT margin, free cash flow margin, revenue growth, capex/revenue, or working capital needs in this section unless the user asks for them. Use those metrics elsewhere only when they are directly relevant to a Five Forces sub-point or the Section 11 lifecycle, risk, and valuation-fit assessment.
+- For a private company without public annual data, retain both rows with explicit gaps. For a pure industry, prefer a sourced, definitionally consistent industry series. Otherwise repeat the ROIC and gross-margin row pair within the same table for each selected representative company; label each row with the participant name and do not average incompatible company metrics into a supposed industry return. Explain participant selection and important differences in business mix or accounting.
+- Do not include EBIT margin, free cash flow margin, revenue growth, capex/revenue, or working capital needs in this section unless the user asks for them. Use those metrics elsewhere only when they are directly relevant to a Five Forces sub-point or the final lifecycle, risk, and valuation-fit assessment.
 
 ### 5. Five Forces Sub-Point Analysis
 
-Under each force heading, use this table format, retaining the buyer and rivalry Part A/Part B groupings defined below:
+Under each force heading, use this table format, retaining the buyer and rivalry Part A/Part B groupings defined here:
 
 | Sub-point | Evidence + up to 3 statistics/proxies | Interpretation | Pressure | Confidence |
 |---|---|---|---|---|
 
 For each sub-point, give cited evidence with up to three relevant statistics/proxies, a short causal interpretation, pressure on industry profitability, and confidence.
 
-### 6. Overall Force Ratings
+The reference tables below define the canonical row identities and research questions. In the report, place each canonical row once in the evidence/interpretation/pressure/confidence table above; do not reproduce the reference-table format as a second set of tables.
 
-After completing the sub-point tables, include a force-level ratings table with one row per force.
-
-Required table format:
-
-| Force | Overall pressure | Confidence | Main drivers | Trend | Stock implication |
-|---|---|---|---|---|---|
-
-Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, Rivalry. Main drivers must identify the most important sub-points behind the rating. Trend uses **Improving / Stable / Worsening**, based on 3- to 5-year evidence when possible: Improving means declining pressure on industry profitability; Worsening means increasing pressure. Apply the missing-assessment convention when a rating or trend cannot be supported. This is the sole force-level ratings summary; do not repeat the five ratings in another table.
-
-### 7. Most Important Forces
-
-- Overall industry structure: attractive, mixed, or unattractive, with reasons and any evidence limitations.
-- Which force matters most?
-- Which force is changing fastest?
-- Which force is most misunderstood by investors?
-- Are current profits protected, temporary, or likely to be competed away?
-- Whether the company is better or worse positioned than peers against each force, including the evidenced contribution and limits of brand power and ecosystem control.
-
-Support claims about investor misunderstanding with evidence, or label them as analytical hypotheses.
-
-### 8. Stock-Relevant Takeaways
-
-- Pricing power.
-- Brand power and its contribution to customer choice, realized pricing, retention, and channel bargaining power.
-- Margin durability.
-- Capital intensity and reinvestment needs.
-- Growth quality.
-- Ecosystem verdict, controlled bottlenecks, value capture, external dependencies, and peer advantage.
-- Main risks.
-- What evidence would change the conclusion.
-
-Keep these takeaways consistent with Section 6, the brand assessment, and the ecosystem verdict. For private companies and industries, discuss business implications without implying a directly traded stock.
-
-### 9. Mistakes to Avoid Check
-
-Briefly state whether the analysis avoided the common mistakes listed at the end of this skill, identifying exceptions and material evidence limitations. Do not assert a blanket pass when a check remains unresolved.
-
-### 10. Short-Term Volatility Catalysts
-
-For a listed company, provide a conditional map of news that could drive the stock's initial reaction over **1–5 trading days**. Include **3–5 Increase scenarios and 3–5 Decrease scenarios**, group them by expected direction, and order each group from highest to lowest sensitivity.
-
-| Potential news or surprise | Expected direction | Sensitivity | Repricing mechanism | Indicators to monitor | Confidence |
-|---|---|---|---|---|---|
-
-Apply these rules:
-
-- Phrase each scenario relative to market expectations when relevant, such as a guidance beat or miss rather than absolute growth.
-- Use only **Increase / Decrease** for expected direction and **Low / Medium / High** for sensitivity and confidence.
-- Define sensitivity as the likely intensity of the initial stock reaction if the event occurs. Define confidence as the strength of the evidence supporting the expected direction and repricing mechanism.
-- Explain the causal path from the news to changed expectations for growth, margins, cash flow, capital needs, risk, or competitive position. Name measurable indicators that would confirm the scenario.
-- Derive the scenarios from the Five Forces, ecosystem, profitability, and stock-takeaway findings, and cite the supporting evidence. Include company, competitor, regulatory, supply-chain, or macro news only when the transmission mechanism to the stock is clear.
-- Treat each row as a conditional scenario, not a prediction that the event will occur. Do not give an event probability, percentage stock move, price target, deterministic claim, or automatic buy/sell recommendation.
-- For a private company or pure industry analysis without a directly traded security, write **“Not applicable — no directly traded stock.”**
-
-### 11. Enterprise Lifecycle, Investment Risks, and Valuation Fit
-
-End the report with a short lifecycle conclusion, targeting **250–400 words** including the table. Use a brief stage assessment followed by the compact table below. The approach is informed by [Damodaran's corporate lifecycle framework](https://pages.stern.nyu.edu/adamodar/New_Home_Page/CLC/CLCPreface.html); company-specific judgments require their own cited evidence.
-
-| Component | Assessment |
-|---|---|
-| Lifecycle assessment | Evidence and confidence supporting the stage identified above; note material segment differences. |
-| Investment risks | The 2–3 most material risks, how lifecycle stage amplifies or reduces them, and the connection to the preceding analysis. Distinguish business deterioration, financing risk, and valuation sensitivity where relevant. |
-| Valuation fit | 2–3 suitable metrics or methods, why they fit, and their key limitations or a misleading alternative. |
-| Transition indicators | 2–3 observable developments that would confirm or change the stage assessment and its investment implications. |
-
-Apply these rules:
-
-- Identify **Startup / Early growth / Rapid growth / Maturing growth / Mature / Decline** using growth trajectory, profitability, cash generation, reinvestment needs, and market runway, preferably over 3–5 years. Do not classify by company age, size, or one year's growth alone, or impose universal growth thresholds. Distinguish structural decline from a cyclical downturn; describe materially different segment stages rather than forcing uniformity. Treat renewal as an evidence-dependent transition, not an assured recovery or an inevitable stage.
-- Connect the risk conclusion to Sections 6–8 without repeating their full synthesis or assuming maturity means safety. Include capital-allocation discipline—reinvestment, acquisitions, debt, dilution, dividends, or buybacks—when material. Explain valuation sensitivity conditionally; do not assert that the current price is expensive or cheap without a separately requested valuation.
-- Select valuation tools using both stage and business economics. Distinguish **multiples** (such as P/E), **methods** (such as discounted cash flow), and **operating indicators** (such as retention or ROIC); operating indicators explain value drivers but are not valuation multiples. Use the guidance below selectively, not as a table to reproduce in every report.
-- Reuse inspected evidence and research material gaps under the existing cutoff, citation, confidence, and missing-evidence conventions. An unsupported stage is **Not assessable**, with **Low** confidence. For private companies, state disclosure limits; for pure industries, assess identified representative participants and differences between them rather than assigning one enterprise stage to the entire industry.
-
-Valuation-selection guidance:
-
-| Business economics | Suitable starting points and limitations |
-|---|---|
-| Loss-making growth | Scenario-based discounted cash flow; EV/revenue only as a cross-check with a credible margin and reinvestment path. Address financing needs and dilution. Negative-earnings P/E is not meaningful. |
-| Profitable mature | Normalized P/E, equity free-cash-flow yield, or discounted cash flow, depending on earnings quality and capital needs. Define the cash-flow basis; EBITDA multiples can obscure maintenance capex and working-capital demands. |
-| Cyclical | Full-cycle normalized earnings or cash-flow approaches. Low P/E at peak earnings can mislead; cyclical weakness alone does not establish lifecycle decline. |
-| Financial | P/E, price/book or tangible book with sustainable ROE and asset quality, or an equity-based valuation method suited to regulatory capital. Conventional enterprise-value multiples and industrial free-cash-flow definitions may be unsuitable. |
-| Declining | Runoff discounted cash flow, or recoverable asset/liquidation value where applicable, allowing for shrinking cash flows, liabilities, and closure costs. Book value needs recoverability support; low multiples alone do not establish cheapness. |
-
----
-
-# Force 1 — Threat of New Entrants
+#### Force 1 — Threat of New Entrants
 
 Simple question: **How easy is it for new companies to enter and take profits away?**
 
@@ -276,13 +197,11 @@ Force rating guide:
 - **High pressure** = entry is easy, or critical resources/capabilities can be bought, hired, licensed, outsourced, or copied.
 - **Low pressure** = entry is hard because incumbents control hard-to-imitate resources, capabilities, relationships, scale, switching costs, regulation, distribution, or credible retaliation.
 
----
-
-# Force 2 — Bargaining Power of Suppliers
+#### Force 2 — Bargaining Power of Suppliers
 
 Simple question: **Can suppliers raise prices or reduce quality/service?**
 
-Suppliers can include raw material providers, labor, technology vendors, landlords, logistics providers, content owners, and capital providers.
+Suppliers can include raw material providers, labor, technology vendors, landlords, logistics providers, content owners, and capital providers when financing access materially affects industry economics.
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -298,15 +217,13 @@ Force rating guide:
 - **High pressure** = few suppliers, unique inputs, high switching costs, no substitutes.
 - **Low pressure** = many suppliers, standard inputs, easy switching, or the industry is a critical customer.
 
----
-
-# Force 3 — Bargaining Power of Buyers
+#### Force 3 — Bargaining Power of Buyers
 
 Simple question: **Can customers force lower prices, better quality, or more service?**
 
 Analyze buyer power in two parts: **negotiating leverage** and **price sensitivity**.
 
-## Part A — Buyer Negotiating Leverage
+##### Part A — Buyer Negotiating Leverage
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -314,8 +231,9 @@ Analyze buyer power in two parts: **negotiating leverage** and **price sensitivi
 | Products are standardized or undifferentiated | Can buyers easily compare suppliers? | Gross margin spread among competitors; average selling price trend; R&D or brand spend/revenue. |
 | Buyers face few switching costs | Can customers change vendors easily? | Churn rate; average contract length; renewal rate. |
 | Buyers can integrate backward | Could customers make the product themselves? | Customer capex capacity; private-label or in-house production share; customer acquisitions of suppliers. |
+| Intermediate customers influence end customers | Do retailers, distributors, platforms, or channels control access to or materially influence the choices of end users? | % sales through channels; channel margin/take rate; trade promotion or slotting fees/sales. |
 
-## Part B — Buyer Price Sensitivity
+##### Part B — Buyer Price Sensitivity
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -323,16 +241,13 @@ Analyze buyer power in two parts: **negotiating leverage** and **price sensitivi
 | Buyer group has low profits or cash pressure | Are customers under pressure to cut costs? | Buyer EBIT margin; buyer free cash flow margin; buyer leverage or interest coverage. |
 | Buyer quality is not strongly affected by the product | Does the input matter little to buyer quality? | Warranty/defect cost tied to input; failure or complaint rates; input role in safety/reliability/brand. |
 | Product has little effect on buyer’s other costs | Does the product fail to save labor, materials, or time? | Customer ROI/payback period; labor/material savings; total cost of ownership vs purchase price. |
-| Intermediate customers influence end customers | Do retailers, distributors, platforms, or channels control access to end users? | % sales through channels; channel margin/take rate; trade promotion or slotting fees/sales. |
 
 Force rating guide:
 
 - **High pressure** = concentrated buyers, low switching costs, standard products, price-sensitive customers.
 - **Low pressure** = fragmented customers, high switching costs, differentiated products, or strong customer ROI.
 
----
-
-# Force 4 — Threat of Substitutes
+#### Force 4 — Threat of Substitutes
 
 Simple question: **Can customers solve the same problem in a different way?**
 
@@ -349,15 +264,13 @@ Force rating guide:
 - **High pressure** = substitute is improving, cheaper, easy to adopt, and growing fast.
 - **Low pressure** = substitute is worse, costly to switch to, or not accepted by customers/regulators.
 
----
-
-# Force 5 — Rivalry Among Existing Competitors
+#### Force 5 — Rivalry Among Existing Competitors
 
 Simple question: **How aggressively do current competitors fight each other?**
 
 Analyze rivalry in two parts: **intensity of rivalry** and **basis of rivalry**.
 
-## Part A — Intensity of Rivalry
+##### Part A — Intensity of Rivalry
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -367,7 +280,7 @@ Analyze rivalry in two parts: **intensity of rivalry** and **basis of rivalry**.
 | Rivals are highly committed to the business | Do competitors keep investing despite weak returns? | Capex/revenue despite low ROIC; R&D or advertising/revenue despite low margins; management statements about leadership/strategic importance. |
 | Firms cannot read each other’s signals well | Do competitors have different goals or business models? | Different pricing models; different margin/segment economics; different ownership types. |
 
-## Part B — Basis of Rivalry
+##### Part B — Basis of Rivalry
 
 | Sub-point | What to check | Up to 3 key statistics or proxies |
 |---|---|---|
@@ -384,25 +297,102 @@ Force rating guide:
 - **High pressure** = many similar competitors, slow growth, high exit barriers, price competition, excess capacity.
 - **Low pressure** = differentiated positions, growing demand, segment focus, and non-price competition.
 
----
+### 6. Overall Force Ratings
 
-# Required Completion Check
+After completing the sub-point tables, include a force-level ratings table with one row per force.
+
+Required table format:
+
+| Force | Overall pressure | Confidence | Main drivers | Pressure trend | Company/participant position |
+|---|---|---|---|---|---|
+
+Include exactly these five rows: New entrants, Suppliers, Buyers, Substitutes, Rivalry. Main drivers must identify the most important sub-points behind the rating. For a pure industry, summarize material differences among representative participants within the final column rather than adding force rows. Pressure trend uses **Improving / Stable / Worsening**, based on 3- to 5-year evidence when possible: Improving means declining pressure on industry profitability; Worsening means increasing pressure. Apply the missing-assessment convention when a rating or trend cannot be supported. This is the sole force-level ratings summary; do not repeat the five ratings in another table.
+
+### 7. Structural Synthesis
+
+- Overall industry structure: attractive, mixed, or unattractive, with reasons and any evidence limitations.
+- Which force matters most?
+- Which force is changing fastest?
+- Which force is most misunderstood by investors or industry observers?
+- Are current profits protected, temporary, or likely to be competed away?
+- Whether the company or representative participants are better or worse positioned than peers against each force, including the evidenced contribution and limits of brand power and ecosystem control.
+
+Support claims about investor or industry-observer misunderstanding with evidence, or label them as analytical hypotheses.
+
+### 8. Investment and Business Implications
+
+- Pricing power.
+- Brand power and its contribution to customer choice, realized pricing, retention, and channel bargaining power.
+- Margin durability.
+- Capital intensity and reinvestment needs.
+- Growth quality.
+- Ecosystem verdict, controlled bottlenecks, value capture, external dependencies, and peer advantage.
+- What evidence would change the conclusion.
+
+For a listed company, state the implications for business quality and the stock without making an unrequested valuation or recommendation. For a private company or pure industry, discuss business and participant implications without implying a directly traded security. Keep this section consistent with Section 6, the brand assessment, and the ecosystem verdict; reserve the integrated risk and valuation-fit conclusion for the final lifecycle section.
+
+### Conditional Section — Short-Term Volatility Catalysts
+
+Include this section only when the user requests short-term catalysts or market-reaction analysis for a directly traded company. Place it immediately before the final lifecycle section. When included, number it Section 9 and number the lifecycle conclusion Section 10; without catalysts, number the lifecycle conclusion Section 9. Provide a conditional map of news that could drive the stock's initial reaction over **1–5 trading days**. Include **3–5 Increase scenarios and 3–5 Decrease scenarios**, group them by expected direction, and order each group from highest to lowest sensitivity.
+
+| Potential news or surprise | Expected direction | Sensitivity | Repricing mechanism | Indicators to monitor | Confidence |
+|---|---|---|---|---|---|
+
+Apply these rules:
+
+- Phrase each scenario relative to market expectations when relevant, such as a guidance beat or miss rather than absolute growth.
+- Use only **Increase / Decrease** for expected direction and **Low / Medium / High** for sensitivity and confidence.
+- Define sensitivity as the likely intensity of the initial stock reaction if the event occurs. Define confidence as the strength of the evidence supporting the expected direction and repricing mechanism.
+- Explain the causal path from the news to changed expectations for growth, margins, cash flow, capital needs, risk, or competitive position. Name measurable indicators that would confirm the scenario.
+- Derive the scenarios from the Five Forces, ecosystem, profitability, and implication findings, and cite the supporting evidence. Include company, competitor, regulatory, supply-chain, or macro news only when the transmission mechanism to the stock is clear.
+- Treat each row as a conditional scenario, not a prediction that the event will occur. Do not give an event probability, percentage stock move, price target, deterministic claim, or automatic buy/sell recommendation.
+- Omit this section for a private company or pure industry unless the user explicitly identifies a directly traded proxy to assess.
+
+### Final Section — Enterprise Lifecycle, Investment Risks, and Valuation Fit
+
+End the report with a concise lifecycle conclusion, usually **400–650 words** for a single company including the table; use the space needed when material segment or representative-participant differences require more explanation. Use a brief stage assessment followed by the compact table below. The approach is informed by [Damodaran's corporate lifecycle framework](https://pages.stern.nyu.edu/adamodar/New_Home_Page/CLC/CLCPreface.html); subject-specific judgments require their own cited evidence.
+
+| Component | Assessment |
+|---|---|
+| Lifecycle assessment | Evidence and confidence supporting the stage identified above; note material segment differences. |
+| Investment risks | The 2–3 most material risks, how lifecycle stage amplifies or reduces them, and the connection to the preceding analysis. Distinguish business deterioration, financing risk, and valuation sensitivity where relevant. |
+| Valuation fit | 2–3 suitable metrics or methods, why they fit, and their key limitations or a misleading alternative. |
+| Transition indicators | 2–3 observable developments that would confirm or change the stage assessment and its investment implications. |
+
+Apply these rules:
+
+- Identify **Startup / Early growth / Rapid growth / Maturing growth / Mature / Decline** using growth trajectory, profitability, cash generation, reinvestment needs, and market runway, preferably over 3–5 years. Do not classify by company age, size, or one year's growth alone, or impose universal growth thresholds. Distinguish structural decline from a cyclical downturn; describe materially different segment stages rather than forcing uniformity. Treat renewal as an evidence-dependent transition, not an assured recovery or an inevitable stage.
+- Connect the risk conclusion to Sections 6–8 without repeating their full synthesis or assuming maturity means safety. Include capital-allocation discipline—reinvestment, acquisitions, debt, dilution, dividends, or buybacks—when material. Explain valuation sensitivity conditionally; do not assert that the current price is expensive or cheap without a separately requested valuation.
+- Select valuation tools using both stage and business economics. Distinguish **multiples** (such as P/E), **methods** (such as discounted cash flow), and **operating indicators** (such as retention or ROIC); operating indicators explain value drivers but are not valuation multiples. Use the guidance below selectively, not as a table to reproduce in every report.
+- Reuse inspected evidence and research material gaps under the existing cutoff, citation, confidence, and missing-evidence conventions. An unsupported stage is **Not assessable**, with **Low** confidence. For private companies, state disclosure limits. For a pure industry, assess the identified representative participants separately within the lifecycle row, using 2–3 participants only when needed to capture material differences; do not assign one enterprise stage to the industry as a whole.
+
+Valuation-selection guidance:
+
+| Business economics | Suitable starting points and limitations |
+|---|---|
+| Loss-making growth | Scenario-based discounted cash flow; EV/revenue only as a cross-check with a credible margin and reinvestment path. Address financing needs and dilution. Negative-earnings P/E is not meaningful. |
+| Profitable mature | Normalized P/E, equity free-cash-flow yield, or discounted cash flow, depending on earnings quality and capital needs. Define the cash-flow basis; EBITDA multiples can obscure maintenance capex and working-capital demands. |
+| Cyclical | Full-cycle normalized earnings or cash-flow approaches. Low P/E at peak earnings can mislead; cyclical weakness alone does not establish lifecycle decline. |
+| Financial | P/E, price/book or tangible book with sustainable ROE and asset quality, or an equity-based valuation method suited to regulatory capital. Conventional enterprise-value multiples and industrial free-cash-flow definitions may be unsuitable. |
+| Declining | Runoff discounted cash flow, or recoverable asset/liquidation value where applicable, allowing for shrinking cash flows, liabilities, and closure costs. Book value needs recoverability support; low multiples alone do not establish cheapness. |
+
+## Required Completion Check
 
 Perform one focused review before finalizing; correct failures and recheck the affected parts:
 
-- **Coverage:** All eleven sections are present, and every canonical analytical row appears exactly once in its required table. Check row identities as well as counts: chain 6, brand 4, ecosystem 8; new entrants 8, suppliers 6, buyers 9, substitutes 3, rivalry 12. Section 3 follows chain → brand → ecosystem, and Section 6 has only the five force rows.
+- **Coverage:** All applicable sections are present in the required order, and every canonical analytical row appears exactly once in its required table. Check row identities as well as counts: chain 6, brand 4, ecosystem 8; new entrants 8, suppliers 6, buyers 9, substitutes 3, rivalry 12. Section 3 follows chain → brand → ecosystem, and Section 6 has only the five force rows. Confirm that company, private-company, and pure-industry terminology and representative-participant treatment match the subject.
 - **Evidence and arithmetic:** Material claims have supporting links and correct periods; proxies and gaps are labeled honestly. Verify derived metrics and averages from the cited inputs using a calculation tool or code. Check that no later disclosures entered a historical-cutoff report.
-- **Judgments:** Ratings follow the stated pressure direction and evidence-based confidence; Sections 6–8 and 11 agree with the detailed analysis without double-counting economic effects. Address disconfirming evidence and the common mistakes below.
-- **Catalysts:** Section 10 retains the short-term catalyst map. For listed stocks, check 3–5 Increase and 3–5 Decrease scenarios, ranked within each group by sensitivity, with the 1–5-trading-day horizon, supporting sources, and confidence distinct from sensitivity. For subjects without a directly traded stock, use the specified not-applicable statement.
-- **Lifecycle:** Section 11 is last and targets 250–400 words, with a brief stage assessment and all four table components. Check cited stage evidence and confidence, 2–3 material risks, 2–3 suitable valuation metrics or methods with limitations, and 2–3 transition indicators. Distinguish structural stage from cyclicality and material segment differences; address capital allocation when relevant. Apply evidence-gap and subject-specific adaptations without inventing a stage or forcing unsuitable metrics. Do not calculate current multiples, estimate fair value, give price targets, or make recommendations unless separately requested.
+- **Judgments:** Ratings follow the stated pressure direction and evidence-based confidence; Sections 6–8 and the lifecycle conclusion agree with the detailed analysis without double-counting economic effects. Address disconfirming evidence and the internal common-mistakes check below.
+- **Catalysts:** Include the catalyst map only when requested for a directly traded company or identified proxy. When included, check 3–5 Increase and 3–5 Decrease scenarios, ranked within each group by sensitivity, with the 1–5-trading-day horizon, supporting sources, and confidence distinct from sensitivity.
+- **Lifecycle:** The lifecycle conclusion is last and contains a brief stage assessment and all four table components. Check cited stage evidence and confidence, 2–3 material risks, 2–3 suitable valuation metrics or methods with limitations, and 2–3 transition indicators. Distinguish structural stage from cyclicality and material segment or representative-participant differences; address capital allocation when relevant. Apply evidence-gap and subject-specific adaptations without inventing a stage or forcing unsuitable metrics. Do not calculate current multiples, estimate fair value, give price targets, or make recommendations unless separately requested.
 
 Keep the full report in the saved Markdown artifact and the final chat response concise, linking to that report. Follow the repository's applicable output and version-control instructions and accurately report any completion blocker.
 
 ---
 
-# Common Mistakes to Avoid
+## Internal Common Mistakes Check
 
-Check these before finalizing the analysis:
+Check these internally before finalizing the analysis; do not reproduce this checklist or a self-certification section in the report:
 
 1. Do not define competition only as direct competitors.
 2. Do not define the industry too broadly or too narrowly.
