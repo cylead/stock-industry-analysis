@@ -17,6 +17,13 @@ Add an entry when `SKILL.md` materially changes the analysis scope, methodology,
 - **Compatibility/action:** Migration, compatibility, or follow-up required; use `None` when no action is needed.
 ```
 
+## 2026-09-15 — Standalone ecosystem overlay removed
+
+- **Change:** Removed the eight-row ecosystem-control assessment, verdict, and trend from `SKILL.md`, reducing required output from 56 to 48 canonical analytical rows: chain 6, brand 4, and Five Forces 38 (8/6/9/3/12). Former ecosystem evidence is now routed by causal mechanism into the chain map, brand assessment, relevant Five Forces rows, profitability implications, and structural synthesis.
+- **Significance:** Eliminates a parallel aggregate assessment that overlapped with Five Forces mechanisms while retaining evidence about network effects, governance, access, distribution, data, switching, complementor dependence, integration, and value capture.
+- **Affected behavior:** Future analyses follow industry chain → brand power → Five Forces, treat chain-map economic control as descriptive evidence rather than an ecosystem score, attribute repeat purchasing specifically to brand before calling it brand power, and avoid double-counting routed mechanisms.
+- **Compatibility/action:** Existing reports remain unchanged until rerun. New and refreshed reports use 48 canonical rows and no standalone ecosystem table, verdict, or control trend, so consumers expecting the former 56-row schema must adapt.
+
 ## 2026-09-14 — Subject-adaptive report structure and internal quality checks
 
 - **Change:** Reorganized the Five Forces definitions into the required sub-point section, moved intermediary influence from buyer price sensitivity to negotiating leverage, and made company, private-company, and pure-industry terminology and representative-participant treatment explicit. Removed the reader-facing mistakes self-certification, made short-term catalyst mapping conditional on a user request, consolidated investment implications, clarified the five-year missing-data fallback, and expanded the usual lifecycle target to 400–650 words.

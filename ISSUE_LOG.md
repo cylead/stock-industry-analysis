@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-003 — Ecosystem overlay duplicated Five Forces mechanisms
+
+- **Status:** Resolved
+- **Opened:** 2026-09-15
+- **Resolved:** 2026-09-15
+- **Affected area:** `SKILL.md` analytical sequence, canonical rows, Section 3, synthesis, implications, catalysts, lifecycle linkage, and completion checks.
+- **Problem and impact:** The standalone ecosystem-control assessment repeated mechanisms already assessed through entry barriers, switching costs, distribution access, supplier power, substitutes, and rivalry. Its aggregate verdict and trend could double-count the same evidence and create inconsistent conclusions, while repeat purchasing could be misattributed to brand instead of contracts, habit, network effects, or other mechanisms.
+- **Root cause or hypothesis:** Ecosystem control was added as a strategic overlay with its own eight tests and summary verdict even though its component mechanisms already had causal homes in the chain map, brand assessment, profitability analysis, and Five Forces.
+- **Chosen solution:** Removed the standalone ecosystem table, score-like verdict, and control trend; reduced the canonical output to 48 rows; retained descriptive economic-control evidence in the chain map; and added explicit causal routing for participant reinforcement, governance/access/data/workflow, complementor dependence/multi-homing/external bottlenecks, and integration/value capture. Renamed the retention test and tightened brand attribution.
+- **Rationale:** Routing each fact to the mechanism that affects entry, buyer or supplier leverage, substitution, rivalry, profitability, or value capture preserves useful evidence while producing one coherent force assessment and preventing duplicate scoring.
+- **Alternatives considered:** Keeping the overlay but weakening its verdict would preserve duplication and ambiguity. Keeping the eight evidence rows without ratings would still expand the canonical schema and encourage repeated analysis. Removing ecosystem-related evidence entirely would discard economically relevant mechanisms.
+- **Follow-up/prevention:** The completion check fixes the 48-row identities, requires chain → brand ordering, and checks causal consistency and double-counting; the internal mistakes check rejects network-effect claims based only on size or partner counts and duplicate use of brand, switching, distribution, data, or network mechanisms across force ratings.
+
 ## ISSUE-002 — Report schema mixed taxonomy, internal QA, and subject types
 
 - **Status:** Resolved
