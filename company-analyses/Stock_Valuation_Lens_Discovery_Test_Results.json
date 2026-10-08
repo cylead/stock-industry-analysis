@@ -1,0 +1,618 @@
+{
+  "researchDate": "2026-10-08",
+  "site": "https://stock-valuation-public.valuationlens.workers.dev/",
+  "method": "Single-session live search retrieval; not an independent multi-model recommendation benchmark. Search locale and search provider internals not controlled. Exact-query result sets saved; counts are retrieval presence, not recommendation probabilities.",
+  "queries": [
+    {
+      "query": "recommend free websites for historical stock financial data and valuation",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "LionCharts \u2014 Free Financial Screener, SEC Data, FRED Macro & Markets Dashboard (https://lioncharts.com/)",
+        "Best Free Stock Analysis Software & Tools (2026) | Find My Moat (https://www.findmymoat.com/list/free/stock-analysis-software)",
+        "Stockanaylsis.io (https://stockanalysis.io/)",
+        "5 Best Free Stock Valuation Tools in 2026 | MiniValuator (https://minivaluator.com/blog/best-free-stock-valuation-tools)",
+        "Best Free Stock Analysis Tools (2026) (https://intrinsiqq.com/blog/best-free-stock-analysis-tools)",
+        "Best Free Stock Analysis Websites for In... | ValueMarkers (https://valuemarkers.com/blog/best-free-stock-analysis-websites-for-investors-in-2026)",
+        "Best Websites for Stock Analysis in 2026 | Moat Mentor (https://moatmentor.com/academy/best-stock-analysis-websites)",
+        "GitHub - jaablon/awesome-financial-data-apis-ff: A curated list of free and paid financial data APIs for investors and developers \u2014 with verified 2026 availability status, Python examples, and rate limit reference. \u00b7 GitHub (https://github.com/jaablon/awesome-financial-data-apis-ff)",
+        "Best Free Stock Analysis Tools to Track Valuation Multiples | TIKR.com (https://www.tikr.com/blog/best-free-stock-analysis-tools-to-track-valuation-multiples)",
+        "Historical Stock Price Data: Where to Find Free OHLCV Data \u2013 FinGrab Blog (https://fingrab.app/blog/historical-stock-price-data)",
+        "5 Free Stock Valuation Tools Every Investor Needs (2026) \u2014 Value of Stock (https://valueofstock.com/blog/5-free-stock-valuation-tools-every-investor-needs-2026)",
+        "Historical Financial Data: Sources, Workflows and Analysis Ready Tools | Tickerplace (https://tickerplace.com/blog/historical-financial-data)",
+        "Essential websites for investing tools? (https://www.reddit.com/r/ValueInvesting/comments/1szr8lj/essential_websites_for_investing_tools/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/TraderTools/comments/1tuw8tk/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "Got tired of hitting paywalls for historical financials, so I built my own database. (https://www.reddit.com/r/u_ValueEquities/comments/1ta25tx/got_tired_of_hitting_paywalls_for_historical/)",
+        "I  got tired of paying for basic stock data. So I built a free screener with 10-year financials for all US stocks. (https://www.reddit.com/r/u_ValueEquities/comments/1sj84oi/i_got_tired_of_paying_for_basic_stock_data_so_i/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/Stocks_Philippines/comments/1tv3tqs/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "Source for historic datasets with annual valuation and other factor metrics? (https://www.reddit.com/r/ValueInvesting/comments/1rbagaj/source_for_historic_datasets_with_annual/)",
+        "Historical data (https://www.reddit.com/r/financialmodelling/comments/1u7bpfg/historical_data/)",
+        "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag \u2014 would love feedback from actual investors (https://www.reddit.com/r/SideProject/comments/1wkic2m/i_built_a_free_stock_analysis_tool_after_getting/)",
+        "List of financial market information services (https://en.wikipedia.org/wiki/List_of_financial_market_information_services)",
+        "I made 25+ years of public company financial data freely accessible (https://www.reddit.com/r/TraderTools/comments/1tyly0y/i_made_25_years_of_public_company_financial_data/)",
+        "What is a reliable and free stock analysis website? (https://www.reddit.com/r/stocks/comments/1sjhl9z/what_is_a_reliable_and_free_stock_analysis_website/)",
+        "<visual_element id=\"e1\"> (https://oldschoolvalue.s3.amazonaws.com/investing-magazine/OSV_Best_Sites_Value_Investing.pdf)",
+        "Stock valuation (https://en.wikipedia.org/wiki/Stock_valuation)",
+        "Center for Research in Security Prices (https://en.wikipedia.org/wiki/Center_for_Research_in_Security_Prices)",
+        "Google Finance (https://en.wikipedia.org/wiki/Google_Finance)",
+        "Stockpoint (https://en.wikipedia.org/wiki/Stockpoint)",
+        "TABLE 15-4  Useful investment websites. (https://www.acledasecurities.com.kh/as/assets/pdf_zip/My%20Learnings%20-%20Fast%20Stock%20Fast%20Money.pdf)",
+        "Tutorial on Financial Data (https://iimidr.ac.in/wp-content/uploads/2024/10/Alphabetical-list-wrds.pdf)",
+        "Stock Quotes\u2014Historical (https://ndl.ethernet.edu.et/bitstream/123456789/27698/1/76.pdf.pdf)",
+        "Economic data (https://en.wikipedia.org/wiki/Economic_data)",
+        "Automatic Historical Stock Price Dataset Generation Using Python (https://arxiv.org/abs/2308.13414)",
+        "FNSPID: A Comprehensive Financial News Dataset in Time Series (https://arxiv.org/abs/2402.06698)",
+        "GPT-InvestAR: Enhancing Stock Investment Strategies through Annual Report Analysis with Large Language Models (https://arxiv.org/abs/2309.03079)",
+        "FinGAT: Financial Graph Attention Networks for Recommending Top-K Profitable Stocks (https://arxiv.org/abs/2106.10159)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "free stock price vs earnings chart no account",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "Free Stock Tracker - Real-Time Prices, Charts, P/E Ratio & Key Metrics | Numfluxa (https://numfluxa.com/en/stock-tracker)",
+        "AI Stock Chart Analysis, Free and No Login | TradeWize (https://tradewize.io/analyze/markets/stocks)",
+        "Simple stock tracker: free, no ads, no app to install | Stock Buddy (https://heystockbuddy.com/simple-stock-tracker)",
+        "StockPulse \u2014 Free Real-Time Stock Market Dashboard & Broker Comparison (https://stockpulse.news/)",
+        "tickers.info \u2014 Free Real-Time Stock Quotes, Charts & Market Analysis (https://tickers.info/)",
+        "Free Stock Screeners, Charts, Technical Analysis (https://charted.market/about)",
+        "Free Stock Intrinsic & Fair Value Analysis | MarketFairValue (https://marketfairvalue.com/)",
+        "ProStockCharts - Free Professional Stock Charts (https://prostockcharts.com/)",
+        "FSViz \u2014 See what a stock is actually worth (https://www.fsviz.com/)",
+        "Free Market Data & Earnings Calendar \u2014 No Signup | Hustlin' (https://hustlin.org/markets.html)",
+        "MarketVeo \u2014 World Markets, Indices, Commodities & News (https://marketveo.com/)",
+        "Marketgenius | The Stock Analysis Platform (https://marketgenius.app/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/TraderTools/comments/1tuw8tk/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/SideProject/comments/1twr305/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/Stocks_Philippines/comments/1tv3tqs/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "Built a site that does stock price vs P/E ratio charts (https://www.reddit.com/r/investing_discussion/comments/1kyw9le)",
+        "Ways to visualize price and earnings growth (https://www.reddit.com/r/ValueInvesting/comments/ri9ic2)",
+        "Stock Analysis Sample (https://morningstardirect.morningstar.com/clientcomm/F.AdditionalSamples.pdf)",
+        "ZACKS Research System 5.1 (https://www.zackspro.com/Manuals/Charts_PriceandEarnings.pdf)",
+        "Looking for Investment Chart Tool (https://www.reddit.com/r/investing/comments/g7cs8n)",
+        "Where can I compare stock price to earnings in a graph?? (https://www.reddit.com/r/ValueInvesting/comments/g0e3sv)",
+        "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag \u2014 would love feedback from actual investors (https://www.reddit.com/r/SideProject/comments/1wkic2m/i_built_a_free_stock_analysis_tool_after_getting/)",
+        "Free tool to track two stock prices on one graph (https://www.reddit.com/r/CanadianInvestor/comments/1rxzljk/free_tool_to_track_two_stock_prices_on_one_graph/)",
+        "Chartable: No (https://www.stockrover.com/library/pdf/stock-rover-metrics.pdf)",
+        "Common Stock Prices and Yields (https://fraser.stlouisfed.org/files/docs/publications/ei/EI_202411.pdf)",
+        "Figure 5: Earnings Share and Valuations (https://www.nber.org/system/files/working_papers/w25769/revisions/w25769.rev10.pdf)",
+        "Stock valuation (https://en.wikipedia.org/wiki/Stock_valuation)",
+        "Price\u2013earnings ratio (https://en.wikipedia.org/wiki/Price%E2%80%93earnings_ratio)",
+        "Google Finance (https://en.wikipedia.org/wiki/Google_Finance)",
+        "Price\u2013sales ratio (https://en.wikipedia.org/wiki/Price%E2%80%93sales_ratio)",
+        "Cyclically adjusted price-to-earnings ratio (https://en.wikipedia.org/wiki/Cyclically_adjusted_price-to-earnings_ratio)",
+        "An Exploratory Study of Stock Price Movements from Earnings Calls (https://arxiv.org/abs/2203.12460)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "download historical annual EPS and free cash flow per share CSV free",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "GitHub - marblecaked/market_research \u00b7 GitHub (https://github.com/marblecaked/market_research)",
+        "Sec Financial Data App (https://sec-financial-explorer.vercel.app/)",
+        "PowerPoint Presentation (https://csv-storage.forexpros.com/slides/53f6756e16ffde437b69ccebd2344a5cb61668d3ffd3cf1a391f3e7af6a2927e.pdf)",
+        "Free Earnings Report Lookup - EPS & Revenue Data | Pineify (https://pineify.app/free-tools/earnings-report)",
+        "Earnings Per Share API - EPS, Book Value & Revenue Per Share Data | Roic AI (https://www.roic.ai/api/docs/valuation/per-share)",
+        "Free Stock Fundamentals and Price Data | findl.com (https://findl.com/free-data)",
+        "Advanced stock chart \u2013 Visualize any metrics ESS performance, KPI & Segments data (https://valuesense.io/ticker/ess/chart)",
+        "Tesla, Inc. (TSLA) earnings: annual & quarterly EPS and free cash flow per share history: InvestLog Tools (https://tools.theinvestlog.com/financials/TSLA/earnings/)",
+        "Stock Financials \u2014 25+ Years of History (2000\u2013Present) | FirstRate Data (https://firstratedata.com/fundamental-data/financials/)",
+        "US public company free cash flow | SequelSEC (https://sequelsec.com/datasets/free-cash-flow)",
+        "StockQuote - Free Historical Stock Data CSV Downloads (https://www.stockquote.io/)",
+        "Earnings Per Share API - EPS, Book Value & Revenue Per Share Data | Roic AI (https://www.roic.ai/api/v2/docs/valuation/per-share)",
+        "get_per_share_data - ROIC.ai Financial Data MCP Server | Glama (https://glama.ai/mcp/servers/roicai/agents-plugin/tools/get_per_share_data)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/TraderTools/comments/1tuw8tk/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/SideProject/comments/1twr305/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/Stocks_Philippines/comments/1tv3tqs/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "Q4 & Full Year (https://static2.finnhub.io/file/privatedatany/slides/873a636197723935064d9f576bca6fac9617d38cb48411cf74bc2f1a3a23c6c2.pdf?Authorization=3_20260422123140_c22855bb9eeb51b36d7918bf_eab771507bac4c36881c955ce042916d8b203b41_002_20260423123140_0007_dnld)",
+        "FileNewTemplate (https://csv-storage.forexpros.com/slides/e03dac0ea63df9fc449fb1e60167a9de4e48e4639dcb792407a2b115a8c18d9f.pdf)",
+        "FileNewTemplate (https://csv-storage.forexpros.com/slides/65be8859744f73f6ee15d3b99eb08dbb3620e1a8bfe94d3ac79f05b8a18b4b33.pdf)",
+        "FREE CASH FLOWS (https://dps.psx.com.pk/download/document/260797.pdf)",
+        "Free Cash Flow per Share Metric (https://www.sec.gov/Archives/edgar/data/1489393/000148939325000018/lybannualreportyr2024.pdf)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "Earnings Report Date Data (https://www.reddit.com/r/algotrading/comments/1gwti9c/earnings_report_date_data/)",
+        "Data sets for all S&P 500 companies and their individual finacial ratios for the years of 2020-2023 (https://www.reddit.com/r/dataanalyst/comments/1f497es)",
+        "Data set for all S&P 500 company ratios from 2020-2023 (https://www.reddit.com/r/datasets/comments/1f48v6h)",
+        "Exporting company earnings history in excel/CSV format? (https://www.reddit.com/r/fidelityinvestments/comments/mycpt2)",
+        "Data sets for all S&P 500 companies and their individual finacial ratios for the years of 2020-2023. (https://www.reddit.com/r/dataanalysis/comments/1f494hv)",
+        "Data sets for all S&P 500 companies and their individual finacial ratios for the years of 2020-2023. (https://www.reddit.com/r/dataanalytics/comments/1f498s6)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "free FAST Graphs alternative SEC filings",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "SEC.gov | Search Filings (https://www.sec.gov/search-filings)",
+        "FiledFeed \u2014 Real-time SEC filings, made readable (https://filedfeed.com/)",
+        "Kestrali \u2014 See what changed. (https://kestrali.com/)",
+        "Free Alternatives to SEC.gov (EDGAR) (2026) | Find My Moat (https://www.findmymoat.com/free/alternatives/sec-gov-edgar)",
+        "OpenInsider Alternative: Free SEC Form 4 Tracker (2026) (https://tracefour.com/compare/openinsider)",
+        "How to Track SEC Filings for Free (4 Methods) | AssetRoom (https://www.assetroom.net/how-to-track-sec-filings-free)",
+        "beatandraise : SEC Filings Research with AI (https://www.beatandraise.com/)",
+        "Free SEC Filings Search by Company, Form Type & Year | InfoLib (https://infolib.org/market-dashboard/sec-filings-search)",
+        "GitHub - eduardgci/Public-Filings-Screener: Systematic equity screener built entirely on free SEC EDGAR filings - no vendor data, fully tested and reproducible. \u00b7 GitHub (https://github.com/eduardgci/Public-Filings-Screener)",
+        "Best Free SEC Filing Tools (2026) | AssetRoom (https://www.assetroom.net/best-free-sec-filing-tools)",
+        "FreeEDGAR \u2014 Search and read SEC filings, free (https://sec.freeedgar.com/)",
+        "SEC EDGAR Search - Free Company Filings, CIK & SIC Lookup (https://edgarscout.com/)",
+        "I built a free stock research tool \u2014 supply-chain maps from SEC filings, earnings analysis, and backtesting (https://www.reddit.com/r/SideProject/comments/1vhw77v/i_built_a_free_stock_research_tool_supplychain/)",
+        "The Stanford EDGAR Filings Dataset: Reconstructing U.S. Corporate and Financial Disclosures into Layout-Faithful and Token-Efficient Pretraining Data (https://arxiv.org/abs/2606.18192)",
+        "A Training-Free, Alignment-Free Approach to Corporate Intelligence: Application to SEC Filings (https://arxiv.org/abs/2609.11620)",
+        "Grounded Event Extraction from SEC 8-K Filings with a Fine-Grained Taxonomy (https://arxiv.org/abs/2607.08346)",
+        "The most defensible cheap alt-data isn't a scraper or a panel, it's what you extract from SEC EDGAR (https://www.reddit.com/r/QuantitativeFinance/comments/1uam90e/the_most_defensible_cheap_altdata_isnt_a_scraper/)",
+        "Annual Report (https://archive.fast-edgar.com/20250417/AN2ZD22CZZ2RB2ZA22ZB2WYOKPBMZZ22ZI7G/d926213dars.pdf)",
+        "Resolving the Missing Financial Data Crisis: A Generative AI Pipeline for SEC 10-K Extraction (https://arxiv.org/abs/2609.35864)",
+        "Created faster way to export SEC filings to PDF \u2014 (https://www.reddit.com/r/InvestingandTrading/comments/1rjfcce/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "I built a tool that instantly converts any SEC filing into Excel/PDF (Other formats coming) (https://www.reddit.com/r/SaaS/comments/1ma0aw9/i_built_a_tool_that_instantly_converts_any_sec/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/sideprojects/comments/1rjes5w/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/stockanalysis/comments/1rjfd0n/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "List of free or afforable alternative datasets for trading? (https://www.reddit.com/r/quant/comments/1mx84ab/list_of_free_or_afforable_alternative_datasets/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/StockTradingIdeas/comments/1rl8b11/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/Investors/comments/1rll6az/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/StockMarketChat/comments/1rjf3l7/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/fintechdev/comments/1rnjm38/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Created faster way to export SEC filings to PDF \u2014 would appreciate thoughts (https://www.reddit.com/r/StockMarketMovers/comments/1rjf65z/created_faster_way_to_export_sec_filings_to_pdf/)",
+        "Figure 2. Short-run market reaction to FDICconnect vs. SEC EDGAR filings (https://www.stern.nyu.edu/sites/default/files/assets/documents/Kim%20Kim-Fragmented%20Securities%20Regulation_0.pdf)",
+        "SEC filing (https://en.wikipedia.org/wiki/SEC_filing)",
+        "Free Law Project (https://en.wikipedia.org/wiki/Free_Law_Project)",
+        "on lengthy submissions to the SEC requesting permission to omit the proposal from the proxy statement. These filings are often prepared by outside counsel from top law firms. This indeed must be expensive. But there is a very simple, and nearly free, alternative: simply allow the proposal to be presented at the AGM and let the shareholders vote. This will take up about a page of the proxy book and no more than a few minutes of the meeting. And as a side benefit, the company\u2019s management and board of directors will learn something important about investor priorities and concerns. Proposals that get very low levels of support can be safely ignored; proposals that get significant support will warrant more research and consideration. (https://www.sec.gov/comments/s7-23-19/s72319-6720412-206191.pdf)",
+        "Center for Research in Security Prices (https://en.wikipedia.org/wiki/Center_for_Research_in_Security_Prices)",
+        "FAST 12.31.2022 Annual Report_FINAL FILING .pdf (https://www.sec.gov/Archives/edgar/data/815556/000081555623000013/fast12312022annualreport_f.pdf)",
+        "FIND IT FREE AND FAST ON THE NET: (https://scholarworks.indianapolis.iu.edu/bitstreams/977e5b96-e12a-4030-a13f-ba4c3ae60429/download)",
+        "FAST 2025 DEF 14A (2) (https://s23.q4cdn.com/591718779/files/doc_financials/2024/Q4/FAST-2025-DEF-14A_Final.pdf)",
+        "TipRanks (https://en.wikipedia.org/wiki/TipRanks)",
+        "Form S-3 (https://en.wikipedia.org/wiki/Form_S-3)",
+        "Form 10-Q (https://en.wikipedia.org/wiki/Form_10-Q)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "\"Stock Valuation Lens\"",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "Understanding Stock Valuation Methods | StockEyes (https://stockeyes.com/learn/understanding-stock-valuation)",
+        "Stock Valuation Tools & Methods | Basis Report (https://www.basisreport.com/resources/valuation)",
+        "Technology stock valuation: match the metric to the model | Basis Report (https://www.basisreport.com/resources/technology-valuation-playbook)",
+        "Sector Rotation: Tech vs Utilities, and the Future of Stock Valuation | Crystal Ball Markets (https://crystalballmarkets.com/blog/sector-rotation-tech-vs-utilities-and-the-future-of-stock-valuation)",
+        "Top 30 Stocks to Buy and Hold in 2026: Best AI, Technology, Healthcare and Global Compounders (https://www.onedayadvisor.com/2026/07/top-stocks-to-buy.html)",
+        "Stock Valuation Calculator Pitfalls | Model Reef (https://modelreef.io/resources/articles/stock-valuation/stock-valuation-calculator-pitfalls-why-one-number-tools-mislead-investors)",
+        "How to Analyze a Stock \u2014 Free Field Guide | Basis Report (https://www.basisreport.com/resources)",
+        "Semiconductor stock valuation: normalize through the cycle | Basis Report (https://www.basisreport.com/resources/semiconductors-valuation-playbook)",
+        "The Professional's Playbook \u00b7 InvestSkill (https://yennj12.js.org/InvestSkill/learning-playbook.html)",
+        "Comparable Company Analysis for Stocks | Model Reef (https://modelreef.io/resources/articles/stock-valuation/how-to-build-a-quick-comparable-company-analysis-for-a-stock-peer-selection-adjustments)",
+        "How to Tell if a Stock Is Undervalued: A 10-Step Framework | Simple AI Stock Valuation (https://www.simpleaistockvaluations.w3appdev.com/guides/how-to-tell-if-a-stock-is-undervalued/)",
+        "Bull Base Bear Valuation for One Stock | Model Reef (https://modelreef.io/resources/articles/stock-valuation/how-to-create-a-bull-base-bear-valuation-for-one-stock-scenario-driven-intrinsic-value)",
+        "FY 2026 Annual Investment Plan (https://www.sic.state.nm.us/wp-content/uploads/2025/09/FY26-Annual-Investment-Plan-final.pdf)",
+        "THE COOPER COMPANIES, INC. AND SUBSIDIARIES (https://investor.coopercos.com/static-files/78425b47-866f-42a8-b6ce-2dd33242a7aa)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "site:stock-valuation-public.valuationlens.workers.dev",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [],
+      "emptyResults": true
+    },
+    {
+      "query": "best free historical financial data valuation tools Macrotrends Stock Analysis FinanceCharts",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "Macrotrends | The Long Term Perspective on Markets (https://www.macrotrends.net/)",
+        "Best Free Stock Analysis Tools to Track Valuation Multiples | TIKR.com (https://www.tikr.com/blog/best-free-stock-analysis-tools-to-track-valuation-multiples)",
+        "Macrotrends Review, Pricing, and Features (2026) | Find My Moat (https://www.findmymoat.com/tools/macrotrends)",
+        "Free Alternatives to Macrotrends (2026) | Find My Moat (https://www.findmymoat.com/free/alternatives/macrotrends)",
+        "Best Free Stock Screeners for Value | ValueMarkers (https://valuemarkers.com/blog/best-free-stock-screeners)",
+        "Best Free Stock Charts for 2026 (Tested & Ranked) - StockBrokers.com (https://www.stockbrokers.com/guides/free-stock-charts)",
+        "Best Free Stock Screeners 2026: Moats and Momentum | Moatifi Blog (https://moatifi.com/blog/free-stock-screening-tools-2026)",
+        "Best Free Stock Analysis Software & Tools (2026) | Find My Moat (https://www.findmymoat.com/list/free/stock-analysis-software)",
+        "Free Macrotrends alternative: Ledger vs. | Conyso (https://conyso.com/ledger-vs-macrotrends.html)",
+        "The 5 Best Free Tools to Monitor Watchlists and Price Targets | TIKR.com (https://www.tikr.com/blog/the-5-best-free-tools-to-monitor-watchlists-and-price-targets)",
+        "Free Alternatives to Damodaran Online (NYU Stern) (2026) | Find My Moat (https://www.findmymoat.com/free/alternatives/damodaran-online-nyu-stern)",
+        "Stock Screener Comparison 2026 | ValueMarkers (https://valuemarkers.com/tools/stock-screener-comparison)",
+        "Essential websites for investing tools? (https://www.reddit.com/r/ValueInvesting/comments/1szr8lj/essential_websites_for_investing_tools/)",
+        "Now that Macrotrends is behind a paywall, what free website do you do for quick glance numbers for stocks? (https://www.reddit.com/r/ValueInvesting/comments/1ndhify/now_that_macrotrends_is_behind_a_paywall_what/)",
+        "Any free websites where I can get financial data older than 10 years? (https://www.reddit.com/r/ValueInvesting/comments/1pnv20d/any_free_websites_where_i_can_get_financial_data/)",
+        "Request: free macrotrends.net alternative for international markets (https://www.reddit.com/r/ValueInvesting/comments/1obqmbe)",
+        "Is there a website that containts historic Price-to-Book ratios? (https://www.reddit.com/r/ValueInvesting/comments/1imutq3)",
+        "Which website to use for financial data? (https://www.reddit.com/r/ValueInvesting/comments/zhahgk/which_website_to_use_for_financial_data/)",
+        "I built a MetricSide a free Macrotrends alternative for deep fundamental analysis - would love your feedback (https://www.reddit.com/r/ValueInvesting/comments/1ql2nww/i_built_a_metricside_a_free_macrotrends/)",
+        "Share your favorite stock analyzing tool! (https://www.reddit.com/r/ValueInvesting/comments/1w0yyv9/share_your_favorite_stock_analyzing_tool/)",
+        "Any free websites to chart historical valuation multiples? (https://www.reddit.com/r/ValueInvesting/comments/1h0st44)",
+        "5 best fundamental analysis tools that are actually worth using in 2026 (https://www.reddit.com/r/ValueInvesting/comments/1rymhdq/5_best_fundamental_analysis_tools_that_are/)",
+        "Free Macrotrends alternative (https://www.reddit.com/r/ValueInvesting/comments/1w9so74/free_macrotrends_alternative/)",
+        "What are some good sources for historical fundamental data, for global equities? (https://www.reddit.com/r/ValueInvesting/comments/mfnq6p)",
+        "Optimizing Financial Data Analysis: A Comparative Study of Preprocessing Techniques for Regression Modeling of Apple Inc.'s Net Income and Stock Prices (https://arxiv.org/abs/2501.06587)",
+        "VingeGPT-Benchmark-202512-Rawdata-AllAImodels (https://www.vinley.co/_files/ugd/8f9ff8_004ce2ea09204efe806f520fb575b543.pdf)",
+        "List of financial market information services (https://en.wikipedia.org/wiki/List_of_financial_market_information_services)",
+        "FUNDAMENTAL DATA PROVIDERS (https://oldschoolvalue.s3.amazonaws.com/investing-magazine/OSV_Best_Sites_Value_Investing.pdf)",
+        "Google Finance (https://en.wikipedia.org/wiki/Google_Finance)",
+        "Economic data (https://en.wikipedia.org/wiki/Economic_data)",
+        "Financial data vendor (https://en.wikipedia.org/wiki/Financial_data_vendor)",
+        "Stock valuation (https://en.wikipedia.org/wiki/Stock_valuation)",
+        "Center for Research in Security Prices (https://en.wikipedia.org/wiki/Center_for_Research_in_Security_Prices)",
+        "Dow Jones 100 Year Historical Chart Macrotrends (https://www.api.motion.ac.in/form-library/book-search/HomePages/dow_jones_100_year_historical_chart_macrotrends.pdf)",
+        "Dow Jones 100 Year Historical Chart Macrotrends (https://www.api.motion.ac.in/textbook-solutions/publication/_pdfs/Dow_Jones_100_Year_Historical_Chart_Macrotrends.pdf)",
+        "Best technical analysis software for indian stock market free (https://www.tamar.org.br/fotos_news/files/17094810107.pdf)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "free historical stock valuation charts EPS FCF",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "Stock & ETF screener \u2014 filter by return, valuation, growth | ChartRow (https://chartrow.com/screener)",
+        "Stock Research: Free Charts, Financials & Valuation | Chartloom (https://www.chartloom.com/stock-research)",
+        "Equity Free Cash Flow: (https://distillatecapital.com/wp-content/uploads/2024/12/Asset-Class-Valuations-2024.pdf)",
+        "Value Snapshot \u2014 Stock Valuation & Research Made Simple (https://valuesnapshot.io/)",
+        "Valuation Charts - Stock Rover (https://www.stockrover.com/help/valuation-charts/)",
+        "Stock Market API \u2014 Fundamentals Data, Chart Images & MCP Server | TGMCharts (https://tgmcharts.com/developers)",
+        "Free Intrinsic Value Calculator & Buffett-Style Stock Analysis (https://safetymargin.io/)",
+        "Fundamental Stock Charts | 100+ Visual Financial Charts - Char... (https://www.chartloom.com/feature/charts)",
+        "Intrinsiqq: Free Stock Analysis for 10,000+ Global Stocks (https://intrinsiqq.com/)",
+        "Advanced stock chart \u2013 Visualize any metrics RES performance, KPI & Segments data (https://valuesense.io/ticker/res/chart)",
+        "LionCharts \u2014 Free Financial Screener, SEC Data, FRED Macro & Markets Dashboard (https://lioncharts.com/)",
+        "Stock Analysis Sample (https://morningstardirect.morningstar.com/clientcomm/F.AdditionalSamples.pdf)",
+        "Advanced stock chart \u2013 Visualize any metrics FOR performance, KPI & Segments data (https://valuesense.io/ticker/for/chart)",
+        "How to Read a Stock Valuation Chart \u2014 Guide | The Ledger Terminal (https://theledgerterminal.com/guide/chart)",
+        "April 19, 2021 (https://www.alphaquantmodels.com/_files/ugd/c5e869_69848dfd4a08450cbcd95ee6078e2c68.pdf)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/TraderTools/comments/1tuw8tk/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/Stocks_Philippines/comments/1tv3tqs/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data (https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data (https://www.reddit.com/r/SideProject/comments/1twr305/i_built_a_free_stock_fundamental_analysis_app_no/)",
+        "The S&P Quality FCF Aristocrats Indices \u2013 Exploring the Principles of Consistency and Efficiency in Free Cash Flow Metrics (https://www.spglobal.com/spdji/en/documents/education/education-the-sp-quality-fcf-aristocrats-indices.pdf)",
+        "Figure 16: FCF/Share (https://repositorio.comillas.edu/rest/bitstreams/421570/retrieve)",
+        "These Go to Eleven (https://distillatecapital.com/2025/09/11/these-go-to-eleven/)",
+        "Investment (https://en.wikipedia.org/wiki/Investment)",
+        "Free Cash Flow Yield - Valuation (https://www.reddit.com/r/ValueInvesting/comments/159m5tt)",
+        "Microsoft's Discounted Cash Flow Evaluation (https://www.reddit.com/r/stocks/comments/xwjwyh)",
+        "Stock valuation (https://en.wikipedia.org/wiki/Stock_valuation)",
+        "Valuation using multiples (https://en.wikipedia.org/wiki/Valuation_using_multiples)",
+        "I'm in awe of the company's free-cash-flow progress. (https://www.reddit.com/r/Superstonk/comments/1pj9107/im_in_awe_of_the_companys_freecashflow_progress/)",
+        "The Magnificent 6's Free Cash Flow Problem (https://www.reddit.com/r/ValueInvesting/comments/1t4dvzw/the_magnificent_6s_free_cash_flow_problem/)",
+        "10 years of fundamental stock data. (https://www.reddit.com/r/stocks/comments/vvbssl)",
+        "The fastest DCF calculator, ever. (https://www.reddit.com/r/ValueInvesting/comments/sroi33/the_fastest_dcf_calculator_ever/)",
+        "Google Finance (https://en.wikipedia.org/wiki/Google_Finance)",
+        "Price\u2013earnings ratio (https://en.wikipedia.org/wiki/Price%E2%80%93earnings_ratio)",
+        "Fed model (https://en.wikipedia.org/wiki/Fed_model)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "\"free FAST Graphs alternative\"",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "Free FAST Graphs Alternatives for Valuation Research | Find My Moat (https://www.findmymoat.com/free/alternatives/fast-graphs)",
+        "Canvas Math vs Desmos \u00b7 Canvas Math (https://canvasmath.com/compare/desmos)",
+        "free-for.dev | Free-For-Dev (https://www.free-for-dev.com/en/)",
+        "\ud83e\udde0 Knowledge Graphs for AI Coding Assistants \u2014 A Team Setup Guide \u00b7 GitHub (https://gist.github.com/Alexsky347/145b635611b563402227a7905f51e229)",
+        "GitHub - ripienaar/free-for-dev: A list of SaaS, PaaS and IaaS offerings that have free tiers of interest to devops and infradev \u00b7 GitHub (https://t.co/G5aQgbSJ3d)",
+        "8 Best Free Mathway Alternatives for Students (https://gauravtiwari.org/free-mathway-alternatives/)",
+        "Sites Like Google Scholar: 13 Better Alternatives (https://cochat.ai/sites-like-google-scholar/)",
+        "10 Best AI Tools for Scientific Research in 2026 (https://impressivemagazine.com/best-ai-tools-scientific-research-2026/)",
+        "6 free alternatives to Adobe After Effects for motion graphi (https://www.positioniseverything.net/6-free-alternatives-to-adobe-after-effects-for-motion-graphics-and-vfx/)",
+        "free-resources \u00b7 GitHub (https://gist.github.com/rdwz/77a2152be9004cca6d56706b2c99e814)",
+        "Free Tiers | Free Services | Servi\u00e7os Gr\u00e1tis (https://www.servicosgratis.com.br/free-tier/)",
+        "Cloud & Infrastructure | I Love Free (https://www.ilovefree.com/free-dev-tools/cloud-infrastructure/)",
+        "An Energy Evolution:Alternative Fueled Vehicle Comparisons (https://www1.eere.energy.gov/hydrogenandfuelcells/pdfs/evolution_alternative_vehicle.pdf)"
+      ],
+      "emptyResults": false
+    },
+    {
+      "query": "\"Copart\" \"EPS\" \"CSV\"",
+      "status": "fulfilled",
+      "targetUrlPresent": false,
+      "returnedResults": [
+        "CPRT Stock: P/E 17.6 | $25B Market Cap | Copart | Atlantis (https://atlantisdatasolutions.com/cprt/summary?v=20260916-scale)",
+        "CPRT Earnings \u2014 Copart EPS, Revenue & Net Income | tradmap (https://tradmap.com/stocks/CPRT/earnings)",
+        "Copart Inc (CPRT) Financials FY2026: Revenue $4.7B, Net Income $1.5B | Income Statement & Balance Sheet (https://www.stocktitan.net/financials/CPRT/)",
+        "CPRT Balance Sheet 2026 | Copart Inc Total Assets, Debt & Equity | WallStSmart | WallStSmart.com (https://wallstsmart.com/stock/CPRT/financials/balance-sheet)",
+        "Who Owns CPRT? 19 Institutions Hold $47.9M (Q3 2026) | ko.io (https://ko.io/stock/CPRT/)",
+        "CPRT Cash Flow 2026 | Copart Inc Free Cash Flow & Capex | WallStSmart | WallStSmart.com (https://wallstsmart.com/stock/CPRT/financials/cash-flow)",
+        "Copart (CPRT) (https://usequantiv.com/CPRT)",
+        "Copart (CPRT) PE Ratio: History & Chart | TGMCharts (https://tgmcharts.com/stocks/CPRT/pe-ratio)",
+        "Copart Inc Gross Income Growth Rates (CPRT), Current and Historic Growth - CSIMarket (https://csimarket.com/stocks/single_growth_rates.php?code=CPRT&gro=)",
+        "RB Global, Inc. (NYSE: RBA) \u2014 Paying Copart-Plus for the #2 Salvage Player | FactorsToday (https://www.factorstoday.com/research/RBA)",
+        "Copart Inc (CPRT) Management Effectiveness Comparisons to Industry Sector and S&P (https://csimarket.com/stocks/ManagementEffectiveness.php?code=CPRT)",
+        "CPRT Stock: Copart, Inc. \u2014 Dividend, Financials & Forecast | Dividend Data (https://www.dividenddata.com/stocks/cprt)"
+      ],
+      "emptyResults": false
+    }
+  ],
+  "researchFetcher": {
+    "result": "Seven direct URLs reported inaccessible; no diagnostic cause supplied by the tool.",
+    "testedUrls": [
+      "https://stock-valuation-public.valuationlens.workers.dev/",
+      "https://stock-valuation-public.valuationlens.workers.dev/sources/",
+      "https://stock-valuation-public.valuationlens.workers.dev/methodology/",
+      "https://stock-valuation-public.valuationlens.workers.dev/stocks/aapl/",
+      "https://stock-valuation-public.valuationlens.workers.dev/llms.txt",
+      "https://stock-valuation-public.valuationlens.workers.dev/stocks/aapl/index.md",
+      "https://stock-valuation-public.valuationlens.workers.dev/data/companies/AAPL.json"
+    ]
+  },
+  "httpChecks": [
+    {
+      "path": "index.html",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 11467,
+      "sha256": "a7a8399f92dcf2e970bf509ece4a54a432a13fa16a3dca9445478172f2e27d19",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "sources/index.html",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 6159,
+      "sha256": "23875b73e69810744916c45845fe558adab6113e8f5d6fe5dc7d8866f5b4775b",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "methodology/index.html",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 5447,
+      "sha256": "e7d7f51df3279c23b7e75083c12967e8021343c77b1ad8cab7778580e0498c23",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "data/catalog.json",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 1361333,
+      "sha256": "bdc60efaf6faaf5df8ca60a7f5efcff66510494cf1fcabe5f1b19312a2147df5",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "data/companies/OTEX.json",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 79985,
+      "sha256": "186d14d2a846485d1be667d71102ee70045bd386eef8a9c1377823b29e6e875f",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "data/companies/AAPL.json",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 88484,
+      "sha256": "d2d31a51762cfde05c6ff54b012779764c42611a28ab4e48205813210e53efb4",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "data-access/index.html",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 7169,
+      "sha256": "52321345385e1ba45b30f91290388bf472778cac406241aff3b8c0f32b7f175c",
+      "matchesLocalBuild": true
+    },
+    {
+      "path": "llms.txt",
+      "httpStatus": 200,
+      "userAgent": "Mozilla/5.0",
+      "byteCount": 2282,
+      "sha256": "20bc5ebe090810edeec3c674fbf3076800154d44ad13003be3bcb888ac2ef082",
+      "matchesLocalBuild": true
+    }
+  ],
+  "pythonUserAgentCheck": {
+    "path": "/llms.txt",
+    "userAgent": "Python-urllib/3.9",
+    "httpStatus": 403,
+    "body": "error code: 1010\n"
+  },
+  "snapshot": {
+    "schemaVersion": 1,
+    "snapshotBuiltAt": "2026-08-27T16:05:05Z",
+    "exportedAt": "2026-10-08T08:05:20Z",
+    "latestStoredPriceDate": "2026-05-08",
+    "membershipAsOf": "2026-10-08"
+  },
+  "coverageMethod": "A non-null metric is available, including zero/negative. Count stored rows and distinct fiscalYear labels separately. Price span is last date minus first date divided by 365.2425. Counts are by ticker/security, not unique issuer. Distinct labels do not prove complete annual periods. Full dataset inspected locally; live catalog and representative JSON compared byte-for-byte.",
+  "coverage": {
+    "searchableSecurities": 6551,
+    "publishedCompanyPages": 485,
+    "metrics": {
+      "dilutedEps": {
+        "securitiesWithData": 4180,
+        "maxStoredObservations": 21,
+        "maxDistinctYearLabels": 20,
+        "medianDistinctYearLabels": 10.0,
+        "atLeast15DistinctYearLabels": 1610,
+        "multipleRowsForSomeYearLabel": 135,
+        "publishedWithData": 483,
+        "publishedMedianDistinctYearLabels": 18,
+        "publishedAtLeast15DistinctYearLabels": 387,
+        "examples": [
+          {
+            "ticker": "MSFT",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2008-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": true
+          },
+          {
+            "ticker": "AAPL",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2007-09-29",
+            "lastPeriod": "2025-09-27",
+            "published": true
+          },
+          {
+            "ticker": "OTEX",
+            "observations": 20,
+            "distinctYearLabels": 20,
+            "firstPeriod": "2007-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": false
+          },
+          {
+            "ticker": "ADSK",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2008-01-31",
+            "lastPeriod": "2026-01-31",
+            "published": true
+          },
+          {
+            "ticker": "CPRT",
+            "observations": 17,
+            "distinctYearLabels": 17,
+            "firstPeriod": "2009-07-31",
+            "lastPeriod": "2025-07-31",
+            "published": true
+          }
+        ]
+      },
+      "fcfPerShare": {
+        "securitiesWithData": 3661,
+        "maxStoredObservations": 22,
+        "maxDistinctYearLabels": 20,
+        "medianDistinctYearLabels": 10,
+        "atLeast15DistinctYearLabels": 1332,
+        "multipleRowsForSomeYearLabel": 107,
+        "publishedWithData": 442,
+        "publishedMedianDistinctYearLabels": 18.0,
+        "publishedAtLeast15DistinctYearLabels": 331,
+        "examples": [
+          {
+            "ticker": "MSFT",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2008-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": true
+          },
+          {
+            "ticker": "AAPL",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2007-09-29",
+            "lastPeriod": "2025-09-27",
+            "published": true
+          },
+          {
+            "ticker": "OTEX",
+            "observations": 20,
+            "distinctYearLabels": 20,
+            "firstPeriod": "2007-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": false
+          },
+          {
+            "ticker": "ADSK",
+            "observations": 12,
+            "distinctYearLabels": 12,
+            "firstPeriod": "2008-01-31",
+            "lastPeriod": "2026-01-31",
+            "published": true
+          },
+          {
+            "ticker": "CPRT",
+            "observations": 17,
+            "distinctYearLabels": 17,
+            "firstPeriod": "2009-07-31",
+            "lastPeriod": "2025-07-31",
+            "published": true
+          }
+        ]
+      },
+      "dividendPerShare": {
+        "securitiesWithData": 1865,
+        "maxStoredObservations": 22,
+        "maxDistinctYearLabels": 19,
+        "medianDistinctYearLabels": 12,
+        "atLeast15DistinctYearLabels": 768,
+        "multipleRowsForSomeYearLabel": 58,
+        "publishedWithData": 382,
+        "publishedMedianDistinctYearLabels": 17.0,
+        "publishedAtLeast15DistinctYearLabels": 239,
+        "examples": [
+          {
+            "ticker": "MSFT",
+            "observations": 19,
+            "distinctYearLabels": 19,
+            "firstPeriod": "2008-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": true
+          },
+          {
+            "ticker": "AAPL",
+            "observations": 16,
+            "distinctYearLabels": 16,
+            "firstPeriod": "2010-09-25",
+            "lastPeriod": "2025-09-27",
+            "published": true
+          },
+          {
+            "ticker": "OTEX",
+            "observations": 16,
+            "distinctYearLabels": 16,
+            "firstPeriod": "2011-06-30",
+            "lastPeriod": "2026-06-30",
+            "published": false
+          }
+        ]
+      }
+    },
+    "prices": {
+      "securitiesWithData": 6542,
+      "maxSpanYears": 24.9916151597911,
+      "medianSpanYears": 8.260265440084327,
+      "latestPriceAgeDays": 153,
+      "frequency": "Weekly; exporter reads price_weekly and split_weekly tables. Existing daily-resource wording is inaccurate.",
+      "examples": [
+        {
+          "ticker": "MSFT",
+          "observations": 1305,
+          "start": "2001-05-11",
+          "end": "2026-05-08",
+          "spanYears": 24.9916151597911
+        },
+        {
+          "ticker": "AAPL",
+          "observations": 1305,
+          "start": "2001-05-11",
+          "end": "2026-05-08",
+          "spanYears": 24.9916151597911
+        },
+        {
+          "ticker": "ADSK",
+          "observations": 1305,
+          "start": "2001-05-11",
+          "end": "2026-05-08",
+          "spanYears": 24.9916151597911
+        },
+        {
+          "ticker": "CPRT",
+          "observations": 1107,
+          "start": "2005-02-25",
+          "end": "2026-05-08",
+          "spanYears": 21.196876048105025
+        }
+      ]
+    }
+  }
+}

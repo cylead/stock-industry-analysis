@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-004 — Historical coverage counts required distinct time definitions
+
+- **Status:** Resolved
+- **Opened:** 2026-10-08
+- **Resolved:** 2026-10-08
+- **Affected area:** `company-analyses/Stock_Valuation_Lens_Discovery_Comparison.md`, its test evidence, and coverage comparisons with competing tools.
+- **Problem and impact:** Counting annual rows as years could overstate financial-history depth: the inspected snapshot contains up to 22 FCF/share rows, while the maximum distinct stored fiscal-year-label count is 20. Some periods share a year label, and gaps make endpoint spans different from observation counts. Public data-access wording also describes exported prices as daily even though the exporter reads weekly tables.
+- **Root cause or hypothesis:** Coverage marketing mixes observation counts, fiscal-year labels, elapsed spans and price frequency. Multiple periods sharing a label can reflect fiscal-calendar conventions or transitions; their presence alone does not establish duplicate financial facts.
+- **Chosen solution:** Inspected all 6,551 production company JSON files and the exporter, calculated row counts, distinct labels and price spans separately, verified the live catalog and representative JSON against the build, and recorded qualified coverage claims and documentation follow-ups in the audit and machine-readable evidence.
+- **Rationale:** Distinct definitions and concrete company examples make the comparison reproducible without deleting potentially valid fiscal periods or promising complete history from endpoint dates.
+- **Alternatives considered:** Advertising the largest raw row count as years would misstate coverage. Treating repeated labels as erroneous duplicates without inspecting their fiscal periods would be unsupported. Reusing prior documentation without checking exported records would perpetuate the price-frequency mismatch.
+- **Follow-up/prevention:** Future coverage claims should include metric availability, actual period endpoints, observation counts, gaps and price frequency. The separate website's daily-price wording and coverage display remain recommended follow-ups; this resolution applies to the audit's measurement and reporting, not a website fix.
+
 ## ISSUE-003 — Ecosystem overlay duplicated Five Forces mechanisms
 
 - **Status:** Resolved
