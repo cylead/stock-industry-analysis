@@ -4,6 +4,12 @@ An evidence-driven Codex skill for analyzing public and private companies and in
 
 The skill focuses on business quality and industry structure. It does not provide an automatic buy/sell recommendation, price target, or valuation.
 
+## Related public website
+
+[Stock Valuation Lens](https://stock-valuation-public.valuationlens.workers.dev/) is the project's related free website for historical US stock charts, annual EPS, cash flow, dividends, and CSV/PNG exports, with no account or subscription required. Website address recorded on 2026-10-08.
+
+This repository contains the analysis skill and reports; the website application source is not present here. The [SEO proposal](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the website audit, audience assumptions, keyword candidates, and changes proposed for the owner's decision.
+
 ## What it produces
 
 - Company and industry definition
