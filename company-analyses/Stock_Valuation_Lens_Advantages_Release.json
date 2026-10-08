@@ -1,0 +1,77 @@
+{
+  "version": "0244d17e-af53-4584-bdac-24f3fee1b31f",
+  "checks": [
+    {
+      "route": "/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/styles.css",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/llms.txt",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/index.md",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/aapl/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/aapl/index.md",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/msft/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/data-access/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/data-access/index.md",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/updates/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/updates/index.md",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/data/catalog.json",
+      "http": "200",
+      "matchesBuild": true
+    }
+  ],
+  "changedSourceFiles": [
+    "scripts/build.mjs",
+    "scripts/site.mjs",
+    "scripts/ai.mjs",
+    "web/styles.css",
+    "tests/site.test.js",
+    "content/updates.json",
+    "README.md",
+    "PROJECT_LOG.md",
+    "ISSUE_LOG.md",
+    "VERIFICATION.md"
+  ]
+}

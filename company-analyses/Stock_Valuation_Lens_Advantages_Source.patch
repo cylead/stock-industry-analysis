@@ -1,0 +1,273 @@
+--- a/scripts/build.mjs
++++ b/scripts/build.mjs
+@@ -39,6 +39,7 @@
+   if (tickers.size !== index.companies.length || dataFiles.length !== tickers.size) throw new Error("The company index and files do not match");
+   const site = await loadSite(root, options);
+   site.latestPriceDate = null;
++  site.researchCoverage = { annual: null, prices: null };
+   const snapshots = new Map();
+   const pageTickers = new Set(site.membership.constituents.map((member) => normalizeTicker(member.ticker)));
+   for (const company of index.companies) {
+@@ -46,6 +47,18 @@
+     const payload = JSON.parse(await readFile(join(root, "data/companies", `${company.ticker}.json`), "utf8"));
+     if (payload.schemaVersion !== 1 || payload.company.ticker !== company.ticker || payload.company.exchange !== company.exchange || !Array.isArray(payload.annual) || !Array.isArray(payload.prices)) throw new Error(`Invalid company snapshot: ${company.ticker}`);
+     for (const row of payload.prices) if (row.date > (site.latestPriceDate || "")) site.latestPriceDate = row.date;
++    for (const field of ["dilutedEps", "fcfPerShare"]) {
++      const rows = payload.annual.filter((row) => typeof row[field] === "number" && Number.isFinite(row[field]));
++      // Use an example with distinct year labels; repeated labels are not additional years.
++      if (rows.length && new Set(rows.map((row) => row.fiscalYear)).size === rows.length && rows.length > (site.researchCoverage.annual?.count || 0)) {
++        site.researchCoverage.annual = { ticker: company.ticker, count: rows.length, start: rows[0].periodEnd, end: rows.at(-1).periodEnd };
++      }
++    }
++    if (payload.prices.length) {
++      const start = payload.prices[0].date, end = payload.prices.at(-1).date;
++      const years = (Date.parse(end) - Date.parse(start)) / (365.2425 * 86400000);
++      if (years > (site.researchCoverage.prices?.years || 0)) site.researchCoverage.prices = { ticker: company.ticker, years, start, end };
++    }
+     if (pageTickers.has(company.ticker)) snapshots.set(company.ticker, payload);
+   }
+   const staging = await mkdtemp(join(root, ".build-"));
+--- a/scripts/site.mjs
++++ b/scripts/site.mjs
+@@ -1,7 +1,7 @@
+ import { mkdir, readFile, writeFile } from "node:fs/promises";
+ import { join, resolve, sep } from "node:path";
+ import { annualDividendYields, normalizeTicker } from "../web/calculations.js";
+-import { accessDocumentation, generateAiFiles } from "./ai.mjs";
++import { accessDocumentation, generateAiFiles, researchAdvantages } from "./ai.mjs";
+ 
+ export const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
+ const e = escapeHtml;
+@@ -139,6 +139,10 @@
+   return `<section class="card content-page updates-page"><p class="eyebrow">THE WEBSITE, OVER TIME</p><h1>Website updates</h1><p class="updates-intro">Major improvements, launch milestones, and events in the history of Stock Valuation Lens.</p><p class="update-history-note">Latest entries first · Last updated ${e(dateLabel(site.updates[0].date))}</p><ol class="update-history" aria-label="Major website updates">${entries}</ol><p class="data-note">Launch preparation records the work completed before the first public release. Website-update dates are separate from financial-data dates; a website update does not necessarily refresh stock prices or company facts. See <a href="/sources/">sources, dates & limitations</a>.</p><p><a href="/">Explore the stock chart tool</a> · <a href="/stocks/">Browse the S&P 500 directory</a></p></section>`;
+ }
+ 
++function advantagesSection(site, index, member = null) {
++  return `<section class="card research-intro" aria-labelledby="research-intro-title"><p class="eyebrow">WHY USE STOCK VALUATION LENS</p><${member ? "h2" : "h1"} id="research-intro-title">Free historical stock charts and financial data</${member ? "h2" : "h1"}><p>Compare annual earnings and cash flow per share with historical stock prices, with clear coverage and source links.</p><dl class="research-advantages">${researchAdvantages(site, member).map(([title, text]) => `<div><dt>${e(title)}</dt><dd>${e(text)}</dd></div>`).join("")}</dl><p class="data-note">Financial database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")}. FCF/share is a derived measure; adjusted prices and associated dividend yields are labeled approximations. The formula line is a retrospective reference, not an intrinsic-value estimate. <a href="/sources/">Verify sources, dates and limitations.</a></p><p><a href="/stocks/">Browse the S&P 500 company directory</a> or search ${index.companies.length.toLocaleString("en-US")} US-listed securities. Metric coverage varies.</p><nav class="guide-links" aria-label="Stock research guides"><a href="/guides/stock-price-vs-earnings/">Price versus earnings</a><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus cash flow</a><a href="/guides/export-stock-history-csv/">CSV/PNG exports without signup</a></nav></section>`;
++}
++
+ export async function generateSite(staging, site, index, snapshots, template) {
+   const members = matchConstituents(site.membership, snapshots), published = members.filter((member) => member.path);
+   const paths = ["/"];
+@@ -148,10 +152,10 @@
+     await writeFile(join(directory, "index.html"), html);
+     paths.push(path);
+   }
+-  let home = template.replace(/<meta name="description"[^>]*>[\s\S]*?<title>[\s\S]*?<\/title>/, metadata(site, "/", "Free historical stock charts and EPS data", "Explore annual stock EPS, free cash flow per share, dividends, and historical prices. Free charts and CSV/PNG exports without signup or subscription."));
++  let home = template.replace(/<meta name="description"[^>]*>[\s\S]*?<title>[\s\S]*?<\/title>/, metadata(site, "/", "Free historical stock charts and EPS data", "Free stock price-versus-earnings charts, filing-linked annual EPS and derived FCF/share, long weekly price histories, and CSV/PNG exports without signup. Coverage varies."));
+   home = home.replace(/<header[\s\S]*?<\/header>/, header(true)).replace(/<footer>[\s\S]*?<\/footer>/, footer(site));
+   home = home.replace('Historical snapshot · prices are not live quotes.', `Historical snapshot · database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")} · prices are not live quotes.`);
+-  home = home.replace('\n  </main>', `<section class="card research-intro" aria-labelledby="research-intro-title"><h1 id="research-intro-title">Free historical stock charts and financial data</h1><p>Explore annual earnings per share, free cash flow per share, dividends, and historical US stock prices. Charts and CSV/PNG exports require no account or subscription. Coverage and dates vary by company.</p><p><a href="/stocks/">Browse the S&P 500 company directory</a> or use the ticker search to explore ${index.companies.length.toLocaleString("en-US")} stocks.</p><nav class="guide-links" aria-label="Stock research guides"><a href="/guides/stock-price-vs-earnings/">Price versus earnings</a><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus cash flow</a><a href="/guides/export-stock-history-csv/">Download chart data as CSV</a></nav></section>\n  </main>`);
++  home = home.replace('\n  </main>', advantagesSection(site, index) + '\n  </main>');
+   home = home.replace('<script src="/app.js"', '<noscript><p class="snapshot-note">Browse <a href="/stocks/">company pages</a> for annual financial tables without JavaScript.</p></noscript><script src="/app.js"');
+   await writeFile(join(staging, "index.html"), home);
+   const start = template.indexOf('    <section id="workspace"'), end = template.indexOf('\n  </main>', start);
+@@ -163,7 +167,7 @@
+     const hasEps = member.snapshot.annual.some((row) => numeric(row.dilutedEps) || numeric(row.basicEps)), hasFcf = member.snapshot.annual.some((row) => numeric(row.fcfPerShare));
+     const subject = [hasEps ? "EPS history" : "", hasFcf ? "free cash flow per share" : ""].filter(Boolean).join(" and ");
+     const title = `${member.name} (${member.ticker}) ${subject}`;
+-    await save(member.path, page(site, member.path, title, `Explore ${member.name} annual ${subject}, with historical charts and filing sources. Free access and CSV/PNG exports without signup.`, welcome + workspace + overview(member, site, index) + '<noscript><p>Enable JavaScript to use the interactive chart. The annual table below is available without it.</p></noscript>' + history(member), { chart: true, ticker: member.ticker }));
++    await save(member.path, page(site, member.path, title, `Explore ${member.name} annual ${subject}, with historical charts and filing sources. Free access and CSV/PNG exports without signup.`, welcome + workspace + overview(member, site, index) + '<noscript><p>Enable JavaScript to use the interactive chart. The annual table below is available without it.</p></noscript>' + history(member) + advantagesSection(site, index, member), { chart: true, ticker: member.ticker }));
+   }
+   const directoryRows = members.map((member) => `<tr data-sector="${e(member.sector)}"><th scope="row">${member.path ? `<a href="${member.path}">${e(member.ticker)}</a>` : e(member.ticker)}</th><td>${e(member.name)}</td><td>${e(member.sector)}</td><td>${member.path ? '<span class="coverage-status" title="Financial history available">Available</span>' : e(member.reason)}</td></tr>`).join("\n");
+   const sectors = [...new Set(members.map((member) => member.sector).filter(Boolean))].sort();
+--- a/scripts/ai.mjs
++++ b/scripts/ai.mjs
+@@ -33,6 +33,7 @@
+   const lines = [
+     `# ${md(member.name)} (${md(member.ticker)}) financial history`,
+     `Canonical page: ${absolute(site, member.path)}`,
++    researchAdvantages(site, member).map(([title, text]) => `- **${md(title)}:** ${md(text)}`).join("\n"),
+     `Company: ${md(company.name)}; exchange: ${md(company.exchange)}; currency: ${md(company.currency || "USD")}; CIK: ${md(company.cik)}.`,
+     `Sector: ${md(member.sector || "Unavailable")}; industry: ${md(member.industry || "Unavailable")}.`,
+     `Financial database built: ${md(index.builtAt || "Unavailable")}. Latest stored price: ${md(priceDate)}. Membership as of ${md(site.membership.asOf)}. These dates describe different inputs.`,
+@@ -50,9 +51,24 @@
+   return lines.join("\n\n").replace(/\|\n\n\|/g, "|\n|") + "\n";
+ }
+ 
++export function researchAdvantages(site, member = null) {
++  const annual = site.researchCoverage?.annual, prices = site.researchCoverage?.prices;
++  const observations = member ? [["dilutedEps", "diluted EPS"], ["fcfPerShare", "FCF/share"]].map(([field, label]) => {
++    const rows = member.snapshot.annual.filter((row) => typeof row[field] === "number" && Number.isFinite(row[field]));
++    return rows.length ? `${rows.length} annual ${label} observations (${rows[0].periodEnd}–${rows.at(-1).periodEnd})` : "";
++  }).filter(Boolean).join("; ") : "";
++  const companyPrices = member?.snapshot.prices;
++  return [
++    ["Free, including exports", "All current charts and CSV/PNG exports are free. No account or subscription required."],
++    ["Long annual histories", member ? `${member.ticker}: ${observations || "supported annual per-share observations"}. Coverage varies by metric; histories may have gaps.` : annual ? `Selected histories reach ${annual.count} annual observations: ${annual.ticker}, ${annual.start}–${annual.end}. Coverage varies by company and metric; histories may have gaps.` : "Explore available annual EPS and derived FCF per share. Coverage varies by company and metric; histories may have gaps."],
++    ["Historical weekly prices", companyPrices?.length ? `${member.ticker}: weekly price observations from ${companyPrices[0].date} through ${companyPrices.at(-1).date}. Prices are historical, not live quotes.` : prices ? `Up to approximately ${Number(prices.years.toFixed(1))} years of weekly price history for selected stocks. Latest stored price: ${site.latestPriceDate}. Coverage varies; prices are not live quotes.` : "Weekly historical prices where available. Coverage varies; prices are not live quotes."],
++    ["Filing-linked financial data", "EPS facts link to SEC filings. FCF/share is derived from reported cash-flow inputs and diluted shares. Historical prices come from Stooq."]
++  ];
++}
++
+ export function accessDocumentation(site, index, members) {
+   const published = members.filter((member) => member.path);
+-  return `<h1>AI &amp; data access</h1><p>Read Stock Valuation Lens with an LLM, a research assistant, or a script. These public, read-only resources require no login, API key, or JavaScript.</p><h2>Start here</h2><ul><li><a href="/llms.txt">LLM navigation guide</a>: a compact overview and links to useful documents.</li><li><a href="/data/catalog.json">Stock data catalog</a>: direct JSON URLs for all ${index.companies.length.toLocaleString("en-US")} stocks, with HTML and Markdown links where a company page exists.</li><li><a href="/stocks/index.md">S&amp;P 500 directory in Markdown</a>: ${published.length} published company pages and labeled coverage gaps.</li><li><a href="/data-access/index.md">This guide in Markdown</a>.</li></ul><h2>Ask your assistant</h2><p>Give your assistant the LLM navigation guide URL and a stock ticker. Ask it to read the methodology and sources, find the ticker in the data catalog, and fetch its company JSON. Ask it to state financial and price dates and cite the company page and original SEC filings.</p><h2>Stable resource URLs</h2><ul><li>GET /data/catalog.json — catalog with absolute resource URLs.</li><li>GET /data/index.json — original search index and snapshot metadata.</li><li>GET /data/companies/TICKER.json — exact uppercase ticker from the catalog, including hyphenated share classes such as BRK-B. Check availability before using a metric.</li><li>GET /stocks/ticker/ — HTML financial history for published constituents.</li><li>GET /stocks/ticker/index.md — clean Markdown with the same annual facts and source links.</li><li>GET /methodology/index.md, /sources/index.md, /about/index.md, /updates/index.md — plain-text documentation.</li></ul><p>Use catalog URLs rather than guessing company routes. A company may have JSON data even when it has no dedicated page. Unsupported tickers return a genuine 404. Fetch one company at a time; the catalog is for discovery, not a requirement to download every dataset.</p><h2>JSON fields and dates</h2><p>The original company JSON schema remains version 1. company contains identity, exchange, currency, price source, latest price dates, and metric availability. annual contains fiscalYear, periodEnd, basicEps, dilutedEps, fcfPerShare, fcfTotal, dividendPerShare, and sources when supplied. Missing observations use null or absent fields; zero is a reported value. Per-share metrics use the company currency per share; fcfTotal uses currency units.</p><p>prices contains date and adjustedClose, and splitClose when available. These are stored daily observations; the chart selects weekly points. Adjusted closes and yields based on them are approximations where split-only prices are unavailable. SEC source records retain accession, filed date, form, tag, unit, and observation dates when supplied; FCF sources identify operating cash flow and capex. Share-denominator provenance is not separately included in the current export.</p><p>The catalog uses schemaVersion 1 and includes snapshotBuiltAt, exportedAt, latestStoredPriceDate, membershipAsOf, and a companies array. Each entry has ticker, name, exchange, dataUrl, pageUrl, and markdownUrl. pageUrl and markdownUrl are null when no dedicated company page exists. Export time describes packaging, not a financial refresh.</p><h2>Snapshot and limitations</h2><p>Financial database built ${htmlText(index.builtAt || "date unavailable")}; latest stored price across the snapshot ${htmlText(site.latestPriceDate || "date unavailable")}; membership as of ${htmlText(site.membership.asOf)}. Company-specific dates can differ. Annual filings may be newer than the final price date. This is historical research, not live quotes or investment advice. Read <a href="/methodology/">methodology</a> and <a href="/sources/">sources, dates &amp; limitations</a> before interpreting a formula or dividend yield.</p><h2>Access and discovery</h2><p>The website exposes ordinary public GET URLs. Markdown alternatives are linked in page metadata, and public data resources allow cross-origin reads. Production robots.txt permits crawling. llms.txt is a navigation proposal, not a guarantee that an AI service will index, access, or cite the site. Some services have their own fetching restrictions.</p>`;
++  return `<h1>AI &amp; data access</h1><p>Read Stock Valuation Lens with an LLM, a research assistant, or a script. These public, read-only resources require no login, API key, or JavaScript.</p><h2>Verified features and coverage</h2><ul>${researchAdvantages(site).map(([title, text]) => `<li><strong>${htmlText(title)}</strong>: ${htmlText(text)}</li>`).join("")}</ul><p><a href="/sources/">Source dates and limitations</a> · <a href="/guides/export-stock-history-csv/">Chart export scope</a></p><h2>Start here</h2><ul><li><a href="/llms.txt">LLM navigation guide</a>: a compact overview and links to useful documents.</li><li><a href="/data/catalog.json">Stock data catalog</a>: direct JSON URLs for all ${index.companies.length.toLocaleString("en-US")} stocks, with HTML and Markdown links where a company page exists.</li><li><a href="/stocks/index.md">S&amp;P 500 directory in Markdown</a>: ${published.length} published company pages and labeled coverage gaps.</li><li><a href="/data-access/index.md">This guide in Markdown</a>.</li></ul><h2>Ask your assistant</h2><p>Give your assistant the LLM navigation guide URL and a stock ticker. Ask it to read the methodology and sources, find the ticker in the data catalog, and fetch its company JSON. Ask it to state financial and price dates and cite the company page and original SEC filings.</p><h2>Stable resource URLs</h2><ul><li>GET /data/catalog.json — catalog with absolute resource URLs.</li><li>GET /data/index.json — original search index and snapshot metadata.</li><li>GET /data/companies/TICKER.json — exact uppercase ticker from the catalog, including hyphenated share classes such as BRK-B. Check availability before using a metric.</li><li>GET /stocks/ticker/ — HTML financial history for published constituents.</li><li>GET /stocks/ticker/index.md — clean Markdown with the same annual facts and source links.</li><li>GET /methodology/index.md, /sources/index.md, /about/index.md, /updates/index.md — plain-text documentation.</li></ul><p>Use catalog URLs rather than guessing company routes. A company may have JSON data even when it has no dedicated page. Unsupported tickers return a genuine 404. Fetch one company at a time; the catalog is for discovery, not a requirement to download every dataset.</p><h2>JSON fields and dates</h2><p>The original company JSON schema remains version 1. company contains identity, exchange, currency, price source, latest price dates, and metric availability. annual contains fiscalYear, periodEnd, basicEps, dilutedEps, fcfPerShare, fcfTotal, dividendPerShare, and sources when supplied. Missing observations use null or absent fields; zero is a reported value. Per-share metrics use the company currency per share; fcfTotal uses currency units.</p><p>prices contains date and adjustedClose, and splitClose when available. These are stored weekly observations, retaining the last available price in each week. Adjusted closes and yields based on them are approximations where split-only prices are unavailable. SEC source records retain accession, filed date, form, tag, unit, and observation dates when supplied; FCF sources identify operating cash flow and capex. Share-denominator provenance is not separately included in the current export.</p><p>The catalog uses schemaVersion 1 and includes snapshotBuiltAt, exportedAt, latestStoredPriceDate, membershipAsOf, and a companies array. Each entry has ticker, name, exchange, dataUrl, pageUrl, and markdownUrl. pageUrl and markdownUrl are null when no dedicated company page exists. Export time describes packaging, not a financial refresh.</p><h2>Snapshot and limitations</h2><p>Financial database built ${htmlText(index.builtAt || "date unavailable")}; latest stored price across the snapshot ${htmlText(site.latestPriceDate || "date unavailable")}; membership as of ${htmlText(site.membership.asOf)}. Company-specific dates can differ. Annual filings may be newer than the final price date. This is historical research, not live quotes or investment advice. Read <a href="/methodology/">methodology</a> and <a href="/sources/">sources, dates &amp; limitations</a> before interpreting a formula or dividend yield.</p><h2>Access and discovery</h2><p>The website exposes ordinary public GET URLs. Markdown alternatives are linked in page metadata, and public data resources allow cross-origin reads. Production robots.txt permits crawling. llms.txt is a navigation proposal, not a guarantee that an AI service will index, access, or cite the site. Some services have their own fetching restrictions.</p>`;
+ }
+ 
+ export async function generateAiFiles(staging, site, index, members, documents) {
+@@ -75,7 +91,7 @@
+   for (const [path, title, , content] of documents) await save(`${path}index.md`, `Canonical page: ${absolute(site, path)}\n\n${supportingMarkdown(content, site.siteUrl)}`);
+   await save("/updates/index.md", `# Website updates\n\nCanonical page: ${absolute(site, "/updates/")}\n\n` + site.updates.map((entry) => `## ${md(entry.date)} — ${md(entry.title)}\n\n${md(entry.type)}. ${md(entry.summary)}\n\n${entry.items.map((item) => `- ${md(item)}`).join("\n")}`).join("\n\n") + "\n");
+   await save("/stocks/index.md", `# S&P 500 financial history directory\n\nMembership as of ${md(site.membership.asOf)}. ${published.length} of ${members.length} securities have company pages. Financial database built ${md(index.builtAt || "Unavailable")}; prices are historical.\n\n` + members.map((member) => member.path ? `- [${md(member.ticker)} — ${md(member.name)}](${absolute(site, `${member.path}index.md`)}): ${md(member.sector || "Sector unavailable")}; [JSON](${absolute(site, `/data/companies/${member.ticker}.json`)})` : `- ${md(member.ticker)} — ${md(member.name)}: ${md(member.reason)}; see the [full data catalog](${absolute(site, "/data/catalog.json")}) for available JSON.`).join("\n") + "\n");
+-  const summary = `# Stock Valuation Lens\n\n> Free historical US stock research covering ${index.companies.length.toLocaleString("en-US")} stocks, with reported annual financial facts, price histories, source links, and ${published.length} dedicated company pages.\n\nFinancial database built ${md(index.builtAt || "Unavailable")}; latest stored price ${md(site.latestPriceDate || "Unavailable")}. Membership as of ${md(site.membership.asOf)}. Historical data, not live quotes or investment advice. Missing values are unavailable, not zero. Adjusted prices and dividend yields based on them are labeled approximations. Formula values are retrospective references, not price targets.\n\nUse the data catalog to find an exact ticker, then fetch its JSON or Markdown. JSON includes original precision and provenance; per-company dates can differ from the snapshot maximum. All resources use public read-only GET requests and require no JavaScript or authentication.\n\n`;
++  const summary = `# Stock Valuation Lens\n\n> Free historical US stock research covering ${index.companies.length.toLocaleString("en-US")} searchable US-listed securities, with reported annual financial facts, weekly price histories, source links, and ${published.length} dedicated company pages.\n\n## Verified features and coverage\n\n${researchAdvantages(site).map(([title, text]) => `- **${md(title)}:** ${md(text)}`).join("\n")}\n\n[Verify financial sources and dates](${absolute(site, "/sources/index.md")}) · [Understand chart CSV scope](${absolute(site, "/guides/export-stock-history-csv/index.md")}).\n\nFinancial database built ${md(index.builtAt || "Unavailable")}; latest stored price ${md(site.latestPriceDate || "Unavailable")}. Membership as of ${md(site.membership.asOf)}. Historical data, not live quotes or investment advice. Missing values are unavailable, not zero. Adjusted prices and dividend yields based on them are labeled approximations. Formula values are retrospective references, not price targets.\n\nUse the data catalog to find an exact ticker, then fetch its JSON or Markdown. JSON includes original precision and provenance; per-company dates can differ from the snapshot maximum. All resources use public read-only GET requests and require no JavaScript or authentication.\n\n`;
+   const files = [
+     ["AI and data access", "/data-access/index.md", "Endpoint guide, schema, units, date interpretation, and limitations."],
+     ["Methodology", "/methodology/index.md", "EPS, FCF, growth, valuation formula, and dividend calculations."],
+--- a/web/styles.css
++++ b/web/styles.css
+@@ -180,8 +180,13 @@
+ .company-overview p, .content-page p { overflow-wrap: anywhere; }
+ .content-page h2 { margin-top: 28px; }
+ .research-intro { margin-top: 24px; padding: 24px; }
+-.research-intro h1 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; font-weight: 650; letter-spacing: -.4px; }
++.research-intro h1, .research-intro h2 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; font-weight: 650; letter-spacing: -.4px; }
+ .research-intro p { max-width: 900px; }
++.research-advantages { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px 28px; margin: 24px 0; }
++.research-advantages div { border-left: 2px solid var(--green); padding-left: 14px; }
++.research-advantages dt { font-weight: 650; margin-bottom: 6px; }
++.research-advantages dd { margin: 0; color: var(--muted); line-height: 1.6; overflow-wrap: anywhere; }
++@media (max-width: 640px) { .research-advantages { grid-template-columns: 1fr; gap: 18px; } }
+ .guide-links { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 16px; }
+ .guide-list { padding-left: 20px; }
+ .guide-list li + li { margin-top: 22px; }
+--- a/tests/site.test.js
++++ b/tests/site.test.js
+@@ -78,6 +78,13 @@
+     assert.ok(home.indexOf('id="range-chart"') < home.indexOf('id="snapshot-note"'));
+     assert.ok(home.indexOf('id="range-chart"') < home.indexOf('id="research-intro-title"'));
+     assert.match(home, /Free historical stock charts and financial data/);
++    for (const page of [home, html]) {
++      assert.match(page, /All current charts and CSV\/PNG exports are free/);
++      assert.match(page, /No account or subscription required/);
++      assert.match(page, /Filing-linked financial data/);
++      assert.ok(page.indexOf('id="range-chart"') < page.indexOf('class="research-advantages"'));
++    }
++    assert.ok(html.indexOf('id="company-history"') < html.indexOf('class="research-advantages"'));
+     for (const page of [home, html]) {
+       assert.ok(page.indexOf('id="workspace-name"') < page.indexOf('id="metric-buttons"'));
+       assert.ok(page.indexOf('id="stat-cagr"') < page.indexOf('id="metric-buttons"'));
+@@ -252,3 +259,34 @@
+   assert.match(output, /\^\(years × 0.6\)/);
+   assert.doesNotMatch(output, /<sup>|<li>/);
+ });
++
++
++test("Coverage claims derive from all stocks and avoid counting repeated year labels as additional years", async () => {
++  const root = await fixture();
++  try {
++    const long = snapshot("LONG", 999);
++    long.annual = Array.from({ length: 20 }, (_, position) => ({ periodEnd: `${2007 + position}-06-30`, fiscalYear: 2007 + position, dilutedEps: position - 1, fcfPerShare: 0 }));
++    long.prices = [{ date: "2001-05-11", adjustedClose: 1 }, { date: "2026-05-08", adjustedClose: 25 }];
++    const repeated = snapshot("REPEATED", 1000);
++    repeated.annual = Array.from({ length: 22 }, (_, position) => ({ periodEnd: `2025-01-${String(position + 1).padStart(2, "0")}`, fiscalYear: 2025, dilutedEps: 1 }));
++    const inputPath = join(root, "data/index.json"), index = JSON.parse(await readFile(inputPath, "utf8"));
++    for (const record of [long, repeated]) {
++      index.companies.push({ ticker: record.company.ticker, name: record.company.name, exchange: record.company.exchange });
++      await writeFile(join(root, `data/companies/${record.company.ticker}.json`), JSON.stringify(record));
++    }
++    await writeFile(inputPath, JSON.stringify(index));
++    await build(root, { siteUrl: "https://stocks.test" });
++    for (const path of ["index.html", "index.md", "llms.txt", "data-access/index.html", "data-access/index.md"]) {
++      const output = await readFile(join(root, "dist", path), "utf8");
++      assert.match(output, /20 annual observations: LONG, 2007-06-30–2026-06-30/);
++      assert.match(output, /approximately 25 years of weekly price history/);
++      assert.match(output, /Coverage varies/);
++      assert.doesNotMatch(output, /22 annual observations|stored daily observations/);
++    }
++    const companyMd = await readFile(join(root, "dist/stocks/aapl/index.md"), "utf8");
++    assert.ok(companyMd.indexOf("Free, including exports") < companyMd.indexOf("Company:"));
++    assert.match(companyMd, /2 annual diluted EPS observations/);
++    assert.doesNotMatch(companyMd, /20 annual observations|annual FCF\/share observations/);
++    assert.match(await readFile(join(root, "dist/data-access/index.html"), "utf8"), /stored weekly observations/);
++  } finally { await rm(root, { recursive: true, force: true }); }
++});
+--- a/content/updates.json
++++ b/content/updates.json
+@@ -1,4 +1,15 @@
+ [
++  {
++    "date": "2026-10-08",
++    "type": "Feature",
++    "title": "Verified research advantages, with precise coverage",
++    "summary": "Made the free research features and available history easier to find below the chart and in AI-readable documents.",
++    "items": [
++      "Charts and CSV/PNG exports are free without an account or subscription.",
++      "Highlighted annual-history examples, long weekly price histories and financial facts linked to SEC filings; company pages show their own coverage.",
++      "Coverage and source dates remain explicit. Prices are historical, FCF per share is derived, and this update does not refresh the financial snapshot."
++    ]
++  },
+   {
+     "date": "2026-10-08",
+     "type": "Feature",
+--- a/README.md
++++ b/README.md
+@@ -67,6 +67,12 @@
+ The `/guides/` hub links three practical guides: `/guides/stock-price-vs-earnings/`, `/guides/eps-vs-free-cash-flow-per-share/`, and `/guides/export-stock-history-csv/`, alongside the existing dividend-yield guide. They explain the actual chart controls, CSV scope, annual data, source filings, and interpretation limits. Each has a generated Markdown alternative.
+ 
+ The homepage explains free access and exports below the chart. Company titles and summaries describe metrics present in their snapshots; FCF summaries retain zero and negative observations. Generated pages include canonical URLs, Open Graph metadata, and escaped WebPage/Article JSON-LD with the existing author and contact page. The sitemap contains 497 HTML routes. These changes improve content and discovery; rankings, Google indexing, and rich results require subsequent measurement.
++
++### Verified advantages below the chart
++
++The existing lower-page introduction now presents free chart/CSV/PNG access without signup, long annual histories, historical weekly prices, and filing-linked financial sources in a compact two-column layout (one column on phones). Company pages display their own metric observation counts and price endpoints below the chart and full annual table. No promotional content is added to the graph area.
++
++The same facts lead `/llms.txt`, homepage Markdown and company Markdown, and appear near the start of the AI/data access guide. Build-time coverage examples come from all exported securities, including those without company pages; annual examples use distinct year labels rather than counting repeated labels as additional years. Current maximum examples are 20 annual observations (OTEX, 2007–2026) and approximately 25 years of weekly prices. Coverage varies and can contain gaps. Financial and price dates, derived FCF, Stooq prices and approximation limits accompany the claims. This content update does not refresh data or resolve provider-access restrictions.
+ 
+ ### Public update history
+ 
+--- a/PROJECT_LOG.md
++++ b/PROJECT_LOG.md
+@@ -9,6 +9,13 @@
+ - **Verification:** How the change was checked.
+ - **References:** Relevant files, tests, issues, or commits.
+ -->
++
++## 2026-10-08 — Verified advantages for visitors and research assistants
++
++- **Summary:** Added a compact advantages grid to the existing lower-page homepage introduction and below company histories. Shared copy leads homepage/company Markdown and the LLM guide and appears in AI/data access documentation. Coverage examples are derived during builds from all exported securities; company summaries use their own observations and dates. Corrected the machine-access guide's daily-price wording to weekly.
++- **Impact:** Visitors can see free chart/export access, long historical coverage and filing-linked financial sources without reducing chart space. Assistants receive those facts early without running JavaScript. Claims retain coverage gaps, historical dates, derived-FCF and adjusted-price limits. No data refresh or machine-access resolution is implied.
++- **Verification:** 31 Node and 4 Python tests passed, including a coverage contract for stocks without company pages, repeated year labels, missing FCF and chart-before-advantages ordering. Full production build and desktop/mobile publication verification are recorded in VERIFICATION.md.
++- **References:** `scripts/build.mjs`, `scripts/site.mjs`, `scripts/ai.mjs`, `web/styles.css`, `tests/site.test.js`, `content/updates.json`, `README.md`, ISSUE-007.
+ 
+ ## 2026-10-08 — Free research guides and descriptive search metadata
+ 
+--- a/ISSUE_LOG.md
++++ b/ISSUE_LOG.md
+@@ -15,6 +15,19 @@
+ - **Follow-up:** Remaining work or review condition.
+ - **References:** Related files or entries.
+ -->
++
++## ISSUE-007 — Machine-access documentation described weekly data as daily
++
++- **Date:** 2026-10-08
++- **Status:** Resolved
++- **Area:** Public AI/data access guide, generated Markdown, and historical-coverage claims.
++- **Symptoms:** The guide stated that public JSON contained daily observations, while the exporter selects `price_weekly` and `split_weekly`. Annual raw-row counts can also exceed distinct fiscal-year labels and should not be advertised as additional years.
++- **Cause:** Documentation described the upstream price frequency rather than the exported frequency; history rows, fiscal labels and elapsed spans require separate definitions.
++- **Solution:** Corrected the guide to weekly observations. Shared advantages copy uses source-derived example counts with distinct year labels, price spans, and per-company endpoints, including zero/negative financial values while excluding missing observations. Legitimate fiscal transitions remain in the original data.
++- **Why this solution:** Accurate, auditable wording communicates the verified benefit without changing financial observations or claiming daily precision or complete annual coverage from endpoints.
++- **Verification:** Exporter reads weekly tables; 31 Node and 4 Python tests pass. The new contract checks a longer non-constituent history, repeated year labels, missing FCF and generated human/AI content. Production/live checks are recorded in VERIFICATION.md.
++- **Follow-up:** Provider-specific access remains open in ISSUE-006. Rebuild coverage copy when the source snapshot changes.
++- **References:** `scripts/export_data.py`, `scripts/build.mjs`, `scripts/ai.mjs`, `tests/site.test.js`, the 2026-10-08 discovery audit in the separate analysis repository.
+ 
+ ## ISSUE-006 — Some machine clients are blocked at the public host
+ 
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -1,3 +1,13 @@
++## Verified advantages release — 2026-10-08
++
++- **Prepared changes:** Compact four-item advantages section below existing homepage content and company annual tables; early verified-feature summaries in llms.txt, homepage/company Markdown and AI/data access. Coverage is generated from the snapshot and accompanied by dates, gaps, calculation and price limitations. Daily-price documentation corrected to weekly.
++- **Automated:** 31 Node and 4 Python tests pass. The coverage contract includes a stock without a company page, repeated fiscal-year labels, zero/negative values and missing FCF. Tests preserve chart-first order and source/metadata behavior.
++- **Data preservation:** All 6,551 company JSON files and the search index match the inputs byte-for-byte. Existing app.js, calculations.js, ui.js and navigation.js match the previous production build. All 497 sitemap HTML routes have the production canonical and no preview noindex.
++- **Coverage:** Production copy reports OTEX's 20 annual observations spanning 2007-06-30–2026-06-30 and approximately 25 years of weekly prices for selected stocks. AAPL shows 19 EPS and 19 FCF/share observations plus company-specific price dates.
++- **Browser preview:** At 1100×700, homepage and AAPL retain range-selector bottom 675 px and main SVG height 302.4 px, without horizontal overflow. Homepage advantages use two columns; at 390×844 they use one column without horizontal overflow. Company-specific coverage inspected. Browser warning/error logs empty.
++- **Propagation:** Initial post-deployment reads of several routes returned the previous release; later canonical-URL checks confirmed all twelve updated resources, without a configuration change.
++- **Publication:** Cloudflare version `0244d17e-af53-4584-bdac-24f3fee1b31f` deployed successfully. Twelve live endpoints returned HTTP 200 with exact build-byte equality using a Mozilla user-agent; actual provider access remains unverified. Provider-access issue ISSUE-006 remains open; no financial refresh, security change or ranking outcome is claimed.
++
+ # Verification — 2026-10-08
+ 
+ ## Approved SEO content and metadata — 2026-10-08
