@@ -8,7 +8,7 @@ The skill focuses on business quality and industry structure. It does not provid
 
 [Stock Valuation Lens](https://stock-valuation-public.valuationlens.workers.dev/) is the project's related free website for historical US stock charts, annual EPS, cash flow, dividends, and CSV/PNG exports, with no account or subscription required. Website address recorded on 2026-10-08.
 
-This repository contains the analysis skill and reports; the website application source is not present here. The [SEO proposal](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the website audit, audience assumptions, keyword candidates, and changes proposed for the owner's decision.
+This repository contains the analysis skill and reports. The website application source lives in the separate local folder `/Users/yangch/Downloads/investment/stock-valuation-public`. The [SEO proposal and implementation record](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the audience assumptions, keyword candidates, and approved changes published on 2026-10-08. The live [research guides](https://stock-valuation-public.valuationlens.workers.dev/guides/) cover price versus earnings, EPS versus cash flow, and CSV exports.
 
 ## What it produces
 

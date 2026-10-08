@@ -4,7 +4,7 @@ Research date: 2026-10-08. Website: [Stock Valuation Lens](https://stock-valuati
 
 Recommended starting position: **free historical stock research with annual EPS and cash-flow charts, filing sources, and exports without an account**. Start with specific research tasks and company queries. The site already has substantial crawlable company content; improving relevance, discovery, and usefulness should take priority over rebuilding its technical SEO foundations.
 
-Status: proposal for the owner's decision. Website implementation and deployment are outside this completed documentation change. This repository does not contain the website application source. The tool is for historical research and is not investment advice.
+Status: **Options A + B approved and published on 2026-10-08**. The audit and proposals below preserve the initial research findings; the implementation record at the end describes the live changes. The separate website application source is `/Users/yangch/Downloads/investment/stock-valuation-public`. The tool is for historical research and is not investment advice.
 
 ## Audience and product scope
 
@@ -137,3 +137,32 @@ The site already advertises Markdown and llms.txt resources. Keep them if useful
 5. **Choose the next expansion.** If supported queries appear, improve pages with useful impressions and weak click-through, or address unmet tasks. If a page is not indexed, investigate indexing first. If no search demand appears, revisit the keyword hypothesis rather than assuming that adding more similar pages will solve it.
 
 Recommended decision: begin with **A plus B**, using historical EPS/FCF and export queries as the initial tests. Revisit C after evidence accumulates, and treat D as an independent branding choice. First-place rankings cannot be promised; success is more qualified visitors who can accomplish the research task.
+
+
+## Approved implementation — 2026-10-08
+
+The owner approved implementation after reviewing the proposal. The release implements the recommended A + B scope: existing-page relevance and three practical guides. The audience remains English-speaking individual investors and spreadsheet users researching US stocks. Keyword priorities remain hypotheses for measurement, especially company-specific annual EPS history, free cash flow per share history, historical price versus earnings, and historical chart CSV exports without signup.
+
+Published improvements:
+
+- Homepage title and visible introduction describe free historical stock charts, annual EPS, financial data, and exports without an account. The introduction follows the chart and existing annual-history section so the chart remains first on the page.
+- All 485 existing company pages use titles and descriptions based on their available EPS/FCF observations. FCF summaries report actual observation counts, fiscal-period bounds, latest stored values and operating-cash-flow/capex filing links. Missing facts are skipped rather than described as zero; zero and negative observations remain valid data.
+- Added [research guides](https://stock-valuation-public.valuationlens.workers.dev/guides/) to shared navigation and footer. Three new guides explain [price versus earnings](https://stock-valuation-public.valuationlens.workers.dev/guides/stock-price-vs-earnings/), [EPS versus free cash flow per share](https://stock-valuation-public.valuationlens.workers.dev/guides/eps-vs-free-cash-flow-per-share/), and [CSV exports](https://stock-valuation-public.valuationlens.workers.dev/guides/export-stock-history-csv/). Guides explain actual controls, annual dates, sources, export scope, and retrospective-reference limits, and link to the tool and company examples. The existing dividend guide is also linked from the hub.
+- Added accurate WebPage/Article JSON-LD with author and about-page links, plus Open Graph titles, descriptions and URLs. Schema JSON is escaped to prevent company names from terminating the script element. These are metadata improvements; rich-result eligibility and appearance have not been certified by Google testing.
+- Generated Markdown alternatives, sitemap links and LLM discovery cover the guides. The sitemap now contains 497 unique HTML URLs. Published a visitor-facing entry in [Website updates](https://stock-valuation-public.valuationlens.workers.dev/updates/).
+
+### Verification and publication
+
+- **Automated:** 30 Node tests and 4 Python tests pass. Extended tests cover metric-aware titles, missing/zero/negative FCF data, source links, metadata escaping, guide canonical/schema output, working internal links and Markdown generation. Existing calculation, preview noindex, original-data precision and build-preservation tests pass.
+- **Production output:** 6,551 stock snapshots, 485 company pages, 497 total HTML routes, 7,559 build-counted assets and 244,413,536 bytes. Largest asset is catalog JSON at 1,361,333 bytes; Cloudflare asset limits pass. All generated sitemap routes have the correct unique canonical, no preview noindex, and working root-relative content links. Every original company JSON file and the search index match the output byte-for-byte.
+- **Browser:** At 1100×700, the homepage range selector ends at 675 px and the page has no horizontal overflow after navigation-spacing adjustments. At 390×844, the homepage and guide hub have no horizontal page overflow and Menu exposes the new guide link. The live guide hub and Apple FCF summary render correctly; checked browser warning/error logs are empty.
+- **Deployment:** Cloudflare published version `ae2b42c3-fb80-4a51-bd64-140a17da070f`; Wrangler uploaded 506 changed/new assets. Fifteen live endpoints return HTTP 200 and exactly match deployed build bytes, including the three guides, hub, CSV-guide Markdown, Apple/Microsoft/Copart pages, homepage, CSS, updates, sitemap, robots, LLM guide and Apple JSON. These HTTP checks used a Mozilla user-agent and do not establish access for every crawler.
+- **Search Console:** The previous sitemap now reports **Success**, last read Oct 8, with **492 discovered pages**; the website's ISSUE-005 records this verified resolution of the initial fetch failure. After publication, submitted the same `/sitemap.xml` containing 497 URLs once, and Google confirmed **Sitemap submitted successfully**. The displayed discovered count remained 492 immediately afterward. Processing of this new release, page indexing, and rankings remain unverified. The separate machine-client access issue (ISSUE-006) remains open; no security policy was changed.
+
+### Project records and remaining decisions
+
+Website source changes are limited to `scripts/site.mjs`, `scripts/ai.mjs`, `web/styles.css`, `tests/site.test.js`, `content/updates.json`, `README.md`, `PROJECT_LOG.md`, `ISSUE_LOG.md`, and `VERIFICATION.md`. The website folder has no Git repository; this analysis repository versions the proposal, implementation record and screenshot. The website README and maintenance logs identify authored sources and release verification. Backups of the eight source files applied before deployment were preserved in `/private/tmp/valuationlens-seo-rqgktsxl/originals/` for this session; temporary storage is not a permanent version-control substitute.
+
+![Published research guides](Stock_Valuation_Lens_SEO_Live.jpg)
+
+Continue with the measurement plan above: validate country/language demand and inspect actual queries before changing priorities, then review indexing and comparable search performance after roughly 4–8 weeks. No custom domain, paid keyword service, financial-data refresh, additional company coverage, or change to chart calculations was part of this release. An automated follow-up was not scheduled.
