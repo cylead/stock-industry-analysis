@@ -1,0 +1,103 @@
+{
+  "displayName": "Stock Value Lens",
+  "domain": "stockvaluelens.com",
+  "origin": "https://stockvaluelens.com",
+  "date": "2026-10-09",
+  "checks": {
+    "nodeTests": 32,
+    "pythonTests": 4,
+    "sitemapRoutes": 497,
+    "textResourcesChecked": 997,
+    "oldBrandOccurrences": 0,
+    "companyJsonFilesUnchanged": 6551,
+    "chartAndStylesUnchanged": true
+  },
+  "version": "8ea5bf80-af38-4d15-af67-8deabb87bcde",
+  "liveChecks": [
+    {
+      "route": "/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/aapl/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/guides/stock-price-vs-earnings/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/about/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/methodology/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/updates/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/data-access/",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/llms.txt",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/index.md",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/sitemap.xml",
+      "http": "200",
+      "matchesBuild": true
+    },
+    {
+      "route": "/404.html",
+      "http": "200",
+      "matchesBuild": true
+    }
+  ],
+  "changedSourceFiles": [
+    "web/index.html",
+    "web/404.html",
+    "scripts/site.mjs",
+    "scripts/ai.mjs",
+    "tests/site.test.js",
+    "content/updates.json",
+    "README.md",
+    "PROJECT_LOG.md",
+    "VERIFICATION.md"
+  ],
+  "backup": "/private/tmp/stockvaluelens-brand-hmhv4ntw/originals",
+  "browserVerification": {
+    "homepageTitle": "Free historical stock charts and EPS data | Stock Value Lens",
+    "headerName": "Stock Value Lens",
+    "chartRendered": true,
+    "warningErrorLogs": [],
+    "screenshot": "Stock_Value_Lens_Branding_Preview.jpg"
+  },
+  "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "versionControl": {
+    "websiteSource": "No Git repository; updated source saved locally and deployed to Cloudflare.",
+    "releaseRecord": "Saved in stock-industry-analysis for commit and push."
+  },
+  "maintenanceLogReview": {
+    "websiteProjectLog": "Added dated branding entry; historical records retained.",
+    "websiteIssueLog": "No entry required for routine branding replacement.",
+    "analysisProjectLog": "No entry required; analysis skill unchanged.",
+    "analysisIssueLog": "No entry required; source conflict guard preserved concurrent additions without a defect."
+  }
+}
