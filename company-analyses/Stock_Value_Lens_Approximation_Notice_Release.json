@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-09",
+  "feature": "One adjusted-price approximation notice per main plot page",
+  "origin": "https://stockvaluelens.com",
+  "published": false,
+  "publicationBlocker": "Automatic approval review rejected publication: this notice cleanup is a distinct production change and requires separate explicit approval.",
+  "notice": "Weekly prices use Stooq adjusted closes where validated split-only prices are unavailable. These closes may differ from original traded prices, so P/E ratios and dividend yields based on them are approximations.",
+  "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "testedStage": "/private/tmp/stock-caveat-7eo9bws6",
+  "changedSourceFiles": [
+    "web/app.js",
+    "web/pe.js",
+    "web/index.html",
+    "web/styles.css",
+    "scripts/site.mjs",
+    "scripts/ai.mjs",
+    "tests/site.test.js",
+    "README.md",
+    "ISSUE_LOG.md",
+    "VERIFICATION.md"
+  ],
+  "checks": {
+    "nodeTestsPassed": 37,
+    "pythonTestsPassed": 4,
+    "auditedPlotPages": 486,
+    "approximationMentionsPerPlotPage": 1,
+    "companyJsonFilesUnchanged": 6551,
+    "companyPages": 485,
+    "htmlRoutes": 498,
+    "generatedAssets": 7562,
+    "supportingCaveatsRetained": [
+      "sources",
+      "methodology",
+      "P/E guide",
+      "dividend-yield guide",
+      "data Markdown"
+    ],
+    "runtimeApproximationMentions": 1,
+    "noDuplicateDividendWarning": true,
+    "cleanPeTooltip": true,
+    "mobileNoHorizontalOverflow": true,
+    "browserWarningErrorLogs": []
+  },
+  "previewScreenshot": "company-analyses/Stock_Value_Lens_Approximation_Notice_Preview.jpg",
+  "maintenanceLogReview": {
+    "websiteIssueLog": "Existing ISSUE-010 follow-up",
+    "websiteProjectLog": "No update: copy/presentation refinement",
+    "publicHistory": "No update: minor maintenance",
+    "analysisLogs": "No update: methodology unchanged and website issue record retains decision"
+  },
+  "versionControl": "Website source folder has no Git repository. Focused patch, preview screenshot and release record saved in stock-industry-analysis for commit/push."
+}
