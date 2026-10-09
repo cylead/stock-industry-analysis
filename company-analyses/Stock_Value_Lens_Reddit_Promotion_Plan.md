@@ -1,349 +1,284 @@
 # Stock Value Lens Reddit promotion plan
 
-**Research date: 2026-10-09.** Product assumed from this repository: [Stock Value Lens](https://stockvaluelens.com/). Goal: attract individual stock researchers who will actually use its historical charts and exports, while collecting actionable feedback. This is a marketing plan, not investment advice.
+**Research and revision date: 2026-10-09.** Website: [Stock Value Lens](https://stockvaluelens.com/). **Owner-confirmed objective: repeat use by individual stock investors.** This is a product-demand validation and outreach plan, not investment advice. Product-market fit is unproven: no cohort retention, existing-user interviews or usage analytics were available for this assessment.
 
-**Recommended starting order: r/SideProject for a launch test, r/alphaandbetausers for usability feedback, then r/ValueInvesting for one carefully prepared introduction.** r/ValueInvesting has the strongest audience fit, but its free-service allowance is one-time. Use r/webdev only for a technical project showcase that meets its Saturday rules.
+**Recommendation:** validate a narrow historical-research task before expanding promotion. Prioritize r/ValueInvesting when its one-time free-service route is confirmed. General developer testing is optional usability work. Recruit people because of their research behavior, not because they are active Reddit users.
 
-**Execution file updated 2026-10-09:** use the [post drafts](#sideproject-draft), [five named outreach candidates and messages](#people-to-contact), [frequency limits](#outreach-frequency) and [dated calendar](#suggested-first-30-days). Start with three core subreddit posts, up to two invited PMs and one invited public testing reply. All messages below are drafts; none has been sent.
+Use the [posts and messages](#posts-and-messages), [people and contact routes](#people-and-contact-routes), [validation study](#validation-study), and [frequency and calendar](#frequency-and-calendar). All drafts remain unsent. This revision replaces the earlier launch-first calendar and generic-tester recruitment priority.
 
-## Evidence and limits
+## Audience and recurring job
 
-Member counts below come from Reddit's explicitly named `subscribers` field in public, indexed `about.json` responses. They are cached observations, not live counts on October 9. Unlabeled sidebar numbers were excluded rather than assumed to be members.
+The primary hypothesis is **individual investors who regularly research US-listed operating businesses and want to inspect a company's long-term earnings and cash generation alongside price before deciding what to investigate in its filings**. They can already explain what EPS and cash flow mean; they need historical context, not a lesson in buying stocks.
 
-The browser encountered Reddit's verification challenge. Indexed pages remained accessible. **A live count of posts in the preceding 24 hours or seven days could not be established.** Instead, the activity comparison uses 20 consecutive visible posts from each cached New listing, with actual timestamp spans and median comment counts. These snapshots cover different dates and times; they show posting density and discussion signals, not directly comparable daily totals. Removed content is absent.
+The recurring job is:
 
-The Best audit covers the first 20 ordinary posts in each of four indexed, logged-out Best feeds, excluding pinned highlights. Best is a ranked feed, not a fixed list of the 20 most-upvoted posts. Media previews can hide body links. Selected posts and comment threads were inspected more deeply; a complete comment-link census for all 80 posts was not possible.
+> When I start researching another company or revisit one after new information, help me inspect price, annual EPS and cash-flow history quickly, identify what needs deeper investigation, and carry useful observations into my research notes.
 
-Exact sample timestamps, individual New-post URLs, membership provenance and abbreviated Best audit records are preserved in [research evidence](Stock_Value_Lens_Reddit_Research_2026-10-09.json). Recheck the live rules, account eligibility and feed immediately before posting.
+The proposed positioning is:
 
-## Subreddit shortlist
+> Historical price, earnings and cash-flow context before deeper stock research, with filing links and chart exports that do not require signup.
 
-All membership figures are rounded cached counts; the linked metadata contains the exact observation.
+“Free” and “no signup” remove friction. They do not establish that this job is important, that current alternatives fail, or that the user will return.
 
-| Priority | Community | Members observed | Audience fit | Permitted route |
-|---|---|---:|---|---|
-| 1 for qualified users | [r/ValueInvesting](https://www.reddit.com/r/ValueInvesting/) | [~805,000](https://www.reddit.com/r/ValueInvesting/about.json) | Excellent for historical valuation and earnings research | One introduction of a genuinely free service without registration or freemium restrictions; other rules still apply |
-| 1 for launch testing | [r/SideProject](https://www.reddit.com/r/SideProject/) | [~853,000](https://www.reddit.com/r/SideProject/about.json) | Good feedback audience; many readers are builders rather than investors | Share the project, demonstrate a concrete use, and request specific feedback |
-| 2 for usability | [r/alphaandbetausers](https://www.reddit.com/r/alphaandbetausers/) | [~46,700](https://www.reddit.com/r/alphaandbetausers/about.json) | Good for small tests; weaker investor targeting | Recruit testers for a clear website task |
-| Optional | [r/webdev](https://www.reddit.com/r/webdev/) | [~3.32 million](https://www.reddit.com/r/webdev/about.json) | Good technical feedback; indirect user acquisition | Noncommercial technical showcase on Showoff Saturday with correct flair |
-| Defer | [r/SecurityAnalysis](https://www.reddit.com/r/SecurityAnalysis/) | [~214,000](https://www.reddit.com/r/SecurityAnalysis/about.json) | Strong analytical fit; higher access and quality barriers | Restricted posting and no overt self-promotion; obtain specific moderator permission before any introduction |
-| Exclude from organic promotion | [r/investing](https://www.reddit.com/r/investing/) | [~3.46 million](https://www.reddit.com/r/investing/about.json) | Broad investing audience | Promotion of apps/tools and awareness building are prohibited |
-| Exclude from organic promotion | [r/stocks](https://www.reddit.com/r/stocks/) | [~9.37 million](https://www.reddit.com/r/stocks/about.json) | Strong topic fit | Self-promotion in posts/comments and app-development market research are prohibited |
-| Exclude from organic promotion | [r/StockMarket](https://www.reddit.com/r/StockMarket/) | [~4.12 million](https://www.reddit.com/r/StockMarket/about.json) | Broad stock audience | Driving traffic to your website and recruiting beta testers are prohibited |
-| Exclude from organic promotion | [r/dividends](https://www.reddit.com/r/dividends/) | [~910,000](https://www.reddit.com/r/dividends/about.json) | Relevant to dividend history | Promotion remains prohibited even for unmonetized tools; open-source tools need pre-approval |
+| Segment | Possible job | Fit with the current product | Treatment |
+|---|---|---|---|
+| Fundamental investors doing recurring company research | Inspect long-term earnings/cash trends in context with price | Best hypothesis; annual history and filing links support it, subject to coverage and basis limits | Primary study cohort |
+| Investors who currently assemble those observations in spreadsheets | Reuse selected chart observations in notes or a model | Plausible secondary use; chart CSV is not a complete statement/provenance export | Record export use separately; do not promise a model-ready financial database |
+| FAST Graphs or other valuation-chart users | A fast second view of historical context | Relevant benchmark, but often already satisfied and reliant on estimates/TTM data absent here | Test a complementary role before claiming replacement |
+| Beginners wanting “is this cheap?” or a buy/sell answer | Obtain a valuation verdict or forecast | Weak fit; a historical chart does not answer that question by itself | Do not target with a valuation-verdict pitch |
+| Traders, quantitative backtesters and live-quote users | Point-in-time signals, intraday data or backtesting | Poor fit with weekly prices and retrospective annual EPS | Exclude from acquisition targeting |
+| General builders and volunteer QA testers | Find interface bugs | Can validate usability, but not investor demand unless they also qualify as investors | Separate results from the primary cohort |
 
-A large prohibited community is a worse organic promotion target than a smaller community that welcomes the intended post. Paid Reddit advertising is a separate possible route if organic tests demonstrate useful engagement; it is not included in this launch budget or authorization.
+A qualified participant has researched an individual US-listed stock within the last 30 days, expects another research occasion within roughly the next month, and uses historical earnings or cash-flow information in that process. Ask about a public research task, not holdings, balances, income or risk tolerance. This is a study definition, not a claim about all investors.
 
-## Activity comparison
+## What the product can credibly promise
 
-These are **cached 20-post samples**, not current posts-per-day or posts-per-week counts.
+The current [local product documentation](/Users/yangch/Downloads/investment/stock-valuation-public/README.md) describes annual basic/diluted EPS, derived FCF/share, historical weekly prices, approximate P/E history, filing-linked financial observations and CSV/PNG exports without an account. It supports a focused historical workflow. It does not support analyst forecasts, a full financial terminal, automatic investment recommendations or a complete financial-statement export.
 
-| Community | Sample period in UTC | Visible posts | Time spanned | Median comments per post |
+Keep four constraints visible:
+
+- P/E uses annual EPS carried retrospectively from fiscal-period end. It is neither TTM/forward P/E nor a point-in-time backtest.
+- Price adjustment, share basis and issuer-history exceptions can affect comparisons.
+- History, available metrics and financial/price endpoints vary by company.
+- The current chart CSV covers the chosen series/window; it is not the full annual financial table with all provenance.
+
+For the first demonstration, choose a covered company with useful EPS and cash-flow history. Verify its actual dates, gaps and source links. Avoid REIT/FFO, bank-specific or loss-making-company use cases as the lead example unless their relevant metrics and limitations have been checked. Do not revive old May price-cutoff wording from the October 8 comparison report: the October 9 refresh advanced many prices, but individual endpoints still vary.
+
+The key hypothesis is **a useful historical check with less effort than the user's present workflow**. Whether the site delivers that is to be tested, not asserted as a measured speed or accuracy advantage.
+
+## Competitive and demand evidence
+
+| Alternative or signal | Evidence checked | Implication for Stock Value Lens |
+|---|---|---|
+| GNG Research | Official charting page offers free valuation charts with an account, daily TTM-based P/E, other metrics, comparisons and estimates | Free valuation charts are already available. Immediate access may help, but annual retrospective P/E must not be sold as equivalent to its TTM series. [Official charting](https://www.gngresearch.com/charting/) |
+| FAST Graphs | Official site emphasizes price/fundamental relationships, forecasts, screening and portfolios | There is a recognizable research job, but a much broader incumbent workflow. Test where our narrower view helps alongside it. [Official site](https://www.fastgraphs.com/) |
+| Stock Analysis and TIKR | Stock Analysis offers broad financial tools; TIKR's pricing table lists five years/eight quarters in its free financial-history tier | Test the actual task against the participant's tool. Longer history and exports may matter to some users; neither service's entire workflow is replaced. [Stock Analysis](https://stockanalysis.com/pro/), [TIKR](https://www.tikr.com/pricing) |
+| StockNest | Its creator advertises a free/no-account product with statements, comparisons and other tools. Its homepage returned no readable text for verification. | A competing “free/no signup” claim exists. Features, coverage and data quality remain creator claims, not an audited comparison. [Creator post](https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/) |
+| Historical requests for price-versus-earnings graphs | Investor threads ask for that visualization and name existing substitutes | Evidence that some people have the job, not proof of current market size or unmet demand. These older threads are research context, not outreach lists. [2020 request](https://www.reddit.com/r/ValueInvesting/comments/g0e3sv), [2021 discussion](https://www.reddit.com/r/ValueInvesting/comments/ri9ic2) |
+
+The StockNest discussion also contains both praise and a user who prefers their existing Stock Analysis workflow. Another commenter wants valuation context rather than more generic financial graphs. Those comments point to substitution, trust and usefulness as interview topics; they do not represent the whole market.
+
+Existing promotion examples help choose a format, not establish our fit. TickerFS's disclosed creator link in a relevant tools discussion attracted favorable replies. TradeHints reported user growth from Reddit, but its numbers were self-reported. SideProject demos such as Life in Mist and Safearea.info received discussion that included criticism or audience confusion. None establishes repeat investor use of this website. [Tools thread](https://www.reddit.com/r/ValueInvesting/comments/1w0yyv9/share_your_favorite_stock_analyzing_tool/), [TradeHints](https://www.reddit.com/r/SideProject/comments/1wvtyo9/i_got_240_people_to_use_a_tool_i_built_reddit_was/), [Life in Mist](https://www.reddit.com/r/SideProject/comments/1wbu40o/i_built_an_iphone_app_that_turns_your_walks_into/), [Safearea.info](https://www.reddit.com/r/SideProject/comments/1wljtu9/i_got_tired_of_checking_safe_area_insets_in/).
+
+## Subreddits by audience fit and permission
+
+Membership is secondary to the number of relevant researchers and the permitted route. These rounded member figures retain the earlier cached `subscribers` observations; they are not live counts.
+
+| Community | Cached members | Investor fit | Role in this plan |
+|---|---:|---|---|
+| [r/ValueInvesting](https://www.reddit.com/r/ValueInvesting/about/) | ~805,000 | Strongest fit for recurring fundamental research | Primary conditional channel: one genuinely free-service introduction |
+| [r/SecurityAnalysis](https://www.reddit.com/r/SecurityAnalysis/about/) | ~214,000 | Strong research fit, higher standards | Read for workflow understanding; no promotion/recruitment without specific moderator permission and contribution access |
+| [r/SideProject](https://www.reddit.com/r/SideProject/about.json) | ~853,000 | Mixed; builder status does not qualify someone | At most one conditional post seeking builders who also research stocks, or diagnosing a demonstrated UI problem |
+| [r/alphaandbetausers](https://www.reddit.com/r/alphaandbetausers/about.json) | ~46,700 | Mixed, requiring investor screening | Hold: sidebar limits submissions to alpha/beta products; released website eligibility needs moderator clarification |
+| [r/webdev](https://www.reddit.com/r/webdev/about/) | ~3.32 million | Low for investor-demand validation | No scheduled growth post; technical usability help only if needed and permitted on Saturday |
+| [r/dividends](https://www.reddit.com/r/dividends/about/) | ~910,000 | Some historical-fundamental interest | Organic product promotion excluded under its rules, even when unmonetized |
+| [r/investing](https://www.reddit.com/r/investing/about/) | ~3.46 million | Broad investor interest | Organic app/tool awareness promotion excluded |
+| [r/stocks](https://www.reddit.com/r/stocks/about/) | ~9.37 million | Broad individual-stock interest | Promotion and app market-research routes excluded |
+| [r/StockMarket](https://www.reddit.com/r/StockMarket/about/) | ~4.12 million | Broad stock interest | Website traffic/beta-recruitment promotion excluded |
+
+ValueInvesting allows one introduction of a genuinely free service without registration or freemium restrictions. It also bars repeated domain promotion, promotion-focused/single-source accounts, off-topic technical trading, low-quality content and soliciting DMs/contact information. Resolve the older sidebar's software-distribution wording through modmail first. Keep the discussion public; do not add “DM me for access.” [Rules](https://www.reddit.com/r/ValueInvesting/about/).
+
+**Correction to the earlier plan:** alphaandbetausers' empty custom-rules endpoint did not establish permission. Its sidebar requires a testable product, stage/platform labeling, excludes products believed not to be alpha/beta, and asks posters to test another product. Do not relabel this released site “beta” to qualify. The draft below is held unless moderators explicitly accept this use. [Full sidebar](https://www.reddit.com/r/alphaandbetausers/about.json).
+
+SideProject welcomes project feedback and specifies project name plus description for project links. Webdev's technical Saturday allowance still excludes commercial promotion. Neither permission nor membership makes those communities proof of investor demand. Use a plain domain rather than shortened/referral links; recheck sidebar, pinned guidance, rules and account eligibility before publication.
+
+## People and contact routes
+
+### Investor research leads
+
+These public comments identify useful research perspectives. **No general PM invitation or current availability was verified for any of these five people. They are a research watchlist, not a send list.** Their expressed preferences are public statements, not proof that they belong to our exact cohort. Do not mass-tag them, scrape their identities or message them simply because they commented.
+
+| Public handle | Observed context | What to learn if they volunteer | Contact status |
+|---|---|---|---|
+| [u/ado136](https://www.reddit.com/user/ado136/) | Names FAST Graphs as central to their research in the [tools thread](https://www.reddit.com/r/ValueInvesting/comments/1w0yyv9/share_your_favorite_stock_analyzing_tool/) | Which specific historical task, if any, benefits from a second tool? | No PM permission; possible satisfied-user comparison |
+| [u/Amazing_Main5874](https://www.reddit.com/user/Amazing_Main5874/) | Asks about free research tools and describes a broader comparison workflow in the same thread | Is a focused one-company historical view useful, or does it omit the task they need? | No PM permission; qualify before including |
+| [u/SaltBat6229](https://www.reddit.com/user/SaltBat6229/) | Prefers Stock Analysis in the [StockNest discussion](https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/) | What earns trust and keeps an existing tool in their workflow? | No PM permission; useful counterevidence to free-first positioning |
+| [u/mrmrmrj](https://www.reddit.com/user/mrmrmrj/) | Wants valuation history rather than generic accounting graphs in that discussion | Does our retrospective P/E/earnings view answer any of the job, or are estimates/bands essential? | No PM permission; requested features exceed current scope |
+| [u/al3shan](https://www.reddit.com/user/al3shan/) | Wants quick growth-assumption testing and discusses historical P/E in [this thread](https://www.reddit.com/r/ValueInvesting/comments/1ubw142/how_do_i_quickly_check_if_a_stock_is_expensive_or/) | Is historical context helpful alongside a valuation model? | No PM permission; the main forecast/DCF job is not served here |
+
+Prefer qualified people who voluntarily respond to the approved introduction, an explicitly permitted recruitment post, or an existing consensual conversation. A person asking for another creator to DM them is not giving us permission. Public research questions must also fit community rules; do not disguise a survey as ordinary discussion.
+
+### Earlier generic testers
+
+The earlier five candidates remain optional usability reserves. They are not established investor participants and are removed from the scheduled acquisition list.
+
+| Candidate | Existing invitation | Role now |
+|---|---|---|
+| [u/Capable-Property-539](https://www.reddit.com/user/Capable-Property-539/) | [Testing offer accepts DMs](https://www.reddit.com/r/alphaandbetausers/comments/1vuco5a/happy_to_beta_test_your_product_ill_use_it_and/) | One targeted UI test only if a real usability blocker needs investigation; investor status unverified |
+| [u/bananajoin](https://www.reddit.com/user/bananajoin/) | [Older web-testing offer accepts DMs](https://www.reddit.com/r/alphaandbetausers/comments/1v6blsr/free_beta_tester_here_ill_test_your_app_and_give/) | Reserve browser tester; recheck activity and invitation |
+| [u/pickmycostume](https://www.reddit.com/user/pickmycostume/) | [Invites projects in comments](https://www.reddit.com/r/alphaandbetausers/comments/1wpbljm/drop_your_app_or_site_and_ill_test_it_i_had_ai/) | Public UI feedback only if still invited and appropriate |
+| [u/yakaspectrum](https://www.reddit.com/user/yakaspectrum/) | [Invites projects in comments](https://www.reddit.com/r/alphaandbetausers/comments/1weh9d9/drop_your_project_ill_test_10_of_them_and_give/) | Reserve public UI feedback |
+| [u/principalla](https://www.reddit.com/user/principalla/) | [Invites projects in comments](https://www.reddit.com/r/alphaandbetausers/comments/1v7bbsl/10_years_building_apps_show_me_what_youre_working/) | Reserve public UI feedback |
+
+Public invitation pages show some testing replies, but profile feeds were inaccessible and current October 9 activity is unverified. Recheck before contact. General testing invitations are not invitations to repeated sales pitches. If a tester also qualifies as an investor, record that qualification explicitly before counting them in the primary cohort.
+
+## Posts and messages
+
+### ValueInvesting moderator draft
+
+> Hi moderators — I built Stock Value Lens, a free historical US-listed stock research site: https://stockvaluelens.com/
+>
+> Charts and CSV/PNG exports require no registration or freemium tier. I would like to use the one-time free-service introduction to explain a specific use: inspecting historical price alongside annual EPS and cash flow before reading the filings more deeply.
+>
+> The post would disclose ownership, annual/retrospective P/E timing and coverage limits, and invite public feedback on usefulness in a research workflow. No DM or contact-information solicitation.
+>
+> Does that fit the allowance, including the sidebar's software-distribution wording, and which flair should I use?
+
+### ValueInvesting introduction
+
+**Title:** A free historical earnings and cash-flow check before deeper stock research
+
+> When researching a company, I want to inspect how its annual earnings and cash flow have developed alongside its stock price before going deeper into the filings.
+>
+> I built Stock Value Lens for that step: https://stockvaluelens.com/
+>
+> It has historical weekly prices, annual EPS and derived free cash flow per share where available, filing links, approximate P/E history, and chart CSV/PNG exports. No account or subscription is required.
+>
+> Important limitation: P/E uses annual EPS retrospectively from fiscal-period end. It is not TTM, forward P/E or a point-in-time backtest. Coverage, dates and price/share-basis consistency vary by company; check those before interpreting a chart.
+>
+> If you already do fundamental stock research, try a company you're investigating. Does this view help you identify something to examine in the filings, or is your current tool already better for that step? I'd welcome concrete examples in the comments.
+
+Use once, only after rule/eligibility clarification. Add a real labeled example if available. Rewrite the draft in your own voice. Do not imply intrinsic fair value or recommend a security. An approved introduction in an existing relevant tools thread would be an alternative to this post, not an additional distribution allowance.
+
+### Conditional SideProject post
+
+**Title:** Stock Value Lens — historical stock research for builders who also analyze companies
+
+> I built Stock Value Lens: https://stockvaluelens.com/ — historical weekly prices, annual EPS/cash-flow views and chart exports without signup.
+>
+> I'm trying to understand one audience: people who already research individual US-listed companies and use financial history before going deeper into filings.
+>
+> If that's you, think of your last research task. Does this historical view help with a step you currently do elsewhere? What would you keep using your existing tool for?
+>
+> The P/E view is annual-EPS-based and retrospective, not TTM/forward P/E or a backtest. Company coverage and data dates vary. I'm the builder; a real workflow example or a reason you wouldn't use it is more useful than a general design compliment.
+
+Hold unless more qualified participants are needed or a specific usability barrier emerges. Screen respondents before counting their behavior as investor-demand evidence. No automatic follow-up launch post is scheduled.
+
+### Conditional Alphaandbetausers recruitment
+
+**Title:** [Web, released tool — moderator-approved testing] Investors wanted for a historical stock research workflow test
+
+> I built Stock Value Lens: https://stockvaluelens.com/ — historical US-listed stock charts and exports without signup.
+>
+> I'm looking for people who have researched an individual stock in the last month and expect to research another soon. This is a released site; I'm testing its usefulness in that existing workflow.
+>
+> Choose a company you're researching. Inspect annual EPS/cash flow against historical price, then tell me whether this helps identify a question for deeper research or duplicates what your current tool already does.
+>
+> P/E is annual-EPS-based and retrospective, not TTM/forward P/E. Coverage, dates and adjustment limits vary.
+>
+> Public feedback is welcome. No holdings, balances, purchase or favorable review needed.
+
+**Do not use this draft until moderators accept a released-tool study and specify title labeling.** Replace the proposed label with their actual instruction; “moderator-approved” is not true until approval is obtained. If they decline or do not clarify, skip the channel. Honor the request to test someone else's product if using it, without promising a positive review or treating reciprocity as retention.
+
+### PM for a qualified volunteer
+
+Use only after an individual invites a PM or agrees to continue privately, in a context where that solicitation is allowed. ValueInvesting prohibits requesting DMs/contact information in its posts and comments; keep feedback there public unless the individual independently initiates private contact.
+
+> Thanks for agreeing to discuss your research workflow. I'm the builder of Stock Value Lens: https://stockvaluelens.com/
+>
+> Before trying it, what was the last company-research question you used historical earnings or cash flow to answer, and which tool did you use?
+>
+> On your next suitable research task, could you try this view and tell me what it adds or misses? The P/E is annual-EPS-based and retrospective; company dates and coverage vary.
+>
+> No portfolio details or investing decision needed. If you're willing, I can check back once after two weeks to ask whether you chose to use it again. Saying no is fine.
+
+For a watchlist person who later consents, personalize the opening accurately:
+
+| Person | Opening after consent |
+|---|---|
+| ado136 | “You mentioned FAST Graphs is central to your research. I'd like to understand whether this adds a useful historical check alongside it.” |
+| Amazing_Main5874 | “You mentioned looking for useful free research tools. I'd like to test whether a focused historical view serves any part of your actual workflow.” |
+| SaltBat6229 | “You said you preferred your existing Stock Analysis workflow. I'd like to understand what a second tool would need to do to earn a place.” |
+| mrmrmrj | “You asked for valuation context rather than more accounting graphs. I'd like to learn which parts of that job this historical view still misses.” |
+| al3shan | “You discussed historical P/E alongside growth assumptions. This tool does not provide a DCF; I'd like to test whether its historical context is useful alongside your model.” |
+
+Do not write “thanks for agreeing” when no consent exists. No direct investor PM is ready to send solely on the evidence found here.
+
+### Optional usability PM
+
+Only if a repeated interface blocker appears, and Capable-Property-539's testing invitation remains open:
+
+> Hi — I saw your workflow-testing offer. I built Stock Value Lens: https://stockvaluelens.com/ — a free historical stock research site, no signup.
+>
+> Would you be willing to check whether the path from company search to the CSV export is clear? I'm testing that interface step, not asking for an investing opinion. A note on the first confusing action would help. Completely fine if your testing offer has closed.
+
+Treat that result as usability evidence unless the person also meets the investor criteria.
+
+## Validation study
+
+Aim for **ten qualified investors**, with a clear record of how they joined. That is a practical learning sample, not a representative market survey or a statistical proof of fit. General QA testers, the owner and visits from curiosity do not fill the cohort.
+
+1. **Understand the existing job before showing the site.** Ask about the most recent real research occasion, current tools, frequency and friction. Look for a concrete unmet step; do not lead with “would you use a free website?”
+2. **Try a real task.** Let them select a company and research question. Observe whether they can inspect relevant history, understand dates/basis and identify a useful next question. Exporting is optional unless part of their actual workflow. A forced download only proves task completion.
+3. **Compare with the current alternative.** Ask what this adds, what is missing, and what they would continue doing elsewhere. If they willingly repeat the task in both tools, record observed effort without claiming a general speed advantage.
+4. **Observe another research occasion.** Over the following 7–21 days, look for use on another company or a new question. A prompted retest of a fix is not organic return. Extend the window to 30 days for users whose research cadence is slower, and record people who had no new occasion.
+5. **Make a decision from behavior.** Find the segment/job with repeated utility. Fix repeated blockers and run another small cohort before increasing distribution.
+
+| Measure | Operational definition | What it establishes |
+|---|---|---|
+| Qualification | Recent individual-stock research and relevant history use; another occasion expected | Audience fit, not demand by itself |
+| First useful session | User identifies a real research observation or next filing question and understands the series limits | Initial usefulness |
+| Second useful session | Return for a distinct self-chosen research task, without a reminder to use the site | Early repeat-use signal |
+| Alternative displaced or complemented | User can name the step this replaces or adds to their existing process | A reason for the product to exist |
+| Export used downstream | Chart observations actually used in research notes/model, rather than downloaded on instruction | Secondary utility |
+| Trust blocker | Coverage, source, basis or freshness issue prevents actual use | A product constraint requiring investigation |
+
+Use **counts and denominators**: “3 of 10 qualified participants returned for a different task,” plus how many had a new research occasion and how that return was established. Report missing follow-ups as unknown, not automatically retained or satisfied. Analyze general tester and investor results separately.
+
+No event analytics or repeat-visitor identification was verified. Start with consented study records and clearly label self-reported returns. Where a user voluntarily shares a second task/result, record that separately from direct observation or existing analytics. Pageviews cannot establish that the same qualified investor returned. Do not add tracking code as part of this document revision.
+
+Proposed decision rules, deliberately provisional:
+
+- **Continue the narrow experiment** if, in a cohort of ten, at least five get a concrete first-session benefit and at least three return for a new research task, with a specific reason for choosing this view. This supports another test, not a claim of product-market fit.
+- **Fix the workflow first** if relevant investors want the job but cannot trust the data/basis or complete the task. A UI fix alone does not resolve financial-data trust.
+- **Narrow or change positioning** if participants need forecasts, live quotes, full statements or backtesting more than historical context.
+- **Pause broad promotion** if most relevant users say their existing workflow is sufficient, or repeat use does not appear after genuine new research occasions.
+- **If fewer than ten qualify**, report the actual count and qualitative findings. Do not backfill with general builders or apply these numerical thresholds as if the sample were complete.
+
+Ask “what would you use if this disappeared?” after real use. An existing substitute is useful evidence. Avoid interpreting polite praise, promised future use, five-star review swaps or a small “very disappointed” survey as proof.
+
+## Frequency and calendar
+
+The frequency follows learning capacity and permission, not a target number of impressions.
+
+| Action | Frequency |
+|---|---|
+| Reading relevant investor discussions | Two or three 20–30-minute sessions per week; focus on recurring research problems |
+| ValueInvesting promotion | One introduction total after clarification; answer relevant questions in the same thread |
+| Additional qualified recruitment | At most one conditional SideProject or approved Alphaandbetausers post in the first month if the cohort is short; do not automatically use both |
+| Generic tester recruitment | Zero scheduled mass outreach; one targeted usability request only if a real blocker requires it |
+| New investor PMs | No cold watchlist campaign. At most one new consented conversation per day and three per week, only while more qualified participants are needed |
+| Follow-up | One agreed research check after about two weeks; no follow-up to an unanswered initial invitation |
+| Broader expansion | Reconsider after the repeat-use review; never repeat the ValueInvesting introduction |
+
+Those PM numbers are proposed workload caps, not Reddit's quota or protection against spam enforcement. [Reddit chat limits](https://support.reddithelp.com/hc/en-us/articles/360060638392-Why-can-t-I-start-a-chat-or-send-an-image), [spam policy](https://support.reddithelp.com/hc/en-us/articles/360043504051-Spam). Follow-ups should ask about what actually happened, not remind people to create a retention event. Stop on refusal, removal or closed invitations.
+
+| Window beginning October 9 | Work | Completion evidence |
+|---|---|---|
+| Oct 9–15 | Verify a demonstration company; read rules/sidebar; send moderator draft yourself if proceeding; learn the existing task from willing qualified investors | Clear research job, accurate example and permitted route |
+| Oct 16–22, conditional | One ValueInvesting introduction; qualify willing respondents and capture their baseline/first use | Actual qualified participants and usefulness, not total clicks |
+| Oct 23–29 | Diagnose blockers and examine second research occasions; use one additional recruitment route only if needed and permitted | Repeat-task evidence, trust issues and reasons current tools win |
+| Oct 30–Nov 7 | Review results available so far; stop unnecessary recruitment | Actual cohort counts and a continue/fix/reposition decision |
+| Rolling thereafter | Complete each participant's 14–30-day window from their own first use | Late recruits get a full observation window; no premature month-end retention claim |
+
+Keep at least 72 hours between permitted public product-distribution attempts. Do not repost to maintain reach; a substantive change still needs community permission. All remaining posts are contingent on what the study needs, and a narrow positive result does not authorize violating a no-promotion rule.
+
+Record participant code, public source/consent, qualification, research task, alternative, first benefit, return occasion/date/evidence, blocker and next agreed action. Keep private messages and personal details out of public Git commits; summarize findings anonymously. Do not ask for testimonials or investment returns as the success measure.
+
+## Cached activity and content evidence
+
+Live 24-hour/seven-day post totals could not be verified because Reddit browser access encountered a verification challenge. The earlier chronological samples are preserved here to satisfy the activity comparison; they indicate posting density and discussion, not the size of our qualified market.
+
+| Community | Cached UTC sample in 2026 | Posts | Span | Median comments |
 |---|---|---:|---:|---:|
-| [r/ValueInvesting](https://www.reddit.com/r/ValueInvesting/new.json?limit=20) | Aug 31 14:45 to Sep 1 09:34, 2026 | 20 | 18.82 hours | 13.5 |
-| [r/SideProject](https://www.reddit.com/r/SideProject/new.json?limit=20) | Oct 4 08:24 to 09:54, 2026 | 20 | 1.49 hours | 1 |
-| [r/alphaandbetausers](https://www.reddit.com/r/alphaandbetausers/new.json?limit=20) | Oct 3 17:59 to 22:37, 2026 | 20 | 4.63 hours | 0 |
-| [r/webdev](https://www.reddit.com/r/webdev/new.json?limit=20) | Sep 26 19:00 to Sep 27 07:00, 2026 | 20 | 12.00 hours | 6 |
+| [ValueInvesting](https://www.reddit.com/r/ValueInvesting/new.json?limit=20) | Aug 31 14:45–Sep 1 09:34 | 20 | 18.82 hours | 13.5 |
+| [SideProject](https://www.reddit.com/r/SideProject/new.json?limit=20) | Oct 4 08:24–09:54 | 20 | 1.49 hours | 1 |
+| [alphaandbetausers](https://www.reddit.com/r/alphaandbetausers/new.json?limit=20) | Oct 3 17:59–22:37 | 20 | 4.63 hours | 0 |
+| [webdev](https://www.reddit.com/r/webdev/new.json?limit=20) | Sep 26 19:00–Sep 27 07:00 | 20 | 12.00 hours | 6 |
 
-All four samples are chronological and contain 20 ordinary, non-sticky posts. Comment counts include author replies and may have accumulated for different lengths of time.
+Exact membership provenance, 80 New-post records and 80 abbreviated Best-feed records remain in the [dated evidence file](Stock_Value_Lens_Reddit_Research_2026-10-09.json). Snapshots span different dates; comment counts include author replies. No daily/weekly extrapolation or conversion forecast is made.
 
-**Interpretation:** SideProject offers rapid exposure but substantial competition for attention. Alphaandbetausers is useful for a precise test request, with low expectations for unsolicited replies. ValueInvesting's sample suggests more discussion per visible post, supporting the decision to spend more preparation on its single introduction. Webdev is a technical feedback option. These are directional judgments, not forecasts.
-
-The five rejected/deferred communities were screened on rules and membership; their post rates and Best samples were not measured because they do not provide a confirmed organic promotion route.
-
-## Promotion rules and frequency
-
-### ValueInvesting
-
-The visible rules allow a genuinely free service to be introduced once only if access requires neither registration nor freemium tiers. They also prohibit repeated links to the same site in posts or comments, promotion-focused accounts, widespread duplicate posting, commercial advertising and single-source promoting accounts. Content must concern value investing; technical trading charts are off-topic. Low-quality or AI-generated material can be removed, and soliciting DMs/contact information is prohibited. [Community rules](https://www.reddit.com/r/ValueInvesting/about/).
-
-Stock Value Lens currently appears to meet the free/no-registration condition based on the local product documentation. Present its charts as a way to compare business fundamentals and valuation history. Use an Investing Tools flair if available.
-
-**Cadence: one introduction total.** Do not restart the allowance by changing the title, moving the link to comments or calling the post an update. Subsequent self-authored investing content has separate discretionary rules; obtain clarity before using it as a repeat distribution channel.
-
-The older metadata sidebar also says no software distribution, while the visible rule list contains the free-service exception. Because these cached surfaces differ, send the draft below to moderators before spending the one-time allowance. Account-age requirements can vary. [Older sidebar and eligibility notes](https://www.reddit.com/r/ValueInvesting/about.json).
-
-### SideProject
-
-The community explicitly welcomes project sharing and constructive feedback. Its submission instructions specify **project name followed by a short description** for a project/startup link. The custom-rules endpoint returned an empty list; this does not remove site-wide spam rules or establish permission for unlimited repetition. [Submission instructions](https://www.reddit.com/r/SideProject/about.json), [rules endpoint](https://www.reddit.com/r/SideProject/about/rules.json).
-
-**Cadence recommendation: one launch post, then at most one substantive follow-up after 14 days**, only if it reports a real improvement or lesson and current rules allow it. This is our operating limit, not a documented subreddit quota. Respond to discussion in the original thread rather than reposting to revive attention.
-
-### Alphaandbetausers
-
-The community's stated purpose is recruiting early users to test products and give feedback. Its custom-rules endpoint also returned an empty list. Share an actual task and make participation voluntary. [Community description](https://www.reddit.com/r/alphaandbetausers/about.json), [rules endpoint](https://www.reddit.com/r/alphaandbetausers/about/rules.json).
-
-**Cadence recommendation: one standalone task-based request during the first month.** Add findings to the original thread. Avoid repeated “need testers” posts, reciprocal review obligations or asking for upvotes. A subsequent standalone request should concern a materially different feature, with at least 14 days between posts and a fresh rule check. The outreach section separately allows one reply to an explicitly invited testing thread.
-
-### Webdev
-
-Project sharing and feedback requests are restricted to Saturday with the proper flair. Commercial promotion is still prohibited, and technical relevance is required. The rule list references a 9:1 participation guideline and prohibits low-effort LLM-generated posts/comments. This is a local guideline, not a universal Reddit safe harbor. [Rules and Showoff Saturday instructions](https://www.reddit.com/r/webdev/).
-
-**Cadence recommendation: one optional Saturday showcase during the first month.** Focus on a concrete engineering problem, such as synchronizing chart ranges or handling missing data, rather than asking developers to become customers. Saturday timing alone does not make a commercial pitch acceptable.
-
-### Other investment communities
-
-- **SecurityAnalysis:** restricted contribution, original-source/factual titles, no overt promotion of sites/apps, and everyday questions directed to the quarterly thread. Posting approval is separate from permission to promote. [Rules](https://www.reddit.com/r/SecurityAnalysis/about/).
-- **Investing:** promotion and awareness building are explicitly prohibited; the rule warns of a permanent ban. A free tool or educational wrapper is not an exception. [Rules](https://www.reddit.com/r/investing/about/).
-- **Stocks:** prohibited promotion applies to both posts and comments, including app-development market research; disclose relevant positions in ordinary stock discussion. [Rules](https://www.reddit.com/r/stocks/about/).
-- **StockMarket:** prohibits traffic-driving links, beta recruitment, repeated posts and copied posts across communities. [Rules](https://www.reddit.com/r/StockMarket/about/).
-- **Dividends:** prohibits affiliated promotion even when unmonetized, referral links, DM solicitation and product testing on the community. Open-source tools require approval; being free alone does not qualify. [Rules](https://www.reddit.com/r/dividends/about/).
-
-**Links:** no specific short-link allowance or numeric posting quota was established for the three primary targets. Use the plain official domain, avoid URL shorteners and referral codes, and recheck link restrictions in the live submission form. Moving a prohibited link into a comment, a profile CTA or a brand-only mention does not make the same promotional intent acceptable.
-
-Reddit's spam policy covers repetitive mass engagement whether manual or automated. Your proposed 2–3-day gap can be a minimum spacing preference where posting is allowed, but it is neither permission nor protection against removal. [Reddit spam policy](https://support.reddithelp.com/hc/en-us/articles/360043504051-Spam).
-
-## Existing brands and observed results
-
-Scores and comments are public snapshot signals. They do not establish clicks, retention, revenue or moderator approval. Creator claims are identified separately.
-
-| Brand or tool | Community and method | Observed response | Lesson |
-|---|---|---|---|
-| TickerFS | ValueInvesting tools discussion; builder disclosed ownership and placed the direct link in a comment | Search-index snapshot showed +8 on its comment and several favorable replies | A relevant user question can create a useful context; verify whether the one-time allowance covers the proposed reply |
-| StockAnalysis and FAST Graphs | Same discussion; users recommended brand/domain names and links | Snapshot showed +12 on one StockAnalysis recommendation and +3 on a FAST Graphs recommendation | Existing awareness is visible; affiliation of these recommenders was not established |
-| TradeHints | SideProject; founder reported a growth lesson, then linked a free stock-analysis product and asked for feedback | Oct 2 post indexed at +9. Founder claimed 60K+ views for another post, 240+ users, 1,400+ analyses and 28+ countries | Those usage numbers are self-reported, not verified attribution or a forecast for this site |
-| Life in Mist | SideProject Best sample; visual demo, explicit developer disclosure, body App Store link and pricing | Inspected replies included competitor comparisons, pricing criticism and arguments | Prominent placement and lots of comments can include harmful or irrelevant attention |
-| Safearea.info | SideProject Best sample; visual reference, short problem explanation and body link | Inspected replies included bookmarks/praise plus confusion about audience and usefulness | Explain who the tool is for before listing features |
-| Pickmycostume | Alphaandbetausers Best sample; own link in the post and invitation to submit other projects in comments | Inspected exchanges produced concrete usability feedback and creator responses about fixes | An explicit testing invitation is a valid context for a disclosed, relevant project link |
-| FIRE | Alphaandbetausers Best sample; disclosed team affiliation and described a portfolio-news test without a visible outbound link in the preview | Product presence verified; response totals unavailable from the accessible detail page | Brand-only promotion still has marketing attributes; test requests can be specific without link stuffing |
-| Page Rage | Webdev Best sample; visual hobby-project demo and body link | Search snapshot dated Sep 15 showed +2,533; inspected replies were enthusiastic and requested technical explanations | An exceptional visible post, published on a Tuesday, does not override today's Saturday restriction |
-
-Sources: [tools discussion](https://www.reddit.com/r/ValueInvesting/comments/1w0yyv9/share_your_favorite_stock_analyzing_tool/), [TradeHints post](https://www.reddit.com/r/SideProject/comments/1wvtyo9/i_got_240_people_to_use_a_tool_i_built_reddit_was/), [Life in Mist](https://www.reddit.com/r/SideProject/comments/1wbu40o/i_built_an_iphone_app_that_turns_your_walks_into/), [Safearea.info](https://www.reddit.com/r/SideProject/comments/1wljtu9/i_got_tired_of_checking_safe_area_insets_in/), [testing discussion](https://www.reddit.com/r/alphaandbetausers/comments/1wpbljm/drop_your_app_or_site_and_ill_test_it_i_had_ai/), [FIRE feed preview](https://www.reddit.com/r/alphaandbetausers/best/), [Page Rage](https://www.reddit.com/r/webdev/comments/1whepc7/page_rage_destroy_any_web_page/).
-
-A historical 2023 Main Street Data introduction received +14 in the index, but commenters immediately questioned whether it was free and the creator disclosed a paywalled feature. That older post is a caution about “free” wording, not evidence of eligibility under the current ValueInvesting rule. [Historical discussion](https://www.reddit.com/r/ValueInvesting/comments/15wrmk6/).
-
-## Content strategy for Stock Value Lens
-
-Lead with one understandable use: **compare a stock's historical price with annual earnings and cash flow, then export the underlying observations without registering.**
-
-The current product documentation supports free charts and CSV/PNG export without an account, historical weekly prices and SEC-linked annual financial facts. It also describes coverage gaps, retained older issuer snapshots, adjusted-price limitations and retrospective P/E using annual EPS. The tool is not a live quote service. [Local product documentation](/Users/yangch/Downloads/investment/stock-valuation-public/README.md).
-
-Prepare one clear chart image or a 15–30-second walkthrough before posting. Show ticker selection, one historical comparison and the export. Label the actual company's price endpoint and financial period; do not advertise the latest universe cutoff as applying to every stock.
-
-For investor posts, keep these distinctions visible:
-
-- Approximate P/E history uses annual EPS; it is not TTM or forward P/E.
-- Annual EPS is carried from fiscal-period end retrospectively; the chart is not a point-in-time backtest using only information known on that historical date.
-- Price adjustment and per-share basis limitations can affect comparisons.
-- History and freshness vary by company; missing values are not zeros.
-
-Answer data-source questions plainly: annual financial facts originate from SEC filings; weekly prices are derived from Stooq history. Avoid promising universal 25-year coverage, real-time data, accurate backtests, automatic valuation or investment performance.
-
-### SideProject draft
-
-**Title:** Stock Value Lens — free historical stock charts and CSV exports without signup
-
-> I built Stock Value Lens for people who research individual US stocks and want to compare historical prices with annual earnings and cash flow.
->
-> It currently offers charts, approximate P/E history using annual EPS, and CSV/PNG exports without an account or subscription.
->
-> The main limitation is that this is historical research data: the P/E series is retrospective and annual-EPS-based, not TTM or forward P/E, and coverage/freshness vary by company.
->
-> I'm the builder: https://stockvaluelens.com/
->
-> On a first visit, is it clear which P/E definition is being shown, and can you find the CSV export?
-
-Use a normal text post with the transparent domain where the current submission form permits it. A real chart image or short walkthrough would strengthen it; the text works without claiming an attachment exists. Rewrite any phrasing that does not sound like you.
-
-### Alphaandbetausers draft
-
-**Title:** [Web] Stock Value Lens — looking for 5 people to test a stock chart and CSV export
-
-> I'm the builder of Stock Value Lens, a free historical US stock research website. No account is needed.
->
-> I'd like five volunteers to try a roughly three-minute task:
->
-> 1. Search for a company you know.
-> 2. Find its approximate P/E history using annual EPS.
-> 3. Export the chart data as CSV.
->
-> https://stockvaluelens.com/
->
-> Please tell me where you hesitated, whether the data dates and P/E definition were understandable, and whether the exported columns matched what you expected.
->
-> You can use any public ticker. No portfolio details, purchase, review or vote is required.
-
-“Five volunteers” is a desired sample size, not a claim that anyone has enrolled. Do not call the entire released site a beta merely to fit the community; identify the workflow being tested.
-
-### ValueInvesting moderator message draft
-
-> Hi moderators — I built Stock Value Lens (https://stockvaluelens.com/), a currently free historical US stock research site. Charts and CSV/PNG exports require no account, subscription or freemium tier.
->
-> I saw the rule allowing one introduction of a truly free service, and also the sidebar's software-distribution wording. Would one disclosed text post with a chart example and a single link be appropriate under that allowance?
->
-> I would explain its SEC annual financial inputs, weekly historical prices, annual-EPS-based retrospective P/E and coverage limits, and ask for feedback on the research workflow. I would not repeat the introduction or solicit DMs.
-
-This message is drafted only. No moderator contact has been sent.
-
-### ValueInvesting introduction draft
-
-**Title:** Free tool for comparing historical stock prices with annual EPS and cash flow — no account required
-
-> I'm the builder of Stock Value Lens. I made it to make historical price, earnings and cash-flow comparisons easier to inspect and export.
->
-> The charts and CSV/PNG exports are currently free without registration or a subscription. Financial observations link to SEC filings; price history is sampled weekly.
->
-> One limitation worth stating up front: the approximate P/E history carries annual EPS from fiscal-period end retrospectively. It is not TTM, forward P/E, or a backtest using only data available on each historical date. Coverage, freshness and adjustment consistency vary by company.
->
-> Try selecting a company you know, comparing the price and annual EPS views, and checking the displayed data dates before interpreting the chart.
->
-> https://stockvaluelens.com/
->
-> For people who compare a company's history before reading the filings more deeply: which part of this presentation is useful, and which part needs a clearer limitation?
-
-Use this only after a live rule/eligibility check and resolving the moderator question. Rewrite it in your natural voice; if adding an example image, verify its actual dates and values. Disclose any relevant holding if the example becomes a stock thesis. Do not invent an investment conclusion to create a product hook.
-
-### Optional Webdev draft
-
-**Title:** [Showoff Saturday] Historical stock charts with synchronized ranges and visible data gaps
-
-> I built Stock Value Lens, a static site for exploring historical stock prices and annual financial observations. It fetches the selected company's JSON and calculates chart series in the browser.
->
-> One interface problem is that weekly prices and annual financial observations have different frequencies and sometimes different endpoints. I use synchronized range controls and show each company's dates and missing metrics so a smooth chart doesn't imply complete data.
->
-> The approximate P/E view carries annual EPS from fiscal-period end retrospectively. That makes its timing limitation important to explain beside the visualization.
->
-> https://stockvaluelens.com/ — I'm the builder; charts and exports currently require no account.
->
-> For developers who build data interfaces: where would you put the frequency and timing explanation so people understand it before interpreting the chart?
-
-The static JSON loading, browser calculations and synchronized ranges are documented in the local product README. Use this only in the confirmed Saturday window with the correct flair and a genuinely technical discussion. If moderators consider it commercial promotion, skip it. Add an actual screenshot if useful; do not claim performance benchmarks or implementation details you have not checked.
-
-## People to contact
-
-These five public Reddit handles have relevant testing invitations. They are **feedback candidates**, not verified customers or investors. The inspected pages show concrete testing replies from Capable-Property-539, yakaspectrum, pickmycostume and principalla; bananajoin has a testing offer but no tester follow-through verified in the inspected thread.
-
-**Current availability is unverified.** Profile comment feeds returned cache misses. Thread pages were cached one to three weeks earlier, with relative timestamps referring to those snapshots. The older offers may have expired. Before contacting anyone, open the linked invitation, confirm the handle still matches, and check for recent participation or a notice that testing has closed. Skip unavailable or inactive accounts; do not replace them with random active investors.
-
-| Candidate | Public evidence and fit | Contact route | Priority |
-|---|---|---|---|
-| [u/Capable-Property-539](https://www.reddit.com/user/Capable-Property-539/) | [Aug 21 testing offer](https://www.reddit.com/r/alphaandbetausers/comments/1vuco5a/happy_to_beta_test_your_product_ill_use_it_and/): invites links and instructions by DM; prefers workflows. Inspected replies identify specific onboarding and UI problems. | One PM if the invitation remains open. Ask about the chart-to-export workflow, not a stock recommendation. | First PM candidate |
-| [u/bananajoin](https://www.reddit.com/user/bananajoin/) | [July 25 testing offer](https://www.reddit.com/r/alphaandbetausers/comments/1v6blsr/free_beta_tester_here_ill_test_your_app_and_give/): explicitly accepts DMs; offers web testing in Chrome, Firefox and Safari. | One PM only if recent activity and continued availability are confirmed. Older offer; reserve candidate. | Second PM candidate |
-| [u/pickmycostume](https://www.reddit.com/user/pickmycostume/) | [Project-testing thread](https://www.reddit.com/r/alphaandbetausers/comments/1wpbljm/drop_your_app_or_site_and_ill_test_it_i_had_ai/): invites apps/sites below the post; replies with tests and fixes. | Public reply in that thread. No general PM invitation established. | First public-reply candidate |
-| [u/yakaspectrum](https://www.reddit.com/user/yakaspectrum/) | [Sept 12 testing thread](https://www.reddit.com/r/alphaandbetausers/comments/1weh9d9/drop_your_project_ill_test_10_of_them_and_give/): update continues to invite project links; inspected replies report navigation confusion. | Public reply in that thread if still open. The screenshot/DM request to another commenter is not general permission to PM. | Alternative public-reply candidate |
-| [u/principalla](https://www.reddit.com/user/principalla/) | [Developer-feedback thread](https://www.reddit.com/r/alphaandbetausers/comments/1v7bbsl/10_years_building_apps_show_me_what_youre_working/): invites projects in comments; inspected replies include onboarding and usability findings. | Public reply if still active. DM invitations to specific other builders do not extend to us. | Reserve public-reply candidate |
-
-Choose **one** of the three public threads during the first month. Do not post the same request to all three. For each person, choose either the invited public route or an invited PM; do not contact them through both channels to increase pressure. Use only the public handle and invitation context; no email address, real-world identity or inferred personal financial information is needed.
-
-### PM to Capable-Property-539
-
-**Subject, if the interface supports one:** Chart-to-CSV workflow test for Stock Value Lens
-
-> Hi — I saw your offer to test workflow tools and report where you get confused. I'm the builder of Stock Value Lens, a free historical stock research website with no signup: https://stockvaluelens.com/
->
-> If you're still taking projects, could you try a three-minute task: search a company, open its approximate P/E history using annual EPS, then export CSV?
->
-> I'd value the first point where you hesitate, and whether the retrospective P/E definition and data dates are clear. No investing knowledge or portfolio details are needed. Completely fine if you're at capacity.
-
-### PM to bananajoin
-
-**Subject, if available:** Browser usability check for Stock Value Lens
-
-> Hi — your Echo testing post invited web projects by DM. Is that offer still open?
->
-> I built Stock Value Lens: https://stockvaluelens.com/ — free historical US-listed stock charts and CSV/PNG exports, with no account required.
->
-> If you have time, could you search one company and export CSV in whichever browser you normally use? I'd appreciate where you get stuck, your browser/device, and whether the exported columns make sense.
->
-> Its approximate P/E uses annual EPS retrospectively; this is historical research, not live quotes. No purchase or public review requested.
-
-### Public reply to pickmycostume
-
-Post only in the linked testing thread:
-
-> Thanks for inviting website tests. I built Stock Value Lens: https://stockvaluelens.com/ — historical US-listed stock charts and CSV/PNG exports without signup.
->
-> Could you search one company, find approximate P/E history using annual EPS, and export CSV? I'd most value where the first-use flow becomes unclear, especially the data dates and retrospective P/E explanation. A short browser test is enough; no financial information needed.
-
-### Public reply to yakaspectrum
-
-Use this instead of the pickmycostume reply if that invitation has closed:
-
-> If you're still taking projects, I'd appreciate a first-use check of Stock Value Lens, which I built: https://stockvaluelens.com/
->
-> It's free historical stock charts and CSV/PNG exports with no signup. Could you find a company and the CSV export without help? I'm especially interested in whether the displayed data dates and annual-EPS-based retrospective P/E definition are understandable. No investing opinion needed.
-
-### Public reply to principalla
-
-Use this only as the reserve public route:
-
-> Your onboarding-to-core-experience offer is the kind of feedback I'm looking for. I built Stock Value Lens: https://stockvaluelens.com/ — free historical stock charts and exports, no account required.
->
-> Could you go from company search to approximate P/E history to CSV export and tell me the first point where the next action isn't obvious? The P/E uses annual EPS retrospectively; I'd also value whether that limitation is clear before interpreting it.
-
-### PM after a public candidate explicitly agrees
-
-For pickmycostume, yakaspectrum or principalla, **use only after that person asks you to DM or agrees to continue privately**. Replace the greeting with the actual handle; otherwise keep the task matched to your existing discussion.
-
-> Hi [handle] — thanks for agreeing to continue our Stock Value Lens test here. I'm the builder. The site is https://stockvaluelens.com/ and doesn't require signup.
->
-> The task is to search a company, open approximate P/E history using annual EPS, then export CSV. Please tell me the first confusing step and whether the data dates and retrospective P/E explanation make sense. A short written note is plenty; no portfolio details or public review needed.
-
-Replace `[handle]` before using it. This draft is not a reason to send an initial private request to someone who invited only comments.
-
-### Reply after someone gives feedback
-
-> Thanks — that gives me a concrete issue to work on. I'll check the step you described and report back here when I have a verified change. No further testing needed unless you'd like to try it again.
-
-Mention the actual finding in your own words. Only describe a fix as shipped after verifying it. Ask before turning private feedback into a public testimonial.
-
-## Outreach frequency
-
-These are workload and courtesy limits for this launch, **not Reddit quotas or a guarantee against spam enforcement**. Reddit documents daily invite restrictions without publishing a universal numeric allowance; account age/standing and recipient settings also matter. Repetitive unsolicited outreach remains subject to the spam policy. [Chat limits](https://support.reddithelp.com/hc/en-us/articles/360060638392-Why-can-t-I-start-a-chat-or-send-an-image), [spam policy](https://support.reddithelp.com/hc/en-us/articles/360043504051-Spam).
-
-| Activity | Proposed frequency | Condition |
-|---|---|---|
-| SideProject launch | Once in the first month | Relevant project post; live rules permit it |
-| SideProject update | At most one more, at least 14 days later | A substantial improvement or real lesson; skip if there is nothing new |
-| Alphaandbetausers request | One main testing post in the first month | Specific three-minute task |
-| Invited testing-thread reply | One of the three candidate threads in the first month | Invitation still open; do not distribute the request to every thread |
-| ValueInvesting introduction | Once total | Moderator clarification, genuine free access and eligible account |
-| Webdev showcase | One optional Saturday | Confirmed technical, noncommercial route |
-| New invited PMs | At most one per day and three per rolling seven days | Only explicit relevant invitations or individual consent; this initial shortlist has just two direct-PM candidates, so do not fill a quota |
-| Unanswered messages | One initial message; zero reminders | Silence is not consent to another pitch |
-| Existing conversations | Reply when useful | No artificial daily limit on answering a willing person's question; no repeat sales pitch |
-
-Spend about 20 minutes, two or three times per week, reading and participating in relevant discussions. Add useful ordinary replies when you have something to contribute; do not insert your domain by default or treat a participation ratio as permission. If a recipient declines, stop. If Reddit limits invitations, stop and wait for eligibility to recover rather than changing accounts or channels.
-
-Allow seven days for a response before recording an outreach attempt as unanswered; do not send a seven-day reminder. After the initial two PMs, prioritize feedback and people who respond to your own testing invitation. Stop new recruitment once five useful tests are complete, then fix the repeated problems.
-
-## Suggested first 30 days
-
-Dates assume starting October 9, 2026; move them if the account is new, the live rules differ or feedback exposes a problem.
-
-| Date | Action | Completion check |
-|---|---|---|
-| Oct 9–15 | Read live rules/pinned guidance; inspect account eligibility; participate in relevant discussions; prepare demo and moderator draft | Each intended post has a confirmed route and accurate product claims |
-| Oct 10, conditional | PM Capable-Property-539; optionally one public reply to pickmycostume, or one of the alternatives | Current invitation and activity checked; skip if unavailable; do not use both public and private routes for the same person |
-| Oct 13, conditional | PM bananajoin | Older offer rechecked; no reminder to the first candidate and no replacement cold pitch |
-| Oct 16 | One SideProject launch post | Respond to meaningful questions; log traffic and feedback after 24 and 72 hours |
-| Oct 19 | One Alphaandbetausers task request | Seek five completed tests; record blockers rather than raw “interested” replies |
-| Oct 22 or later | One ValueInvesting introduction after moderator clarification | Live rules still permit it; the account and post meet requirements; no repeated introduction |
-| Oct 31, optional | One Webdev technical showcase | Saturday window confirmed, correct flair, noncommercial technical relevance |
-| Nov 4 or later | Optional SideProject follow-up only for a substantial improvement | At least 14 days after launch and 72 hours after any Webdev showcase; include what changed and actual results |
-| Nov 7 | Review the channel | Decide which community produced useful visits or actionable tests per hour spent |
-
-Timing experiment: begin around 15:00–18:00 UTC on weekdays, equal to 17:00–20:00 Stockholm before the October 25 clock change and 16:00–19:00 afterward. This is an initial operating hypothesis, not a measured optimal posting time. Choose a time when you can answer replies for the next two hours. For Webdev, use the community's confirmed Saturday window.
-
-Use different content for different audiences. Keep at least 72 hours between planned product-distribution posts or invited promotional comments across these communities, subject to stricter local rules. The proposed dates satisfy that spacing except if you move a post; update the schedule accordingly. PMs follow their separate consent and frequency limits. Ordinary, useful replies to your existing thread need not wait 72 hours.
-
-There is no universal requirement to “farm” a fixed amount of karma. Build a real participation history, respect each community's eligibility checks, and do not manufacture questions, testimonials or third-party endorsements.
-
-## Measurement and stopping rules
-
-Track each post's community, URL, date/time, rule route, format, disclosure, visits if available, chart use/export events if already measurable, non-author substantive replies, completed tests, useful feedback and moderation outcome.
-
-For individual outreach, record only the public handle, invitation URL, last availability check, channel, sent date, response, concrete test finding and next agreed action. Begin with the five rows above marked **not contacted**. Keep private reply contents out of public Git commits; store only a minimal outcome such as “CSV control unclear” if appropriate.
-
-For allowed links, start with a plain domain. If current rules permit transparent tracking parameters and the site actually records them, use a distinct campaign value per community; otherwise use existing referrer data. Do not add a tracking implementation as part of this plan or report zero conversions when measurement is unavailable.
-
-**Primary success:** a visitor searches a ticker and uses a chart or export, or a tester supplies an actionable observation. Upvotes are secondary. A feedback fix may be more useful than a large number of idle visits.
-
-Suggested first-month targets, explicitly hypotheses: five completed usability tests, three actionable improvements, and enough measured qualified visits to compare the launch posts. Avoid a numerical traffic promise; the peer examples do not support one.
-
-At 24 hours, check whether the post remains visible and whether users understand the product. At 72 hours, record qualified visits and feedback. After a removal, stop distribution in that subreddit, read the reason, and use one relevant moderator clarification if appropriate; do not repost variants or switch accounts. A removal is not proof that the domain is banned, and a surviving post is not proof of approval.
-
-Skip follow-ups if the launch only attracts vague compliments, irrelevant builder traffic or repeated confusion. First improve the use case and presentation. Do not duplicate a post across communities, solicit votes, send unsolicited promotional DMs or insert links into unrelated conversations.
+The following Best audit remains a dated **format reference**. Best is a ranked logged-out feed, not the 20 most-upvoted posts; pinned highlights were excluded. Selected marketing details were inspected, not every comment in all 80 posts. A surviving promotional post does not override rules. Use patterns only when they fit the investor job and a permitted route.
 
 ## Best feed audit
 

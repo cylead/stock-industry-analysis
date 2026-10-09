@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-007 — Outreach plan mixed general testing with investor demand validation
+
+- **Status:** Resolved
+- **Opened:** 2026-10-09
+- **Resolved:** 2026-10-09
+- **Affected area:** Stock Value Lens Reddit promotion plan, audience selection, candidate qualification and channel eligibility.
+- **Problem and impact:** The launch plan prioritized builders and generic volunteer testers without establishing their fit with the owner's goal of repeat use by individual stock investors. Successful UI tasks or upvotes could therefore be mistaken for product demand. Alphaandbetausers' empty custom-rules endpoint also omitted sidebar restrictions on non-alpha/beta products.
+- **Root cause or hypothesis:** Community access and available tester invitations drove distribution choices before the recurring investor job and measurement criteria were defined. The channel review did not reconcile the complete sidebar with the custom-rules endpoint.
+- **Chosen solution:** Rebuilt the plan around a qualified investor cohort, a historical-research task, competing workflows, concrete first-use benefit and repeat use for a different research occasion. Demoted generic testers to usability reserves, made investor research handles a consent-dependent watchlist, rewrote posts/PMs and replaced the fixed launch schedule with evidence gates. Held alphaandbetausers pending explicit acceptance of a released-tool study and recorded the sidebar correction in the dated evidence.
+- **Rationale:** Separates audience relevance, usability and recurring demand while preserving transparent product/data limits and community permission. The planning issue is resolved; actual product-market fit remains unproven until user behavior is measured.
+- **Alternatives considered:** Keeping the launch calendar with a product-market-fit paragraph would preserve the audience mismatch. Treating a small retention threshold as proof would overstate the evidence. Calling the released site a beta to qualify would misrepresent its stage.
+- **Follow-up/prevention:** Check sidebar, pinned guidance and custom rules together. Qualify investors before counting study results; report cohort denominators, actual research opportunities and observed versus self-reported returns. Expand distribution only after a focused repeat-use review. No website changes or messages were made; the root Five Forces skill is unchanged, so PROJECT_LOG.md does not require an update.
+
 ## ISSUE-006 — Reddit research required explicit snapshot and activity definitions
 
 - **Status:** Resolved

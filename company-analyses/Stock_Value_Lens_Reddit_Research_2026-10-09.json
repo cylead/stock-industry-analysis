@@ -1106,5 +1106,15 @@
         }
       ]
     }
-  ]
+  ],
+  "interpretation_note": "These cached member, New-feed and Best-feed samples describe community scale and content. They do not measure qualified-investor demand or Stock Value Lens retention.",
+  "rules_review_correction": {
+    "date": "2026-10-09",
+    "subreddit": "alphaandbetausers",
+    "source_url": "https://www.reddit.com/r/alphaandbetausers/about.json",
+    "source_cache_age_label": "last week",
+    "finding": "The sidebar limits submissions to alpha/beta products, requires stage/system labels and a testable product link, and asks posters to test another product. The empty custom-rules endpoint was insufficient to establish eligibility for this released website.",
+    "planning_result": "Hold standalone recruitment until moderators explicitly accept a released-tool study; do not relabel the product as beta."
+  },
+  "product_demand_objective": "Repeat use by individual stock investors; product-market fit is not established by these observations."
 }
