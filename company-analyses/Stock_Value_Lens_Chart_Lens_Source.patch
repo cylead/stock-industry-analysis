@@ -1,0 +1,71 @@
+--- a/PROJECT_LOG.md
++++ b/PROJECT_LOG.md
+@@ -11,0 +12,7 @@
++
++## 2026-10-09 — Chart Lens website identity
++
++- **Summary:** Replaced the SV header badge with the owner-selected Chart Lens: a forest-green magnifying glass containing a chart with a restrained orange accent. Added one shared SVG asset for all website headers and browser favicons, including the error page favicon.
++- **Impact:** Scalable artwork retains the existing compact desktop/mobile header dimensions and readable Stock Value Lens wordmark. Financial inputs, charts and calculations are unchanged.
++- **Verification:** 37 Node and 4 Python tests pass. Full production build has 498 generated pages plus the error page; all 498 branded headers and all 499 favicon links use the new asset. Browser checks cover homepage, Apple, guides and updates at 1440, 390 and 320 px, with loaded artwork, no overlap/overflow and no script or asset errors. All 6,551 company JSON files and existing chart scripts match the preceding build. Publication evidence is recorded in VERIFICATION.md and the companion release record.
++- **References:** `web/logo-chart-lens.svg`, `web/index.html`, `web/404.html`, `web/styles.css`, `scripts/site.mjs`, `content/updates.json`, `VERIFICATION.md`.
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,7 @@
++## Chart Lens logo — 2026-10-09
++
++- **Scope:** Owner-selected original Chart Lens design recreated as a compact SVG with green ring/handle and an orange chart accent. Shared asset appears in the generated header, source template and browser tab; error page also declares the favicon. Header remains 34 px on desktop and 30 px on mobile. Brand text supplies the accessible home-link name; decorative artwork uses empty alt text.
++- **Checks:** 37 Node and 4 Python tests pass. Production build: 485 company pages, 498 generated HTML routes, 7,563 assets and 253,363,136 bytes. Audited all 499 HTML assets including 404: each has the favicon; all 498 branded headers use the SVG and contain no SV badge. Existing JavaScript and all 6,551 financial company JSON files match the preceding build. Homepage, Apple, guides and updates checked at 1440, 390 and 320 px: logo loaded, text and icon separated, brand fits viewport, no page overflow, no browser script or asset errors.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `7070a0dd-662e-4279-b86c-5580cb4d0c14` on 2026-10-09. Seven live resources return HTTP 200 and match the tested build, with SVG served as image/svg+xml. Live browser checks repeat all four representative routes at 1440, 390 and 320 px: loaded header logo, matching favicon link, charts rendered on chart pages, no overlap/overflow and no browser script or asset errors.
++- **Maintenance review:** Added a branding project-log entry and concise public update history. No issue-log entry is required for this routine implementation. Website source has no Git repository; focused source patch, SVG, screenshots and release evidence are saved in stock-industry-analysis for commit/push.
++
+--- a/content/updates.json
++++ b/content/updates.json
+@@ -1,0 +2,10 @@
++  {
++    "date": "2026-10-09",
++    "type": "Milestone",
++    "title": "A new Chart Lens logo",
++    "summary": "A chart inside a magnifying glass gives Stock Value Lens a recognizable research identity.",
++    "items": [
++      "The new logo appears in the website header and browser tab.",
++      "Crisp vector artwork keeps the mark clear on desktop and mobile screens."
++    ]
++  },
+--- a/scripts/site.mjs
++++ b/scripts/site.mjs
+@@ -53 +53 @@
+-  return `<header class="app-header${search ? " chart-header" : " content-header"}"><a class="brand" href="/" aria-label="Stock Value Lens home"><span class="brand-mark">SV</span><span><strong>Stock Value Lens</strong><small>Free historical stock research</small></span><span class="free-badge">100% free</span></a>${search ? `<div class="search-shell"><label class="sr-only" for="company-search">Search by ticker or company</label><input id="company-search" autocomplete="off" placeholder="Search ticker or company…" aria-controls="search-results"><div id="search-results" class="search-results" role="listbox" hidden></div></div>` : ""}<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-navigation">Menu</button><nav id="site-navigation" class="site-nav" aria-label="Main navigation">${links}</nav></header>`;
++  return `<header class="app-header${search ? " chart-header" : " content-header"}"><a class="brand" href="/" aria-label="Stock Value Lens home"><img class="brand-mark" src="/logo-chart-lens.svg" width="34" height="34" alt="" aria-hidden="true"><span><strong>Stock Value Lens</strong><small>Free historical stock research</small></span><span class="free-badge">100% free</span></a>${search ? `<div class="search-shell"><label class="sr-only" for="company-search">Search by ticker or company</label><input id="company-search" autocomplete="off" placeholder="Search ticker or company…" aria-controls="search-results"><div id="search-results" class="search-results" role="listbox" hidden></div></div>` : ""}<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-navigation">Menu</button><nav id="site-navigation" class="site-nav" aria-label="Main navigation">${links}</nav></header>`;
+@@ -65 +65 @@
+-  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metadata(site, path, title, description)}<link rel="stylesheet" href="/styles.css"></head><body${chart ? ' class="chart-page"' : ""}${ticker ? ` data-initial-ticker="${e(ticker)}"` : ""}>${header(chart)}<main>${content}</main>${footer(site)}<script src="/ui.js" type="module"></script>${chart ? '<script src="/app.js" type="module"></script>' : ""}</body></html>\n`;
++  return `<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">${metadata(site, path, title, description)}<link rel="icon" href="/logo-chart-lens.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body${chart ? ' class="chart-page"' : ""}${ticker ? ` data-initial-ticker="${e(ticker)}"` : ""}>${header(chart)}<main>${content}</main>${footer(site)}<script src="/ui.js" type="module"></script>${chart ? '<script src="/app.js" type="module"></script>' : ""}</body></html>\n`;
+--- a/web/404.html
++++ b/web/404.html
+@@ -2 +2 @@
+-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found · Stock Value Lens</title><link rel="stylesheet" href="/styles.css"></head><body><main><section class="card"><h1>Page not found</h1><p><a href="/">Return to Stock Value Lens</a></p></section></main></body></html>
++<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Page not found · Stock Value Lens</title><link rel="icon" href="/logo-chart-lens.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css"></head><body><main><section class="card"><h1>Page not found</h1><p><a href="/">Return to Stock Value Lens</a></p></section></main></body></html>
+--- a/web/index.html
++++ b/web/index.html
+@@ -10,0 +11 @@
++  <link rel="icon" href="/logo-chart-lens.svg" type="image/svg+xml">
+@@ -16 +17 @@
+-      <span class="brand-mark">SV</span>
++      <img class="brand-mark" src="/logo-chart-lens.svg" width="34" height="34" alt="" aria-hidden="true">
+--- a/web/styles.css
++++ b/web/styles.css
+@@ -28 +28 @@
+-.brand-mark { display: grid; place-items: center; flex-shrink: 0; width: 34px; height: 34px; color: #fff; background: var(--green); border-radius: 8px; font-size: 13px; font-weight: 800; }
++.brand-mark { display: block; flex-shrink: 0; width: 34px; height: 34px; }
+@@ -253 +253 @@
+-  .brand-mark { width: 30px; height: 30px; font-size: 11px; }
++  .brand-mark { width: 30px; height: 30px; }
+--- /dev/null
++++ b/web/logo-chart-lens.svg
+@@ -0,0 +1,7 @@
++<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
++  <title>Stock Value Lens — Chart Lens</title>
++  <circle cx="27" cy="27" r="21" stroke="#23634b" stroke-width="5"/>
++  <path d="M43 43 57 57" stroke="#23634b" stroke-width="8" stroke-linecap="round"/>
++  <path d="m12 32 8-11 8 12 11-17 5 10" stroke="#23634b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
++  <path d="m24 27 4 6 4-6.2" stroke="#ce8746" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
++</svg>
