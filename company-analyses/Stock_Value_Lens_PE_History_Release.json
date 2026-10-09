@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-09",
+  "feature": "Approximate fiscal-year-end basic/diluted annual P/E history",
+  "origin": "https://stockvaluelens.com",
+  "version": "cffcc8f3-9586-44c0-88ef-b1a7f6e9fc3c",
+  "published": true,
+  "architecture": "P/E section on existing stock pages and homepage chart workspace; one shared calculation guide; no duplicate P/E page per stock.",
+  "controls": [
+    "Basic EPS",
+    "Diluted EPS",
+    "Compare both",
+    "Optional 15x/20x/30x reference lines",
+    "Main chart date-range synchronization",
+    "P/E CSV/PNG export controls"
+  ],
+  "calculation": "Annual EPS matched to eligible fiscal-year-end close within 14 days on or before fiscal end; split-only preferred, adjusted fallback approximate. Positive EPS required. Retrospective, uncapped, not TTM or forward P/E.",
+  "checks": {
+    "nodeTestsPassed": 35,
+    "pythonTestsPassed": 4,
+    "companyPagesWithPe": 485,
+    "sitemapRoutes": 498,
+    "generatedAssets": 7562,
+    "unchangedCompanyJsonFiles": 6551,
+    "liveBrowser": {
+      "pePaths": 2,
+      "periodsIn15YearWindow": 15,
+      "referenceLinesEnabled": true,
+      "originalPriceChartRendered": true,
+      "warningErrorLogs": []
+    },
+    "liveBuildMatches": [
+      {
+        "route": "/",
+        "matchesBuild": true
+      },
+      {
+        "route": "/pe.js",
+        "matchesBuild": true
+      },
+      {
+        "route": "/app.js",
+        "matchesBuild": true
+      },
+      {
+        "route": "/calculations.js",
+        "matchesBuild": true
+      },
+      {
+        "route": "/styles.css",
+        "matchesBuild": true
+      },
+      {
+        "route": "/stocks/aapl/",
+        "matchesBuild": true
+      },
+      {
+        "route": "/stocks/aapl/index.md",
+        "matchesBuild": true
+      },
+      {
+        "route": "/stocks/msft/",
+        "matchesBuild": true
+      },
+      {
+        "route": "/guides/pe-ratio-history/",
+        "matchesBuild": true
+      },
+      {
+        "route": "/guides/pe-ratio-history/index.md",
+        "matchesBuild": true
+      },
+      {
+        "route": "/llms.txt",
+        "matchesBuild": true
+      },
+      {
+        "route": "/data-access/",
+        "matchesBuild": true
+      },
+      {
+        "route": "/sitemap.xml",
+        "matchesBuild": true
+      },
+      {
+        "route": "/updates/",
+        "matchesBuild": true
+      }
+    ]
+  },
+  "exportVerification": "CSV/PNG controls were clicked without console errors, but browser download-event capture timed out for both new exports and the pre-existing CSV exporter; actual saved downloads are unconfirmed.",
+  "changedSourceFiles": [
+    "web/app.js",
+    "web/calculations.js",
+    "web/index.html",
+    "web/pe.js",
+    "web/styles.css",
+    "scripts/ai.mjs",
+    "scripts/site.mjs",
+    "tests/pe.test.js",
+    "tests/site.test.js",
+    "README.md",
+    "PROJECT_LOG.md",
+    "ISSUE_LOG.md",
+    "VERIFICATION.md",
+    "content/updates.json"
+  ],
+  "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "backup": "/private/tmp/stock-pe-history-o0875_rk",
+  "versionControl": "Website source folder has no Git repository. Source patch, live screenshot and release record saved in stock-industry-analysis for commit and push.",
+  "maintenanceLogReview": {
+    "websiteProjectLog": "Feature and verified publication recorded.",
+    "websiteIssueLog": "ISSUE-010 records annual timing and adjusted-price interpretation.",
+    "analysisProjectLog": "No update: Five Forces skill unchanged.",
+    "analysisIssueLog": "No update: website tradeoff recorded in its existing issue log."
+  }
+}
