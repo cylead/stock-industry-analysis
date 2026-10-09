@@ -1,0 +1,21 @@
+--- a/web/logo-chart-lens.svg
++++ b/web/logo-chart-lens.svg
+@@ -3,4 +3,4 @@
+-  <circle cx="27" cy="27" r="21" stroke="#23634b" stroke-width="5"/>
+-  <path d="M43 43 57 57" stroke="#23634b" stroke-width="8" stroke-linecap="round"/>
+-  <path d="m12 32 8-11 8 12 11-17 5 10" stroke="#23634b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+-  <path d="m24 27 4 6 4-6.2" stroke="#ce8746" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
++  <circle cx="27" cy="27" r="21" stroke="#23634b" stroke-width="3.2"/>
++  <path d="M43 43 54 54" stroke="#23634b" stroke-width="5.2" stroke-linecap="round"/>
++  <path d="m15 31 6-8 6 9 8-12 4 7" stroke="#23634b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
++  <path d="m24.5 28.25 2.5 3.75 2.5-3.75" stroke="#ce8746" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,7 @@
++## Chart Lens proportion refinement — 2026-10-09
++
++- **Scope:** Thinned the lens ring from 5 to 3.2 SVG units (36%) and handle from 8 to 5.2 (35%), shortened the handle and placed the chart farther inside the lens. Chart width is 24 instead of 32 units, with a 2.8-unit stroke instead of 3.5. Retained the original green/orange identity, existing header sizes and shared favicon asset.
++- **Checks:** Visually inspected before/after at 128, 34, 30 and 16 px. Production build passes existing asset limits. All 7,563 build assets compared with the preceding release: only `logo-chart-lens.svg` changed. All 499 favicon declarations and 498 branded headers remain valid. Homepage and guides verified at 1440, 390 and 320 px, with loaded artwork, no overlap/overflow and no browser script or asset errors; homepage chart renders. No new unit tests or repeat calculation tests were needed for the SVG-only change.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `13ce3121-e508-4d6d-b4e5-57749fe12760`. Seven live resources return HTTP 200 and match the tested build; SVG has image/svg+xml content type. Live homepage/guides checks pass at all three widths.
++- **Maintenance review:** Routine logo proportion refinement; no PROJECT_LOG, ISSUE_LOG or public-history entry required. Website source remains outside Git; the updated SVG, focused follow-up patch, before/after image and live verification are saved in stock-industry-analysis for commit/push.
++
