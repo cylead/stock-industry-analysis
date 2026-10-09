@@ -40,6 +40,10 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 - **Alternatives considered:** Extrapolating daily/weekly rates from uneven snapshots would overstate comparability. Copying prohibited promotions because enforcement appears lax would not establish a permitted route.
 - **Follow-up/prevention:** Recheck rules, account eligibility and current feeds before posting. Obtain actual day/week counts when live access is available. Update this entry if the same provenance issue recurs; the root Five Forces methodology is unchanged.
 
+### 2026-10-09 follow-up — Outreach invitation scope and freshness
+
+Added five public testing candidates with linked invitations and tailored drafts. Only two offers explicitly invite general testing DMs; three invite projects in comments. Specific DM requests to other commenters were not treated as permission for this owner. Profile comment feeds were inaccessible, so current activity and continued availability are conditions to check before outreach. Calendar and frequency recommendations distinguish public distribution, invited private contact and replies in an existing conversation. No messages were sent.
+
 ## ISSUE-005 — Website refresh needed a reproducible input-reconciliation workflow
 
 - **Status:** Resolved

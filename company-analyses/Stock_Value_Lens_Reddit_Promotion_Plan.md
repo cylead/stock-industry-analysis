@@ -4,6 +4,8 @@
 
 **Recommended starting order: r/SideProject for a launch test, r/alphaandbetausers for usability feedback, then r/ValueInvesting for one carefully prepared introduction.** r/ValueInvesting has the strongest audience fit, but its free-service allowance is one-time. Use r/webdev only for a technical project showcase that meets its Saturday rules.
 
+**Execution file updated 2026-10-09:** use the [post drafts](#sideproject-draft), [five named outreach candidates and messages](#people-to-contact), [frequency limits](#outreach-frequency) and [dated calendar](#suggested-first-30-days). Start with three core subreddit posts, up to two invited PMs and one invited public testing reply. All messages below are drafts; none has been sent.
+
 ## Evidence and limits
 
 Member counts below come from Reddit's explicitly named `subscribers` field in public, indexed `about.json` responses. They are cached observations, not live counts on October 9. Unlabeled sidebar numbers were excluded rather than assumed to be members.
@@ -71,7 +73,7 @@ The community explicitly welcomes project sharing and constructive feedback. Its
 
 The community's stated purpose is recruiting early users to test products and give feedback. Its custom-rules endpoint also returned an empty list. Share an actual task and make participation voluntary. [Community description](https://www.reddit.com/r/alphaandbetausers/about.json), [rules endpoint](https://www.reddit.com/r/alphaandbetausers/about/rules.json).
 
-**Cadence recommendation: one task-based request during the first month.** Add findings to the original thread. Avoid repeated “need testers” posts, reciprocal review obligations or asking for upvotes. A subsequent request should concern a materially different feature, with at least 14 days between requests and a fresh rule check.
+**Cadence recommendation: one standalone task-based request during the first month.** Add findings to the original thread. Avoid repeated “need testers” posts, reciprocal review obligations or asking for upvotes. A subsequent standalone request should concern a materially different feature, with at least 14 days between posts and a fresh rule check. The outreach section separately allows one reply to an explicitly invited testing thread.
 
 ### Webdev
 
@@ -137,13 +139,11 @@ Answer data-source questions plainly: annual financial facts originate from SEC 
 >
 > The main limitation is that this is historical research data: the P/E series is retrospective and annual-EPS-based, not TTM or forward P/E, and coverage/freshness vary by company.
 >
-> Here is a short demo of selecting a ticker, comparing price and earnings, and exporting the observations.
->
 > I'm the builder: https://stockvaluelens.com/
 >
 > On a first visit, is it clear which P/E definition is being shown, and can you find the CSV export?
 
-Attach the actual demo before using this draft. Use a normal text post with the transparent domain where the current submission form permits it.
+Use a normal text post with the transparent domain where the current submission form permits it. A real chart image or short walkthrough would strengthen it; the text works without claiming an attachment exists. Rewrite any phrasing that does not sound like you.
 
 ### Alphaandbetausers draft
 
@@ -185,19 +185,127 @@ This message is drafted only. No moderator contact has been sent.
 >
 > One limitation worth stating up front: the approximate P/E history carries annual EPS from fiscal-period end retrospectively. It is not TTM, forward P/E, or a backtest using only data available on each historical date. Coverage, freshness and adjustment consistency vary by company.
 >
-> I've attached a labeled example showing the price and annual EPS views, with the company's actual data dates.
+> Try selecting a company you know, comparing the price and annual EPS views, and checking the displayed data dates before interpreting the chart.
 >
 > https://stockvaluelens.com/
 >
 > For people who compare a company's history before reading the filings more deeply: which part of this presentation is useful, and which part needs a clearer limitation?
 
-Use this only after a live rule/eligibility check and resolving the moderator question. Have the owner rewrite it in their natural voice and verify the attached example. Disclose any relevant holding if the example becomes a stock thesis. Do not invent an investment conclusion to create a product hook.
+Use this only after a live rule/eligibility check and resolving the moderator question. Rewrite it in your natural voice; if adding an example image, verify its actual dates and values. Disclose any relevant holding if the example becomes a stock thesis. Do not invent an investment conclusion to create a product hook.
 
-### Optional Webdev outline
+### Optional Webdev draft
 
-**Title:** [Showoff Saturday] Building a historical stock chart with synchronized ranges and explicit data gaps
+**Title:** [Showoff Saturday] Historical stock charts with synchronized ranges and visible data gaps
 
-Explain one implementation tradeoff, show the interface, discuss how gaps and retrospective timing are represented, and ask one technical question. Include only implementation facts the owner has verified. A short demo link is secondary to the technical explanation. Do not reuse the investor pitch or request customer signups.
+> I built Stock Value Lens, a static site for exploring historical stock prices and annual financial observations. It fetches the selected company's JSON and calculates chart series in the browser.
+>
+> One interface problem is that weekly prices and annual financial observations have different frequencies and sometimes different endpoints. I use synchronized range controls and show each company's dates and missing metrics so a smooth chart doesn't imply complete data.
+>
+> The approximate P/E view carries annual EPS from fiscal-period end retrospectively. That makes its timing limitation important to explain beside the visualization.
+>
+> https://stockvaluelens.com/ — I'm the builder; charts and exports currently require no account.
+>
+> For developers who build data interfaces: where would you put the frequency and timing explanation so people understand it before interpreting the chart?
+
+The static JSON loading, browser calculations and synchronized ranges are documented in the local product README. Use this only in the confirmed Saturday window with the correct flair and a genuinely technical discussion. If moderators consider it commercial promotion, skip it. Add an actual screenshot if useful; do not claim performance benchmarks or implementation details you have not checked.
+
+## People to contact
+
+These five public Reddit handles have relevant testing invitations. They are **feedback candidates**, not verified customers or investors. The inspected pages show concrete testing replies from Capable-Property-539, yakaspectrum, pickmycostume and principalla; bananajoin has a testing offer but no tester follow-through verified in the inspected thread.
+
+**Current availability is unverified.** Profile comment feeds returned cache misses. Thread pages were cached one to three weeks earlier, with relative timestamps referring to those snapshots. The older offers may have expired. Before contacting anyone, open the linked invitation, confirm the handle still matches, and check for recent participation or a notice that testing has closed. Skip unavailable or inactive accounts; do not replace them with random active investors.
+
+| Candidate | Public evidence and fit | Contact route | Priority |
+|---|---|---|---|
+| [u/Capable-Property-539](https://www.reddit.com/user/Capable-Property-539/) | [Aug 21 testing offer](https://www.reddit.com/r/alphaandbetausers/comments/1vuco5a/happy_to_beta_test_your_product_ill_use_it_and/): invites links and instructions by DM; prefers workflows. Inspected replies identify specific onboarding and UI problems. | One PM if the invitation remains open. Ask about the chart-to-export workflow, not a stock recommendation. | First PM candidate |
+| [u/bananajoin](https://www.reddit.com/user/bananajoin/) | [July 25 testing offer](https://www.reddit.com/r/alphaandbetausers/comments/1v6blsr/free_beta_tester_here_ill_test_your_app_and_give/): explicitly accepts DMs; offers web testing in Chrome, Firefox and Safari. | One PM only if recent activity and continued availability are confirmed. Older offer; reserve candidate. | Second PM candidate |
+| [u/pickmycostume](https://www.reddit.com/user/pickmycostume/) | [Project-testing thread](https://www.reddit.com/r/alphaandbetausers/comments/1wpbljm/drop_your_app_or_site_and_ill_test_it_i_had_ai/): invites apps/sites below the post; replies with tests and fixes. | Public reply in that thread. No general PM invitation established. | First public-reply candidate |
+| [u/yakaspectrum](https://www.reddit.com/user/yakaspectrum/) | [Sept 12 testing thread](https://www.reddit.com/r/alphaandbetausers/comments/1weh9d9/drop_your_project_ill_test_10_of_them_and_give/): update continues to invite project links; inspected replies report navigation confusion. | Public reply in that thread if still open. The screenshot/DM request to another commenter is not general permission to PM. | Alternative public-reply candidate |
+| [u/principalla](https://www.reddit.com/user/principalla/) | [Developer-feedback thread](https://www.reddit.com/r/alphaandbetausers/comments/1v7bbsl/10_years_building_apps_show_me_what_youre_working/): invites projects in comments; inspected replies include onboarding and usability findings. | Public reply if still active. DM invitations to specific other builders do not extend to us. | Reserve public-reply candidate |
+
+Choose **one** of the three public threads during the first month. Do not post the same request to all three. For each person, choose either the invited public route or an invited PM; do not contact them through both channels to increase pressure. Use only the public handle and invitation context; no email address, real-world identity or inferred personal financial information is needed.
+
+### PM to Capable-Property-539
+
+**Subject, if the interface supports one:** Chart-to-CSV workflow test for Stock Value Lens
+
+> Hi — I saw your offer to test workflow tools and report where you get confused. I'm the builder of Stock Value Lens, a free historical stock research website with no signup: https://stockvaluelens.com/
+>
+> If you're still taking projects, could you try a three-minute task: search a company, open its approximate P/E history using annual EPS, then export CSV?
+>
+> I'd value the first point where you hesitate, and whether the retrospective P/E definition and data dates are clear. No investing knowledge or portfolio details are needed. Completely fine if you're at capacity.
+
+### PM to bananajoin
+
+**Subject, if available:** Browser usability check for Stock Value Lens
+
+> Hi — your Echo testing post invited web projects by DM. Is that offer still open?
+>
+> I built Stock Value Lens: https://stockvaluelens.com/ — free historical US-listed stock charts and CSV/PNG exports, with no account required.
+>
+> If you have time, could you search one company and export CSV in whichever browser you normally use? I'd appreciate where you get stuck, your browser/device, and whether the exported columns make sense.
+>
+> Its approximate P/E uses annual EPS retrospectively; this is historical research, not live quotes. No purchase or public review requested.
+
+### Public reply to pickmycostume
+
+Post only in the linked testing thread:
+
+> Thanks for inviting website tests. I built Stock Value Lens: https://stockvaluelens.com/ — historical US-listed stock charts and CSV/PNG exports without signup.
+>
+> Could you search one company, find approximate P/E history using annual EPS, and export CSV? I'd most value where the first-use flow becomes unclear, especially the data dates and retrospective P/E explanation. A short browser test is enough; no financial information needed.
+
+### Public reply to yakaspectrum
+
+Use this instead of the pickmycostume reply if that invitation has closed:
+
+> If you're still taking projects, I'd appreciate a first-use check of Stock Value Lens, which I built: https://stockvaluelens.com/
+>
+> It's free historical stock charts and CSV/PNG exports with no signup. Could you find a company and the CSV export without help? I'm especially interested in whether the displayed data dates and annual-EPS-based retrospective P/E definition are understandable. No investing opinion needed.
+
+### Public reply to principalla
+
+Use this only as the reserve public route:
+
+> Your onboarding-to-core-experience offer is the kind of feedback I'm looking for. I built Stock Value Lens: https://stockvaluelens.com/ — free historical stock charts and exports, no account required.
+>
+> Could you go from company search to approximate P/E history to CSV export and tell me the first point where the next action isn't obvious? The P/E uses annual EPS retrospectively; I'd also value whether that limitation is clear before interpreting it.
+
+### PM after a public candidate explicitly agrees
+
+For pickmycostume, yakaspectrum or principalla, **use only after that person asks you to DM or agrees to continue privately**. Replace the greeting with the actual handle; otherwise keep the task matched to your existing discussion.
+
+> Hi [handle] — thanks for agreeing to continue our Stock Value Lens test here. I'm the builder. The site is https://stockvaluelens.com/ and doesn't require signup.
+>
+> The task is to search a company, open approximate P/E history using annual EPS, then export CSV. Please tell me the first confusing step and whether the data dates and retrospective P/E explanation make sense. A short written note is plenty; no portfolio details or public review needed.
+
+Replace `[handle]` before using it. This draft is not a reason to send an initial private request to someone who invited only comments.
+
+### Reply after someone gives feedback
+
+> Thanks — that gives me a concrete issue to work on. I'll check the step you described and report back here when I have a verified change. No further testing needed unless you'd like to try it again.
+
+Mention the actual finding in your own words. Only describe a fix as shipped after verifying it. Ask before turning private feedback into a public testimonial.
+
+## Outreach frequency
+
+These are workload and courtesy limits for this launch, **not Reddit quotas or a guarantee against spam enforcement**. Reddit documents daily invite restrictions without publishing a universal numeric allowance; account age/standing and recipient settings also matter. Repetitive unsolicited outreach remains subject to the spam policy. [Chat limits](https://support.reddithelp.com/hc/en-us/articles/360060638392-Why-can-t-I-start-a-chat-or-send-an-image), [spam policy](https://support.reddithelp.com/hc/en-us/articles/360043504051-Spam).
+
+| Activity | Proposed frequency | Condition |
+|---|---|---|
+| SideProject launch | Once in the first month | Relevant project post; live rules permit it |
+| SideProject update | At most one more, at least 14 days later | A substantial improvement or real lesson; skip if there is nothing new |
+| Alphaandbetausers request | One main testing post in the first month | Specific three-minute task |
+| Invited testing-thread reply | One of the three candidate threads in the first month | Invitation still open; do not distribute the request to every thread |
+| ValueInvesting introduction | Once total | Moderator clarification, genuine free access and eligible account |
+| Webdev showcase | One optional Saturday | Confirmed technical, noncommercial route |
+| New invited PMs | At most one per day and three per rolling seven days | Only explicit relevant invitations or individual consent; this initial shortlist has just two direct-PM candidates, so do not fill a quota |
+| Unanswered messages | One initial message; zero reminders | Silence is not consent to another pitch |
+| Existing conversations | Reply when useful | No artificial daily limit on answering a willing person's question; no repeat sales pitch |
+
+Spend about 20 minutes, two or three times per week, reading and participating in relevant discussions. Add useful ordinary replies when you have something to contribute; do not insert your domain by default or treat a participation ratio as permission. If a recipient declines, stop. If Reddit limits invitations, stop and wait for eligibility to recover rather than changing accounts or channels.
+
+Allow seven days for a response before recording an outreach attempt as unanswered; do not send a seven-day reminder. After the initial two PMs, prioritize feedback and people who respond to your own testing invitation. Stop new recruitment once five useful tests are complete, then fix the repeated problems.
 
 ## Suggested first 30 days
 
@@ -206,6 +314,8 @@ Dates assume starting October 9, 2026; move them if the account is new, the live
 | Date | Action | Completion check |
 |---|---|---|
 | Oct 9–15 | Read live rules/pinned guidance; inspect account eligibility; participate in relevant discussions; prepare demo and moderator draft | Each intended post has a confirmed route and accurate product claims |
+| Oct 10, conditional | PM Capable-Property-539; optionally one public reply to pickmycostume, or one of the alternatives | Current invitation and activity checked; skip if unavailable; do not use both public and private routes for the same person |
+| Oct 13, conditional | PM bananajoin | Older offer rechecked; no reminder to the first candidate and no replacement cold pitch |
 | Oct 16 | One SideProject launch post | Respond to meaningful questions; log traffic and feedback after 24 and 72 hours |
 | Oct 19 | One Alphaandbetausers task request | Seek five completed tests; record blockers rather than raw “interested” replies |
 | Oct 22 or later | One ValueInvesting introduction after moderator clarification | Live rules still permit it; the account and post meet requirements; no repeated introduction |
@@ -215,13 +325,15 @@ Dates assume starting October 9, 2026; move them if the account is new, the live
 
 Timing experiment: begin around 15:00–18:00 UTC on weekdays, equal to 17:00–20:00 Stockholm before the October 25 clock change and 16:00–19:00 afterward. This is an initial operating hypothesis, not a measured optimal posting time. Choose a time when you can answer replies for the next two hours. For Webdev, use the community's confirmed Saturday window.
 
-Use different content for different audiences. Keep at least 72 hours between planned product-distribution posts across these communities, subject to stricter local rules. The proposed dates satisfy that spacing except if you move a post; update the schedule accordingly. Ordinary, useful replies to your existing thread need not wait 72 hours.
+Use different content for different audiences. Keep at least 72 hours between planned product-distribution posts or invited promotional comments across these communities, subject to stricter local rules. The proposed dates satisfy that spacing except if you move a post; update the schedule accordingly. PMs follow their separate consent and frequency limits. Ordinary, useful replies to your existing thread need not wait 72 hours.
 
 There is no universal requirement to “farm” a fixed amount of karma. Build a real participation history, respect each community's eligibility checks, and do not manufacture questions, testimonials or third-party endorsements.
 
 ## Measurement and stopping rules
 
 Track each post's community, URL, date/time, rule route, format, disclosure, visits if available, chart use/export events if already measurable, non-author substantive replies, completed tests, useful feedback and moderation outcome.
+
+For individual outreach, record only the public handle, invitation URL, last availability check, channel, sent date, response, concrete test finding and next agreed action. Begin with the five rows above marked **not contacted**. Keep private reply contents out of public Git commits; store only a minimal outcome such as “CSV control unclear” if appropriate.
 
 For allowed links, start with a plain domain. If current rules permit transparent tracking parameters and the site actually records them, use a distinct campaign value per community; otherwise use existing referrer data. Do not add a tracking implementation as part of this plan or report zero conversions when measurement is unavailable.
 
