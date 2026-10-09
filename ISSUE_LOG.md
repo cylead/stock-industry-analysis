@@ -40,6 +40,10 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 - **Alternatives considered:** Re-exporting the old database would not refresh inputs. Pure price appending would miss historical corrections. Automatically rescaling EPS from price ratios would invent facts. New provider substitution was deferred without confirmed access and public-use permissions.
 - **Follow-up/prevention:** Use the installed refresh skill and recorded current baseline. Stooq still needs a manual download; no unattended schedule was created. The website's separate Open ISSUE-011 tracks unresolved issuer-level basis and identity/history exceptions; the root Five Forces methodology is unchanged.
 
+### 2026-10-09 follow-up — Verified duplicate-storage cleanup
+
+At the owner's request, removed the temporary refresh workspace, the byte-identical undated Stooq ZIP and duplicate `data.previous/` / `dist.previous/` trees. Retained one dated source archive and the consolidated pre-refresh rollback. Approximately 4.96 GiB of duplicate/temp allocation was removed; available space rose from 14.07 to 19.10 GiB. Current data/build, database, archives and rollback hashes are unchanged. Updated manifest/audit pointers and installed skill retention guidance. Original SEC/price datasets remain intact, including older price files absent from the newer archive. Evidence: `company-analyses/Stock_Value_Lens_Storage_Cleanup_2026-10-09.json`.
+
 ## ISSUE-004 — Historical coverage counts required distinct time definitions
 
 - **Status:** Resolved

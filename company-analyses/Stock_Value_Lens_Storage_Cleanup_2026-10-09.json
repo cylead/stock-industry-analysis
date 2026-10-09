@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-09",
+  "status": "complete",
+  "targets": [
+    "/Users/yangch/Downloads/investment/stock-valuation-public/data.previous",
+    "/Users/yangch/Downloads/investment/stock-valuation-public/dist.previous",
+    "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/d_us_txt.zip",
+    "/private/tmp/stock-value-refresh-20261009"
+  ],
+  "preserved": {
+    "activeDataTreeSha256": "21f52b494cdbc00a51799a7b583afc8e62f466f58bad9ed294013f0da3f2d853",
+    "activeBuildTreeSha256": "bb84df67b12c74745fa80f5914ab72cd9f3fbe1171b808c6023a850d90610d9f",
+    "rollbackDataTreeSha256": "f5e442a46b7b89e4e5475811894cce1b78d2df0966303942f0e2fc0fbe967f7d",
+    "rollbackBuildTreeSha256": "eea6f85dab4abba0d1b8f5f30137a4fdab8cc7f9b44c8e986721e418b138ac5c",
+    "database": "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/stock-value-lens-2026-10-09.sqlite3",
+    "databaseSha256": "bb844d1cfdd5045b9e7d99f47e6e1c3c794fee7c0dcb89f286728b67151bf00c",
+    "secArchive": "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/companyfacts-2026-10-09.zip",
+    "secArchiveSha256": "6bd35483ad52ca219930ebdd31ff73b14d95ebc40e900e55d5f2f581b258d249",
+    "pricesArchive": "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/d_us_txt-2026-10-09.zip",
+    "pricesArchiveSha256": "32deef9bcdb87148251518c78460a9fdcf3154df922e8753b3120ab010ca9ba1",
+    "originalProject": "/Users/yangch/Downloads/investment/stock data website",
+    "rollback": "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/releases/2026-10-09-pre-refresh"
+  },
+  "verification": "Active data/build, current database, retained archives and consolidated rollback checksums unchanged; deleted targets absent; manifest paths resolve.",
+  "diskAvailableBytesBefore": 15107543040,
+  "removed": [
+    {
+      "path": "/Users/yangch/Downloads/investment/stock-valuation-public/data.previous",
+      "fileCount": 6553,
+      "logicalBytes": 219900421,
+      "allocatedBytes": 233496576
+    },
+    {
+      "path": "/Users/yangch/Downloads/investment/stock-valuation-public/dist.previous",
+      "fileCount": 7563,
+      "logicalBytes": 253363166,
+      "allocatedBytes": 309673984
+    },
+    {
+      "path": "/Users/yangch/Downloads/investment/stock-valuation-public/data_hand_download/d_us_txt.zip",
+      "fileCount": 1,
+      "logicalBytes": 540737027,
+      "allocatedBytes": 553877504
+    },
+    {
+      "path": "/private/tmp/stock-value-refresh-20261009",
+      "fileCount": 28300,
+      "logicalBytes": 4027745997,
+      "allocatedBytes": 4226510848
+    }
+  ],
+  "diskAvailableBytesAfter": 20506415104,
+  "removedLogicalBytes": 5041746611,
+  "removedAllocatedBytes": 5323558912
+}
