@@ -1,0 +1,66 @@
+{
+  "date": "2026-10-09",
+  "feature": "Match P/E range height and styled hover details to valuation chart",
+  "origin": "https://stockvaluelens.com",
+  "published": false,
+  "publicationBlocker": "Automatic approval review rejected production deployment: explicit authorization to publish is required.",
+  "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "testedStage": "/private/tmp/stock-pe-tooltip-sg73b318",
+  "changes": [
+    "web/pe.js",
+    "web/index.html",
+    "web/styles.css",
+    "ISSUE_LOG.md",
+    "VERIFICATION.md"
+  ],
+  "checks": {
+    "nodeTestsPassed": 37,
+    "pythonTestsPassed": 4,
+    "companyPages": 485,
+    "htmlRoutes": 498,
+    "generatedAssets": 7562,
+    "companyJsonFilesUnchanged": 6551,
+    "desktopRangeHeights": [
+      48,
+      48
+    ],
+    "mobileRangeHeights": [
+      64,
+      64
+    ],
+    "tooltipStyleMatches": [
+      "fontSize",
+      "borderRadius",
+      "backgroundColor",
+      "padding"
+    ],
+    "comparisonTooltip": {
+      "date": "2024-09-13",
+      "price": 221.05,
+      "epsFiscalEnd": "2023-09-30",
+      "dilutedEps": 6.13,
+      "dilutedPe": "36.1\u00d7",
+      "basicEps": 6.16,
+      "basicPe": "35.9\u00d7"
+    },
+    "keyboardSynchronizedStarts": [
+      "2024-06-06",
+      "2024-06-06"
+    ],
+    "mobileTooltipWithinChart": true,
+    "browserWarningsErrors": []
+  },
+  "approximationEvidence": {
+    "companyFiles": 6551,
+    "priceRows": 3692797,
+    "positiveSplitCloses": 0,
+    "meaning": "Stored weekly adjusted-close observations; approximation marks adjustment comparability, not invented or interpolated prices. P/E carries annual EPS forward retrospectively."
+  },
+  "maintenanceLogReview": {
+    "websiteIssueLog": "Dated follow-up to existing ISSUE-010",
+    "websiteProjectLog": "No update: small interaction fix",
+    "publicHistory": "No update: minor maintenance",
+    "analysisLogs": "No update: methodology unchanged; investigation recorded in website ISSUE-010"
+  },
+  "versionControl": "Website source folder has no Git repository. Focused source patch, preview screenshot and this release record are saved in stock-industry-analysis for commit/push."
+}

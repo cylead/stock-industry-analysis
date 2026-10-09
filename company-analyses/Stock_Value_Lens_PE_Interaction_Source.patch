@@ -1,0 +1,185 @@
+--- a/web/pe.js
++++ b/web/pe.js
+@@ -8,7 +8,7 @@
+   return element;
+ };
+ const number = (value) => value === null ? "Unavailable" : value.toFixed(2);
+-let currentSnapshot, currentRange, rows, allRows, changeRange, choosePreset, rangeLayout, rangeDrag;
++let currentSnapshot, currentRange, rows, allRows, changeRange, choosePreset, rangeLayout, rangeDrag, chartLayout;
+ 
+ function download(blob, suffix) {
+   const link = document.createElement("a"), url = URL.createObjectURL(blob);
+@@ -30,6 +30,8 @@
+   if (!basis.dataset.bound) {
+     basis.dataset.bound = "true";
+     bindRangeControls();
++    chart.addEventListener("pointermove", renderTooltip);
++    chart.addEventListener("pointerleave", hideTooltip);
+     basis.addEventListener("change", () => renderPeHistory(currentSnapshot, currentRange));
+     document.querySelector("#pe-references").addEventListener("change", () => renderPeHistory(currentSnapshot, currentRange));
+     document.querySelector("#pe-csv").addEventListener("click", () => {
+@@ -51,6 +53,7 @@
+       image.src = url;
+     });
+   }
++  hideTooltip();
+   allRows = weeklyPeHistory(snapshot);
+   rows = allRows.filter((row) => (!range?.start || row.date >= range.start) && (!range?.end || row.date <= range.end));
+   const series = [["diluted", "dilutedPe", "#23634b"], ["basic", "basicPe", "#ce8746"]].filter(([key]) => basis.value === "both" || basis.value === key);
+@@ -67,6 +70,7 @@
+   const first = Date.parse(range?.start || rows[0]?.date), last = Date.parse(range?.end || rows.at(-1)?.date);
+   const x = (date) => 60 + (Date.parse(date) - first) / Math.max(1, last - first) * (right - 60);
+   const y = (value) => 280 - value / maximum * 230;
++  chartLayout = { width, left: 60, right, first, last };
+   for (let tick = 0; tick <= 4; tick++) {
+     const value = maximum * tick / 4;
+     chart.appendChild(node("line", { x1: 60, x2: right, y1: y(value), y2: y(value), stroke: "#dfe7e3" }));
+@@ -76,13 +80,12 @@
+     chart.appendChild(node("line", { x1: 60, x2: right, y1: y(value), y2: y(value), stroke: "#8d9690", "stroke-dasharray": "5 4" }));
+     chart.appendChild(node("text", { x: right - 5, y: y(value) - 4, "text-anchor": "end", "font-size": 11, fill: "#66736c" }, `${value}× reference`));
+   });
+-  series.forEach(([label, key, color]) => {
++  series.forEach(([, key, color]) => {
+     let path = "", open = false;
+     rows.forEach((row) => {
+       if (row[key] === null) { open = false; return; }
+       path += `${open ? "L" : "M"}${x(row.date)},${y(row[key])}`; open = true;
+       const marker = node("circle", { cx: x(row.date), cy: y(row[key]), r: 2, fill: color });
+-      marker.appendChild(node("title", {}, `${row.date}: ${label} P/E ${number(row[key])}×; close ${number(row.price)}; annual EPS fiscal end ${row.periodEnd}`));
+       chart.appendChild(marker);
+     });
+     chart.appendChild(node("path", { d: path, stroke: color, "stroke-width": 2, fill: "none" }));
+@@ -110,18 +113,61 @@
+   });
+ }
+ 
++function hideTooltip() {
++  document.querySelector("#pe-tooltip").hidden = true;
++}
++
++function renderTooltip(event) {
++  const chart = document.querySelector("#pe-chart"), rect = chart.getBoundingClientRect();
++  const position = (event.clientX - rect.left) / rect.width * chartLayout.width;
++  if (!rows.length || position < chartLayout.left || position > chartLayout.right) {
++    hideTooltip();
++    return;
++  }
++  const wanted = chartLayout.first + (position - chartLayout.left) / (chartLayout.right - chartLayout.left) * (chartLayout.last - chartLayout.first);
++  const row = rows.reduce((best, item) => Math.abs(Date.parse(item.date) - wanted) < Math.abs(Date.parse(best.date) - wanted) ? item : best);
++  const tooltip = document.querySelector("#pe-tooltip"), basis = document.querySelector("#pe-basis").value;
++  tooltip.textContent = "";
++  const title = document.createElement("b");
++  title.textContent = row.date;
++  tooltip.appendChild(title);
++  const format = (value, digits = 2) => value === null ? "Unavailable" : value.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits });
++  const fields = [[row.priceType === "split_only_close" ? "Split-only close" : "Stooq close (approx.)", format(row.price)], ["EPS fiscal end", row.periodEnd || "Unavailable"]];
++  [["diluted", "Diluted"], ["basic", "Basic"]].forEach(([key, label]) => {
++    if (basis !== "both" && basis !== key) return;
++    fields.push([`${label} annual EPS`, format(row[`${key}Eps`])], [`${label} P/E`, row[`${key}Pe`] === null ? "Unavailable" : `${format(row[`${key}Pe`], 1)}×`]);
++  });
++  fields.forEach(([label, value]) => {
++    const line = document.createElement("span"), left = document.createElement("em"), right = document.createElement("strong");
++    left.style.fontStyle = "normal";
++    left.textContent = label;
++    right.textContent = value;
++    line.append(left, right);
++    tooltip.appendChild(line);
++  });
++  tooltip.hidden = false;
++  const wrap = document.querySelector("#pe-chart-wrap").getBoundingClientRect();
++  let left = event.clientX - wrap.left + 14, top = event.clientY - wrap.top + 12;
++  if (left + tooltip.offsetWidth > wrap.width) left -= tooltip.offsetWidth + 28;
++  if (top + tooltip.offsetHeight > wrap.height) top -= tooltip.offsetHeight + 24;
++  tooltip.style.left = `${Math.max(5, left)}px`;
++  tooltip.style.top = `${Math.max(5, top)}px`;
++}
++
+ function renderRangeBar() {
+   const target = document.querySelector("#pe-range-chart");
+   target.textContent = "";
+   if (!allRows.length || !currentRange?.start || !currentRange?.end) return;
+   const width = Math.max(320, target.clientWidth), minimum = Date.parse(allRows[0].date), maximum = Date.parse(allRows.at(-1).date);
+-  const left = 12, right = width - 12, top = 10, bottom = 62;
++  const height = Math.max(1, document.querySelector("#range-chart").clientHeight);
++  target.style.height = `${height}px`;
++  const left = 12, right = width - 12, top = 10, bottom = height - 18;
+   const x = (date) => left + (Date.parse(date) - minimum) / Math.max(1, maximum - minimum) * (right - left);
+   const basis = document.querySelector("#pe-basis").value;
+   const series = [["diluted", "dilutedPe", "#23634b"], ["basic", "basicPe", "#ce8746"]].filter(([key]) => basis === key || basis === "both");
+   const maximumPe = Math.max(1, ...allRows.flatMap((row) => series.map(([, key]) => row[key] ?? 0)));
+   const y = (value) => bottom - value / maximumPe * (bottom - top);
+-  target.setAttribute("viewBox", `0 0 ${width} 86`);
++  target.setAttribute("viewBox", `0 0 ${width} ${height}`);
+   target.appendChild(node("rect", { x: left, y: top, width: right - left, height: bottom - top, rx: 6, fill: "#eef1eb" }));
+   series.forEach(([, key, color]) => {
+     let path = "", open = false;
+@@ -144,9 +190,9 @@
+   for (let year = firstYear; year <= lastYear; year += step) {
+     const date = year === firstYear ? allRows[0].date : `${year}-01-01`;
+     if (year !== firstYear && right - x(date) < 70) continue;
+-    target.appendChild(node("text", { x: x(date), y: 81, "font-size": 11, "text-anchor": year === firstYear ? "start" : "middle", fill: "#66736c" }, year));
+-  }
+-  target.appendChild(node("text", { x: right, y: 81, "font-size": 11, "text-anchor": "end", fill: "#66736c" }, lastYear));
++    target.appendChild(node("text", { x: x(date), y: height - 3, "font-size": 11, "text-anchor": year === firstYear ? "start" : "middle", fill: "#66736c" }, year));
++  }
++  target.appendChild(node("text", { x: right, y: height - 3, "font-size": 11, "text-anchor": "end", fill: "#66736c" }, lastYear));
+   document.querySelector("#pe-range-start").textContent = currentRange.start;
+   document.querySelector("#pe-range-end").textContent = currentRange.end;
+   document.querySelectorAll("#pe-time-buttons button").forEach((button) => {
+--- a/web/index.html
++++ b/web/index.html
+@@ -142,7 +142,10 @@
+         <div id="pe-time-buttons" class="segmented pe-time-buttons" aria-label="P/E timeframe">
+           <button type="button" data-years="2">2Y</button><button type="button" data-years="3">3Y</button><button type="button" data-years="5">5Y</button><button type="button" data-years="10">10Y</button><button type="button" data-years="15">15Y</button><button type="button" data-years="20">20Y</button><button type="button" data-years="all">All</button>
+         </div>
+-        <svg id="pe-chart" role="img" aria-label="Approximate weekly P/E history using annual EPS"></svg>
++        <div id="pe-chart-wrap">
++          <svg id="pe-chart" role="img" aria-label="Approximate weekly P/E history using annual EPS"></svg>
++          <div id="pe-tooltip" class="chart-tooltip" hidden></div>
++        </div>
+         <div class="brush-label"><span id="pe-range-start"></span><span>Drag either handle to change both chart windows</span><span id="pe-range-end"></span></div>
+         <svg id="pe-range-chart" class="range-chart" role="group" aria-label="P/E time range selector"></svg>
+         <p id="pe-status" class="data-note" role="status"></p>
+--- a/web/styles.css
++++ b/web/styles.css
+@@ -325,10 +325,11 @@
+ .pe-controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin: 16px 0; }
+ .pe-controls label { display: flex; gap: 8px; align-items: center; }
+ .pe-controls select { padding: 8px; max-width: 100%; }
++#pe-chart-wrap { position: relative; }
+ #pe-chart { display: block; width: 100%; height: auto; }
+ .pe-history .section-heading { flex-wrap: wrap; gap: 12px; }
+ 
+ .pe-time-buttons { flex-wrap: wrap; margin-bottom: 12px; }
+-#pe-range-chart { height: 86px; touch-action: none; }
++#pe-range-chart { touch-action: none; }
+ #pe-range-chart [role="slider"] { cursor: ew-resize; }
+ #pe-range-chart [role="slider"]:focus { outline: none; stroke: #ce8746; stroke-width: 3; }
+--- a/ISSUE_LOG.md
++++ b/ISSUE_LOG.md
+@@ -32,6 +32,11 @@
+ ### 2026-10-09 follow-up — Weekly chart perspective
+ 
+ The owner requested every stored price point and a range bar comparable to the valuation graph. The P/E chart now uses each weekly close divided by the latest annual EPS with fiscal end on or before the price date, carried forward until the next annual fiscal end without interpolation. This preserves every price date, including explicit unavailable ratios before EPS coverage or during loss/missing-EPS periods. The existing year-end eligibility rules above remain in the separate static annual summaries; they no longer define interactive chart frequency. Both range bars synchronize, and the valuation tooltip uses the same annual EPS basis. Later filing/restatement and adjusted-price caveats still apply. New calculation tests and browser checks verify point counts, no future fiscal-period substitution, loss gaps and range synchronization.
++
++
++### 2026-10-09 follow-up — P/E interactions and approximation provenance
++
++Matched the P/E overview's rendered height and vertical geometry to the first chart, including compact desktop/mobile sizing. Replaced point-only native SVG titles with the shared styled tooltip and nearest stored weekly observation: date, price basis, EPS fiscal end and selected annual EPS/P/E, including both bases. Range/basis/redraw changes clear stale details; unavailable ratios remain explicit. Browser checks confirm matching dimensions, comparison values, mobile placement and synchronized keyboard ranges. A full snapshot scan found 3,692,797 stored price rows across 6,551 securities and zero positive split-only closes. “Approx.” therefore describes adjusted-price comparability, not weekly frequency, rounding or synthesized prices. Annual EPS carry-forward and retrospective filing/restatement limits remain unchanged.
+ 
+ ## ISSUE-009 — Research introduction flashed before chart initialization
+ 
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -1,3 +1,11 @@
++## P/E range height and hover details — 2026-10-09
++
++- **Scope:** PE overview now inherits the first plot's actual range height and scales its interior geometry accordingly. Shared tooltip styling uses a date heading and label/value rows for close, EPS fiscal end, and the selected basic/diluted EPS and P/E. Comparison exposes both; nearest-week behavior avoids tiny SVG hit targets. Currency/EPS use two decimal places and P/E one decimal plus ×, consistent with the first tooltip.
++- **Checks:** 37 Node and 4 Python tests passed. Production build: 485 company pages, 498 HTML routes, 7,562 assets. Desktop range bars both measured 48 px; mobile bars both measured 64 px. At 390×844 there was no horizontal page overflow and the comparison tooltip remained within the chart wrapper. Basic/diluted tooltip values checked; keyboard start-handle change synchronized both starts to 2024-06-06 and cleared stale tooltip details. No browser warnings/errors observed.
++- **Data explanation:** Full source scan: 6,551 securities, 3,692,797 price rows, zero positive split-only closes. Weekly adjusted prices are stored observations; approximation labels refer to price adjustments and comparability with annual EPS, not interpolated prices. No financial refresh or calculation change.
++- **Publication:** Production deployment was rejected by automatic approval review because explicit authorization to publish these changes was not present. The existing live version remains unchanged. Tested fixes are saved locally and ready for owner approval.
++- **Maintenance review:** This is a small interaction fix; no PROJECT_LOG or public-history update. Appended the evidence and interaction follow-up to existing ISSUE-010. Source folder has no Git repository; the focused patch and release record are saved in stock-industry-analysis for commit/push.
++
+ ## Weekly P/E perspective and range bar — 2026-10-09
+ 
+ - **Scope:** Every stored weekly price becomes one P/E row. Use the latest annual basic/diluted EPS with fiscal end <= price date, carry it forward without interpolation, and leave gaps for non-positive/missing EPS. Before first annual fiscal end, EPS and P/E are unavailable. This is retrospective, not a filing-date backtest, TTM or forward P/E. Split-only positive price is preferred per observation; adjusted fallback is approximate.
