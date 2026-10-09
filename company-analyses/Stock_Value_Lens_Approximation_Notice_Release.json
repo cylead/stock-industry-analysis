@@ -2,8 +2,8 @@
   "date": "2026-10-09",
   "feature": "One adjusted-price approximation notice per main plot page",
   "origin": "https://stockvaluelens.com",
-  "published": false,
-  "publicationBlocker": "Automatic approval review rejected publication: this notice cleanup is a distinct production change and requires separate explicit approval.",
+  "published": true,
+  "publicationBlocker": null,
   "notice": "Weekly prices use Stooq adjusted closes where validated split-only prices are unavailable. These closes may differ from original traded prices, so P/E ratios and dividend yields based on them are approximations.",
   "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
   "testedStage": "/private/tmp/stock-caveat-7eo9bws6",
@@ -48,5 +48,60 @@
     "publicHistory": "No update: minor maintenance",
     "analysisLogs": "No update: methodology unchanged and website issue record retains decision"
   },
-  "versionControl": "Website source folder has no Git repository. Focused patch, preview screenshot and release record saved in stock-industry-analysis for commit/push."
+  "versionControl": "Website source folder has no Git repository. Focused patch, preview screenshot and release record saved in stock-industry-analysis for commit/push.",
+  "version": "fd4e39e9-27cc-46a7-8853-8b37ce2a7875",
+  "publicationApproval": "User explicitly approved publication of this cleanup on 2026-10-09.",
+  "liveBuildMatches": [
+    {
+      "route": "/",
+      "status": 200,
+      "matchesBuild": true,
+      "approximationMentions": 1
+    },
+    {
+      "route": "/app.js",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/pe.js",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/aapl/",
+      "status": 200,
+      "matchesBuild": true,
+      "approximationMentions": 1
+    },
+    {
+      "route": "/stocks/msft/",
+      "status": 200,
+      "matchesBuild": true,
+      "approximationMentions": 1
+    },
+    {
+      "route": "/sources/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/methodology/",
+      "status": 200,
+      "matchesBuild": true
+    }
+  ],
+  "liveBrowser": {
+    "approximationMentions": 1,
+    "noDuplicateDividendWarning": true,
+    "cleanLegendAndPeSvg": true,
+    "cleanPeTooltip": true,
+    "browserWarningErrorLogs": []
+  },
+  "liveScreenshot": "company-analyses/Stock_Value_Lens_Approximation_Notice_Live.jpg"
 }
