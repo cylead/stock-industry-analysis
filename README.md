@@ -10,6 +10,8 @@ The skill focuses on business quality and industry structure. It does not provid
 
 This repository contains the analysis skill and reports. The website application source lives in the separate local folder `/Users/yangch/Downloads/investment/stock-valuation-public`. The [SEO proposal and implementation record](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the audience assumptions, keyword candidates, and approved changes published on 2026-10-08. The live [research guides](https://stockvaluelens.com/guides/) cover [P/E ratio history using annual EPS](https://stockvaluelens.com/guides/pe-ratio-history/), price versus earnings, EPS versus cash flow, and CSV exports.
 
+The separate [Stock Value Lens refresh skill](skills/stock-value-lens-refresh/SKILL.md) provides the tested monthly SEC/Stooq refresh and guarded weekly price workflow, with rollback and publication checks. It maintains website data independently of the root Five Forces methodology. The [2026-10-09 refresh evidence](company-analyses/Stock_Value_Lens_Data_Refresh_2026-10-09.json) records input provenance, coverage, exceptions and the actual release outcome.
+
 ## What it produces
 
 - Company and industry definition

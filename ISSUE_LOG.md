@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-005 — Website refresh needed a reproducible input-reconciliation workflow
+
+- **Status:** Resolved
+- **Opened:** 2026-10-09
+- **Resolved:** 2026-10-09
+- **Affected area:** Stock Value Lens data maintenance and `skills/stock-value-lens-refresh/`.
+- **Problem and impact:** The static exporter could only republish an old database. An append-only price update could miss revised adjustments, mix issuer identities or pair changed price scales with older annual facts. Stooq scripted downloads returned verification HTML with HTTP 200.
+- **Root cause or hypothesis:** Fetching inputs was outside the old build workflow, and adjusted histories can change retrospectively. Missing source coverage and share-basis reconciliation require explicit handling rather than assuming every ticker is current.
+- **Chosen solution:** Retrieved the SEC bulk archive, used the owner's manual Stooq archive, built/validated a candidate without changing the original database, preserved unsupported records, and published verified updates. Created and installed a tested refresh skill/helper with guarded weekly and monthly modes, public review notes, durable state and rollback. Publication: Cloudflare version `e08b4eaf-184f-45d7-9673-2fab84f35b5e`; 15 live resources match build bytes.
+- **Rationale:** Reuses the existing annual extraction methodology, avoids about 10 GB of SEC extraction, and makes source/freshness exceptions reproducible. Price endpoints advanced for 6,260 securities and 176 distinct issuer annual periods were added; 283 price snapshots were retained, including 101 securities from 83 adjustment-review issuers.
+- **Alternatives considered:** Re-exporting the old database would not refresh inputs. Pure price appending would miss historical corrections. Automatically rescaling EPS from price ratios would invent facts. New provider substitution was deferred without confirmed access and public-use permissions.
+- **Follow-up/prevention:** Use the installed refresh skill and recorded current baseline. Stooq still needs a manual download; no unattended schedule was created. The website's separate Open ISSUE-011 tracks unresolved issuer-level basis and identity/history exceptions; the root Five Forces methodology is unchanged.
+
 ## ISSUE-004 — Historical coverage counts required distinct time definitions
 
 - **Status:** Resolved

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Stock Value Lens Refresh"
+  short_description: "Refresh SEC facts and Stooq stock-price snapshots"
+  default_prompt: "Use $stock-value-lens-refresh to refresh Stock Value Lens data and verify publication."

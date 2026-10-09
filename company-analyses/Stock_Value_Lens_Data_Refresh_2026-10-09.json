@@ -1,0 +1,1585 @@
+{
+  "date": "2026-10-09",
+  "status": "published",
+  "site": "https://stockvaluelens.com",
+  "inputs": {
+    "sec": {
+      "url": "https://www.sec.gov/Archives/edgar/daily-index/xbrl/companyfacts.zip",
+      "lastModified": "2026-10-09T04:33:00Z",
+      "bytes": 1410252110,
+      "sha256": "6bd35483ad52ca219930ebdd31ff73b14d95ebc40e900e55d5f2f581b258d249",
+      "localFile": "data_hand_download/companyfacts-2026-10-09.zip"
+    },
+    "prices": {
+      "url": "https://stooq.com/db/h/",
+      "localFile": "data_hand_download/d_us_txt.zip",
+      "manualDownload": true,
+      "bytes": 540737027,
+      "sha256": "32deef9bcdb87148251518c78460a9fdcf3154df922e8753b3120ab010ca9ba1",
+      "datedCopy": "data_hand_download/d_us_txt-2026-10-09.zip"
+    }
+  },
+  "cutoffs": {
+    "fundamentals": "2026-10-09",
+    "prices": "2026-10-08"
+  },
+  "coverage": {
+    "stocks": 6551,
+    "priceFilesRefreshed": 6268,
+    "priceEndpointsAdvanced": 6260,
+    "latestPriceDateStocks": 5855,
+    "historicalPriceSnapshotsRetained": 283,
+    "annualIssuersRefreshed": 4001,
+    "newAnnualPeriods": 176,
+    "annualRows": 50282,
+    "weeklyPriceRows": 3822183,
+    "basisReviewIssuers": 83,
+    "basisReviewTickers": 101,
+    "annualRowsScope": "Distinct issuer CIK/fiscal-period records; securities sharing an issuer reuse those records."
+  },
+  "exceptions": {
+    "missing": [
+      "ALFUU",
+      "ALOVU",
+      "BLUWU",
+      "BPACU",
+      "DSACU",
+      "EMI",
+      "GIXXU",
+      "GPATU",
+      "GSHRU",
+      "HCHL",
+      "IGACU",
+      "INACU",
+      "KBONU",
+      "LAFAU",
+      "MMTXU",
+      "NCL",
+      "ORIQU",
+      "PONOU",
+      "RDACU",
+      "SCIIU",
+      "SHFSW",
+      "SZZLU",
+      "TRGSU",
+      "TWLVU",
+      "WLIIU"
+    ],
+    "emptyPreserved": [
+      "EGHAU",
+      "HAVAU",
+      "HVMCU",
+      "ILLUU",
+      "MLAAU",
+      "PALOU",
+      "QETAU",
+      "TACHU",
+      "TDWDU",
+      "WENNU"
+    ],
+    "stalePreserved": [],
+    "incompletePreserved": [
+      {
+        "ticker": "ALDFU",
+        "missingWeeks": 67
+      },
+      {
+        "ticker": "ALISU",
+        "missingWeeks": 21
+      },
+      {
+        "ticker": "APACR",
+        "missingWeeks": 21
+      },
+      {
+        "ticker": "DBCAU",
+        "missingWeeks": 12
+      },
+      {
+        "ticker": "DYNCU",
+        "missingWeeks": 70
+      },
+      {
+        "ticker": "DYORU",
+        "missingWeeks": 10
+      },
+      {
+        "ticker": "GORO",
+        "missingWeeks": 238
+      },
+      {
+        "ticker": "GPACU",
+        "missingWeeks": 22
+      },
+      {
+        "ticker": "HVT-A",
+        "missingWeeks": 84
+      },
+      {
+        "ticker": "IACOU",
+        "missingWeeks": 13
+      },
+      {
+        "ticker": "INHD",
+        "missingWeeks": 126
+      },
+      {
+        "ticker": "LFACU",
+        "missingWeeks": 22
+      },
+      {
+        "ticker": "LKSPU",
+        "missingWeeks": 27
+      },
+      {
+        "ticker": "LPCVU",
+        "missingWeeks": 17
+      },
+      {
+        "ticker": "NTWOU",
+        "missingWeeks": 1
+      },
+      {
+        "ticker": "SSEAU",
+        "missingWeeks": 25
+      },
+      {
+        "ticker": "UYSCR",
+        "missingWeeks": 38
+      },
+      {
+        "ticker": "UYSCU",
+        "missingWeeks": 8
+      },
+      {
+        "ticker": "XSLLU",
+        "missingWeeks": 14
+      },
+      {
+        "ticker": "ZKPU",
+        "missingWeeks": 12
+      }
+    ],
+    "identityPreserved": [
+      {
+        "ticker": "REAX",
+        "oldCik": 1862461,
+        "newCik": 2136387
+      }
+    ],
+    "absentCrosswalkPreserved": [
+      "AACB",
+      "AACBR",
+      "AFBI",
+      "AIHS",
+      "ALOT",
+      "AMZE",
+      "ANSC",
+      "ANSCW",
+      "ANY",
+      "APGE",
+      "AREN",
+      "ARQQW",
+      "ATAI",
+      "AVB",
+      "AVNS",
+      "AXIA",
+      "BBBY",
+      "BBCQ",
+      "BBCQU",
+      "BBCQW",
+      "BCAB",
+      "BCAR",
+      "BCARU",
+      "BCARW",
+      "BGI",
+      "BNRG",
+      "BNZI",
+      "BNZIW",
+      "BRNS",
+      "BRR",
+      "BRRWW",
+      "BTAI",
+      "BTOG",
+      "BWNB",
+      "CCIX",
+      "CCIXW",
+      "CMII",
+      "CMIIU",
+      "CMIIW",
+      "CRNX",
+      "CSAN",
+      "CYCN",
+      "DDS",
+      "DDT",
+      "DOMO",
+      "DRMAW",
+      "EA",
+      "ELSE",
+      "EQR",
+      "ET",
+      "FBRX",
+      "FEED",
+      "FTRK",
+      "GBTG",
+      "GETY",
+      "GGRP",
+      "GLMD",
+      "GV",
+      "HCWC",
+      "HLX",
+      "HUMAW",
+      "HVII",
+      "HVIIR",
+      "HVIIU",
+      "HWH",
+      "IPCX",
+      "IPCXR",
+      "ISSC",
+      "JFB",
+      "JSPRW",
+      "KTTAW",
+      "KVAC",
+      "KVACW",
+      "KWM",
+      "KWMWW",
+      "LBRDA",
+      "LBRDK",
+      "LBRDP",
+      "LEG",
+      "LIDRW",
+      "LPRO",
+      "LPSN",
+      "MDV",
+      "MNTSW",
+      "MVO",
+      "MYSEW",
+      "NCSM",
+      "NHIC",
+      "NHICU",
+      "NHICW",
+      "NHPAP",
+      "ORLA",
+      "OSRH",
+      "OSRHW",
+      "PHGE",
+      "PSKY",
+      "PSTV",
+      "RAY",
+      "RCKTW",
+      "RITR",
+      "RMAX",
+      "RNWWW",
+      "SAT",
+      "SBEV",
+      "SKYT",
+      "SNYR",
+      "SOBR",
+      "SRZNW",
+      "STRS",
+      "SUN",
+      "TALK",
+      "TBPH",
+      "TMCWW",
+      "TOI",
+      "TOIIW",
+      "TWO",
+      "USAC",
+      "VSEE",
+      "VSEEW",
+      "VSTD",
+      "VYNE",
+      "WBS",
+      "WILC",
+      "XOSWW",
+      "YYGH",
+      "ZTEK"
+    ],
+    "basisUnresolved": [
+      {
+        "ticker": "ABTC",
+        "cik": 1755953,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 14.875000000000002,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "AEMD",
+        "cik": 882291,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.0,
+        "annualPeriod": "2026-03-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "AERT",
+        "cik": 1853044,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 7.939692307692307,
+        "annualPeriod": "2026-03-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "AMIX",
+        "cik": 1617867,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 21.0,
+        "annualPeriod": "2026-03-31",
+        "perShareFactors": [
+          0.047619047619047616
+        ]
+      },
+      {
+        "ticker": "AMOD",
+        "cik": 1862463,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 41.3941018766756,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "ASBP",
+        "cik": 1847345,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 30.29475982532751,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "AVX",
+        "cik": 1826397,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 12.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "BOXL",
+        "cik": 1624512,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 6.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "BYND",
+        "cik": 1655210,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 30.09029617144233,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CDLX",
+        "cik": 1666071,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CDT",
+        "cik": 1896212,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CETX",
+        "cik": 1435064,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-09-30",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "CIIT",
+        "cik": 1557798,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.070921985815604,
+        "annualPeriod": "2022-07-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CLDI",
+        "cik": 1855485,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 16.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CRIS",
+        "cik": 1108205,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 20.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CSAI",
+        "cik": 1709628,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 29.688325409403063,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "CURX",
+        "cik": 2025942,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 20.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "DAIC",
+        "cik": 2033770,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 25.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "DBGI",
+        "cik": 1668010,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 39.882697947214076,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "DFNS",
+        "cik": 1787518,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 125.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "EDBL",
+        "cik": 1809750,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 45.99303135888502,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "EZRA",
+        "cik": 1812727,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 40.7185628742515,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "FCUV",
+        "cik": 1590418,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 4.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "FRGT",
+        "cik": 1687542,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 4.970749542961609,
+        "annualPeriod": "2024-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "FTFT",
+        "cik": 1066923,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 4.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "GDC",
+        "cik": 1641398,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 253.32488917036096,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "GIPR",
+        "cik": 1651721,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.088691796008868,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "GNPX",
+        "cik": 1595248,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 22.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "GRNQ",
+        "cik": 1597846,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "HCWB",
+        "cik": 1828673,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 6.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "ILLR",
+        "cik": 1769624,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.106132075471699,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "IPW",
+        "cik": 1830072,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 72.0,
+        "annualPeriod": "2025-06-30",
+        "perShareFactors": [
+          2133.0,
+          2133.0,
+          2160.024247836241
+        ]
+      },
+      {
+        "ticker": "JTAI",
+        "cik": 1861622,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.09440352609308887,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "JUNS",
+        "cik": 1679628,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 72.98245614035088,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "KLAC",
+        "cik": 319201,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.0998726721200092,
+        "annualPeriod": "2025-06-30",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "LEXX",
+        "cik": 1348362,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 14.812955465587043,
+        "annualPeriod": "2025-08-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "LILA",
+        "cik": 1712184,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.6797927868852459,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "LILAK",
+        "cik": 1712184,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.6797824696097249,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "LNAI",
+        "cik": 1527728,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 8.004851425106125,
+        "annualPeriod": "2025-06-30",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "MLI",
+        "cik": 89439,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.49867996875665693,
+        "annualPeriod": "2025-12-27",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "MNST",
+        "cik": 865752,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.4999015143615234,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "MSS",
+        "cik": 1892292,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.0796488946684,
+        "annualPeriod": "2025-04-30",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "MVIS",
+        "cik": 65770,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 14.930762358546755,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "MYSZ",
+        "cik": 1211805,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 8.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "NAKA",
+        "cik": 1946573,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 39.5975405254332,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "NRDY",
+        "cik": 1819404,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 14.999999999999998,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "NXTT",
+        "cik": 1784970,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 100.0,
+        "annualPeriod": "2023-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "ONCO",
+        "cik": 1782107,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.39671682626539,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "ONFO",
+        "cik": 1825452,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 50.00000000000001,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "OPAD",
+        "cik": 1825024,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PFSA",
+        "cik": 1859807,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 101.13725490196077,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PMI",
+        "cik": 2030617,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 49.99999999999999,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "PRHI",
+        "cik": 1502292,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 6.971480307831599,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PRPL",
+        "cik": 1643953,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 25.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PRTS",
+        "cik": 1378950,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 9.999411799305923,
+        "annualPeriod": "2026-01-03",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PSQH",
+        "cik": 1847064,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 15.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "PW",
+        "cik": 1532619,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "QNCX",
+        "cik": 1662774,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 19.844961240310077,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "RBKB",
+        "cik": 1751783,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.7154080996884735,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "REZI",
+        "cik": 1740332,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.6958943396226415,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "RMTI",
+        "cik": 1041024,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.039735099337747,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SBFM",
+        "cik": 1402328,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 9.950720242608037,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "SCLX",
+        "cik": 1820190,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.629914618369987,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SDOT",
+        "cik": 1701756,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 20.23629203271736,
+        "annualPeriod": "2024-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SEGG",
+        "cik": 1673481,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 6.990223463687151,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SHPH",
+        "cik": 1757499,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.05690938275208,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SILO",
+        "cik": 1514183,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 15.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SLXN",
+        "cik": 2022416,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 10.080645161290322,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SMSI",
+        "cik": 948708,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SMXT",
+        "cik": 1519472,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 12.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SNAL",
+        "cik": 1886894,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.103191489361702,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0
+        ]
+      },
+      {
+        "ticker": "SRXH",
+        "cik": 1471727,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 59.99999999999999,
+        "annualPeriod": "2025-09-30",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "SVC",
+        "cik": 945394,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.030674846625767,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "TNON",
+        "cik": 1560293,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 35.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "TOMZ",
+        "cik": 314227,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 3.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "TOP",
+        "cik": 1848275,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 5.0396825396825395,
+        "annualPeriod": "2026-03-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "TRNR",
+        "cik": 1785056,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 6.9925523111478896,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "VIVK",
+        "cik": 1450704,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 20.10989010989011,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "WHLR",
+        "cik": 1527541,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 19.826086956521742,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "WLFC",
+        "cik": 1018164,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 0.3315587669455506,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "XAIR",
+        "cik": 1641631,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 20.0,
+        "annualPeriod": "2026-03-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "XPON",
+        "cik": 1894954,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 12.0,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "YHC",
+        "cik": 1843165,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 100.00000000000001,
+        "annualPeriod": "2025-12-31",
+        "perShareFactors": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      },
+      {
+        "ticker": "YYAI",
+        "cik": 1674440,
+        "overlapDate": "2026-05-08",
+        "priceFactor": 800.0,
+        "annualPeriod": "2025-04-30",
+        "perShareFactors": [
+          30118.083333333336
+        ]
+      }
+    ],
+    "basisCorroborated": [
+      {
+        "ticker": "ALIT",
+        "cik": 1809104,
+        "events": [
+          {
+            "date": "2026-06-10",
+            "ratio": 0.05,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-04",
+            "accession": "0001628280-26-052636"
+          }
+        ]
+      },
+      {
+        "ticker": "CRWD",
+        "cik": 1535527,
+        "events": [
+          {
+            "date": "2026-06-03",
+            "ratio": 4.0,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-27",
+            "accession": "0001535527-26-000031"
+          }
+        ]
+      },
+      {
+        "ticker": "DD",
+        "cik": 1666700,
+        "events": [
+          {
+            "date": "2026-06-30",
+            "ratio": 0.333,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-04",
+            "accession": "0001666700-26-000053"
+          }
+        ]
+      },
+      {
+        "ticker": "FEMY",
+        "cik": 1339005,
+        "events": [
+          {
+            "date": "2026-06-05",
+            "ratio": 0.05,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-14",
+            "accession": "0001140361-26-033157"
+          }
+        ]
+      },
+      {
+        "ticker": "MQ",
+        "cik": 1522540,
+        "events": [
+          {
+            "date": "2026-06-10",
+            "ratio": 0.25,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-04",
+            "accession": "0001522540-26-000063"
+          }
+        ]
+      },
+      {
+        "ticker": "NUWE",
+        "cik": 1506492,
+        "events": [
+          {
+            "date": "2026-06-25",
+            "ratio": 0.028,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-13",
+            "accession": "0001140361-26-032810"
+          }
+        ]
+      },
+      {
+        "ticker": "RCON",
+        "cik": 1442620,
+        "events": [
+          {
+            "date": "2026-08-18",
+            "ratio": 0.005,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-09-30",
+            "accession": "0001104659-26-112415"
+          }
+        ]
+      },
+      {
+        "ticker": "SCYX",
+        "cik": 1178253,
+        "events": [
+          {
+            "date": "2026-05-28",
+            "ratio": 0.125,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-10",
+            "accession": "0001178253-26-000027"
+          }
+        ]
+      },
+      {
+        "ticker": "SNEX",
+        "cik": 913760,
+        "events": [
+          {
+            "date": "2026-05-26",
+            "ratio": 1.5,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-05",
+            "accession": "0000913760-26-000038"
+          }
+        ]
+      },
+      {
+        "ticker": "UPLD",
+        "cik": 1505155,
+        "events": [
+          {
+            "date": "2026-06-03",
+            "ratio": 0.1,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-14",
+            "accession": "0001505155-26-000070"
+          }
+        ]
+      },
+      {
+        "ticker": "XXII",
+        "cik": 1347858,
+        "events": [
+          {
+            "date": "2026-06-12",
+            "ratio": 0.05,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-14",
+            "accession": "0001104659-26-097172"
+          }
+        ]
+      }
+    ]
+  },
+  "fundamentalsExceptions": {
+    "missing": 141,
+    "unsupported": 1476,
+    "missingIdentity": 10,
+    "postPriceSplitDeferred": [
+      {
+        "cik": 1591956,
+        "priceDate": "2026-05-08",
+        "events": [
+          {
+            "date": "2026-06-30",
+            "ratio": 0.1,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-08-14",
+            "accession": "0001591956-26-000021"
+          }
+        ]
+      },
+      {
+        "cik": 1735556,
+        "priceDate": "2026-05-08",
+        "events": [
+          {
+            "date": "2026-08-21",
+            "ratio": 0.2,
+            "tag": "StockholdersEquityNoteStockSplitConversionRatio1",
+            "filed": "2026-09-18",
+            "accession": "0001104659-26-108989"
+          }
+        ]
+      }
+    ]
+  },
+  "evaluation": {
+    "secDownloadSeconds": 22.0,
+    "directCombinedImportSeconds": 244.67,
+    "previousParserImportSeconds": 384.42,
+    "realFileParserParity": 5,
+    "requiresHumanStooqDownload": true,
+    "weeklyRecommendation": "Price-only with overlap guard; resolve adjustment deferrals using combined SEC refresh.",
+    "monthlyRecommendation": "Combined full-archive refresh.",
+    "automationScheduled": false,
+    "timingScope": "Core import times exclude follow-up basis screening, export/build and publication."
+  },
+  "verification": {
+    "websiteTests": "37 Node + 5 Python passed",
+    "skillTests": "7 Python passed",
+    "integrity": "ok",
+    "chart": "Apple through 2026-10-08; synchronized 5Y ranges",
+    "csv": "262 rows; last diluted P/E 45.63270777479893 = 340.42 / 7.46",
+    "live": [
+      {
+        "path": "/",
+        "status": 200,
+        "bytes": 16329,
+        "sha256": "51691d862e529becfcec250e6c167826b0f8976eec33a2524fe959a29ba47b7c",
+        "matchesBuild": true
+      },
+      {
+        "path": "/sources/",
+        "status": 200,
+        "bytes": 6478,
+        "sha256": "02bc27701325364e385e8b8e845a8343c259893cdf344d980b1f6bbe4b134e3b",
+        "matchesBuild": true
+      },
+      {
+        "path": "/updates/",
+        "status": 200,
+        "bytes": 15636,
+        "sha256": "5944af41e1a903c126978360e6f8579c8ab45ec95f34887cc61784583acade6b",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/index.json",
+        "status": 200,
+        "bytes": 456366,
+        "sha256": "1310d92523517aea126f761423578b7b5708a97d3191bdfa7e013e01fe71a1da",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/catalog.json",
+        "status": 200,
+        "bytes": 1135703,
+        "sha256": "355e92b45002538f72c67bb10aba2366b53e5439cc09b9555ea86c8dc5872ead",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/companies/AAPL.json",
+        "status": 200,
+        "bytes": 88439,
+        "sha256": "7e8c01626519fdd427b2ff6825f7181f5eb9c2d25a6fa5a34e674be55258ee83",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/companies/CPRT.json",
+        "status": 200,
+        "bytes": 76174,
+        "sha256": "1fbd9736fe453d89e073b82e5c1340d2e82a5d2deb2690d6849ede4ac3c9981a",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/companies/KLAC.json",
+        "status": 200,
+        "bytes": 89179,
+        "sha256": "6a27e81978d4d954a1c24870e6e289815d64695ff459a9a45b84ddc53d5734f8",
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/aapl/",
+        "status": 200,
+        "bytes": 54909,
+        "sha256": "241ffbfc0940fcbf3528c4abcacc339de998cdea2e19aa82996afb068fba76ba",
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/cprt/",
+        "status": 200,
+        "bytes": 50206,
+        "sha256": "265e5d318aec43cd8203053cad0c18cc1af1fd9c25bad9615408b047856149c3",
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/klac/",
+        "status": 200,
+        "bytes": 54010,
+        "sha256": "a1c677eb5ca96e83ff34e405a41eabdc3d0fc1b9c84779e5dcfcf326a1a3cd2c",
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/aapl/index.md",
+        "status": 200,
+        "bytes": 19362,
+        "sha256": "b3384dc508fbb067d9da4c88429014e614afa8a2dee4c3cee2ae1c6570fbf69d",
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/klac/index.md",
+        "status": 200,
+        "bytes": 19177,
+        "sha256": "89584aa29d11fa0ca9b224782874f94ae45ce2aac918957ab333f8ad19d5cc20",
+        "matchesBuild": true
+      },
+      {
+        "path": "/data-access/",
+        "status": 200,
+        "bytes": 9129,
+        "sha256": "6ee7818a9d308e85037d8be1013438db15d4bc1aa4572c542d1b12e52775d684",
+        "matchesBuild": true
+      },
+      {
+        "path": "/app.js",
+        "status": 200,
+        "bytes": 47906,
+        "sha256": "1eed9dc316cb5d432128b49b512d19f91b2765e13088af330516c9bdab7afa9f",
+        "matchesBuild": true
+      }
+    ],
+    "fullExport": {
+      "stocks": 6551,
+      "weeklyPrices": 3822183,
+      "annualRowsAcrossSecurityFiles": 54970,
+      "uniqueIssuerAnnualRows": 50282,
+      "reviewNotes": 101,
+      "checks": "Sorted unique dates, positive finite prices, matching company endpoints and no observations beyond source cutoffs."
+    },
+    "screenshot": "Stock_Value_Lens_Data_Refresh_2026-10-09.jpg"
+  },
+  "deployment": {
+    "previousVersion": "a763cdcb-d736-48cf-b562-67acb383f5ad",
+    "status": "published",
+    "version": "e08b4eaf-184f-45d7-9673-2fab84f35b5e",
+    "uploadedAssets": 7359,
+    "unchangedAssets": 203,
+    "assetUploadSeconds": 135.17
+  },
+  "localState": {
+    "baseline": "data_hand_download/stock-value-lens-2026-10-09.sqlite3",
+    "audit": "data_hand_download/refresh-audit-2026-10-09.json",
+    "backup": "data_hand_download/releases/2026-10-09-pre-refresh"
+  },
+  "skill": "stock-value-lens-refresh",
+  "helperSha256": "08570d7ce8aa2e42dac363a61eea341c412d1a93dd2c58c0e847c93aa4ff938a"
+}
