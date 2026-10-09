@@ -1,29 +1,57 @@
 --- a/web/app.js
 +++ b/web/app.js
-@@ -1,3 +1,4 @@
+@@ -1,4 +1,5 @@
+-import { annualChange, chartPayload } from "./calculations.js";
 +import { renderPeHistory } from "./pe.js";
- import { annualChange, chartPayload } from "./calculations.js";
++import { annualChange, chartPayload, weeklyPeHistory } from "./calculations.js";
  import { createDataStore, searchIndex } from "./data.js";
  import { companyHref } from "./navigation.js";
-@@ -257,6 +258,7 @@
+
+@@ -124,6 +125,7 @@
+     const snapshot = await dataStore.loadCompany(ticker);
+     if (!snapshot || request !== companyRequest) return;
+     state.snapshot = snapshot;
++    state.peHistory = weeklyPeHistory(snapshot);
+     const company = chartPayload(snapshot).company;
+     state.ticker = company.ticker;
+     state.company = company;
+@@ -257,6 +259,7 @@
    renderChart();
    renderRangeChart();
    renderAnnualChanges();
-+  renderPeHistory(state.snapshot, state.range);
++  renderPeHistory(state.snapshot, state.range, (start, end) => scheduleRange(start, end, 0), setPreset);
    renderTable();
    renderWarnings();
    renderSelection();
-@@ -1037,6 +1039,7 @@
+@@ -524,12 +527,14 @@
+   const title = document.createElement("b");
+   title.textContent = point.date;
+   tooltip.appendChild(title);
+-  const priceMultiple = priceMetricMultiple(point, valuation);
+-  const priceMultipleLabel = state.metric === "fcf_per_share" ? "Price / FCF" : "Price P/E";
++  const pePoint = state.peHistory.find((row) => row.date === point.date);
++  const priceMultiple = state.metric === "fcf_per_share" ? priceMetricMultiple(point, valuation) : pePoint?.[state.metric === "eps_basic" ? "basicPe" : "dilutedPe"] ?? null;
++  const priceMultipleLabel = state.metric === "fcf_per_share" ? "Price / FCF" : "Price / annual EPS (P/E)";
+   const rows = [
+     [state.company.availability.split_price ? "Split-only close" : "Stooq close (approx.)", point.splitClose ?? point.adjustedClose],
+     ["Stooq adjusted", point.adjustedClose],
+-    [state.data.metric.label, valuation?.metricValue],
++    [state.data.metric.label, state.metric === "fcf_per_share" ? valuation?.metricValue : pePoint?.[state.metric === "eps_basic" ? "basicEps" : "dilutedEps"]],
++    ["EPS fiscal end", state.metric === "fcf_per_share" ? null : pePoint?.periodEnd, pePoint?.periodEnd],
+     [dividend?.fiscalYear ? `FY${dividend.fiscalYear} year-end dividend yield` : "Annual dividend yield", state.visibility.dividend ? dividend?.value : null, dividend?.value === null || dividend?.value === undefined ? null : fmt(dividend.value, 2) + "%"],
+     [priceMultipleLabel, priceMultiple, priceMultiple === null ? null : `${fmt(priceMultiple, 1)}×`],
+     ["Formula value", valuation?.fairValue],
+@@ -1037,6 +1042,7 @@
      fitChartToViewport();
      renderChart();
      renderRangeChart();
-+    renderPeHistory(state.snapshot, state.range);
++    renderPeHistory(state.snapshot, state.range, (start, end) => scheduleRange(start, end, 0), setPreset);
    };
    window.addEventListener("resize", resizeCharts);
    const observer = new ResizeObserver(resizeCharts);
 --- a/web/calculations.js
 +++ b/web/calculations.js
-@@ -104,3 +104,16 @@
+@@ -104,3 +104,34 @@
      fundamentals, dividendSeries, dividendYieldSeries, valuation, warnings: [...new Set(warnings)],
      priceSeries: prices.filter((row) => (!start || row.date >= start) && (!end || row.date <= end)) };
  }
@@ -40,20 +68,43 @@
 +      basicSource: row.sources?.eps_basic ?? null, dilutedSource: row.sources?.eps_diluted ?? null };
 +  });
 +}
++
++// One ratio observation per stored price, carrying annual EPS forward from fiscal end.
++export function weeklyPeHistory(snapshot) {
++  const annual = [...snapshot.annual].sort((a, b) => a.periodEnd.localeCompare(b.periodEnd));
++  let index = -1;
++  return snapshot.prices.map((row) => {
++    while (index + 1 < annual.length && annual[index + 1].periodEnd <= row.date) index++;
++    const earnings = annual[index];
++    const positive = (value) => typeof value === "number" && Number.isFinite(value) && value > 0;
++    const price = positive(row.splitClose) ? row.splitClose : positive(row.adjustedClose) ? row.adjustedClose : null;
++    const priceType = price === null ? null : positive(row.splitClose) ? "split_only_close" : "stooq_adjusted_close";
++    const ratio = (eps) => positive(eps) && price !== null && Number.isFinite(price / eps) ? price / eps : null;
++    return { date: row.date, priceDate: row.date, periodEnd: earnings?.periodEnd ?? null, price, priceType,
++      basicEps: earnings?.basicEps ?? null, dilutedEps: earnings?.dilutedEps ?? null,
++      basicPe: ratio(earnings?.basicEps), dilutedPe: ratio(earnings?.dilutedEps),
++      basicSource: earnings?.sources?.eps_basic ?? null, dilutedSource: earnings?.sources?.eps_diluted ?? null };
++  });
++}
 --- a/web/index.html
 +++ b/web/index.html
-@@ -135,6 +135,16 @@
+@@ -135,6 +135,21 @@
          <div id="annual-change-list" class="annual-change-list" role="list" aria-live="polite"></div>
        </section>
- 
+
 +      <section id="pe-history" class="card pe-history" aria-labelledby="pe-title">
 +        <div class="section-heading"><div><p class="eyebrow">HISTORICAL EARNINGS MULTIPLES</p><h2 id="pe-title">P/E ratio history</h2></div><div class="chart-actions"><button id="pe-csv" type="button">P/E CSV</button><button id="pe-png" type="button">P/E PNG</button></div></div>
-+        <p>Approximate fiscal-year-end price-to-earnings ratios using reported annual EPS. This is annual P/E, not TTM or forward P/E. <a href="/guides/pe-ratio-history/">P/E history calculation and limitations</a>.</p>
++        <p>P/E at every stored weekly price, using the latest annual EPS by fiscal-period end. Annual EPS is carried forward; this is not TTM or forward P/E. <a href="/guides/pe-ratio-history/">P/E history calculation and limitations</a>.</p>
 +        <div class="pe-controls"><label>EPS basis <select id="pe-basis"><option value="diluted">Diluted EPS</option><option value="basic">Basic EPS</option><option value="both">Compare both</option></select></label><label><input id="pe-references" type="checkbox"> Show 15× / 20× / 30× reference lines</label></div>
-+        <svg id="pe-chart" role="img" aria-label="Approximate fiscal-year-end P/E history"></svg>
++        <div id="pe-time-buttons" class="segmented pe-time-buttons" aria-label="P/E timeframe">
++          <button type="button" data-years="2">2Y</button><button type="button" data-years="3">3Y</button><button type="button" data-years="5">5Y</button><button type="button" data-years="10">10Y</button><button type="button" data-years="15">15Y</button><button type="button" data-years="20">20Y</button><button type="button" data-years="all">All</button>
++        </div>
++        <svg id="pe-chart" role="img" aria-label="Approximate weekly P/E history using annual EPS"></svg>
++        <div class="brush-label"><span id="pe-range-start"></span><span>Drag either handle to change both chart windows</span><span id="pe-range-end"></span></div>
++        <svg id="pe-range-chart" class="range-chart" role="group" aria-label="P/E time range selector"></svg>
 +        <p id="pe-status" class="data-note" role="status"></p>
-+        <p class="data-note">Uses the date range selected above. Adjusted-close ratios are approximations; later filings and restatements make this retrospective. Reference lines are comparisons, not price targets.</p>
-+        <details><summary>P/E observations in the selected window</summary><div class="table-scroll"><table><thead><tr><th>Fiscal end</th><th>Price date</th><th>Basic P/E (×)</th><th>Diluted P/E (×)</th></tr></thead><tbody id="pe-observations"></tbody></table></div></details>
++        <p class="data-note">Both charts use the same weekly price dates and synchronized time ranges. Each P/E point divides that week’s close by the most recent annual EPS at or before that date; it is not interpolated. Adjusted-close ratios are approximations; later filings and restatements make this retrospective. Reference lines are comparisons, not price targets.</p>
++        <details><summary>P/E observations in the selected window</summary><div class="table-scroll"><table><thead><tr><th>Price date</th><th>EPS fiscal end</th><th>Basic P/E (×)</th><th>Diluted P/E (×)</th></tr></thead><tbody id="pe-observations"></tbody></table></div></details>
 +      </section>
 +
        <section class="details-grid">
@@ -61,8 +112,8 @@
            <div class="section-heading">
 --- /dev/null
 +++ b/web/pe.js
-@@ -0,0 +1,99 @@
-+import { annualPeHistory } from "./calculations.js";
+@@ -0,0 +1,199 @@
++import { weeklyPeHistory } from "./calculations.js";
 +
 +const NS = "http://www.w3.org/2000/svg";
 +const node = (tag, attrs, text) => {
@@ -72,30 +123,33 @@
 +  return element;
 +};
 +const number = (value) => value === null ? "Unavailable" : value.toFixed(2);
-+let currentSnapshot, currentRange, rows;
++let currentSnapshot, currentRange, rows, allRows, changeRange, choosePreset, rangeLayout, rangeDrag;
 +
 +function download(blob, suffix) {
 +  const link = document.createElement("a"), url = URL.createObjectURL(blob);
 +  link.href = url;
-+  link.download = `${currentSnapshot.company.ticker}-annual-pe-${document.querySelector("#pe-basis").value}.${suffix}`;
++  link.download = `${currentSnapshot.company.ticker}-weekly-pe-${document.querySelector("#pe-basis").value}.${suffix}`;
 +  document.body.appendChild(link);
 +  link.click();
 +  link.remove();
 +  setTimeout(() => URL.revokeObjectURL(url), 1000);
 +}
 +
-+export function renderPeHistory(snapshot, range) {
++export function renderPeHistory(snapshot, range, onRangeChange, onPreset) {
++  changeRange = onRangeChange || changeRange;
++  choosePreset = onPreset || choosePreset;
 +  currentSnapshot = snapshot;
 +  currentRange = range;
 +  const chart = document.querySelector("#pe-chart");
 +  const basis = document.querySelector("#pe-basis");
 +  if (!basis.dataset.bound) {
 +    basis.dataset.bound = "true";
++    bindRangeControls();
 +    basis.addEventListener("change", () => renderPeHistory(currentSnapshot, currentRange));
 +    document.querySelector("#pe-references").addEventListener("change", () => renderPeHistory(currentSnapshot, currentRange));
 +    document.querySelector("#pe-csv").addEventListener("click", () => {
-+      const lines = ["fiscal_end,price_date,price,price_type,basic_eps,diluted_eps,basic_pe,diluted_pe,basic_filing_date,diluted_filing_date"];
-+      rows.forEach((row) => lines.push([row.date, row.priceDate, row.price, row.priceType, row.basicEps, row.dilutedEps, row.basicPe, row.dilutedPe, row.basicSource?.filed, row.dilutedSource?.filed].map((value) => value ?? "").join(",")));
++      const lines = ["price_date,eps_fiscal_end,price,price_type,basic_eps,diluted_eps,basic_pe,diluted_pe,basic_filing_date,diluted_filing_date"];
++      rows.forEach((row) => lines.push([row.date, row.periodEnd, row.price, row.priceType, row.basicEps, row.dilutedEps, row.basicPe, row.dilutedPe, row.basicSource?.filed, row.dilutedSource?.filed].map((value) => value ?? "").join(",")));
 +      download(new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8" }), "csv");
 +    });
 +    document.querySelector("#pe-png").addEventListener("click", () => {
@@ -112,7 +166,8 @@
 +      image.src = url;
 +    });
 +  }
-+  rows = annualPeHistory(snapshot).filter((row) => (!range?.start || row.date >= range.start) && (!range?.end || row.date <= range.end));
++  allRows = weeklyPeHistory(snapshot);
++  rows = allRows.filter((row) => (!range?.start || row.date >= range.start) && (!range?.end || row.date <= range.end));
 +  const series = [["diluted", "dilutedPe", "#23634b"], ["basic", "basicPe", "#ce8746"]].filter(([key]) => basis.value === "both" || basis.value === key);
 +  const references = document.querySelector("#pe-references").checked;
 +  const values = rows.flatMap((row) => series.map(([, key]) => row[key])).filter((value) => value !== null);
@@ -120,9 +175,9 @@
 +  const width = Math.max(320, chart.clientWidth), right = width - 20;
 +  chart.setAttribute("viewBox", `0 0 ${width} 340`);
 +  chart.setAttribute("xmlns", NS);
-+  chart.appendChild(node("title", {}, `${snapshot.company.ticker} approximate fiscal-year-end P/E history (${basis.value})`));
++  chart.appendChild(node("title", {}, `${snapshot.company.ticker} approximate weekly P/E history using annual EPS (${basis.value})`));
 +  chart.appendChild(node("rect", { width, height: 340, fill: "white" }));
-+  chart.appendChild(node("text", { x: 60, y: 22, fill: "#182923", "font-size": 12 }, `${snapshot.company.ticker} · Annual P/E (${basis.value}) · approx.`));
++  chart.appendChild(node("text", { x: 60, y: 22, fill: "#182923", "font-size": 12 }, `${snapshot.company.ticker} · P/E (${basis.value}) · approx.`));
 +  const maximum = Math.max(...values, references && values.length ? 30 : 1) * 1.1;
 +  const first = Date.parse(range?.start || rows[0]?.date), last = Date.parse(range?.end || rows.at(-1)?.date);
 +  const x = (date) => 60 + (Date.parse(date) - first) / Math.max(1, last - first) * (right - 60);
@@ -141,29 +196,125 @@
 +    rows.forEach((row) => {
 +      if (row[key] === null) { open = false; return; }
 +      path += `${open ? "L" : "M"}${x(row.date)},${y(row[key])}`; open = true;
-+      const marker = node("circle", { cx: x(row.date), cy: y(row[key]), r: 4, fill: color });
-+      marker.appendChild(node("title", {}, `${row.date}: ${label} P/E ${number(row[key])}×; close ${number(row.price)} on ${row.priceDate}`));
++      const marker = node("circle", { cx: x(row.date), cy: y(row[key]), r: 2, fill: color });
++      marker.appendChild(node("title", {}, `${row.date}: ${label} P/E ${number(row[key])}×; close ${number(row.price)}; annual EPS fiscal end ${row.periodEnd}`));
 +      chart.appendChild(marker);
 +    });
 +    chart.appendChild(node("path", { d: path, stroke: color, "stroke-width": 2, fill: "none" }));
 +  });
-+  rows.filter((_, index) => index % Math.max(1, Math.ceil(rows.length / (width < 600 ? 4 : 8))) === 0).forEach((row) => chart.appendChild(node("text", { x: x(row.date), y: 300, "text-anchor": "middle", "font-size": 11, fill: "#66736c" }, row.date.slice(0, 4))));
++  if (Number.isFinite(first) && Number.isFinite(last)) {
++    const firstYear = new Date(first).getUTCFullYear(), lastYear = new Date(last).getUTCFullYear();
++    const step = Math.max(1, Math.ceil((lastYear - firstYear) / Math.max(2, Math.floor(width / 100))));
++    const tick = (date, label, anchor) => chart.appendChild(node("text", { x: x(date), y: 300, "text-anchor": anchor, "font-size": 11, fill: "#66736c" }, label));
++    tick(new Date(first).toISOString().slice(0, 10), firstYear === lastYear ? currentRange.start : firstYear, "start");
++    for (let year = firstYear + step; year < lastYear; year += step) tick(`${year}-01-01`, year, "middle");
++    tick(new Date(last).toISOString().slice(0, 10), firstYear === lastYear ? currentRange.end : lastYear, "end");
++  }
 +  chart.appendChild(node("text", { x: 60, y: 321, "font-size": 11, fill: "#66736c" }, "Diluted: green · Basic: orange"));
 +  chart.appendChild(node("text", { x: 60, y: 336, "font-size": 10, fill: "#66736c" }, "Annual EPS · approximate · stockvaluelens.com"));
-+  document.querySelector("#pe-status").textContent = values.length ? `${rows.length} fiscal periods in the selected window. Gaps mean non-positive EPS or unavailable data. Ratios are uncapped.` : "P/E is unavailable in this window: positive annual EPS and an eligible fiscal-year-end price are required.";
++  document.querySelector("#pe-status").textContent = values.length ? `${rows.length} weekly price points in the selected window. Gaps mean non-positive EPS or unavailable data. Ratios are uncapped.` : "P/E is unavailable in this window: positive annual EPS and a valid price are required.";
++  renderRangeBar();
 +  const body = document.querySelector("#pe-observations");
 +  body.textContent = "";
 +  [...rows].reverse().forEach((row) => {
 +    const tr = document.createElement("tr");
-+    [row.date, row.priceDate || "Unavailable", number(row.basicPe), number(row.dilutedPe)].forEach((value) => {
++    [row.date, row.periodEnd || "Unavailable", number(row.basicPe), number(row.dilutedPe)].forEach((value) => {
 +      const td = document.createElement("td"); td.textContent = value; tr.appendChild(td);
 +    });
 +    body.appendChild(tr);
 +  });
 +}
++
++function renderRangeBar() {
++  const target = document.querySelector("#pe-range-chart");
++  target.textContent = "";
++  if (!allRows.length || !currentRange?.start || !currentRange?.end) return;
++  const width = Math.max(320, target.clientWidth), minimum = Date.parse(allRows[0].date), maximum = Date.parse(allRows.at(-1).date);
++  const left = 12, right = width - 12, top = 10, bottom = 62;
++  const x = (date) => left + (Date.parse(date) - minimum) / Math.max(1, maximum - minimum) * (right - left);
++  const basis = document.querySelector("#pe-basis").value;
++  const series = [["diluted", "dilutedPe", "#23634b"], ["basic", "basicPe", "#ce8746"]].filter(([key]) => basis === key || basis === "both");
++  const maximumPe = Math.max(1, ...allRows.flatMap((row) => series.map(([, key]) => row[key] ?? 0)));
++  const y = (value) => bottom - value / maximumPe * (bottom - top);
++  target.setAttribute("viewBox", `0 0 ${width} 86`);
++  target.appendChild(node("rect", { x: left, y: top, width: right - left, height: bottom - top, rx: 6, fill: "#eef1eb" }));
++  series.forEach(([, key, color]) => {
++    let path = "", open = false;
++    allRows.forEach((row) => {
++      if (row[key] === null) { open = false; return; }
++      path += `${open ? "L" : "M"}${x(row.date)},${y(row[key])}`; open = true;
++    });
++    target.appendChild(node("path", { d: path, fill: "none", stroke: color, "stroke-width": 1.2 }));
++  });
++  const start = x(currentRange.start), end = x(currentRange.end);
++  target.appendChild(node("rect", { x: left, y: top, width: Math.max(0, start - left), height: bottom - top, fill: "rgba(244,241,232,.72)" }));
++  target.appendChild(node("rect", { x: end, y: top, width: Math.max(0, right - end), height: bottom - top, fill: "rgba(244,241,232,.72)" }));
++  target.appendChild(node("rect", { x: start, y: top, width: Math.max(2, end - start), height: bottom - top, fill: "rgba(31,107,77,.08)", stroke: "#23634b" }));
++  [[start, "start"], [end, "end"]].forEach(([position, key]) => {
++    target.appendChild(node("rect", { x: position - 5, y: top - 3, width: 10, height: bottom - top + 6, rx: 4, fill: "#23634b", tabindex: 0, role: "slider", "data-handle": key, "aria-label": `P/E range ${key}`, "aria-valuemin": minimum, "aria-valuemax": maximum, "aria-valuenow": Date.parse(currentRange[key]), "aria-valuetext": currentRange[key] }));
++    target.appendChild(node("line", { x1: position, x2: position, y1: top + 14, y2: bottom - 14, stroke: "white", "pointer-events": "none" }));
++  });
++  const firstYear = new Date(minimum).getUTCFullYear(), lastYear = new Date(maximum).getUTCFullYear();
++  const step = Math.max(1, Math.ceil((lastYear - firstYear) / Math.max(2, Math.floor(width / 88))));
++  for (let year = firstYear; year <= lastYear; year += step) {
++    const date = year === firstYear ? allRows[0].date : `${year}-01-01`;
++    if (year !== firstYear && right - x(date) < 70) continue;
++    target.appendChild(node("text", { x: x(date), y: 81, "font-size": 11, "text-anchor": year === firstYear ? "start" : "middle", fill: "#66736c" }, year));
++  }
++  target.appendChild(node("text", { x: right, y: 81, "font-size": 11, "text-anchor": "end", fill: "#66736c" }, lastYear));
++  document.querySelector("#pe-range-start").textContent = currentRange.start;
++  document.querySelector("#pe-range-end").textContent = currentRange.end;
++  document.querySelectorAll("#pe-time-buttons button").forEach((button) => {
++    const wanted = button.dataset.years === "all" ? minimum : Math.max(minimum, maximum - Number(button.dataset.years) * 365.2425 * 86400000);
++    const active = Math.abs(Date.parse(currentRange.start) - wanted) < 86400000 && currentRange.end === allRows.at(-1).date;
++    button.classList.toggle("active", active); button.setAttribute("aria-pressed", String(active));
++  });
++  rangeLayout = { width, left, right, minimum, maximum, start, end };
++}
++
++function applyRange(start, end) {
++  const { minimum, maximum } = rangeLayout;
++  if (start < minimum) { end += minimum - start; start = minimum; }
++  if (end > maximum) { start -= end - maximum; end = maximum; }
++  start = Math.max(minimum, start); end = Math.min(maximum, end);
++  changeRange(new Date(start).toISOString().slice(0, 10), new Date(end).toISOString().slice(0, 10));
++}
++
++function bindRangeControls() {
++  document.querySelectorAll("#pe-time-buttons button").forEach((button) => button.addEventListener("click", () => choosePreset(button.dataset.years)));
++  const target = document.querySelector("#pe-range-chart");
++  const localX = (event) => (event.clientX - target.getBoundingClientRect().left) / target.getBoundingClientRect().width * rangeLayout.width;
++  const dateAt = (event) => rangeLayout.minimum + Math.min(1, Math.max(0, (localX(event) - rangeLayout.left) / (rangeLayout.right - rangeLayout.left))) * (rangeLayout.maximum - rangeLayout.minimum);
++  target.addEventListener("pointerdown", (event) => {
++    if (!rangeLayout) return;
++    const position = localX(event), { start, end } = rangeLayout;
++    const mode = position > start + 8 && position < end - 8 ? "window" : Math.abs(position - start) <= Math.abs(position - end) ? "start" : "end";
++    rangeDrag = { mode, anchor: dateAt(event), start: Date.parse(currentRange.start), end: Date.parse(currentRange.end) };
++    target.setPointerCapture(event.pointerId);
++  });
++  target.addEventListener("pointermove", (event) => {
++    if (!rangeDrag) return;
++    const date = dateAt(event), minimumSpan = Math.min(180 * 86400000, rangeLayout.maximum - rangeLayout.minimum);
++    let { start, end } = rangeDrag;
++    if (rangeDrag.mode === "start") start = Math.min(date, end - minimumSpan);
++    else if (rangeDrag.mode === "end") end = Math.max(date, start + minimumSpan);
++    else { start += date - rangeDrag.anchor; end += date - rangeDrag.anchor; }
++    applyRange(start, end);
++  });
++  ["pointerup", "pointercancel"].forEach((event) => target.addEventListener(event, () => { rangeDrag = null; }));
++  target.addEventListener("keydown", (event) => {
++    const key = event.target.dataset.handle;
++    if (!key || !["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
++    event.preventDefault();
++    const start = Date.parse(currentRange.start), end = Date.parse(currentRange.end), minimumSpan = Math.min(180 * 86400000, rangeLayout.maximum - rangeLayout.minimum);
++    const wanted = event.key === "Home" ? rangeLayout.minimum : event.key === "End" ? rangeLayout.maximum : Date.parse(currentRange[key]) + (event.key === "ArrowLeft" ? -1 : 1) * 30 * 86400000;
++    applyRange(key === "start" ? Math.min(wanted, end - minimumSpan) : start, key === "end" ? Math.max(wanted, start + minimumSpan) : end);
++    requestAnimationFrame(() => target.querySelector(`[data-handle="${key}"]`)?.focus());
++  });
++}
 --- a/web/styles.css
 +++ b/web/styles.css
-@@ -320,3 +320,10 @@
+@@ -320,3 +320,15 @@
  .source details p { overflow-wrap: anywhere; }
  .source details a { display: block; }
  .directory-table { max-height: 640px; }
@@ -174,44 +325,51 @@
 +.pe-controls select { padding: 8px; max-width: 100%; }
 +#pe-chart { display: block; width: 100%; height: auto; }
 +.pe-history .section-heading { flex-wrap: wrap; gap: 12px; }
++
++.pe-time-buttons { flex-wrap: wrap; margin-bottom: 12px; }
++#pe-range-chart { height: 86px; touch-action: none; }
++#pe-range-chart [role="slider"] { cursor: ew-resize; }
++#pe-range-chart [role="slider"]:focus { outline: none; stroke: #ce8746; stroke-width: 3; }
 --- a/scripts/ai.mjs
 +++ b/scripts/ai.mjs
 @@ -1,3 +1,4 @@
-+import { annualPeHistory } from "../web/calculations.js";
++import { annualPeHistory, weeklyPeHistory } from "../web/calculations.js";
  import { mkdir, writeFile } from "node:fs/promises";
  import { join } from "node:path";
- 
-@@ -48,6 +49,8 @@
+
+@@ -48,6 +49,10 @@
      const links = [["eps_basic", "Basic EPS"], ["eps_diluted", "Diluted EPS"], ["fcf_per_share", "FCF inputs"], ["dividend_per_share", "Dividend"]].flatMap(([key, label]) => filings(row.sources?.[key], company.cik, label));
      lines.push(`| ${md(row.fiscalYear)} | ${md(row.periodEnd)} | ${[row.basicEps, row.dilutedEps, row.fcfPerShare, row.fcfTotal, row.dividendPerShare].map(value).join(" | ")} | ${links.join("; ") || "Source unavailable"} |`);
    }
-+  lines.push("## Annual P/E ratio history", "Fiscal-year-end close divided by reported annual basic or diluted EPS. Adjusted-close ratios are approximate; later filings make results retrospective, not TTM or forward P/E. Missing or non-positive EPS and missing prices produce unavailable ratios. Price eligibility: last positive split-only close within 14 days on or before fiscal end, otherwise an adjusted-close approximation. Ratios are uncapped.", `[P/E history chart and calculation guide](${absolute(site, "/guides/pe-ratio-history/index.md")})`, "| Fiscal end | Price date | Close | Price basis | Basic P/E | Diluted P/E |", "| --- | --- | --- | --- | --- | --- |");
++  const weekly = weeklyPeHistory(member.snapshot);
++  lines.push("## Weekly P/E chart", `The chart retains all ${weekly.length} weekly price points${weekly.length ? ` (${weekly[0].date}–${weekly.at(-1).date})` : ""}. At each price date, divide the positive split-only close, or adjusted-close approximation, by the latest annual EPS whose fiscal end is on or before that date. Carry that annual EPS forward until the next fiscal end without interpolation. Dates before EPS history and periods with non-positive or missing EPS remain gaps. Both charts use synchronized range bars. Raw JSON above contains all price and EPS inputs. This is retrospective, not a filing-date backtest, TTM or forward P/E.`);
++  lines.push("## Annual P/E ratio history", "The following table contains separate fiscal-year-end snapshots, not all weekly chart points.", "Fiscal-year-end close divided by reported annual basic or diluted EPS. Adjusted-close ratios are approximate; later filings make results retrospective, not TTM or forward P/E. Missing or non-positive EPS and missing prices produce unavailable ratios. Price eligibility: last positive split-only close within 14 days on or before fiscal end, otherwise an adjusted-close approximation. Ratios are uncapped.", `[P/E history chart and calculation guide](${absolute(site, "/guides/pe-ratio-history/index.md")})`, "| Fiscal end | Price date | Close | Price basis | Basic P/E | Diluted P/E |", "| --- | --- | --- | --- | --- | --- |");
 +  for (const row of [...annualPeHistory(member.snapshot)].reverse()) lines.push(`| ${md(row.date)} | ${md(row.priceDate || "Unavailable")} | ${value(row.price)} | ${md(row.priceType || "Unavailable")} | ${value(row.basicPe)} | ${value(row.dilutedPe)} |`);
    return lines.join("\n\n").replace(/\|\n\n\|/g, "|\n|") + "\n";
  }
- 
-@@ -59,6 +62,7 @@
+
+@@ -59,6 +64,7 @@
    }).filter(Boolean).join("; ") : "";
    const companyPrices = member?.snapshot.prices;
    return [
-+    ["Annual P/E ratio history", "Free approximate fiscal-year-end P/E using reported basic or diluted annual EPS, with optional 15× / 20× / 30× chart reference lines. Coverage requires positive EPS and an eligible historical price; this is retrospective annual P/E, not TTM or forward P/E."],
++    ["P/E ratio history using annual EPS", "Free approximate P/E at every stored weekly price, using basic or diluted annual EPS carried forward from fiscal end. Includes a synchronized P/E range bar and optional 15× / 20× / 30× references. Missing and non-positive EPS leave gaps. Retrospective, not TTM or forward P/E."],
      ["Free, including exports", "All current charts and CSV/PNG exports are free. No account or subscription required."],
      ["Long annual histories", member ? `${member.ticker}: ${observations || "supported annual per-share observations"}. Coverage varies by metric; histories may have gaps.` : annual ? `Selected histories reach ${annual.count} annual observations: ${annual.ticker}, ${annual.start}–${annual.end}. Coverage varies by company and metric; histories may have gaps.` : "Explore available annual EPS and derived FCF per share. Coverage varies by company and metric; histories may have gaps."],
      ["Historical weekly prices", companyPrices?.length ? `${member.ticker}: weekly price observations from ${companyPrices[0].date} through ${companyPrices.at(-1).date}. Prices are historical, not live quotes.` : prices ? `Up to approximately ${Number(prices.years.toFixed(1))} years of weekly price history for selected stocks. Latest stored price: ${site.latestPriceDate}. Coverage varies; prices are not live quotes.` : "Weekly historical prices where available. Coverage varies; prices are not live quotes."],
-@@ -68,7 +72,7 @@
- 
+@@ -68,7 +74,7 @@
+
  export function accessDocumentation(site, index, members) {
    const published = members.filter((member) => member.path);
 -  return `<h1>AI &amp; data access</h1><p>Read Stock Value Lens with an LLM, a research assistant, or a script. These public, read-only resources require no login, API key, or JavaScript.</p><h2>Verified features and coverage</h2><ul>${researchAdvantages(site).map(([title, text]) => `<li><strong>${htmlText(title)}</strong>: ${htmlText(text)}</li>`).join("")}</ul><p><a href="/sources/">Source dates and limitations</a> · <a href="/guides/export-stock-history-csv/">Chart export scope</a></p><h2>Start here</h2><ul><li><a href="/llms.txt">LLM navigation guide</a>: a compact overview and links to useful documents.</li><li><a href="/data/catalog.json">Stock data catalog</a>: direct JSON URLs for all ${index.companies.length.toLocaleString("en-US")} stocks, with HTML and Markdown links where a company page exists.</li><li><a href="/stocks/index.md">S&amp;P 500 directory in Markdown</a>: ${published.length} published company pages and labeled coverage gaps.</li><li><a href="/data-access/index.md">This guide in Markdown</a>.</li></ul><h2>Ask your assistant</h2><p>Give your assistant the LLM navigation guide URL and a stock ticker. Ask it to read the methodology and sources, find the ticker in the data catalog, and fetch its company JSON. Ask it to state financial and price dates and cite the company page and original SEC filings.</p><h2>Stable resource URLs</h2><ul><li>GET /data/catalog.json — catalog with absolute resource URLs.</li><li>GET /data/index.json — original search index and snapshot metadata.</li><li>GET /data/companies/TICKER.json — exact uppercase ticker from the catalog, including hyphenated share classes such as BRK-B. Check availability before using a metric.</li><li>GET /stocks/ticker/ — HTML financial history for published constituents.</li><li>GET /stocks/ticker/index.md — clean Markdown with the same annual facts and source links.</li><li>GET /methodology/index.md, /sources/index.md, /about/index.md, /updates/index.md — plain-text documentation.</li></ul><p>Use catalog URLs rather than guessing company routes. A company may have JSON data even when it has no dedicated page. Unsupported tickers return a genuine 404. Fetch one company at a time; the catalog is for discovery, not a requirement to download every dataset.</p><h2>JSON fields and dates</h2><p>The original company JSON schema remains version 1. company contains identity, exchange, currency, price source, latest price dates, and metric availability. annual contains fiscalYear, periodEnd, basicEps, dilutedEps, fcfPerShare, fcfTotal, dividendPerShare, and sources when supplied. Missing observations use null or absent fields; zero is a reported value. Per-share metrics use the company currency per share; fcfTotal uses currency units.</p><p>prices contains date and adjustedClose, and splitClose when available. These are stored weekly observations, retaining the last available price in each week. Adjusted closes and yields based on them are approximations where split-only prices are unavailable. SEC source records retain accession, filed date, form, tag, unit, and observation dates when supplied; FCF sources identify operating cash flow and capex. Share-denominator provenance is not separately included in the current export.</p><p>The catalog uses schemaVersion 1 and includes snapshotBuiltAt, exportedAt, latestStoredPriceDate, membershipAsOf, and a companies array. Each entry has ticker, name, exchange, dataUrl, pageUrl, and markdownUrl. pageUrl and markdownUrl are null when no dedicated company page exists. Export time describes packaging, not a financial refresh.</p><h2>Snapshot and limitations</h2><p>Financial database built ${htmlText(index.builtAt || "date unavailable")}; latest stored price across the snapshot ${htmlText(site.latestPriceDate || "date unavailable")}; membership as of ${htmlText(site.membership.asOf)}. Company-specific dates can differ. Annual filings may be newer than the final price date. This is historical research, not live quotes or investment advice. Read <a href="/methodology/">methodology</a> and <a href="/sources/">sources, dates &amp; limitations</a> before interpreting a formula or dividend yield.</p><h2>Access and discovery</h2><p>The website exposes ordinary public GET URLs. Markdown alternatives are linked in page metadata, and public data resources allow cross-origin reads. Production robots.txt permits crawling. llms.txt is a navigation proposal, not a guarantee that an AI service will index, access, or cite the site. Some services have their own fetching restrictions.</p>`;
-+  return `<h1>AI &amp; data access</h1><p>Read Stock Value Lens with an LLM, a research assistant, or a script. These public, read-only resources require no login, API key, or JavaScript.</p><h2>Verified features and coverage</h2><ul>${researchAdvantages(site).map(([title, text]) => `<li><strong>${htmlText(title)}</strong>: ${htmlText(text)}</li>`).join("")}</ul><p><a href="/sources/">Source dates and limitations</a> · <a href="/guides/export-stock-history-csv/">Chart export scope</a></p><h2>Start here</h2><ul><li><a href="/llms.txt">LLM navigation guide</a>: a compact overview and links to useful documents.</li><li><a href="/data/catalog.json">Stock data catalog</a>: direct JSON URLs for all ${index.companies.length.toLocaleString("en-US")} stocks, with HTML and Markdown links where a company page exists.</li><li><a href="/stocks/index.md">S&amp;P 500 directory in Markdown</a>: ${published.length} published company pages and labeled coverage gaps.</li><li><a href="/data-access/index.md">This guide in Markdown</a>.</li></ul><h2>Ask your assistant</h2><p>Give your assistant the LLM navigation guide URL and a stock ticker. Ask it to read the methodology and sources, find the ticker in the data catalog, and fetch its company JSON. Ask it to state financial and price dates and cite the company page and original SEC filings.</p><h2>Stable resource URLs</h2><ul><li>GET /data/catalog.json — catalog with absolute resource URLs.</li><li>GET /data/index.json — original search index and snapshot metadata.</li><li>GET /data/companies/TICKER.json — exact uppercase ticker from the catalog, including hyphenated share classes such as BRK-B. Check availability before using a metric.</li><li>GET /stocks/ticker/ — HTML financial history for published constituents.</li><li>GET /stocks/ticker/index.md — clean Markdown with the same annual facts and source links.</li><li>GET /methodology/index.md, /sources/index.md, /about/index.md, /updates/index.md — plain-text documentation.</li></ul><p>Use catalog URLs rather than guessing company routes. A company may have JSON data even when it has no dedicated page. Unsupported tickers return a genuine 404. Fetch one company at a time; the catalog is for discovery, not a requirement to download every dataset.</p><h2>P/E ratio history</h2><p><a href="/guides/pe-ratio-history/">Annual P/E history</a> is calculated from annual EPS and an eligible fiscal-year-end close. Company Markdown includes the derived basic and diluted ratios, price dates and price basis. Raw company JSON retains EPS and price inputs; it does not add a stored P/E field. Ratios use positive EPS; adjusted-close ratios are approximate and retrospective, not TTM or forward P/E.</p><h2>JSON fields and dates</h2><p>The original company JSON schema remains version 1. company contains identity, exchange, currency, price source, latest price dates, and metric availability. annual contains fiscalYear, periodEnd, basicEps, dilutedEps, fcfPerShare, fcfTotal, dividendPerShare, and sources when supplied. Missing observations use null or absent fields; zero is a reported value. Per-share metrics use the company currency per share; fcfTotal uses currency units.</p><p>prices contains date and adjustedClose, and splitClose when available. These are stored weekly observations, retaining the last available price in each week. Adjusted closes and yields based on them are approximations where split-only prices are unavailable. SEC source records retain accession, filed date, form, tag, unit, and observation dates when supplied; FCF sources identify operating cash flow and capex. Share-denominator provenance is not separately included in the current export.</p><p>The catalog uses schemaVersion 1 and includes snapshotBuiltAt, exportedAt, latestStoredPriceDate, membershipAsOf, and a companies array. Each entry has ticker, name, exchange, dataUrl, pageUrl, and markdownUrl. pageUrl and markdownUrl are null when no dedicated company page exists. Export time describes packaging, not a financial refresh.</p><h2>Snapshot and limitations</h2><p>Financial database built ${htmlText(index.builtAt || "date unavailable")}; latest stored price across the snapshot ${htmlText(site.latestPriceDate || "date unavailable")}; membership as of ${htmlText(site.membership.asOf)}. Company-specific dates can differ. Annual filings may be newer than the final price date. This is historical research, not live quotes or investment advice. Read <a href="/methodology/">methodology</a> and <a href="/sources/">sources, dates &amp; limitations</a> before interpreting a formula or dividend yield.</p><h2>Access and discovery</h2><p>The website exposes ordinary public GET URLs. Markdown alternatives are linked in page metadata, and public data resources allow cross-origin reads. Production robots.txt permits crawling. llms.txt is a navigation proposal, not a guarantee that an AI service will index, access, or cite the site. Some services have their own fetching restrictions.</p>`;
++  return `<h1>AI &amp; data access</h1><p>Read Stock Value Lens with an LLM, a research assistant, or a script. These public, read-only resources require no login, API key, or JavaScript.</p><h2>Verified features and coverage</h2><ul>${researchAdvantages(site).map(([title, text]) => `<li><strong>${htmlText(title)}</strong>: ${htmlText(text)}</li>`).join("")}</ul><p><a href="/sources/">Source dates and limitations</a> · <a href="/guides/export-stock-history-csv/">Chart export scope</a></p><h2>Start here</h2><ul><li><a href="/llms.txt">LLM navigation guide</a>: a compact overview and links to useful documents.</li><li><a href="/data/catalog.json">Stock data catalog</a>: direct JSON URLs for all ${index.companies.length.toLocaleString("en-US")} stocks, with HTML and Markdown links where a company page exists.</li><li><a href="/stocks/index.md">S&amp;P 500 directory in Markdown</a>: ${published.length} published company pages and labeled coverage gaps.</li><li><a href="/data-access/index.md">This guide in Markdown</a>.</li></ul><h2>Ask your assistant</h2><p>Give your assistant the LLM navigation guide URL and a stock ticker. Ask it to read the methodology and sources, find the ticker in the data catalog, and fetch its company JSON. Ask it to state financial and price dates and cite the company page and original SEC filings.</p><h2>Stable resource URLs</h2><ul><li>GET /data/catalog.json — catalog with absolute resource URLs.</li><li>GET /data/index.json — original search index and snapshot metadata.</li><li>GET /data/companies/TICKER.json — exact uppercase ticker from the catalog, including hyphenated share classes such as BRK-B. Check availability before using a metric.</li><li>GET /stocks/ticker/ — HTML financial history for published constituents.</li><li>GET /stocks/ticker/index.md — clean Markdown with the same annual facts and source links.</li><li>GET /methodology/index.md, /sources/index.md, /about/index.md, /updates/index.md — plain-text documentation.</li></ul><p>Use catalog URLs rather than guessing company routes. A company may have JSON data even when it has no dedicated page. Unsupported tickers return a genuine 404. Fetch one company at a time; the catalog is for discovery, not a requirement to download every dataset.</p><h2>P/E ratio history</h2><p><a href="/guides/pe-ratio-history/">P/E history</a> includes every stored weekly price divided by annual EPS carried forward from fiscal-period end. Both charts have synchronized range bars. Static company tables retain separate annual year-end snapshots. Company Markdown includes the derived basic and diluted ratios, price dates and price basis. Raw company JSON retains EPS and price inputs; it does not add a stored P/E field. Ratios use positive EPS; adjusted-close ratios are approximate and retrospective, not TTM or forward P/E.</p><h2>JSON fields and dates</h2><p>The original company JSON schema remains version 1. company contains identity, exchange, currency, price source, latest price dates, and metric availability. annual contains fiscalYear, periodEnd, basicEps, dilutedEps, fcfPerShare, fcfTotal, dividendPerShare, and sources when supplied. Missing observations use null or absent fields; zero is a reported value. Per-share metrics use the company currency per share; fcfTotal uses currency units.</p><p>prices contains date and adjustedClose, and splitClose when available. These are stored weekly observations, retaining the last available price in each week. Adjusted closes and yields based on them are approximations where split-only prices are unavailable. SEC source records retain accession, filed date, form, tag, unit, and observation dates when supplied; FCF sources identify operating cash flow and capex. Share-denominator provenance is not separately included in the current export.</p><p>The catalog uses schemaVersion 1 and includes snapshotBuiltAt, exportedAt, latestStoredPriceDate, membershipAsOf, and a companies array. Each entry has ticker, name, exchange, dataUrl, pageUrl, and markdownUrl. pageUrl and markdownUrl are null when no dedicated company page exists. Export time describes packaging, not a financial refresh.</p><h2>Snapshot and limitations</h2><p>Financial database built ${htmlText(index.builtAt || "date unavailable")}; latest stored price across the snapshot ${htmlText(site.latestPriceDate || "date unavailable")}; membership as of ${htmlText(site.membership.asOf)}. Company-specific dates can differ. Annual filings may be newer than the final price date. This is historical research, not live quotes or investment advice. Read <a href="/methodology/">methodology</a> and <a href="/sources/">sources, dates &amp; limitations</a> before interpreting a formula or dividend yield.</p><h2>Access and discovery</h2><p>The website exposes ordinary public GET URLs. Markdown alternatives are linked in page metadata, and public data resources allow cross-origin reads. Production robots.txt permits crawling. llms.txt is a navigation proposal, not a guarantee that an AI service will index, access, or cite the site. Some services have their own fetching restrictions.</p>`;
  }
- 
+
  export async function generateAiFiles(staging, site, index, members, documents) {
-@@ -98,6 +102,7 @@
+@@ -98,6 +104,7 @@
      ["Sources and limitations", "/sources/index.md", "SEC filings, historical prices, membership provenance, and data quality."],
      ["Stock data catalog", "/data/catalog.json", "Direct JSON links for every stock; optional HTML and Markdown links."],
      ["S&P 500 company directory", "/stocks/index.md", "Available company Markdown pages and labeled coverage gaps."],
-+    ["P/E ratio history", "/guides/pe-ratio-history/index.md", "Free annual basic/diluted P/E charts, reference lines, calculation and limitations."],
++    ["P/E ratio history", "/guides/pe-ratio-history/index.md", "Weekly P/E curves using annual basic/diluted EPS, synchronized range bars, reference lines and limitations."],
      ["Research guides", "/guides/index.md", "Price versus earnings, EPS versus FCF per share, and CSV export instructions."]
    ];
    await save("/llms.txt", summary + "## Research and data\n\n" + files.map(([title, path, note]) => `- [${title}](${absolute(site, path)}): ${note}`).join("\n") + `\n\n## Optional\n\n- [Website updates](${absolute(site, "/updates/index.md")}): Major changes and milestones.\n- [About and contact](${absolute(site, "/about/index.md")}): Authorship and corrections.\n- [Dividend yield guide](${absolute(site, "/guides/fiscal-year-dividend-yield/index.md")}): Worked example and approximation limits.\n`);
@@ -221,20 +379,22 @@
  import { mkdir, readFile, writeFile } from "node:fs/promises";
  import { join, resolve, sep } from "node:path";
 -import { annualDividendYields, normalizeTicker } from "../web/calculations.js";
-+import { annualDividendYields, annualPeHistory, normalizeTicker } from "../web/calculations.js";
++import { annualDividendYields, annualPeHistory, weeklyPeHistory, normalizeTicker } from "../web/calculations.js";
  import { accessDocumentation, generateAiFiles, researchAdvantages } from "./ai.mjs";
- 
+
  export const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char]));
-@@ -105,12 +105,21 @@
+@@ -105,12 +105,23 @@
    return `<section class="card company-overview"><p class="eyebrow">FREE HISTORICAL COMPANY DATA</p><h1>${e(member.name)} (${e(ticker)}) financial history</h1><p>${e(company.exchange)} · ${e(company.currency || "USD")} · ${e(member.sector || "Sector unavailable")} · CIK ${e(String(company.cik).padStart(10, "0"))}</p>${member.industry ? `<p>${e(member.industry)} · <a href="${e(site.membership.sourceUrl)}">Company classification source</a></p>` : ""}<dl class="company-facts"><div><dt>Annual coverage</dt><dd>${e(first.periodEnd)}–${e(last.periodEnd)} (${snapshot.annual.length} periods)</dd></div><div><dt>Latest fiscal period</dt><dd>${e(last.periodEnd)}</dd></div><div><dt>Prices through</dt><dd>${e(priceDate)} · historical, not live</dd></div><div><dt>Available metrics</dt><dd>${e(available.join(", "))}</dd></div></dl><p class="data-note">Financial snapshot built ${e(index.builtAt?.slice(0, 10) || "date unavailable")}. Current membership snapshot: ${e(site.membership.asOf)}. ${!company.availability?.split_price ? "Prices and available dividend yields use Stooq adjusted-close approximations." : ""}</p>${eps}${fcf}<p>Charts and CSV/PNG exports are free, without signup. <a href="/guides/export-stock-history-csv/">Download and read the chart CSV.</a> The export follows the selected chart window and metric; the annual table below retains the full stored history.</p><p class="data-note">Tables and factual summaries are generated automatically from the stored snapshot. Maintained by <a href="/about/">${e(site.author)}</a>. <a href="/sources/">Sources & limitations</a>.</p></section>`;
  }
- 
+
 +function peHistory(member) {
 +  const rows = annualPeHistory(member.snapshot), valid = rows.filter((row) => row.basicPe !== null || row.dilutedPe !== null);
 +  const latest = valid.at(-1);
++  const weekly = weeklyPeHistory(member.snapshot), eligible = weekly.filter((row) => row.basicPe !== null || row.dilutedPe !== null);
++  const weeklySummary = `<p>The interactive P/E chart contains all ${weekly.length} stored weekly price points${weekly.length ? ` (${e(weekly[0].date)}–${e(weekly.at(-1).date)})` : ""}; ${eligible.length} have an eligible basic or diluted ratio. Annual EPS is carried forward from its fiscal end. Use the P/E range bar or the valuation range bar to change both chart windows.</p>`;
 +  const summary = latest ? `${valid.length} eligible fiscal-year-end observations span ${valid[0].date}–${latest.date}. Latest eligible diluted P/E: ${number(latest.dilutedPe)}×; basic P/E: ${number(latest.basicPe)}×, for fiscal end ${latest.date}, using the close on ${latest.priceDate}.` : "No positive annual EPS with an eligible fiscal-year-end price is available in this snapshot.";
 +  const tableRows = [...rows].reverse().map((row) => `<tr><th scope="row">${e(row.date)}</th><td>${e(row.priceDate || "Unavailable")}</td><td>${number(row.price)}</td><td>${row.priceType === "stooq_adjusted_close" ? "Adjusted close · Approx." : row.priceType === "split_only_close" ? "Split-only close" : "Unavailable"}</td><td>${number(row.basicPe)}</td><td>${number(row.dilutedPe)}</td><td>${sourceLinks(row.basicSource, member.snapshot.company.cik, "Basic EPS") || ""} ${sourceLinks(row.dilutedSource, member.snapshot.company.cik, "Diluted EPS") || "Source unavailable"}</td></tr>`).join("");
-+  return `<section class="card pe-history" id="pe-full-history"><h2>${e(member.name)} (${e(member.ticker)}) P/E ratio history</h2><p>${e(summary)}</p><p>Annual P/E = eligible fiscal-year-end close ÷ reported annual EPS. Adjusted-close ratios are approximate. This is retrospective annual P/E, not TTM or forward P/E. Missing or non-positive EPS and missing eligible prices produce unavailable ratios.</p><p><a href="#pe-history">Explore the P/E chart and optional reference lines</a> · <a href="/guides/pe-ratio-history/">How P/E history is calculated</a>.</p><details><summary>Complete annual P/E history (${rows.length} fiscal periods)</summary><div class="table-scroll"><table id="company-pe-history"><caption>Full stored fiscal-year-end P/E history, independent of the selected chart window. Ratios in ×; prices in ${e(member.snapshot.company.currency || "USD")}.</caption><thead><tr><th>Fiscal end</th><th>Price date</th><th>Close</th><th>Price basis</th><th>Basic P/E</th><th>Diluted P/E</th><th>EPS filings</th></tr></thead><tbody>${tableRows}</tbody></table></div></details></section>`;
++  return `<section class="card pe-history" id="pe-full-history"><h2>${e(member.name)} (${e(member.ticker)}) P/E ratio history</h2>${weeklySummary}<h3>Fiscal-year-end snapshots</h3><p>${e(summary)}</p><p>Annual P/E = eligible fiscal-year-end close ÷ reported annual EPS. Adjusted-close ratios are approximate. This is retrospective annual P/E, not TTM or forward P/E. Missing or non-positive EPS and missing eligible prices produce unavailable ratios.</p><p><a href="#pe-history">Explore the P/E chart and optional reference lines</a> · <a href="/guides/pe-ratio-history/">How P/E history is calculated</a>.</p><details><summary>Complete annual P/E history (${rows.length} fiscal periods)</summary><div class="table-scroll"><table id="company-pe-history"><caption>Full stored fiscal-year-end P/E history, independent of the selected chart window. Ratios in ×; prices in ${e(member.snapshot.company.currency || "USD")}.</caption><thead><tr><th>Fiscal end</th><th>Price date</th><th>Close</th><th>Price basis</th><th>Basic P/E</th><th>Diluted P/E</th><th>EPS filings</th></tr></thead><tbody>${tableRows}</tbody></table></div></details></section>`;
 +}
 +
  function researchGuides(site, members) {
@@ -243,39 +403,39 @@
    const credit = `<p class="data-note">Written and maintained by <a href="/about/">${e(site.author)}</a>. Historical research, not investment advice. <a href="/sources/">Sources and limitations</a>.</p>`;
    return [
 -    ["/guides/", "Historical stock research guides", "Learn to compare stock prices with annual EPS, interpret free cash flow per share, and download historical chart data without signup.", `<h1>Historical stock research guides</h1><p>Use annual financial facts and historical stock charts to understand a business over time. These guides and the chart tool are free, with no account or subscription.</p><ul class="guide-list"><li><a href="/guides/stock-price-vs-earnings/">Compare stock price with earnings</a><p>Read the EPS chart, choose a multiple, and understand the formula reference.</p></li><li><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus free cash flow per share</a><p>Understand the measures, their source filings, and when comparisons can mislead.</p></li><li><a href="/guides/export-stock-history-csv/">Download historical stock data as CSV</a><p>Select a company, metric, and window, then use the exported series in a spreadsheet.</p></li><li><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a><p>Calculate a historical year-end yield and distinguish it from trailing or forward yields.</p></li></ul><p>Start with ${companyLink}, or <a href="/">search for another US-listed company</a>. Coverage and dates vary by company.</p>`],
-+    ["/guides/pe-ratio-history/", "Historical P/E ratios: annual basic and diluted EPS", "Explore free annual P/E ratio history, compare basic and diluted EPS, and understand adjusted prices, gaps, and reference lines.", `<h1>P/E ratio history explained</h1><p>Stock Value Lens provides free approximate fiscal-year-end price-to-earnings history on its existing stock pages and chart tool. Select basic EPS, diluted EPS, or both; optionally show 15×, 20×, and 30× comparison lines. No account is required.</p><p class="worked-formula">Annual P/E = fiscal-year-end close ÷ reported annual EPS</p><h2>Which price and earnings are used?</h2><p>Each observation matches a fiscal period end to the last positive split-only close on or before that date, no more than 14 days earlier. If unavailable, use a positive Stooq adjusted close in that interval and label the ratio approximate. Weekly sampling means the price date can precede the fiscal end. Basic and diluted ratios use the corresponding reported annual EPS for that same fiscal period. Diluted EPS reflects potential dilution; basic EPS uses the basic share base.</p><h2>Example</h2><p>If a year-end close is 100 and annual diluted EPS is 5, P/E is 20×. If basic EPS is 5.2, basic P/E is approximately 19.23×. These are hypothetical inputs, not company data.</p><h2>Use the chart and export</h2><ol><li>Open ${companyLink}, or search a ticker in the <a href="/">chart tool</a>.</li><li>Scroll to P/E ratio history and select the EPS basis. The chart follows the date range selected in the main chart.</li><li>Enable optional 15× / 20× / 30× lines. They are visual comparisons, not fair-value estimates or recommendations.</li><li>Use P/E CSV for both ratios, EPS inputs, price dates and types, and filing dates; use P/E PNG for the selected chart image.</li></ol><p>Company pages also contain the full stored annual P/E table with EPS filing links, available without JavaScript. Their Markdown alternatives contain the same derived observations. Coverage varies by company.</p><h2>Limitations</h2><p>This is annual fiscal-year-end P/E, not daily or weekly P/E, rolling TTM P/E, or analyst-estimate forward P/E. Annual facts can be reported or restated after the displayed fiscal end. The dataset applies supported later splits; adjusted prices can include dividend effects and differ from an actual unadjusted traded close. Price and EPS adjustment differences may affect comparability. Results are retrospective, not a reconstruction of information available to investors on each historical date.</p><p>Non-positive or missing EPS creates a gap rather than zero or a negative P/E. Missing, future, or stale prices are not substituted. Ratios are uncapped; very small positive EPS can produce extreme values. A period after the final stored price has no eligible ratio. Chart lines connect annual observations and do not represent intervening measurements. <a href="/sources/">Check source dates and limitations</a>.</p>${credit}`],
-+    ["/guides/", "Historical stock research guides", "Learn to compare stock prices with annual EPS, interpret free cash flow per share, and download historical chart data without signup.", `<h1>Historical stock research guides</h1><p>Use annual financial facts and historical stock charts to understand a business over time. These guides and the chart tool are free, with no account or subscription.</p><ul class="guide-list"><li><a href="/guides/pe-ratio-history/">Historical P/E ratios</a><p>Compare annual basic and diluted P/E, with optional reference lines.</p></li><li><a href="/guides/stock-price-vs-earnings/">Compare stock price with earnings</a><p>Read the EPS chart, choose a multiple, and understand the formula reference.</p></li><li><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus free cash flow per share</a><p>Understand the measures, their source filings, and when comparisons can mislead.</p></li><li><a href="/guides/export-stock-history-csv/">Download historical stock data as CSV</a><p>Select a company, metric, and window, then use the exported series in a spreadsheet.</p></li><li><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a><p>Calculate a historical year-end yield and distinguish it from trailing or forward yields.</p></li></ul><p>Start with ${companyLink}, or <a href="/">search for another US-listed company</a>. Coverage and dates vary by company.</p>`],
++    ["/guides/pe-ratio-history/", "Historical P/E ratios using annual EPS", "Explore weekly P/E ratio history at every stored price, compare basic and diluted EPS, and use synchronized range bars and reference lines.", `<h1>P/E ratio history explained</h1><p>Stock Value Lens calculates approximate P/E at every stored weekly price, using annual basic or diluted EPS. Compare both series, use optional 15×/20×/30× reference lines, and choose a time range with the P/E chart’s own range bar. The P/E and valuation charts share the same weekly price dates and synchronized windows.</p><p class="worked-formula">P/E at a weekly price = that week’s close ÷ latest annual EPS by fiscal-period end</p><h2>How annual EPS maps to weekly prices</h2><p>For each stored price date, select the latest annual observation with fiscal end on or before that date. Carry its EPS forward until the next annual fiscal end, without interpolating earnings. Basic and diluted P/E use that same period’s corresponding EPS. A fiscal period later than the price date is never substituted. Before annual history begins, or when the current annual EPS is missing, zero or negative, the ratio is unavailable; an older profitable period is not reused.</p><p>Prefer a positive split-only close for each price point; otherwise use a positive Stooq adjusted close and label the ratio approximate. EPS changes annually while stock prices change weekly. The curve therefore contains all stored weekly points, not one point per fiscal year. These are annual-EPS-based ratios, not rolling TTM or analyst-estimate forward P/E.</p><h2>Use either time range bar</h2><ol><li>Open ${companyLink}, or search a ticker in the <a href="/">chart tool</a>.</li><li>Scroll to P/E ratio history. Choose diluted EPS, basic EPS, or both.</li><li>Select a preset or drag either handle in the P/E overview bar. Drag the selected interval to move it. Both chart windows update together so the two perspectives remain comparable. The first chart’s bar also updates P/E.</li><li>The P/E range handles support arrow keys for 30-day steps and Home/End. The overview retains the full stored price timeline, including unavailable-ratio gaps.</li><li>Optional 15×/20×/30× lines provide comparisons, not fair-value estimates or recommendations.</li><li>P/E CSV contains every weekly price point in the selected window, its EPS fiscal end, price basis, basic/diluted EPS and ratios, and filing dates. P/E PNG saves the selected curve.</li></ol><h2>Static year-end snapshots</h2><p>Company pages also retain a separate fiscal-year-end P/E table with filing links, available without JavaScript. That table is an annual summary, not the complete weekly chart. Year-end snapshots use a positive price on or before fiscal end, within 14 days. Company Markdown identifies the distinction and supplies weekly coverage and a raw JSON link containing price and EPS inputs.</p><h2>Example</h2><p>With annual diluted EPS of 5 carried forward, weekly closes of 100 and 110 give P/E of 20× and 22×. When the next annual observation reports EPS of 5.5, a close of 110 gives P/E of 20×. These are hypothetical inputs.</p><h2>Retrospective timing and adjustments</h2><p>Fiscal-period end is not the filing’s publication date. Stored annual facts may be reported or restated later, and supported later split adjustments apply. This view is retrospective, not a reconstruction of information investors knew on each date. Adjusted prices can include dividend effects and differ from actual unadjusted closes; differences in price and EPS split adjustment can affect comparability.</p><p>Ratios are uncapped. Tiny positive EPS can create extreme values. Missing prices and non-positive EPS leave gaps. Price sampling remains weekly, not daily, and no financial data refresh is implied. <a href="/sources/">Check source dates and limitations</a>.</p>${credit}`],
++    ["/guides/", "Historical stock research guides", "Learn to compare stock prices with annual EPS, interpret free cash flow per share, and download historical chart data without signup.", `<h1>Historical stock research guides</h1><p>Use annual financial facts and historical stock charts to understand a business over time. These guides and the chart tool are free, with no account or subscription.</p><ul class="guide-list"><li><a href="/guides/pe-ratio-history/">Historical P/E ratios</a><p>Compare weekly P/E using annual basic and diluted EPS, with a range bar and optional reference lines.</p></li><li><a href="/guides/stock-price-vs-earnings/">Compare stock price with earnings</a><p>Read the EPS chart, choose a multiple, and understand the formula reference.</p></li><li><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus free cash flow per share</a><p>Understand the measures, their source filings, and when comparisons can mislead.</p></li><li><a href="/guides/export-stock-history-csv/">Download historical stock data as CSV</a><p>Select a company, metric, and window, then use the exported series in a spreadsheet.</p></li><li><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a><p>Calculate a historical year-end yield and distinguish it from trailing or forward yields.</p></li></ul><p>Start with ${companyLink}, or <a href="/">search for another US-listed company</a>. Coverage and dates vary by company.</p>`],
      ["/guides/stock-price-vs-earnings/", "Compare historical stock price with earnings", "Use the free stock EPS chart to compare historical prices with annual earnings, choose a custom multiple, and understand the formula reference.", `<h1>Compare historical stock price with earnings</h1><p>A stock price chart shows what the market paid. Annual earnings per share (EPS) adds a record of the business's reported profit per share. Stock Value Lens lets you examine both in one historical chart, without signup.</p><h2>Open an annual EPS history chart</h2><ol><li>Open ${companyLink}, or search for a ticker in the <a href="/">chart tool</a>.</li><li>Select Diluted EPS. Basic EPS is also available where the company has supported annual observations.</li><li>Choose a timeframe or drag the range handles. The chart shows weekly prices and annual reported facts; it is not a quarterly or trailing-twelve-month earnings chart.</li><li>Review Annual metric change, then check the full annual table and its filing links. A company page can contain financial periods newer than the final price date.</li></ol><h2>Read the price and formula reference</h2><p>The historical price line uses the available price series. Stooq adjusted prices are labeled approximations where validated split-only closes are unavailable. The orange line multiplies positive annual EPS by a reference multiple, calculated from growth across the selected window or supplied by you.</p><p>Changing the multiple changes the reference, not the company's earnings. As a hypothetical illustration, EPS of 2 multiplied by 15 gives a reference of 30 in the same currency per share. This illustration is not an estimate of any company's fair value.</p><h2>Choose and inspect a multiple</h2><p>Leave Custom multiple blank for the growth-based formula or enter a positive multiple up to 60. The Annualized metric growth and Applied multiple cards show the values used for the current metric and window. Use Reset to restore the formula multiple. Changing the window can change both its growth calculation and reference line.</p><p><a href="/methodology/">Read the exact CAGR and reference-multiple formulas.</a> Missing or non-positive annual observations leave gaps in the reference line. A stock trading below it is not, by itself, evidence that the stock is undervalued.</p><h2>Respect the historical dates</h2><p>The chart uses retrospective information, including stored restated annual facts. It is not a point-in-time backtest, forecast, intrinsic-value calculation, or live quote service. Compare the displayed price date with the latest fiscal period before drawing conclusions.</p><p><a href="/guides/eps-vs-free-cash-flow-per-share/">Compare earnings with free cash flow per share</a> or <a href="/guides/export-stock-history-csv/">export the selected chart data</a>.</p>${credit}`],
      ["/guides/eps-vs-free-cash-flow-per-share/", "EPS versus free cash flow per share", "Compare annual earnings per share and free cash flow per share with free historical stock charts and source filings, including missing-data limits.", `<h1>EPS versus free cash flow per share</h1><p>Earnings per share and free cash flow per share describe different aspects of a business. Examining their annual histories can help you ask why reported profit and cash generation differ. Both chart views are free where supported company data is available.</p><h2>What annual EPS measures</h2><p>EPS expresses earnings attributable to common shareholders per share. Basic EPS uses the basic share base; diluted EPS reflects potential dilution under the applicable accounting rules. This tool uses reported SEC annual EPS facts and adjusts historical per-share observations for supported later stock-split facts. It does not synthesize missing EPS.</p><h2>How this tool calculates FCF per share</h2><p class="worked-formula">FCF per share = (operating cash flow − cash capital expenditure) ÷ annual diluted weighted-average shares</p><p>This is a derived measure using matched annual inputs, not a standardized GAAP figure. Company tables link the operating cash flow and capex filings. Separate share-denominator provenance is not included in the current public export. Read the <a href="/methodology/">methodology</a> and check original filings before treating calculations from different services as directly comparable.</p><h2>Compare the histories</h2><ol><li>Open ${companyLink}, or choose a company from the <a href="/stocks/">directory</a>.</li><li>Select Diluted EPS and review its fiscal periods and filing sources.</li><li>Switch to FCF / share while keeping the same timeframe. A disabled metric means that the chart has no supported observations for it.</li><li>Use the full annual table to compare values for the same fiscal end. Check gaps and newer annual rows that fall outside the price-bounded chart.</li></ol><p>Working-capital changes, investment spending, non-cash expenses, and share-count changes can make the histories differ. A difference is a question to investigate in the filings, not an automatic quality score or buy/sell signal. Stock splits and restatements can also affect historical comparisons.</p><h2>When the comparison is unsuitable</h2><p>FCF as defined here may be unavailable or economically unsuitable for banks, REITs, and some other businesses. Do not substitute zero for unavailable observations. Percentage growth and CAGR are also difficult to interpret across losses or zero values; the chart formula uses positive endpoints and can leave gaps.</p><p>Both metrics are annual, not quarterly or trailing-twelve-month measures. Keep the fiscal dates and currency consistent. <a href="/guides/stock-price-vs-earnings/">Read the historical chart</a> or <a href="/guides/export-stock-history-csv/">download its CSV</a>.</p>${credit}`],
      ["/guides/export-stock-history-csv/", "Download historical stock EPS and cash flow data as CSV", "Download selected historical stock EPS or FCF per share chart data as a free CSV without signup, with instructions for filtering its series in a spreadsheet.", `<h1>Download historical stock data as CSV</h1><p>Export the selected stock chart without an account or subscription. Choose annual EPS or free cash flow per share, then work with the CSV in Excel, Google Sheets, or another spreadsheet.</p><h2>Choose the company and chart window</h2><ol><li>Open ${companyLink}, or search for a ticker in the <a href="/">chart tool</a>.</li><li>Select Diluted EPS, Basic EPS, or FCF / share. Unavailable metrics are disabled.</li><li>Choose a timeframe, or move the range handles. Review the historical price date and the selected annual observations.</li><li>Click CSV beside the chart. The filename identifies the ticker, metric, and selected start/end dates. Click PNG instead to save the chart as an image.</li></ol><p>The CSV follows the selected chart window and metric. It is a mixed-series export, not a separate download of every column and period in the full company table. Financial periods newer than the last stored price can remain visible in the annual HTML table while lying outside the chart export.</p><h2>Understand the CSV columns</h2><ul><li><strong>series</strong> identifies the kind of observation.</li><li><strong>date</strong> gives the price or fiscal-period date for that row.</li><li><strong>value</strong> contains the observation; an empty value is unavailable, not zero.</li><li><strong>details</strong> supplies context such as the formula multiple or available dividend source and price information.</li></ul><h2>Filter annual EPS or FCF data in a spreadsheet</h2><p>Import the file as comma-separated data and retain the first row as the column headings. Filter series to eps_diluted for diluted EPS, eps_basic for basic EPS, or fcf_per_share for free cash flow per share. Only the selected metric is exported, so change the chart metric and export again if you need another view.</p><p>Other possible series are stooq_adjusted_close, split_only_close when supplied, formula_value, annual_dividend_per_share, and annual_dividend_yield_percent. Sort the filtered dates if you need a chronological annual series. Do not combine price rows and annual financial rows as if they shared a frequency or unit.</p><h2>Keep units and source dates</h2><p>EPS, FCF/share, dividends/share, prices, and formula values use the company's currency per share. Dividend-yield rows use percent. Formula values depend on the selected window and multiple; they are retrospective references, not intrinsic-value estimates.</p><p>CSV financial-metric rows do not include complete filing provenance. Use the company table's SEC links, or the <a href="/data-access/">JSON and Markdown resources</a>, when tracing an observation to its source. Adjusted prices and dividend yields based on them are approximations where validated split-only prices are unavailable.</p><p><a href="/sources/">Check snapshot dates and coverage limits</a> before reusing the data. <a href="/guides/eps-vs-free-cash-flow-per-share/">Learn how EPS and FCF per share differ.</a></p>${credit}`]
-@@ -126,7 +135,7 @@
+@@ -126,7 +137,7 @@
    const worked = example ? `<h2>Worked example: ${e(exampleMember.name)}</h2><p>For the fiscal period ending ${e(example.date)}, the stored annual dividend/share is ${number(example.dividendPerShare)} ${e(exampleMember.snapshot.company.currency || "USD")}. The eligible close is ${number(example.price)} on ${e(example.priceDate)}.</p><p class="worked-formula">${number(example.dividendPerShare)} ÷ ${number(example.price)} × 100 = ${number(example.value)}%</p><p>${example.priceType === "stooq_adjusted_close" ? "This example uses a Stooq adjusted close and is an approximation." : "This example uses a split-only close."} Calculations use stored precision; displayed inputs are rounded. ${sourceLinks(example.source, exampleMember.snapshot.company.cik, "Dividend filing")} · <a href="${exampleMember.path}">Full company history</a></p>` : "<p>No eligible worked example is available in this snapshot.</p>";
    return [
      ...researchGuides(site, members),
 -    ["/methodology/", "How Stock Value Lens works", "Understand annual EPS, cash flow, growth, price adjustments, and the valuation reference.", `<h1>Methodology</h1><p>Compare historical weekly prices with annual reported fundamentals. All features are free.</p><h2>Annual reported facts</h2><p>Basic and diluted EPS come from supported SEC Company Facts tags in 10-K and 10-K/A filings; EPS is not synthesized. The importer checks annual durations, selects matching periods, deduplicates restated observations, and applies later standard-taxonomy stock-split facts to per-share values and diluted shares. Filing accession, tag, unit, and filing date are retained when available. Coverage varies by issuer and taxonomy.</p><h2>Free cash flow per share</h2><p>Simple FCF is operating cash flow minus cash capital expenditure. FCF/share divides this by annual diluted weighted-average shares when matching facts are available. It is a derived measure, not a standardized GAAP figure. Banks, REITs, and other businesses may have unavailable or economically unsuitable FCF measures.</p><h2>Growth and the orange reference line</h2><p>CAGR uses the first and last positive annual observations within the selected chart window. Elapsed years use exact fiscal-end dates divided by 365.2425 days.</p><p>CAGR = (last value ÷ first value)<sup>1 / years</sup> − 1.</p><p>Reference multiple = min(60, 15 × ((1 + CAGR) ÷ 1.10)<sup>years × 0.6</sup>), with CAGR expressed as a decimal. Multiply each positive per-share metric by this multiple. For FCF/share, the multiple is applied to FCF rather than earnings. A custom positive multiple is also capped at 60.</p><p>Missing or non-positive observations create gaps in the reference line. The orange line is a formula reference, not an intrinsic-value estimate or price target. It uses retrospective information and is not a point-in-time investment backtest.</p><h2>Prices, ranges, and dividends</h2><p>Weekly data retains the last available row in each week. Prefer validated split-only closes when supplied; otherwise the chart uses labeled Stooq adjusted closes as an approximation. The chart ends at the latest available price date. Company tables retain newer annual filings independently.</p><p><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a> uses an annual reported dividend and a historical year-end close. It is off by default on the chart.</p><p><a href="/sources/">Source dates and limitations</a> · <a href="/about/">Author and corrections</a></p>`],
-+    ["/methodology/", "How Stock Value Lens works", "Understand annual EPS, cash flow, growth, price adjustments, and the valuation reference.", `<h1>Methodology</h1><p>Compare historical weekly prices with annual reported fundamentals. All features are free.</p><h2>Annual reported facts</h2><p>Basic and diluted EPS come from supported SEC Company Facts tags in 10-K and 10-K/A filings; EPS is not synthesized. The importer checks annual durations, selects matching periods, deduplicates restated observations, and applies later standard-taxonomy stock-split facts to per-share values and diluted shares. Filing accession, tag, unit, and filing date are retained when available. Coverage varies by issuer and taxonomy.</p><h2>Free cash flow per share</h2><p>Simple FCF is operating cash flow minus cash capital expenditure. FCF/share divides this by annual diluted weighted-average shares when matching facts are available. It is a derived measure, not a standardized GAAP figure. Banks, REITs, and other businesses may have unavailable or economically unsuitable FCF measures.</p><h2>P/E ratio history</h2><p>Fiscal-year-end close divided by annual basic or diluted EPS. Adjusted-close ratios are approximate and retrospective, not TTM or forward P/E. <a href="/guides/pe-ratio-history/">Read P/E history rules, gaps and reference lines.</a></p><h2>Growth and the orange reference line</h2><p>CAGR uses the first and last positive annual observations within the selected chart window. Elapsed years use exact fiscal-end dates divided by 365.2425 days.</p><p>CAGR = (last value ÷ first value)<sup>1 / years</sup> − 1.</p><p>Reference multiple = min(60, 15 × ((1 + CAGR) ÷ 1.10)<sup>years × 0.6</sup>), with CAGR expressed as a decimal. Multiply each positive per-share metric by this multiple. For FCF/share, the multiple is applied to FCF rather than earnings. A custom positive multiple is also capped at 60.</p><p>Missing or non-positive observations create gaps in the reference line. The orange line is a formula reference, not an intrinsic-value estimate or price target. It uses retrospective information and is not a point-in-time investment backtest.</p><h2>Prices, ranges, and dividends</h2><p>Weekly data retains the last available row in each week. Prefer validated split-only closes when supplied; otherwise the chart uses labeled Stooq adjusted closes as an approximation. The chart ends at the latest available price date. Company tables retain newer annual filings independently.</p><p><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a> uses an annual reported dividend and a historical year-end close. It is off by default on the chart.</p><p><a href="/sources/">Source dates and limitations</a> · <a href="/about/">Author and corrections</a></p>`],
++    ["/methodology/", "How Stock Value Lens works", "Understand annual EPS, cash flow, growth, price adjustments, and the valuation reference.", `<h1>Methodology</h1><p>Compare historical weekly prices with annual reported fundamentals. All features are free.</p><h2>Annual reported facts</h2><p>Basic and diluted EPS come from supported SEC Company Facts tags in 10-K and 10-K/A filings; EPS is not synthesized. The importer checks annual durations, selects matching periods, deduplicates restated observations, and applies later standard-taxonomy stock-split facts to per-share values and diluted shares. Filing accession, tag, unit, and filing date are retained when available. Coverage varies by issuer and taxonomy.</p><h2>Free cash flow per share</h2><p>Simple FCF is operating cash flow minus cash capital expenditure. FCF/share divides this by annual diluted weighted-average shares when matching facts are available. It is a derived measure, not a standardized GAAP figure. Banks, REITs, and other businesses may have unavailable or economically unsuitable FCF measures.</p><h2>P/E ratio history</h2><p>Every stored weekly close divided by the most recent annual basic or diluted EPS by fiscal-period end, carried forward without interpolation. Adjusted-close ratios are approximate and retrospective, not TTM or forward P/E. <a href="/guides/pe-ratio-history/">Read P/E history rules, gaps and reference lines.</a></p><h2>Growth and the orange reference line</h2><p>CAGR uses the first and last positive annual observations within the selected chart window. Elapsed years use exact fiscal-end dates divided by 365.2425 days.</p><p>CAGR = (last value ÷ first value)<sup>1 / years</sup> − 1.</p><p>Reference multiple = min(60, 15 × ((1 + CAGR) ÷ 1.10)<sup>years × 0.6</sup>), with CAGR expressed as a decimal. Multiply each positive per-share metric by this multiple. For FCF/share, the multiple is applied to FCF rather than earnings. A custom positive multiple is also capped at 60.</p><p>Missing or non-positive observations create gaps in the reference line. The orange line is a formula reference, not an intrinsic-value estimate or price target. It uses retrospective information and is not a point-in-time investment backtest.</p><h2>Prices, ranges, and dividends</h2><p>Weekly data retains the last available row in each week. Prefer validated split-only closes when supplied; otherwise the chart uses labeled Stooq adjusted closes as an approximation. The chart ends at the latest available price date. Company tables retain newer annual filings independently.</p><p><a href="/guides/fiscal-year-dividend-yield/">Fiscal-year dividend yield</a> uses an annual reported dividend and a historical year-end close. It is off by default on the chart.</p><p><a href="/sources/">Source dates and limitations</a> · <a href="/about/">Author and corrections</a></p>`],
      ["/sources/", "Data sources, dates, and limitations", "SEC filing sources, historical Stooq prices, S&P 500 membership provenance, and coverage limitations.", `<h1>Sources, dates & limitations</h1><h2>Financial and price snapshot</h2><p>The financial database was built ${built}. Exporting or rebuilding the website does not obtain newer financial data or prices. Each company page displays its latest fiscal period and price date separately.</p><p>Reported financial facts come from <a href="https://www.sec.gov/edgar/search/">SEC EDGAR</a> through <a href="https://www.sec.gov/search-filings/edgar-application-programming-interfaces">SEC Company Facts</a>. Company table links point to the original filing index. FCF is calculated from reported inputs; its source links identify operating cash flow and capex. The current public export does not include separate share-denominator provenance.</p><p>Historical adjusted closes come from <a href="https://stooq.com/">Stooq</a>. The prepared US price snapshot ends no later than May 8, 2026. It currently contains no validated split-only US closes. These prices and dividend yields based on them are labeled approximations; they should not be interpreted as exact unadjusted year-end quotes.</p><h2>S&P 500 membership and classifications</h2>${membership}${verified ? `<ul>${verified}</ul>` : ""}<p>Share classes remain separate directory entries. Unmatched tickers, issuer-identity mismatches, and missing supported metrics or prices are labeled as coverage gaps. Historical values can predate index admission; the site does not reconstruct historical index membership.</p><h2>Limits of interpretation</h2><p>Missing facts are unavailable, not zero. Filing amendments, taxonomy changes, incomplete split tags, and issuer-level rather than share-class-specific facts can affect comparability. Check linked filings, especially for issuers with multiple share classes. No unsupported class conversion is performed.</p><p>Annual totals are not quarterly or trailing-twelve-month measures. A missing dividend observation does not establish that the company paid no dividend. Price and financial histories may cover different dates. Formula references are retrospective and do not establish fair value, future performance, or a trading recommendation.</p><p>This is independent historical research, not investment advice or an exact reproduction of proprietary FAST Graphs calculations. <a href="/about/">Report a suspected error</a>.</p>`],
      ["/about/", "About Cheng and Stock Value Lens", "A free historical stock research tool maintained by Cheng. Contact us with questions or data corrections.", `<h1>About & contact</h1><p>Stock Value Lens is a free tool for exploring historical earnings, cash flow, dividends, and stock prices. No account or subscription is required, including for charts and CSV/PNG exports.</p><h2>Authorship</h2><p>Created and maintained by ${e(site.author)}. Company tables and factual summaries are generated automatically from stored financial observations and a sourced membership list. This process does not create independent company reporting or investment recommendations.</p><h2>Questions and corrections</h2><p>Email <a href="mailto:${e(site.contactEmail)}">${e(site.contactEmail)}</a>. For data corrections, include the ticker, fiscal period, metric, and a link to the relevant filing if available.</p><p><a href="/methodology/">Read the methodology</a> and <a href="/sources/">review data sources and limitations</a>. This is an independent research project, not investment advice.</p>`],
      ["/guides/fiscal-year-dividend-yield/", "Fiscal-year dividend yield explained", "Calculate historical fiscal-year dividend yield from reported annual dividends and a year-end price, with a sourced example.", `<h1>What is fiscal-year dividend yield?</h1><p>A retrospective snapshot: the reported dividend per share for a fiscal year divided by a closing price at that fiscal year's end.</p><p class="worked-formula">Fiscal-year dividend yield = annual dividend/share ÷ year-end close × 100</p><h2>Which closing price is used?</h2><p>Use the last positive split-only close on or before fiscal year-end, no more than 14 days earlier. If none is available, use a positive Stooq adjusted close within the same period and label the result an approximation. No future price or stale close is substituted. Weekly sampling can mean the eligible close is a few days before the fiscal period ends.</p>${worked}<h2>How to interpret it</h2><p>This is neither a forward dividend yield nor a yield based on today's stock price. It does not reconstruct quarterly payments or include reinvestment. Fiscal-year dates can differ from calendar-year dates.</p><p>A missing dividend or eligible price produces an unavailable yield. A reported zero dividend can produce 0%; missing data cannot. Adjusted-price denominators may differ from the actual price traded at year-end.</p><p>The chart overlay starts off; enable Annual dividend yield to compare fiscal-year observations on its percentage scale. The static company tables show the complete stored history independently of the selected chart range.</p><p>Maintained by <a href="/about/">${e(site.author)}</a> · <a href="/sources/">Sources & limitations</a>.</p>`],
-@@ -140,7 +149,7 @@
+@@ -140,7 +151,7 @@
  }
- 
+
  function advantagesSection(site, index, member = null) {
 -  return `<section class="card research-intro" aria-labelledby="research-intro-title"><p class="eyebrow">WHY USE STOCK VALUE LENS</p><${member ? "h2" : "h1"} id="research-intro-title">Free historical stock charts and financial data</${member ? "h2" : "h1"}><p>Compare annual earnings and cash flow per share with historical stock prices, with clear coverage and source links.</p><dl class="research-advantages">${researchAdvantages(site, member).map(([title, text]) => `<div><dt>${e(title)}</dt><dd>${e(text)}</dd></div>`).join("")}</dl><p class="data-note">Financial database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")}. FCF/share is a derived measure; adjusted prices and associated dividend yields are labeled approximations. The formula line is a retrospective reference, not an intrinsic-value estimate. <a href="/sources/">Verify sources, dates and limitations.</a></p><p><a href="/stocks/">Browse the S&P 500 company directory</a> or search ${index.companies.length.toLocaleString("en-US")} US-listed securities. Metric coverage varies.</p><nav class="guide-links" aria-label="Stock research guides"><a href="/guides/stock-price-vs-earnings/">Price versus earnings</a><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus cash flow</a><a href="/guides/export-stock-history-csv/">CSV/PNG exports without signup</a></nav></section>`;
-+  return `<section class="card research-intro" aria-labelledby="research-intro-title"><p class="eyebrow">WHY USE STOCK VALUE LENS</p><${member ? "h2" : "h1"} id="research-intro-title">Free historical stock charts, P/E history and financial data</${member ? "h2" : "h1"}><p>Explore annual P/E ratio history and compare earnings and cash flow per share with historical stock prices, with clear coverage and source links.</p><dl class="research-advantages">${researchAdvantages(site, member).map(([title, text]) => `<div><dt>${e(title)}</dt><dd>${e(text)}</dd></div>`).join("")}</dl><p class="data-note">Financial database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")}. FCF/share is a derived measure; adjusted prices and associated dividend yields are labeled approximations. The formula line is a retrospective reference, not an intrinsic-value estimate. <a href="/sources/">Verify sources, dates and limitations.</a></p><p><a href="/stocks/">Browse the S&P 500 company directory</a> or search ${index.companies.length.toLocaleString("en-US")} US-listed securities. Metric coverage varies.</p><nav class="guide-links" aria-label="Stock research guides"><a href="/guides/pe-ratio-history/">P/E ratio history</a><a href="/guides/stock-price-vs-earnings/">Price versus earnings</a><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus cash flow</a><a href="/guides/export-stock-history-csv/">CSV/PNG exports without signup</a></nav></section>`;
++  return `<section class="card research-intro" aria-labelledby="research-intro-title"><p class="eyebrow">WHY USE STOCK VALUE LENS</p><${member ? "h2" : "h1"} id="research-intro-title">Free historical stock charts, P/E history and financial data</${member ? "h2" : "h1"}><p>Explore weekly P/E ratio history using annual EPS and compare earnings and cash flow per share with historical stock prices, with clear coverage and source links.</p><dl class="research-advantages">${researchAdvantages(site, member).map(([title, text]) => `<div><dt>${e(title)}</dt><dd>${e(text)}</dd></div>`).join("")}</dl><p class="data-note">Financial database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")}. FCF/share is a derived measure; adjusted prices and associated dividend yields are labeled approximations. The formula line is a retrospective reference, not an intrinsic-value estimate. <a href="/sources/">Verify sources, dates and limitations.</a></p><p><a href="/stocks/">Browse the S&P 500 company directory</a> or search ${index.companies.length.toLocaleString("en-US")} US-listed securities. Metric coverage varies.</p><nav class="guide-links" aria-label="Stock research guides"><a href="/guides/pe-ratio-history/">P/E ratio history</a><a href="/guides/stock-price-vs-earnings/">Price versus earnings</a><a href="/guides/eps-vs-free-cash-flow-per-share/">EPS versus cash flow</a><a href="/guides/export-stock-history-csv/">CSV/PNG exports without signup</a></nav></section>`;
  }
- 
+
  export async function generateSite(staging, site, index, snapshots, template) {
-@@ -152,7 +161,7 @@
+@@ -152,7 +163,7 @@
      await writeFile(join(directory, "index.html"), html);
      paths.push(path);
    }
 -  let home = template.replace(/<meta name="description"[^>]*>[\s\S]*?<title>[\s\S]*?<\/title>/, metadata(site, "/", "Free historical stock charts and EPS data", "Free stock price-versus-earnings charts, filing-linked annual EPS and derived FCF/share, long weekly price histories, and CSV/PNG exports without signup. Coverage varies."));
-+  let home = template.replace(/<meta name="description"[^>]*>[\s\S]*?<title>[\s\S]*?<\/title>/, metadata(site, "/", "Free historical stock charts, P/E history and EPS data", "Free approximate annual P/E history, stock price-versus-earnings charts, filing-linked annual EPS and derived FCF/share, long weekly price histories, and CSV/PNG exports without signup. Coverage varies."));
++  let home = template.replace(/<meta name="description"[^>]*>[\s\S]*?<title>[\s\S]*?<\/title>/, metadata(site, "/", "Free historical stock charts, P/E history and EPS data", "Free approximate weekly P/E history using annual EPS, stock price-versus-earnings charts, filing-linked annual EPS and derived FCF/share, long weekly price histories, and CSV/PNG exports without signup. Coverage varies."));
    home = home.replace(/<header[\s\S]*?<\/header>/, header(true)).replace(/<footer>[\s\S]*?<\/footer>/, footer(site));
    home = home.replace('Historical snapshot · prices are not live quotes.', `Historical snapshot · database built ${e(index.builtAt?.slice(0, 10) || "date unavailable")} · prices are not live quotes.`);
    home = home.replace('\n  </main>', advantagesSection(site, index) + '\n  </main>');
-@@ -165,14 +174,14 @@
+@@ -165,14 +176,14 @@
    const welcome = `<section id="welcome" class="snapshot-note" hidden><p id="welcome-message">The interactive chart is unavailable. The financial history below remains available.</p></section>`;
    for (const member of published) {
      const hasEps = member.snapshot.annual.some((row) => numeric(row.dilutedEps) || numeric(row.basicEps)), hasFcf = member.snapshot.annual.some((row) => numeric(row.fcfPerShare));
@@ -289,13 +449,13 @@
    const sectors = [...new Set(members.map((member) => member.sector).filter(Boolean))].sort();
    const directoryControls = `<div class="directory-controls"><label>Find a company<input id="directory-search" type="search" placeholder="Search ticker or company…" aria-controls="directory-rows"></label><label>Sector<select id="directory-sector" aria-controls="directory-rows"><option value="">All sectors</option>${sectors.map((sector) => `<option>${e(sector)}</option>`).join("")}</select></label></div><p id="directory-count" class="directory-count" role="status">${members.length} securities</p>`;
 -  await save("/stocks/", page(site, "/stocks/", "S&P 500 company financial history directory", "Browse free historical financial data and stock charts for available S&P 500 constituents, with dates and coverage gaps.", `<section class="card content-page directory-page"><p class="eyebrow">COMPANY DIRECTORY</p><h1>S&P 500 financial history</h1><p>${published.length} of ${members.length} constituent securities have company pages in this financial snapshot. All ${index.companies.length.toLocaleString("en-US")} stocks remain searchable in the <a href="/">free chart tool</a>.</p><p>Membership as of ${e(site.membership.asOf)}, retrieved ${e(site.membership.retrievedAt)} from <a href="${e(site.membership.sourceUrl)}">Wikipedia revision ${e(site.membership.sourceRevision)}</a>. <a href="/sources/">Sources, dates & limitations</a>.</p>${directoryControls}<div class="table-scroll directory-table"><table><caption>Constituents listed alphabetically by ticker</caption><thead><tr><th scope="col">Ticker</th><th scope="col">Company</th><th scope="col">Sector</th><th scope="col">Coverage</th></tr></thead><tbody id="directory-rows">${directoryRows}</tbody></table></div><p id="directory-empty" hidden>No companies match these filters.</p></section>`));
-+  await save("/stocks/", page(site, "/stocks/", "S&P 500 company financial history directory", "Browse free historical financial data and stock charts for available S&P 500 constituents, with dates and coverage gaps.", `<section class="card content-page directory-page"><p class="eyebrow">COMPANY DIRECTORY</p><h1>S&P 500 financial history</h1><p>${published.length} of ${members.length} constituent securities have company pages in this financial snapshot. <a href="/guides/pe-ratio-history/">Annual P/E history</a> is available where positive EPS and eligible prices overlap. All ${index.companies.length.toLocaleString("en-US")} stocks remain searchable in the <a href="/">free chart tool</a>.</p><p>Membership as of ${e(site.membership.asOf)}, retrieved ${e(site.membership.retrievedAt)} from <a href="${e(site.membership.sourceUrl)}">Wikipedia revision ${e(site.membership.sourceRevision)}</a>. <a href="/sources/">Sources, dates & limitations</a>.</p>${directoryControls}<div class="table-scroll directory-table"><table><caption>Constituents listed alphabetically by ticker</caption><thead><tr><th scope="col">Ticker</th><th scope="col">Company</th><th scope="col">Sector</th><th scope="col">Coverage</th></tr></thead><tbody id="directory-rows">${directoryRows}</tbody></table></div><p id="directory-empty" hidden>No companies match these filters.</p></section>`));
++  await save("/stocks/", page(site, "/stocks/", "S&P 500 company financial history directory", "Browse free historical financial data and stock charts for available S&P 500 constituents, with dates and coverage gaps.", `<section class="card content-page directory-page"><p class="eyebrow">COMPANY DIRECTORY</p><h1>S&P 500 financial history</h1><p>${published.length} of ${members.length} constituent securities have company pages in this financial snapshot. <a href="/guides/pe-ratio-history/">P/E history using annual EPS</a> is available where positive EPS and eligible prices overlap. All ${index.companies.length.toLocaleString("en-US")} stocks remain searchable in the <a href="/">free chart tool</a>.</p><p>Membership as of ${e(site.membership.asOf)}, retrieved ${e(site.membership.retrievedAt)} from <a href="${e(site.membership.sourceUrl)}">Wikipedia revision ${e(site.membership.sourceRevision)}</a>. <a href="/sources/">Sources, dates & limitations</a>.</p>${directoryControls}<div class="table-scroll directory-table"><table><caption>Constituents listed alphabetically by ticker</caption><thead><tr><th scope="col">Ticker</th><th scope="col">Company</th><th scope="col">Sector</th><th scope="col">Coverage</th></tr></thead><tbody id="directory-rows">${directoryRows}</tbody></table></div><p id="directory-empty" hidden>No companies match these filters.</p></section>`));
    const documents = [...supportingPages(site, index, members), ["/data-access/", "AI and data access", "Public Markdown and JSON resources for LLMs and research tools, with schemas, source dates, and limitations.", accessDocumentation(site, index, members)]];
    for (const [path, title, description, content] of documents) await save(path, page(site, path, title, description, `<article class="card content-page">${content}</article>`));
    await save("/updates/", page(site, "/updates/", "Website updates and milestones", "Major updates, launch milestones, and events in the history of Stock Value Lens.", updateHistory(site)));
 --- /dev/null
 +++ b/tests/pe.test.js
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,60 @@
 +import test from "node:test";
 +import assert from "node:assert/strict";
 +import { annualPeHistory } from "../web/calculations.js";
@@ -327,6 +487,35 @@
 +  assert.equal(rows[2].price, null); assert.equal(rows[2].dilutedPe, null); // 15 days stale
 +  assert.equal(rows[3].price, null); assert.equal(rows[3].basicPe, null); // no future substitution
 +});
++
++test("Weekly P/E retains every price and carries only the preceding annual EPS forward", async () => {
++  const { weeklyPeHistory } = await import("../web/calculations.js");
++  const snapshot = { annual: [annual("2024-12-31", 2, 1), annual("2025-12-31", 4, 2)], prices: [
++    { date: "2024-12-27", adjustedClose: 20 }, { date: "2025-01-03", adjustedClose: 30 },
++    { date: "2025-01-10", adjustedClose: 40 }, { date: "2025-12-26", adjustedClose: 80 },
++    { date: "2026-01-02", splitClose: 100, adjustedClose: 90 }
++  ] };
++  const rows = weeklyPeHistory(snapshot);
++  assert.equal(rows.length, snapshot.prices.length);
++  assert.deepEqual(rows.map((row) => row.date), snapshot.prices.map((row) => row.date));
++  assert.equal(rows[0].dilutedPe, null); assert.equal(rows[0].periodEnd, null);
++  assert.equal(rows[1].dilutedPe, 30); assert.equal(rows[2].dilutedPe, 40);
++  assert.equal(rows[3].periodEnd, "2024-12-31"); assert.equal(rows[3].dilutedPe, 80);
++  assert.equal(rows[4].periodEnd, "2025-12-31"); assert.equal(rows[4].dilutedPe, 50);
++  assert.equal(rows[4].basicPe, 25); assert.equal(rows[4].priceType, "split_only_close");
++  assert.equal(rows[1].dilutedSource.filed, "2026-08-01"); // retrospective, not filing-date backtest
++});
++test("Weekly P/E preserves loss and missing-EPS gaps rather than reusing old profitable years", async () => {
++  const { weeklyPeHistory } = await import("../web/calculations.js");
++  const rows = weeklyPeHistory({ annual: [annual("2023-12-31", 1, 1), annual("2024-12-31", -1, 0), annual("2025-12-31", null, 2)], prices: [
++    { date: "2024-01-05", adjustedClose: 20 }, { date: "2025-01-03", adjustedClose: 30 },
++    { date: "2026-01-02", adjustedClose: 40 }, { date: "2026-01-09", adjustedClose: null }
++  ] });
++  assert.equal(rows[0].dilutedPe, 20);
++  assert.equal(rows[1].basicPe, null); assert.equal(rows[1].dilutedPe, null);
++  assert.equal(rows[2].basicPe, null); assert.equal(rows[2].dilutedPe, 20);
++  assert.equal(rows[3].price, null); assert.equal(rows[3].dilutedPe, null);
++});
 --- a/tests/site.test.js
 +++ b/tests/site.test.js
 @@ -49,15 +49,15 @@
@@ -357,7 +546,7 @@
      for (const page of [home, html]) {
        assert.match(page, /<section id="chart-loading" class="chart-loading card" role="status">/);
        assert.ok(page.indexOf('id="chart-loading"') < page.indexOf('id="workspace"'));
-@@ -293,3 +293,30 @@
+@@ -293,3 +293,34 @@
      assert.match(await readFile(join(root, "dist/data-access/index.html"), "utf8"), /stored weekly observations/);
    } finally { await rm(root, { recursive: true, force: true }); }
  });
@@ -368,6 +557,9 @@
 +    await build(root, { siteUrl: "https://stocks.test" });
 +    const html = await readFile(join(root, "dist/stocks/aapl/index.html"), "utf8");
 +    assert.match(html, /id="pe-chart"/);
++    assert.match(html, /id="pe-range-chart"/);
++    assert.match(html, /id="pe-time-buttons"/);
++    assert.match(html, /all 2 stored weekly price points/);
 +    assert.match(html, /id="company-pe-history"/);
 +    assert.match(html, /13\.33/); // adjusted close 20 / diluted EPS 1.5
 +    assert.match(html, /2025-06-27/);
@@ -383,27 +575,96 @@
 +      assert.match(text, /guides\/pe-ratio-history\//);
 +    }
 +    const guide = await readFile(join(root, "dist/guides/pe-ratio-history/index.md"), "utf8");
-+    assert.match(guide, /15×, 20×, and 30×/);
-+    assert.match(guide, /not daily or weekly P\/E/);
++    assert.match(guide, /15×\/20×\/30×/);
++    assert.match(guide, /all stored weekly points/);
++    assert.match(guide, /synchronized windows/);
 +    assert.deepEqual(JSON.parse(await readFile(join(root, "dist/data/companies/AAPL.json"))), snapshot());
 +  } finally { await rm(root, { recursive: true, force: true }); }
 +});
+--- a/content/updates.json
++++ b/content/updates.json
+@@ -1,4 +1,26 @@
+ [
++  {
++    "date": "2026-10-09",
++    "type": "Feature",
++    "title": "Weekly P/E curves with a matching range selector",
++    "summary": "P/E history now follows every stored weekly price, with its own range bar synchronized to the valuation chart.",
++    "items": [
++      "Compare basic or diluted P/E using annual EPS carried forward from fiscal-period end.",
++      "Drag the P/E range handles or selected window, or choose a timeframe preset; both chart windows update together.",
++      "The P/E CSV contains weekly points and matching EPS periods. Year-end tables remain separate annual summaries."
++    ]
++  },
++  {
++    "date": "2026-10-09",
++    "type": "Feature",
++    "title": "Explore annual P/E ratio history",
++    "summary": "Compare approximate fiscal-year-end P/E ratios using basic or diluted annual EPS on existing stock pages.",
++    "items": [
++      "Choose diluted EPS, basic EPS, or both, with optional 15\u00d7, 20\u00d7 and 30\u00d7 comparison lines.",
++      "Use P/E CSV and PNG controls and read full annual P/E tables with eligible price dates and filing links.",
++      "A new P/E history guide explains annual frequency, adjusted-price approximations, missing-data gaps and retrospective timing."
++    ]
++  },
+   {
+     "date": "2026-10-09",
+     "type": "Milestone",
+@@ -16,8 +38,8 @@
+     "summary": "Verified stockvaluelens.com in Google Search Console and Bing Webmaster Tools and submitted its sitemap to both services.",
+     "items": [
+       "Bing processed the sitemap successfully and discovered all 497 listed pages.",
+-      "Google’s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
+-      "Google’s URL inspection confirms that the new-domain homepage is indexed.",
++      "Google\u2019s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
++      "Google\u2019s URL inspection confirms that the new-domain homepage is indexed.",
+       "Indexing of the remaining pages and search rankings are not yet confirmed."
+     ]
+   },
+@@ -60,9 +82,9 @@
+     "title": "Direct access for AI research assistants",
+     "summary": "Added public resources that let LLMs and research tools read the website and financial snapshots without running the interactive chart.",
+     "items": [
+-      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock’s JSON data.",
++      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock\u2019s JSON data.",
+       "Added an AI & data access guide in the footer, with schema, units, source dates, and interpretation limits.",
+-      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service’s answers is not guaranteed."
++      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service\u2019s answers is not guaranteed."
+     ]
+   },
+   {
+@@ -81,7 +103,7 @@
+     "title": "Google Search Console connected",
+     "summary": "Connected the public site to Google Search Console to monitor search visibility and indexing.",
+     "items": [
+-      "Submitted the website sitemap to Google and confirmed that Google’s live inspection can fetch it.",
++      "Submitted the website sitemap to Google and confirmed that Google\u2019s live inspection can fetch it.",
+       "Sitemap processing and inclusion in search results are not yet confirmed."
+     ]
+   },
 --- a/README.md
 +++ b/README.md
 @@ -176,3 +176,7 @@
  Charts use the existing formula `min(60, 15 × ((1 + CAGR) / 1.10)^(years × 0.6))`, exact-date years using 365.2425 days, and positive annual endpoints. Annual dividend yields prefer a split-only close within 14 days before fiscal year-end and otherwise use a recent adjusted close as a labeled approximation.
- 
+
  [Project log](PROJECT_LOG.md), [issue log](ISSUE_LOG.md), and [maintenance rules](AGENTS.md) record significant changes and decisions.
 +
 +## Annual P/E ratio history
 +
-+Existing stock pages and the main chart workspace include approximate fiscal-year-end P/E history using annual basic or diluted EPS, optional 15×/20×/30× comparison lines, and CSV/PNG exports. The shared `/guides/pe-ratio-history/` guide explains the calculation. Static company HTML and Markdown contain derived P/E observations; raw company JSON remains unchanged. Coverage requires positive EPS and eligible prices. This is retrospective annual P/E, not TTM or forward P/E.
++Existing stock pages and the main chart workspace include approximate P/E at every stored weekly price using annual basic or diluted EPS carried forward from fiscal end, synchronized time-range bars, optional 15×/20×/30× comparison lines, and CSV/PNG exports. The shared `/guides/pe-ratio-history/` guide explains the calculation. Static company HTML and Markdown distinguish weekly-chart coverage from separate fiscal-year-end snapshots; raw company JSON remains unchanged. Coverage requires positive EPS and eligible prices. This is retrospective annual P/E, not TTM or forward P/E.
 --- a/PROJECT_LOG.md
 +++ b/PROJECT_LOG.md
-@@ -9,6 +9,13 @@
+@@ -9,6 +9,20 @@
  - **Verification:** How the change was checked.
  - **References:** Relevant files, tests, issues, or commits.
  -->
++
++## 2026-10-09 — Weekly P/E curves and synchronized range bars
++
++- **Summary:** Changed the P/E chart from one year-end point per fiscal period to one observation for every stored weekly price. Added its own full-history range bar, draggable handles/window, keyboard handles and timeframe presets. Both chart windows synchronize. Updated CSV point frequency, EPS fiscal-end context, valuation-chart P/E tooltip, guide, company coverage summaries and machine-readable descriptions.
++- **Impact:** Uses each weekly close divided by the latest annual EPS whose fiscal end is on or before that price date, carried forward without interpolation. Dates before annual coverage and loss/missing-EPS periods remain gaps. This is retrospective annual-EPS-based P/E, not TTM/forward P/E. Existing annual year-end tables remain labeled summaries. Raw financial JSON and original formula references are unchanged.
++- **Verification:** 37 Node and 4 Python tests pass. Apple retains all 1,305 weekly prices; 971 support positive-EPS ratios. Browser checks: 783 points in the default 15-year window; 262 in 5Y; dragging the P/E start handle and using presets on either chart updates both. Keyboard advances both by 30 days. Basic/diluted comparison and references render, with no warning/error logs. Mobile at 390×844 has no horizontal overflow. Published as version `4afabe2b-02f0-4832-bd29-9c2c475bf54e`; 14 live resources match the tested build, and live All/5Y point counts and synchronization pass.
++- **References:** `web/calculations.js`, `web/pe.js`, `web/app.js`, `web/index.html`, `web/styles.css`, `scripts/site.mjs`, `scripts/ai.mjs`, `tests/pe.test.js`, `tests/site.test.js`, ISSUE-010 follow-up, `VERIFICATION.md`.
 +
 +## 2026-10-09 — Annual P/E history on existing stock pages
 +
@@ -411,12 +672,12 @@
 +- **Impact:** Reuses existing company URLs and main date-range controls. Annual EPS and eligible year-end prices determine coverage; ratios are uncapped, losses and missing prices remain gaps. Adjusted-close ratios and later-filed EPS make this retrospective annual P/E, not TTM or forward P/E. No financial refresh, new provider, or raw JSON schema change.
 +- **Verification:** 35 Node and 4 Python tests pass. Production build: 485 company pages, 498 HTML routes, 7,562 assets. Basic/diluted comparison, reference controls, mobile layout and selected-range changes checked in browser. Browser download-event capture fails for both the new and existing exporters; actual saved CSV/PNG downloads are not independently confirmed. Published to stockvaluelens.com as version `cffcc8f3-9586-44c0-88ef-b1a7f6e9fc3c`; 14 live resources match the build and the live P/E chart passes its control check.
 +- **References:** `web/pe.js`, `web/calculations.js`, `web/app.js`, `web/index.html`, `web/styles.css`, `scripts/site.mjs`, `scripts/ai.mjs`, `tests/pe.test.js`, `tests/site.test.js`, ISSUE-010, `VERIFICATION.md`.
- 
+
  ## 2026-10-09 — Stock Value Lens branding
- 
+
 --- a/ISSUE_LOG.md
 +++ b/ISSUE_LOG.md
-@@ -15,6 +15,19 @@
+@@ -15,6 +15,23 @@
  - **Follow-up:** Remaining work or review condition.
  - **References:** Related files or entries.
  -->
@@ -433,12 +694,26 @@
 +- **Verification:** Calculation tests cover basic/diluted differences, split-price precedence, adjusted fallback, 14-day boundary, stale/future prices, non-positive/missing EPS, uncapped ratios and filing dates. Generated HTML/Markdown/discovery tests pass and the raw company JSON is unchanged.
 +- **Follow-up:** Obtain quarterly data or analyst estimates only if true TTM/forward P/E is requested. Validate price/EPS split alignment before making exact historical-ratio claims.
 +- **References:** `web/calculations.js`, `web/pe.js`, `scripts/site.mjs`, `scripts/ai.mjs`, `tests/pe.test.js`, `tests/site.test.js`.
- 
++
++### 2026-10-09 follow-up — Weekly chart perspective
++
++The owner requested every stored price point and a range bar comparable to the valuation graph. The P/E chart now uses each weekly close divided by the latest annual EPS with fiscal end on or before the price date, carried forward until the next annual fiscal end without interpolation. This preserves every price date, including explicit unavailable ratios before EPS coverage or during loss/missing-EPS periods. The existing year-end eligibility rules above remain in the separate static annual summaries; they no longer define interactive chart frequency. Both range bars synchronize, and the valuation tooltip uses the same annual EPS basis. Later filing/restatement and adjusted-price caveats still apply. New calculation tests and browser checks verify point counts, no future fiscal-period substitution, loss gaps and range synchronization.
+
  ## ISSUE-009 — Research introduction flashed before chart initialization
- 
+
 --- a/VERIFICATION.md
 +++ b/VERIFICATION.md
-@@ -1,3 +1,12 @@
+@@ -1,3 +1,22 @@
++## Weekly P/E perspective and range bar — 2026-10-09
++
++- **Scope:** Every stored weekly price becomes one P/E row. Use the latest annual basic/diluted EPS with fiscal end <= price date, carry it forward without interpolation, and leave gaps for non-positive/missing EPS. Before first annual fiscal end, EPS and P/E are unavailable. This is retrospective, not a filing-date backtest, TTM or forward P/E. Split-only positive price is preferred per observation; adjusted fallback is approximate.
++- **Controls:** P/E has its own overview bar covering the full price timeline, draggable handles and selected interval, keyboard handles (30-day arrows and Home/End), and 2Y/3Y/5Y/10Y/15Y/20Y/All presets. Both chart windows synchronize. P/E CSV now exports weekly rows and matching EPS fiscal ends; annual year-end tables remain separate summaries.
++- **Automated verification:** 37 Node and 4 Python tests pass, including all-price retention, preceding EPS, no future fiscal-period substitution, loss/missing-EPS gaps, split-price precedence, HTML selector presence and weekly documentation. Build: 485 company pages, 498 HTML routes, 7,562 assets.
++- **Browser verification:** Apple full window: 1,305 weekly rows and 1,942 markers for both bases, corresponding to 971 eligible observations per base. Default 15Y: 783 rows; 5Y: 262 rows. Dragging P/E start handle changed both starts to 2018-12-03; first-chart 2Y changed both starts to 2024-05-07. P/E keyboard right-arrow shifted both 5Y starts to 2021-06-06. At 390×844, scroll width equals 390 px and the P/E bar is 324 px wide. Comparison and reference controls render with no warning/error logs.
++- **Data:** No financial refresh or raw JSON schema change. All stored price dates are retained even when a ratio is unavailable. Fiscal-end timing is explicitly distinguished from actual filing availability.
++- **Export limitation:** New weekly CSV generation is visible in the source; actual saved browser downloads are not re-verified because the previous release established download-event capture failures for both new and existing exporters.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `4afabe2b-02f0-4832-bd29-9c2c475bf54e`. Fourteen live resources match the tested build bytes. Live Apple All contains 1,305 rows, 1,942 markers for both bases and two range handles; 5Y contains 262 rows and both chart start dates match 2021-05-07. No warning/error logs observed. Public history records the weekly-curve and synchronized-range update.
++
 +## Annual P/E history — 2026-10-09
 +
 +- **Scope:** Existing homepage chart workspace and all 485 existing company pages; one shared P/E guide. No separate P/E page for each stock. User selected annual basic/diluted EPS with optional reference lines.
@@ -449,55 +724,5 @@
 +- **Maintenance:** PROJECT_LOG entry and ISSUE-010 record the feature and annual/adjusted timing decision. Source folder has no Git repository; source patch and release record are preserved in stock-industry-analysis for version control.
 +
  ## Initial-render flash fix — 2026-10-09
- 
+
  - **Diagnosis:** The homepage and company template hid the interactive workspace until snapshot initialization completed. The static research introduction temporarily became the first visible main section; it was pushed down, not removed, when the chart appeared.
---- a/content/updates.json
-+++ b/content/updates.json
-@@ -1,4 +1,15 @@
- [
-+  {
-+    "date": "2026-10-09",
-+    "type": "Feature",
-+    "title": "Explore annual P/E ratio history",
-+    "summary": "Compare approximate fiscal-year-end P/E ratios using basic or diluted annual EPS on existing stock pages.",
-+    "items": [
-+      "Choose diluted EPS, basic EPS, or both, with optional 15\u00d7, 20\u00d7 and 30\u00d7 comparison lines.",
-+      "Use P/E CSV and PNG controls and read full annual P/E tables with eligible price dates and filing links.",
-+      "A new P/E history guide explains annual frequency, adjusted-price approximations, missing-data gaps and retrospective timing."
-+    ]
-+  },
-   {
-     "date": "2026-10-09",
-     "type": "Milestone",
-@@ -16,8 +27,8 @@
-     "summary": "Verified stockvaluelens.com in Google Search Console and Bing Webmaster Tools and submitted its sitemap to both services.",
-     "items": [
-       "Bing processed the sitemap successfully and discovered all 497 listed pages.",
--      "Google’s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
--      "Google’s URL inspection confirms that the new-domain homepage is indexed.",
-+      "Google\u2019s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
-+      "Google\u2019s URL inspection confirms that the new-domain homepage is indexed.",
-       "Indexing of the remaining pages and search rankings are not yet confirmed."
-     ]
-   },
-@@ -60,9 +71,9 @@
-     "title": "Direct access for AI research assistants",
-     "summary": "Added public resources that let LLMs and research tools read the website and financial snapshots without running the interactive chart.",
-     "items": [
--      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock’s JSON data.",
-+      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock\u2019s JSON data.",
-       "Added an AI & data access guide in the footer, with schema, units, source dates, and interpretation limits.",
--      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service’s answers is not guaranteed."
-+      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service\u2019s answers is not guaranteed."
-     ]
-   },
-   {
-@@ -81,7 +92,7 @@
-     "title": "Google Search Console connected",
-     "summary": "Connected the public site to Google Search Console to monitor search visibility and indexing.",
-     "items": [
--      "Submitted the website sitemap to Google and confirmed that Google’s live inspection can fetch it.",
-+      "Submitted the website sitemap to Google and confirmed that Google\u2019s live inspection can fetch it.",
-       "Sitemap processing and inclusion in search results are not yet confirmed."
-     ]
-   },

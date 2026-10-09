@@ -1,31 +1,52 @@
 {
   "date": "2026-10-09",
-  "feature": "Approximate fiscal-year-end basic/diluted annual P/E history",
+  "feature": "Weekly P/E curves using annual EPS with synchronized range bars",
   "origin": "https://stockvaluelens.com",
-  "version": "cffcc8f3-9586-44c0-88ef-b1a7f6e9fc3c",
+  "version": "4afabe2b-02f0-4832-bd29-9c2c475bf54e",
+  "previousVersion": "cffcc8f3-9586-44c0-88ef-b1a7f6e9fc3c",
   "published": true,
-  "architecture": "P/E section on existing stock pages and homepage chart workspace; one shared calculation guide; no duplicate P/E page per stock.",
+  "architecture": "P/E remains on existing stock pages and homepage workspace, with its own overview range selector synchronized to the valuation chart; one shared guide.",
   "controls": [
     "Basic EPS",
     "Diluted EPS",
     "Compare both",
     "Optional 15x/20x/30x reference lines",
-    "Main chart date-range synchronization",
-    "P/E CSV/PNG export controls"
+    "P/E overview range bar with draggable handles and selected interval",
+    "Keyboard range handles",
+    "2Y/3Y/5Y/10Y/15Y/20Y/All presets",
+    "Bidirectional synchronization with valuation chart",
+    "P/E CSV now contains weekly rows and matching EPS fiscal ends"
   ],
-  "calculation": "Annual EPS matched to eligible fiscal-year-end close within 14 days on or before fiscal end; split-only preferred, adjusted fallback approximate. Positive EPS required. Retrospective, uncapped, not TTM or forward P/E.",
+  "calculation": "Retain every stored weekly price date. Divide each positive split-only close, or adjusted-close approximation, by latest annual basic/diluted EPS with fiscal end on or before price date. Carry EPS forward without interpolation; preserve gaps before annual coverage or with missing/non-positive EPS. Retrospective, not a filing-date backtest, TTM or forward P/E. Ratios uncapped.",
+  "annualTables": "Static fiscal-year-end snapshots remain separate annual summaries and retain filing links.",
   "checks": {
-    "nodeTestsPassed": 35,
+    "nodeTestsPassed": 37,
     "pythonTestsPassed": 4,
-    "companyPagesWithPe": 485,
+    "companyPagesWithPeRangeControls": 485,
     "sitemapRoutes": 498,
     "generatedAssets": 7562,
     "unchangedCompanyJsonFiles": 6551,
+    "apple": {
+      "allWeeklyPrices": 1305,
+      "allPeRows": 1305,
+      "eligibleObservationsPerBasis": 971,
+      "markersForBothBases": 1942,
+      "default15YearWeeklyRows": 783,
+      "fiveYearWeeklyRows": 262
+    },
+    "localBrowser": {
+      "dragStartSynchronized": "2018-12-03",
+      "mainTwoYearPresetSynchronized": "2024-05-07",
+      "peKeyboardArrowSynchronized": "2021-06-06",
+      "mobileWidth": 390,
+      "mobileScrollWidth": 390
+    },
     "liveBrowser": {
-      "pePaths": 2,
-      "periodsIn15YearWindow": 15,
-      "referenceLinesEnabled": true,
-      "originalPriceChartRendered": true,
+      "allPeRows": 1305,
+      "markersForBothBases": 1942,
+      "rangeHandles": 2,
+      "fiveYearRows": 262,
+      "bothFiveYearStarts": "2021-05-07",
       "warningErrorLogs": []
     },
     "liveBuildMatches": [
@@ -87,7 +108,7 @@
       }
     ]
   },
-  "exportVerification": "CSV/PNG controls were clicked without console errors, but browser download-event capture timed out for both new exports and the pre-existing CSV exporter; actual saved downloads are unconfirmed.",
+  "exportVerification": "Weekly CSV source updated; saved browser downloads not re-verified because previous release showed download-event capture failures for both new and pre-existing exporters.",
   "changedSourceFiles": [
     "web/app.js",
     "web/calculations.js",
@@ -98,19 +119,20 @@
     "scripts/site.mjs",
     "tests/pe.test.js",
     "tests/site.test.js",
+    "content/updates.json",
     "README.md",
     "PROJECT_LOG.md",
     "ISSUE_LOG.md",
-    "VERIFICATION.md",
-    "content/updates.json"
+    "VERIFICATION.md"
   ],
   "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
-  "backup": "/private/tmp/stock-pe-history-o0875_rk",
-  "versionControl": "Website source folder has no Git repository. Source patch, live screenshot and release record saved in stock-industry-analysis for commit and push.",
+  "backup": "/private/tmp/stock-pe-weekly-7oqnf1wa",
+  "sourcePatch": "Cumulative patch from pre-P/E source; initial year-end launch retained in website history and logs.",
+  "versionControl": "Website source folder has no Git repository. Updated source patch, live screenshot and release record saved in stock-industry-analysis for commit and push.",
   "maintenanceLogReview": {
-    "websiteProjectLog": "Feature and verified publication recorded.",
-    "websiteIssueLog": "ISSUE-010 records annual timing and adjusted-price interpretation.",
-    "analysisProjectLog": "No update: Five Forces skill unchanged.",
-    "analysisIssueLog": "No update: website tradeoff recorded in its existing issue log."
+    "websiteProjectLog": "Weekly perspective, range controls and verified publication recorded.",
+    "websiteIssueLog": "Dated follow-up to ISSUE-010 records weekly EPS carry-forward versus retained annual summaries.",
+    "analysisProjectLog": "No update: analysis skill unchanged.",
+    "analysisIssueLog": "No duplicate entry: website decision recorded in its issue log."
   }
 }

@@ -6,9 +6,9 @@ The skill focuses on business quality and industry structure. It does not provid
 
 ## Related public website
 
-[Stock Value Lens](https://stockvaluelens.com/) is the project's related free website for historical US stock charts, approximate annual P/E ratio history, annual EPS, cash flow, dividends, and CSV/PNG exports, with no account or subscription required. Its official domain is `stockvaluelens.com`; the current name replaces “Stock Valuation Lens” as of 2026-10-09.
+[Stock Value Lens](https://stockvaluelens.com/) is the project's related free website for historical US stock charts, approximate weekly P/E ratio history using annual EPS, annual EPS, cash flow, dividends, and CSV/PNG exports, with no account or subscription required. Its official domain is `stockvaluelens.com`; the current name replaces “Stock Valuation Lens” as of 2026-10-09.
 
-This repository contains the analysis skill and reports. The website application source lives in the separate local folder `/Users/yangch/Downloads/investment/stock-valuation-public`. The [SEO proposal and implementation record](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the audience assumptions, keyword candidates, and approved changes published on 2026-10-08. The live [research guides](https://stockvaluelens.com/guides/) cover [annual P/E ratio history](https://stockvaluelens.com/guides/pe-ratio-history/), price versus earnings, EPS versus cash flow, and CSV exports.
+This repository contains the analysis skill and reports. The website application source lives in the separate local folder `/Users/yangch/Downloads/investment/stock-valuation-public`. The [SEO proposal and implementation record](company-analyses/Stock_Valuation_Lens_SEO_Proposal.md) records the audience assumptions, keyword candidates, and approved changes published on 2026-10-08. The live [research guides](https://stockvaluelens.com/guides/) cover [P/E ratio history using annual EPS](https://stockvaluelens.com/guides/pe-ratio-history/), price versus earnings, EPS versus cash flow, and CSV exports.
 
 ## What it produces
 
