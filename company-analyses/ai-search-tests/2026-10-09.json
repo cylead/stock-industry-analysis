@@ -1,0 +1,870 @@
+{
+  "protocol": "v1",
+  "researchDate": "2026-10-09",
+  "completedAt": "2026-10-09T17:02:30+02:00",
+  "timezone": "Europe/Stockholm",
+  "target": "https://stockvaluelens.com/",
+  "method": "Six independent unbranded search-tool calls, followed by assistant-authored answers constrained to retrieved evidence; no blind external model sessions.",
+  "provider": "Assistant web search; underlying search provider unavailable",
+  "model": "Runtime model identifier not exposed in test evidence",
+  "counts": {
+    "successfulAudienceQueries": 6,
+    "failedAudienceQueries": 0,
+    "canonicalRetrievalHits": 0,
+    "legacyRetrievalHits": 0,
+    "targetRecommendationHits": 0,
+    "targetCitationHits": 0
+  },
+  "tests": [
+    {
+      "id": "valuation",
+      "prompt": "What free tools can I use to research historical stock valuations without signing up?",
+      "status": "success",
+      "sources": [
+        {
+          "title": "Free fundamental stock analysis | Kaplio",
+          "url": "https://kaplio.com/"
+        },
+        {
+          "title": "VroomStocks — Free Stock Analysis, DCF Valuation & Screener for US & India",
+          "url": "https://www.vroomstocks.com/"
+        },
+        {
+          "title": "Free Stock Valuation & Fair Value Analysis | Stock Insights",
+          "url": "https://www.stockinsights.net/"
+        },
+        {
+          "title": "FinanceProbe — A modern research platform for serious investors",
+          "url": "https://www.financeprobe.com/"
+        },
+        {
+          "title": "Free Stock Intrinsic & Fair Value Analysis | MarketFairValue",
+          "url": "https://marketfairvalue.com/"
+        },
+        {
+          "title": "About ValueCalc — Free Stock Valuation Tools",
+          "url": "https://stockvalcalc.com/about"
+        },
+        {
+          "title": "Free Valuation Tools · VI Stack",
+          "url": "https://vistack.io/tools"
+        },
+        {
+          "title": "5 Best Free Stock Valuation Tools in 2026",
+          "url": "https://minivaluator.com/blog/best-free-stock-valuation-tools"
+        },
+        {
+          "title": "KashVector — Free Stock Valuation Tools: DCF, Dividend Models & Undervalued Stock Screens",
+          "url": "https://kashvector.com/"
+        },
+        {
+          "title": "Balance Labs (Official Site) | AI Stock Research, Screener & Trading Labs",
+          "url": "https://balancelabs.app/"
+        },
+        {
+          "title": "ImpliedLens — Research stocks like a professional",
+          "url": "https://impliedlens.com/"
+        },
+        {
+          "title": "Free Advanced Stock Charts & Screener | Stock Foundry",
+          "url": "https://stockfoundry.co/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag … would love feedback from actual investors",
+          "url": "https://www.reddit.com/r/SeekingAlpha/comments/1wkt7y8/i_built_a_free_stock_analysis_tool_after_getting/"
+        },
+        {
+          "title": "Essential websites for investing tools?",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1szr8lj/essential_websites_for_investing_tools/"
+        },
+        {
+          "title": "Subscription-Based Analysis Tools?",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w1pamp/subscriptionbased_analysis_tools/"
+        },
+        {
+          "title": "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag — would love feedback from actual investors",
+          "url": "https://www.reddit.com/r/SideProject/comments/1wkic2m/i_built_a_free_stock_analysis_tool_after_getting/"
+        },
+        {
+          "title": "I built a free stock research platform – no paywalls, no account required, 5000+ stocks",
+          "url": "https://www.reddit.com/r/BeginnerInvesting/comments/1u4rdvq/i_built_a_free_stock_research_platform_no/"
+        },
+        {
+          "title": "untitled",
+          "url": "https://catalogimages.wiley.com/images/db/pdf/9781118495360.excerpt.pdf"
+        },
+        {
+          "title": "Free Alternatives to Morningstar Premium: A Comprehensive Guide for Investors",
+          "url": "https://www.reddit.com/r/TraderTools/comments/1sbjsgj/free_alternatives_to_morningstar_premium_a/"
+        },
+        {
+          "title": "Free Resources for Research",
+          "url": "https://www.reddit.com/r/stocks/comments/11uz65q"
+        },
+        {
+          "title": "Free Alternatives to Morningstar Premium: A Comprehensive Guide for Investors",
+          "url": "https://www.reddit.com/r/TraderTools/comments/1tvw5gv/free_alternatives_to_morningstar_premium_a/"
+        },
+        {
+          "title": "Free Resources for Research",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/11uyvwt"
+        },
+        {
+          "title": "List of financial market information services",
+          "url": "https://en.wikipedia.org/wiki/List_of_financial_market_information_services"
+        },
+        {
+          "title": "Google Finance",
+          "url": "https://en.wikipedia.org/wiki/Google_Finance"
+        },
+        {
+          "title": "i",
+          "url": "https://pustaka.unp.ac.id/file/abstrak_kki/EBOOKS/LIBRARIES%20The%20librarian%27s%20Internet%20survival%20guide%20%20strategies%20for%20the%20high-tech%20reference%20desk.pdf"
+        },
+        {
+          "title": "Research Tools",
+          "url": "https://edu.stocktrak.com/wharton/wp-content/uploads/sites/19/2024/09/2024-WInS-User-Guide.pdf"
+        },
+        {
+          "title": "70 Valuable Things You Can Get for Free",
+          "url": "https://www.kiplinger.com/slideshow/saving/t063-s001-70-valuable-things-you-can-get-for-free/index.html"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "Try Kaplio for free fundamental research without signup; its official homepage advertises ten years of data. This does not verify a historical valuation-multiple chart. VroomStocks and Stock Insights also surfaced but remain unverified candidates for this exact request.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    },
+    {
+      "id": "pe_history",
+      "prompt": "Where can I see a stock's historical P/E ratio chart for free?",
+      "status": "success",
+      "sources": [
+        {
+          "title": "PE Ratio History Chart — vs. Sector Median | Basis Report",
+          "url": "https://www.basisreport.com/tools/pe-historical-chart"
+        },
+        {
+          "title": "P/E Ratio History Chart — Price-to-Earnings Explorer | Blue Alpha Research",
+          "url": "https://bluealpharesearch.com/tools/pe-ratio"
+        },
+        {
+          "title": "How to Chart Historical P/E Ratios for Any Stock (Free)",
+          "url": "https://www.stockresearch.app/blog/chart-historical-pe-ratio-free"
+        },
+        {
+          "title": "LionCharts — Free Financial Screener, SEC Data, FRED Macro & Markets Dashboard",
+          "url": "https://lioncharts.com/"
+        },
+        {
+          "title": "Market Fundamentals | Historical Chart Gallery | StockCharts.com",
+          "url": "https://stockcharts.com/freecharts/historical/fundamentals.html"
+        },
+        {
+          "title": "S&P 500 Price to Earnings Ratio (PE Ratio)",
+          "url": "https://dqydj.com/sp-500-pe-ratio/"
+        },
+        {
+          "title": "Global Equity Valuation Data | Siblis Research",
+          "url": "https://siblisresearch.com/"
+        },
+        {
+          "title": "StockResearch Is Now a Valuation Research Platform",
+          "url": "https://www.stockresearch.app/blog/stockresearch-valuation-platform-launch"
+        },
+        {
+          "title": "StockResearch: Is That Stock Actually Cheap?",
+          "url": "https://www.stockresearch.app/"
+        },
+        {
+          "title": "valpacket2spr25",
+          "url": "https://pages.stern.nyu.edu/~adamodar/pdfiles/eqnotes/Pricing.pdf"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "Google Finance",
+          "url": "https://en.wikipedia.org/wiki/Google_Finance"
+        },
+        {
+          "title": "Historical Price / Earnings Ratio",
+          "url": "https://www.crandallpierce.com/downloads/equities/278B.pdf"
+        },
+        {
+          "title": "Stock valuation",
+          "url": "https://en.wikipedia.org/wiki/Stock_valuation"
+        },
+        {
+          "title": "Historical Price to Earnings",
+          "url": "https://files.fisher.osu.edu/department-finance/public/2022-03/financials_254617_36787680_Financials%20Sector%20Update%20v2.pdf?VersionId=5uuwKLdujc92qTkEWBh_PxuYPuc53jT3%3FVersionId%3D5uuwKLdujc92qTkEWBh_PxuYPuc53jT3"
+        },
+        {
+          "title": "S&P500 Index P/E ratio",
+          "url": "https://people.hec.edu/lovo/wp-content/uploads/sites/28/2025/10/FM2025.pdf"
+        },
+        {
+          "title": "Is it possible to see a company’s P/E ratio ( not chart) for 5 or 10 years data?",
+          "url": "https://www.reddit.com/r/bloomberg/comments/nq1rtd"
+        },
+        {
+          "title": "Free source for historical daily P/E data?",
+          "url": "https://www.reddit.com/r/algorithmictrading/comments/1w3qdbp/free_source_for_historical_daily_pe_data/"
+        },
+        {
+          "title": "Where to find a Good P/E Ratio Chart?",
+          "url": "https://www.reddit.com/r/stocks/comments/1ocfb2u"
+        },
+        {
+          "title": "Historical PE on chart",
+          "url": "https://www.reddit.com/r/TradingView/comments/17jsblc"
+        },
+        {
+          "title": "how to generate/ access historical P/E ratio of a company ?",
+          "url": "https://www.reddit.com/r/fidelityinvestments/comments/1h323vr/how_to_generate_access_historical_pe_ratio_of_a/"
+        },
+        {
+          "title": "Is there any website where I can see the historical P/E ratio chart of listed companies?",
+          "url": "https://www.reddit.com/r/phinvest/comments/pcedbh"
+        },
+        {
+          "title": "TWS Chart Price to earnings",
+          "url": "https://www.reddit.com/r/interactivebrokers/comments/n1uofe"
+        },
+        {
+          "title": "TradingView Indicators Historic Data in Free Plan vs Essential Plan",
+          "url": "https://www.reddit.com/r/TradingView/comments/1gy0rzo"
+        },
+        {
+          "title": "Anyone know a site that does stock price vs P/E ratio charts?",
+          "url": "https://www.reddit.com/r/investing_discussion/comments/1jgnera"
+        },
+        {
+          "title": "Where to find historical P/E charts?",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1m3urw1"
+        },
+        {
+          "title": "Is there a way to chart forward P/E for a stock?",
+          "url": "https://www.reddit.com/r/koyfin/comments/13674mk"
+        },
+        {
+          "title": "Historical Price Earnings Ratio",
+          "url": "https://s3.amazonaws.com/saylordotorg-resources/wwwresources/site/wp-content/uploads/2012/05/Bus101-Book-May2011.pdf"
+        },
+        {
+          "title": "Historical Price Earnings Ratio",
+          "url": "https://resources.saylor.org/wwwresources/site/wp-content/uploads/2012/05/Bus101-Book-May2011.pdf"
+        },
+        {
+          "title": "Price–earnings ratio",
+          "url": "https://en.wikipedia.org/wiki/Price%E2%80%93earnings_ratio"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "Try Basis Report's free, no-account P/E history tool. Its page inconsistently describes five and seven years, so check the actual chart range. Blue Alpha Research also describes a historical P/E chart based on Yahoo Finance; free access and chart operation were not independently exercised.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    },
+    {
+      "id": "price_eps",
+      "prompt": "Recommend free websites to compare a US stock's price history with its earnings per share.",
+      "status": "success",
+      "sources": [
+        {
+          "title": "About Stockamaze | Free US Stock Market Research",
+          "url": "https://stockamaze.com/about"
+        },
+        {
+          "title": "Free Stock Tracker - Real-Time Prices, Charts, P/E Ratio & Key Metrics | Numfluxa",
+          "url": "https://numfluxa.com/en/stock-tracker"
+        },
+        {
+          "title": "Free Stock Screener With No Paywall: 30 Years Financial Statements And Full Inception Price History | VCP Scanner",
+          "url": "https://vcpscanner.com/insights/free-stock-screener-no-paywall"
+        },
+        {
+          "title": "Stockamaze | Free US Stock Market Data, Screener & Company Financials",
+          "url": "https://stockamaze.com/"
+        },
+        {
+          "title": "US Stock Research and Analysis | Tickerix",
+          "url": "https://tickerix.com/"
+        },
+        {
+          "title": "Compare Stocks | Dynamically Compare Your Favorite Stocks",
+          "url": "https://www.marketbeat.com/compare-stocks/"
+        },
+        {
+          "title": "The Market Is Open — Live Stock Quotes, Charts & Portfolios",
+          "url": "https://www.themarketisopen.com/"
+        },
+        {
+          "title": "LionCharts — Free Financial Screener, SEC Data, FRED Macro & Markets Dashboard",
+          "url": "https://lioncharts.com/"
+        },
+        {
+          "title": "Free fundamental stock analysis | Kaplio",
+          "url": "https://kaplio.com/"
+        },
+        {
+          "title": "About Wall Street Friend — Free Earnings Analytics & SEC Research",
+          "url": "https://wsfriend.com/about/"
+        },
+        {
+          "title": "Compare - performance against competitors",
+          "url": "https://finance.yahoo.com/compare"
+        },
+        {
+          "title": "Compare Stocks & ETFs on One Chart — Free Comparison Tool",
+          "url": "https://stockvs.com/en/compare"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "Free source for historical daily P/E data?",
+          "url": "https://www.reddit.com/r/algorithmictrading/comments/1w3qdbp/free_source_for_historical_daily_pe_data/"
+        },
+        {
+          "title": "Free/cheap source for historical analyst consensus EPS (2010+, incl. delisted US stocks)?",
+          "url": "https://www.reddit.com/r/IndiaAlgoTrading/comments/1wygfae/freecheap_source_for_historical_analyst_consensus/"
+        },
+        {
+          "title": "Free/cheap source for historical analyst consensus EPS (2010+, incl. delisted US stocks)?",
+          "url": "https://www.reddit.com/r/mltraders/comments/1wy367n/freecheap_source_for_historical_analyst_consensus/"
+        },
+        {
+          "title": "Fidelity.com",
+          "url": "https://www.fidelity.com/research/stocks/content/earnings.pdf"
+        },
+        {
+          "title": "Google Finance",
+          "url": "https://en.wikipedia.org/wiki/Google_Finance"
+        },
+        {
+          "title": "Locating Earnings Estimates on the Web",
+          "url": "https://www.betterinvesting.org/getmedia/61c4a2ab-c008-4d26-8704-6e6ab8337a11/locating-eps-on-the-web.pdf"
+        },
+        {
+          "title": "Stock valuation",
+          "url": "https://en.wikipedia.org/wiki/Stock_valuation"
+        },
+        {
+          "title": "Looking for historical consensus revenue and EPS forecasts",
+          "url": "https://www.reddit.com/r/algotrading/comments/1f8u50p"
+        },
+        {
+          "title": "Daily Stocks",
+          "url": "https://en.wikipedia.org/wiki/Daily_Stocks"
+        },
+        {
+          "title": "Free Stock Research Websites That Don't Suck",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1gfo209"
+        },
+        {
+          "title": "Institutional Brokers' Estimate System",
+          "url": "https://en.wikipedia.org/wiki/Institutional_Brokers%27_Estimate_System"
+        },
+        {
+          "title": "Cyclically adjusted price-to-earnings ratio",
+          "url": "https://en.wikipedia.org/wiki/Cyclically_adjusted_price-to-earnings_ratio"
+        },
+        {
+          "title": "Historical Price Earnings Ratio",
+          "url": "https://resources.saylor.org/wwwresources/site/wp-content/uploads/2012/05/Bus101-Book-May2011.pdf"
+        },
+        {
+          "title": "Yahoo Finance",
+          "url": "https://en.wikipedia.org/wiki/Yahoo_Finance"
+        },
+        {
+          "title": "Corporate Earnings vs. Earnings Per Share",
+          "url": "https://comptroller.nyc.gov/wp-content/uploads/documents/NYC_20TRS_20Pension_20Fund_20-_20Performance_20Review_20July__202016.pdf"
+        },
+        {
+          "title": "The Best Value Stocks to Buy",
+          "url": "https://www.kiplinger.com/investing/stocks/the-best-value-stocks-to-buy"
+        },
+        {
+          "title": "What Is a P/E Ratio and How Do I Use It in Investing?",
+          "url": "https://www.kiplinger.com/investing/what-is-a-pe-ratio-and-how-do-i-use-it-in-investing"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "Stockamaze, Numfluxa and VCP Scanner surfaced as candidates. The fetched Stockamaze about page did not substantiate the detailed search snippet, so I cannot confidently endorse an exact free price-versus-EPS overlay from these results.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    },
+    {
+      "id": "fcf",
+      "prompt": "What free tools show historical free cash flow per share for US stocks?",
+      "status": "success",
+      "sources": [
+        {
+          "title": "LionCharts — Free Financial Screener, SEC Data, FRED Macro & Markets Dashboard",
+          "url": "https://lioncharts.com/"
+        },
+        {
+          "title": "The Cash Flow Projector — Free Stock Research Tool · 10-Year Earnings & Cash Flow Forecasts",
+          "url": "https://thecashflowprojector.com/"
+        },
+        {
+          "title": "Free Cash Flow Per Share (Historical) | MarketXLS",
+          "url": "https://marketxls.com/formulas/free-cash-flow-per-share-last-quarter"
+        },
+        {
+          "title": "Stock Research: Free Charts, Financials & Valuation | Chartloom",
+          "url": "https://www.chartloom.com/stock-research"
+        },
+        {
+          "title": "Free Cash Flow Per Share (Historical) | MarketXLS",
+          "url": "https://marketxls.com/formulas/free-cash-flow-per-share-last-quarter?function_id=fn_00244"
+        },
+        {
+          "title": "Where to Get Free Cash Flow Data for Stocks in Python — Xfinlink",
+          "url": "https://xfinlink.com/blog/where-to-get-free-cash-flow-data-python"
+        },
+        {
+          "title": "Open datasets — the boards and the screen as CSV / JSON",
+          "url": "https://sweetvaluelab.com/datasets"
+        },
+        {
+          "title": "Best Fundamentals APIs in 2026 (8 APIs Compared) | StockFit | StockFit API",
+          "url": "https://developer.stockfit.io/blog/best-fundamentals-api"
+        },
+        {
+          "title": "Fundamental Data API - Free Plan",
+          "url": "https://businessquant.com/docs/api/overview"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/TraderTools/comments/1tuw8tk/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/SideProject/comments/1twr305/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/Stocks_Philippines/comments/1tv3tqs/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "Got tired of hitting paywalls for historical financials, so I built my own database.",
+          "url": "https://www.reddit.com/r/u_ValueEquities/comments/1ta25tx/got_tired_of_hitting_paywalls_for_historical/"
+        },
+        {
+          "title": "I built a free SEC-based screener",
+          "url": "https://www.reddit.com/r/optionstrading/comments/1w496sk/i_built_a_free_secbased_screener/"
+        },
+        {
+          "title": "Free Cash Flow Based Strategies",
+          "url": "https://www.paceradvisors.com/media/cowz_sma.pdf"
+        },
+        {
+          "title": "Free Cash Flow Based Strategies",
+          "url": "https://www.paceradvisors.com/media/calf_sma.pdf"
+        },
+        {
+          "title": "Q3 2024 Updated Kelly US Cash Flow Dividend Leaders Index",
+          "url": "https://kellyintel.com/wp-content/uploads/2024/10/COWSETF-Index-2024-Kelly-US-Cash-Flow-Dividend-Leaders-Index.pdf"
+        },
+        {
+          "title": "Sep12_05",
+          "url": "https://www.iclub.com/downloads/ToolkitTips_eBook.pdf"
+        },
+        {
+          "title": "Any way to screen on Free Cash Flow Yield?",
+          "url": "https://www.reddit.com/r/thinkorswim/comments/yk8xys"
+        },
+        {
+          "title": "Investment research - Where can i find historical data for EPS, ROIC, Sales growth of stocks?",
+          "url": "https://www.reddit.com/r/investing/comments/d0ev16"
+        },
+        {
+          "title": "Free Cash Flow Yield",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/18xu5e2"
+        },
+        {
+          "title": "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag — would love feedback from actual investors",
+          "url": "https://www.reddit.com/r/SideProject/comments/1wkic2m/i_built_a_free_stock_analysis_tool_after_getting/"
+        },
+        {
+          "title": "Google Finance",
+          "url": "https://en.wikipedia.org/wiki/Google_Finance"
+        },
+        {
+          "title": "Free cash flow",
+          "url": "https://en.wikipedia.org/wiki/Free_cash_flow"
+        },
+        {
+          "title": "Free cash flow to equity",
+          "url": "https://en.wikipedia.org/wiki/Free_cash_flow_to_equity"
+        },
+        {
+          "title": "Financial data vendor",
+          "url": "https://en.wikipedia.org/wiki/Financial_data_vendor"
+        },
+        {
+          "title": "Investment",
+          "url": "https://en.wikipedia.org/wiki/Investment"
+        },
+        {
+          "title": "TipRanks",
+          "url": "https://en.wikipedia.org/wiki/TipRanks"
+        },
+        {
+          "title": "Automatic Historical Stock Price Dataset Generation Using Python",
+          "url": "https://arxiv.org/abs/2308.13414"
+        },
+        {
+          "title": "Stock Market Market Crash of 2008: an empirical study of the deviation of share prices from company fundamentals",
+          "url": "https://arxiv.org/abs/1607.03205"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "LionCharts, The Cash Flow Projector, MarketXLS and Chartloom surfaced. I could not verify a free historical FCF-per-share chart from the fetched page contents. These remain candidates rather than confirmed solutions.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    },
+    {
+      "id": "csv",
+      "prompt": "Where can I download historical annual EPS and stock price data as CSV for free without an account?",
+      "status": "success",
+      "sources": [
+        {
+          "title": "US historical stock prices with earnings data",
+          "url": "https://www.kaggle.com/tsaustin/us-historical-stock-prices-with-earnings-data/tasks"
+        },
+        {
+          "title": "Radically accessible US stock fundamentals | sharadar.com",
+          "url": "https://sharadar.com/"
+        },
+        {
+          "title": "Radically accessible US stock fundamentals | sharadar.com",
+          "url": "https://sharadar.com/?from=explinks.com"
+        },
+        {
+          "title": "Download historical data in Yahoo Finance | Yahoo Help",
+          "url": "https://in.help.yahoo.com/kb/SLN2311.html"
+        },
+        {
+          "title": "Standard and Poor's (S&P) 500 Index Data including Dividend, Earnings and P/E Ratio",
+          "url": "https://datahub.io/core/s-and-p-500?view=real-vs-nominal"
+        },
+        {
+          "title": "Macrotrends Scraper - Download Historical Data to CSV",
+          "url": "https://parseforge.co/a/macrotrends-scraper/"
+        },
+        {
+          "title": "Free Historical Stocks API | ADGSTUDIOS",
+          "url": "https://stocks.adgstudios.co.za/"
+        },
+        {
+          "title": "Free Shiller Data API - Historical Stock Market & Economic Data",
+          "url": "https://posix4e.github.io/shiller_wrapper_data/"
+        },
+        {
+          "title": "Past Earnings Data",
+          "url": "https://www.reddit.com/r/options/comments/16gwr0m"
+        },
+        {
+          "title": "Source for S&P 500 monthly returns?",
+          "url": "https://www.reddit.com/r/investing/comments/1sgcbr3/source_for_sp_500_monthly_returns/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "My Solution for Yahoos export of financial history",
+          "url": "https://www.reddit.com/r/algotrading/comments/1fcp46t/my_solution_for_yahoos_export_of_financial_history/"
+        },
+        {
+          "title": "Anyone willing to share old Yahoo Finance CSVs?",
+          "url": "https://www.reddit.com/r/algotrading/comments/1gjs02v/anyone_willing_to_share_old_yahoo_finance_csvs/"
+        },
+        {
+          "title": "Resources for Research Projects",
+          "url": "https://econ.columbia.edu/wp-content/uploads/sites/32/2018/03/resources_for_research_projects_updated.pdf"
+        },
+        {
+          "title": "code will download data up to the current date.",
+          "url": "https://www.aeaweb.org/content/file?id=19871"
+        },
+        {
+          "title": "Free source for historical daily P/E data?",
+          "url": "https://www.reddit.com/r/algorithmictrading/comments/1w3qdbp/free_source_for_historical_daily_pe_data/"
+        },
+        {
+          "title": "Google Finance",
+          "url": "https://en.wikipedia.org/wiki/Google_Finance"
+        },
+        {
+          "title": "Exporting data in csv",
+          "url": "https://www.reddit.com/r/YAHOOFINANCE/comments/1ghh7bw/exporting_data_in_csv/"
+        },
+        {
+          "title": "Looking for a Free API for Historical EPS, Revenue, Analyst Estimates, and Filing Dates",
+          "url": "https://www.reddit.com/r/algotrading/comments/1lv0xg6/looking_for_a_free_api_for_historical_eps_revenue/"
+        },
+        {
+          "title": "Historical data on price, PE ratio, EPS, dividends, etc?",
+          "url": "https://www.reddit.com/r/algotrading/comments/o067tt"
+        },
+        {
+          "title": "Free/cheap source for historical analyst consensus EPS (2010+, incl. delisted US stocks)?",
+          "url": "https://www.reddit.com/r/IndiaAlgoTrading/comments/1wygfae/freecheap_source_for_historical_analyst_consensus/"
+        },
+        {
+          "title": "Does any one know where to get  free CSV’s?",
+          "url": "https://www.reddit.com/r/TradingView/comments/1nu67j8"
+        },
+        {
+          "title": "Has Yahoo Finance removed the download historical data feature for stocks?",
+          "url": "https://www.reddit.com/r/YAHOOFINANCE/comments/1jmxl0t/has_yahoo_finance_removed_the_download_historical/"
+        },
+        {
+          "title": "Now click **Download Data**. This will export the data into Excel.",
+          "url": "https://www.eapl.org/media/document/219"
+        },
+        {
+          "title": "# Quote Help Index",
+          "url": "https://www.1free-historical-stock-quotes-downloader.com/HSQuote.pdf"
+        },
+        {
+          "title": "The Price History page allows you to view end-of-day price history. Site visitors (not logged into the site) can view the last three months of data, while logged in members can view and download end-of-day price history for up to two years prior to today's date. You can also view the latest trades, and view corporate actions (U.S. equities only) by",
+          "url": "https://alpcourchevel.com/upload/files/vebite.pdf"
+        },
+        {
+          "title": "Stock valuation",
+          "url": "https://en.wikipedia.org/wiki/Stock_valuation"
+        },
+        {
+          "title": "Dow Jones Industrial Average",
+          "url": "https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "Kaggle and Sharadar surfaced for financial/price datasets, but a free, no-account export containing annual EPS and prices was not verified. The returned Yahoo Help snippet describes CSV downloads as requiring Gold, so Yahoo is not a verified free solution here.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    },
+    {
+      "id": "alternative",
+      "prompt": "Is there a free alternative to FAST Graphs for long-term stock valuation charts?",
+      "status": "success",
+      "sources": [
+        {
+          "title": "Free FAST Graphs Alternatives for Valuation Research | Find My Moat",
+          "url": "https://www.findmymoat.com/free/alternatives/fast-graphs"
+        },
+        {
+          "title": "Pricing | Fast Graphs Help Center",
+          "url": "https://docs.fastgraphs.com/en/articles/9457017-pricing"
+        },
+        {
+          "title": "Research Terminal | FAST Graphs",
+          "url": "https://www.fastgraphs.com/platform"
+        },
+        {
+          "title": "Pricing",
+          "url": "https://www.fastgraphs.com/pricing"
+        },
+        {
+          "title": "FAST Graphs - Fundamental Analysis Software Tool",
+          "url": "https://www.fastgraphs.com/"
+        },
+        {
+          "title": "Portfolio Management | FAST Graphs",
+          "url": "https://www.fastgraphs.com/platform/portfolios"
+        },
+        {
+          "title": "Stocks",
+          "url": "https://www.fastgraphs.com/stocks"
+        },
+        {
+          "title": "Forecasting Charts - User Guide | Fast Graphs Help Center",
+          "url": "https://docs.fastgraphs.com/en/articles/13577168-forecasting-charts-user-guide"
+        },
+        {
+          "title": "TIKR vs FAST Graphs: Affordable Stock Research - TIKR | TIKR.com",
+          "url": "https://www.tikr.com/competitor-comparison/fast-graphs"
+        },
+        {
+          "title": "Getting Started | Fast Graphs Help Center",
+          "url": "https://docs.fastgraphs.com/en/articles/9354187-getting-started"
+        },
+        {
+          "title": "Free Stock Valuation Charts | GNG Research",
+          "url": "https://www.gngresearch.com/charting/"
+        },
+        {
+          "title": "Create your own analysis with FUN Graphs",
+          "url": "https://www.fastgraphs.com/wp-content/uploads/2022/01/Value-You-Academy-Workbook-1.pdf"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/insiderData/comments/1wy6tnx/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/eupersonalfinance/comments/1v7ea1s/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app - no paywalls, no subscriptions, 20+ years of historical data",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1trya9n/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "I built a free stock fundamental analysis app, no paywalls, no subscriptions, 25+ years of data",
+          "url": "https://www.reddit.com/r/SideProject/comments/1twr305/i_built_a_free_stock_fundamental_analysis_app_no/"
+        },
+        {
+          "title": "alternative to fast graphs?",
+          "url": "https://www.reddit.com/r/dividends/comments/1cok1d9/alternative_to_fast_graphs/"
+        },
+        {
+          "title": "I built a free stock analysis tool after getting frustrated with Bloomberg's price tag — would love feedback from actual investors",
+          "url": "https://www.reddit.com/r/SideProject/comments/1wkic2m/i_built_a_free_stock_analysis_tool_after_getting/"
+        },
+        {
+          "title": "FinanceCharts.com - Free resource for value investors",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/15lqqrk"
+        },
+        {
+          "title": "Free Macrotrends alternative",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w9so74/free_macrotrends_alternative/"
+        },
+        {
+          "title": "Any free websites to chart historical valuation multiples?",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1h0st44"
+        },
+        {
+          "title": "I spent 6 months testing every free portfolio tracker and screener. Here are the only ones worth your time.",
+          "url": "https://www.reddit.com/r/tradingDeck1/comments/1sqnyp2/i_spent_6_months_testing_every_free_portfolio/"
+        },
+        {
+          "title": "MeasuringWorth",
+          "url": "https://en.wikipedia.org/wiki/MeasuringWorth"
+        },
+        {
+          "title": "Is there a finviz alternative that's actually built for value investors and fundamental analysis, not day traders?",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1s3acqs/is_there_a_finviz_alternative_thats_actually/"
+        },
+        {
+          "title": "Share your favorite stock analyzing tool!",
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w0yyv9/share_your_favorite_stock_analyzing_tool/"
+        },
+        {
+          "title": "Comparison of JavaScript charting libraries",
+          "url": "https://en.wikipedia.org/wiki/Comparison_of_JavaScript_charting_libraries"
+        },
+        {
+          "title": "Price graphs: Utilizing the structural information of financial time series for stock prediction",
+          "url": "https://arxiv.org/abs/2106.02522"
+        },
+        {
+          "title": "Do VLMs Truly \"Read\" Candlesticks? A Multi-Scale Benchmark for Visual Stock Price Forecasting",
+          "url": "https://arxiv.org/abs/2604.12659"
+        },
+        {
+          "title": "Ploticus",
+          "url": "https://en.wikipedia.org/wiki/Ploticus"
+        },
+        {
+          "title": "Exploring Graph Neural Networks for Stock Market Predictions with Rolling Window Analysis",
+          "url": "https://arxiv.org/abs/1909.10660"
+        },
+        {
+          "title": "A long-term alternative formula for a stochastic stock price model",
+          "url": "https://arxiv.org/abs/1904.04422"
+        },
+        {
+          "title": "List of information graphics software",
+          "url": "https://en.wikipedia.org/wiki/List_of_information_graphics_software"
+        },
+        {
+          "title": "Fed model",
+          "url": "https://en.wikipedia.org/wiki/Fed_model"
+        },
+        {
+          "title": "List of charting software",
+          "url": "https://en.wikipedia.org/wiki/List_of_charting_software"
+        }
+      ],
+      "canonicalHits": [],
+      "legacyHits": [],
+      "assistantAnswer": "TIKR is a partial alternative: its official comparison page lists a free US-data plan requiring signup, while twenty years of financial charting is advertised under Pro. It is not verified as a free equivalent to FAST Graphs' full long-term chart workflow.",
+      "targetRecommended": false,
+      "targetCited": false,
+      "thirdPartyTargetMention": false,
+      "targetPosition": null
+    }
+  ],
+  "diagnostics": {
+    "brandQuery": "\"Stock Value Lens\"",
+    "brandTargetURLReturned": false,
+    "domainQuery": "site:stockvaluelens.com",
+    "domainResult": "Empty search results",
+    "homepageFetch": {
+      "url": "https://stockvaluelens.com/",
+      "result": "URL is not accessible via this tool",
+      "httpStatus": "Not exposed",
+      "ordinaryBrowserAvailability": "Not tested"
+    }
+  },
+  "verification": {
+    "pagesOpened": [
+      "https://kaplio.com/",
+      "https://www.basisreport.com/tools/pe-historical-chart",
+      "https://bluealpharesearch.com/tools/pe-ratio",
+      "https://lioncharts.com/",
+      "https://stockamaze.com/about",
+      "https://www.chartloom.com/stock-research",
+      "https://www.kaggle.com/tsaustin/us-historical-stock-prices-with-earnings-data/tasks",
+      "https://in.help.yahoo.com/kb/SLN2311.html",
+      "https://www.tikr.com/competitor-comparison/fast-graphs"
+    ],
+    "notes": "Page text checked where available; interactive charts/data accuracy not tested. Chartloom and Kaggle yielded no readable lines; Yahoo fetch returned 429."
+  }
+}
