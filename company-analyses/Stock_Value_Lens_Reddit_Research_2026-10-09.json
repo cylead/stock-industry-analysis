@@ -1,0 +1,1110 @@
+{
+  "research_date": "2026-10-09",
+  "website": "https://stockvaluelens.com/",
+  "method": "Public indexed Reddit pages and JSON. Browser encountered a verification challenge. Counts are cached; no live 24-hour or 7-day census was established. Best samples are first 20 ordinary posts in an indexed logged-out Best feed, excluding highlights. Preview types do not prove ownership, approval or all body/comment links.",
+  "members": [
+    {
+      "subreddit": "ValueInvesting",
+      "subscribers": 804536,
+      "source_url": "https://www.reddit.com/r/ValueInvesting/about.json",
+      "cache_age_label": "2 weeks ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "SideProject",
+      "subscribers": 852912,
+      "source_url": "https://www.reddit.com/r/SideProject/about.json",
+      "cache_age_label": "last week",
+      "is_live": false
+    },
+    {
+      "subreddit": "alphaandbetausers",
+      "subscribers": 46748,
+      "source_url": "https://www.reddit.com/r/alphaandbetausers/about.json",
+      "cache_age_label": "last week",
+      "is_live": false
+    },
+    {
+      "subreddit": "webdev",
+      "subscribers": 3316405,
+      "source_url": "https://www.reddit.com/r/webdev/about.json",
+      "cache_age_label": "4 days ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "SecurityAnalysis",
+      "subscribers": 214033,
+      "source_url": "https://www.reddit.com/r/SecurityAnalysis/about.json",
+      "cache_age_label": "2 weeks ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "investing",
+      "subscribers": 3458550,
+      "source_url": "https://www.reddit.com/r/investing/about.json",
+      "cache_age_label": "3 weeks ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "stocks",
+      "subscribers": 9370817,
+      "source_url": "https://www.reddit.com/r/stocks/about.json",
+      "cache_age_label": "2 weeks ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "StockMarket",
+      "subscribers": 4119580,
+      "source_url": "https://www.reddit.com/r/StockMarket/about.json",
+      "cache_age_label": "2 weeks ago",
+      "is_live": false
+    },
+    {
+      "subreddit": "dividends",
+      "subscribers": 910222,
+      "source_url": "https://www.reddit.com/r/dividends/about.json",
+      "cache_age_label": "last week",
+      "is_live": false
+    }
+  ],
+  "activity": [
+    {
+      "subreddit": "ValueInvesting",
+      "source_url": "https://www.reddit.com/r/ValueInvesting/new.json?limit=20",
+      "is_live": false,
+      "sample_size": 20,
+      "ordinary_posts": 20,
+      "newest_post_utc": "2026-09-01T09:34:18.000Z",
+      "oldest_post_utc": "2026-08-31T14:45:22.000Z",
+      "span_hours": 18.815555555555555,
+      "median_comments": 13.5,
+      "posts": [
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w46z1i/when_does_overvalued_but_still_a_good_business/",
+          "created_utc": 1788255258,
+          "score": 9,
+          "comments": 19
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w44y26/ive_invested_in_iren_despite_the_stocks_hate_this/",
+          "created_utc": 1788248309,
+          "score": 0,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w44kdg/uschina_competition_lies_in_their_capital_systems/",
+          "created_utc": 1788246949,
+          "score": 3,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w40jjf/amd_took_ai_gpu_share_from_nvidia_can_marvell/",
+          "created_utc": 1788234060,
+          "score": 0,
+          "comments": 5
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3zvf2/with_september_seasonality_here_what_stocks_are/",
+          "created_utc": 1788232092,
+          "score": 24,
+          "comments": 45
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3ygqo/el_niño_and_stocks/",
+          "created_utc": 1788228260,
+          "score": 18,
+          "comments": 22
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3uvjc/gopro_just_ripped_after_markiplier_became_its/",
+          "created_utc": 1788219009,
+          "score": 95,
+          "comments": 110
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3uat1/a_lumpsum_or_spreading_it_out_over_a_few_months/",
+          "created_utc": 1788217631,
+          "score": 6,
+          "comments": 33
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3qm1m/is_anyone_touching_mrvl_rn/",
+          "created_utc": 1788209538,
+          "score": 24,
+          "comments": 20
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3q048/actual_dd_on_eix_why_todays_23_crash_is_a/",
+          "created_utc": 1788208281,
+          "score": 1,
+          "comments": 7
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3pmh9/built_an_excel_summarizing_french_stocks_worth/",
+          "created_utc": 1788207501,
+          "score": 6,
+          "comments": 20
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3o8e8/morningstar_value_etfs_making_a_big_tech_bet/",
+          "created_utc": 1788204649,
+          "score": 7,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3mltv/the_case_for_the_trade_desk_ttd/",
+          "created_utc": 1788201321,
+          "score": 0,
+          "comments": 16
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3lrdp/input_on_valuation_and_insurance/",
+          "created_utc": 1788199619,
+          "score": 3,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3l9l4/why_are_analysts_projected_higher_price_targets/",
+          "created_utc": 1788198643,
+          "score": 4,
+          "comments": 5
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3jehj/uhs_the_market_is_pricing_a_2028_medicaid_cut_as/",
+          "created_utc": 1788194868,
+          "score": 3,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3j4e9/north_america_payment_processing_oligopoly_v_ma/",
+          "created_utc": 1788194288,
+          "score": 6,
+          "comments": 19
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3i5fu/first_watch_fwrg_why_cracker_barrel_changed_its/",
+          "created_utc": 1788192286,
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3h30l/eix_tanking/",
+          "created_utc": 1788190037,
+          "score": 15,
+          "comments": 14
+        },
+        {
+          "url": "https://www.reddit.com/r/ValueInvesting/comments/1w3fwn2/the_expensive_part_of_timing_the_market_was_never/",
+          "created_utc": 1788187522,
+          "score": 0,
+          "comments": 13
+        }
+      ]
+    },
+    {
+      "subreddit": "SideProject",
+      "source_url": "https://www.reddit.com/r/SideProject/new.json?limit=20",
+      "is_live": false,
+      "sample_size": 20,
+      "ordinary_posts": 20,
+      "newest_post_utc": "2026-10-04T09:54:01.000Z",
+      "oldest_post_utc": "2026-10-04T08:24:53.000Z",
+      "span_hours": 1.4855555555555555,
+      "median_comments": 1,
+      "posts": [
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbvdg/i_built_a_free_adfree_tier_list_maker_with_a_lot/",
+          "created_utc": 1791107641,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbtig/i_built_a_free_opensource_downloads_organizer_for/",
+          "created_utc": 1791107449,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbtg6/i_turned_my_minecraft_shader_tuning_into_a_free/",
+          "created_utc": 1791107444,
+          "score": 0,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbt82/i_built_a_quiet_timestamped_notes_app_after_a/",
+          "created_utc": 1791107424,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbpah/run_plus_a_running_app_that_tracks_shoe_mileage/",
+          "created_utc": 1791106991,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbi3t/i_built_an_opensource_ai_playground_so_you_arent/",
+          "created_utc": 1791106199,
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbgrd/a_daily_game_of_cutting_random_items_perfectly_in/",
+          "created_utc": 1791106046,
+          "score": 8,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbddn/burnguard_opensource_design_workspace_that_runs/",
+          "created_utc": 1791105677,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbbs7/im_building_tagklar_to_organise_shopping_chores/",
+          "created_utc": 1791105503,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbbkc/shipped_my_pet_photo_app_in_4_languages_this_week/",
+          "created_utc": 1791105476,
+          "score": 2,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxbae8/yomo_you_only_meet_once/",
+          "created_utc": 1791105354,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxb6hm/grade_12_student_built_this_for_my_school_shark/",
+          "created_utc": 1791104925,
+          "score": 0,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxb5ur/built_something_and_nobody_saw_it/",
+          "created_utc": 1791104861,
+          "score": 8,
+          "comments": 8
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxb4mq/side_project_gigamail_open_source_free/",
+          "created_utc": 1791104724,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxb3g9/class_ends_practice_doesnt_my_side_project_for/",
+          "created_utc": 1791104594,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxatnm/most_people_are_watching_your_videos_on_mute/",
+          "created_utc": 1791103539,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxar75/building_an_ai_brand_designer_that_gets_to_know/",
+          "created_utc": 1791103276,
+          "score": 4,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxaoen/i_built_a_free_offline_ai_background_remover/",
+          "created_utc": 1791102969,
+          "score": 6,
+          "comments": 3
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxak2y/omk_130_looking_for_feedback_on_the_first_five/",
+          "created_utc": 1791102499,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/SideProject/comments/1wxai71/been_building_a_salary_and_livingcost_website_for/",
+          "created_utc": 1791102293,
+          "score": 3,
+          "comments": 2
+        }
+      ]
+    },
+    {
+      "subreddit": "alphaandbetausers",
+      "source_url": "https://www.reddit.com/r/alphaandbetausers/new.json?limit=20",
+      "is_live": false,
+      "sample_size": 20,
+      "ordinary_posts": 20,
+      "newest_post_utc": "2026-10-03T22:37:28.000Z",
+      "oldest_post_utc": "2026-10-03T17:59:42.000Z",
+      "span_hours": 4.629444444444444,
+      "median_comments": 0,
+      "posts": [
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwzzwx/looking_for_youtube_creators_to_try_my_new/",
+          "created_utc": 1791067048,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwztjz/uk_home_buyer_viewing_helper_app_looking_for/",
+          "created_utc": 1791066539,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwzsfp/post_title_i_built_a_photovoting_app_and_need_35/",
+          "created_utc": 1791066449,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwzfr3/im_making_a_cozy_coop_jigsaw_game_where_you_can/",
+          "created_utc": 1791065444,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwzefs/ios_50_free_lifetime_pro_codes_for_twilock_an_app/",
+          "created_utc": 1791065341,
+          "score": 1,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwz5kp/web_beta_bionavs_looking_for_feedback_on/",
+          "created_utc": 1791064669,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwxjtp/android_need_testers_for_flowboard_family_planner/",
+          "created_utc": 1791060346,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwx5hc/beta_laume_letters_you_can_only_open_at_the_place/",
+          "created_utc": 1791059304,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwwzzj/web_looking_for_5_creators_to_review_personcrafts/",
+          "created_utc": 1791058906,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwwc93/i_built_a_way_to_let_people_try_android_apps/",
+          "created_utc": 1791057258,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwvk4z/i_got_tired_of_online_video_downloaders_with_5/",
+          "created_utc": 1791055286,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwvis9/releasing_my_longawaited_solutions_app_for/",
+          "created_utc": 1791055191,
+          "score": 1,
+          "comments": 1
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwv2n8/pitwall_alpha_looking_for_people_who_run_several/",
+          "created_utc": 1791054079,
+          "score": 2,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwuzek/lumio_free_browser_learning_games_for_ages_69/",
+          "created_utc": 1791053870,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwuc3m/a_time_blocking_app_looking_for_testing_the_demo/",
+          "created_utc": 1791052240,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwtx7h/looking_for_beta_testers_tekki_forge_a_cli_for/",
+          "created_utc": 1791051203,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwtx1r/i_made_a_chrome_extension_for_people_who_never/",
+          "created_utc": 1791051192,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwtu0x/looking_for_a_handful_of_android_testers_does_a/",
+          "created_utc": 1791050981,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwtl3c/beta_tool_that_writes_and_schedules_shortform/",
+          "created_utc": 1791050390,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/alphaandbetausers/comments/1wwtkzd/web_beta_learn_japanese_from_subtitled_anime/",
+          "created_utc": 1791050382,
+          "score": 1,
+          "comments": 0
+        }
+      ]
+    },
+    {
+      "subreddit": "webdev",
+      "source_url": "https://www.reddit.com/r/webdev/new.json?limit=20",
+      "is_live": false,
+      "sample_size": 20,
+      "ordinary_posts": 20,
+      "newest_post_utc": "2026-09-27T07:00:20.000Z",
+      "oldest_post_utc": "2026-09-26T19:00:37.000Z",
+      "span_hours": 11.995277777777778,
+      "median_comments": 6,
+      "posts": [
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wrddhs/cse_452_googles_introduction_to_distributed/",
+          "created_utc": 1790492420,
+          "score": 0,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wraoaz/i_built_a_localfirst_password_manager_in_react/",
+          "created_utc": 1790483149,
+          "score": 0,
+          "comments": 6
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr953t/cant_get_mamp_working_with_php_8_on_windows_what/",
+          "created_utc": 1790478266,
+          "score": 0,
+          "comments": 10
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr6xs4/can_uni_see_my_copilot_deleted_history/",
+          "created_utc": 1790471547,
+          "score": 0,
+          "comments": 8
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr6wy9/i_did_not_steal_this_website/",
+          "created_utc": 1790471479,
+          "score": 0,
+          "comments": 5
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr6eie/assinei_a_hostinger/",
+          "created_utc": 1790469929,
+          "score": 0,
+          "comments": 7
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr602m/is_clientside_image_compression_a_good_idea_for/",
+          "created_utc": 1790468743,
+          "score": 3,
+          "comments": 19
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr5k47/newsglobe_translation_categorization_and/",
+          "created_utc": 1790467455,
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr2oam/i_built_what_might_be_reddits_first_native/",
+          "created_utc": 1790459470,
+          "score": 0,
+          "comments": 3
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr2kii/very_performant_node_editor_in_the_browser_with_a/",
+          "created_utc": 1790459183,
+          "score": 5,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr1l7e/showoff_saturday_galaxy_movies_a_fast_movie/",
+          "created_utc": 1790456653,
+          "score": 0,
+          "comments": 2
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr1bss/im_building_midcode_a_tool_that_lets_you_turn/",
+          "created_utc": 1790456004,
+          "score": 0,
+          "comments": 8
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr10bz/this_is_what_i_created_while_learning_advanced/",
+          "created_utc": 1790455195,
+          "score": 0,
+          "comments": 6
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr0pe0/jetkey_a_fast_secret_key_generator_with/",
+          "created_utc": 1790454417,
+          "score": 0,
+          "comments": 6
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wr0n2f/how_to_put_ads_in_a_site/",
+          "created_utc": 1790454244,
+          "score": 0,
+          "comments": 6
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wqzm6g/showoff_saturday_made_a_boardgame_tracking_and/",
+          "created_utc": 1790451728,
+          "score": 0,
+          "comments": 4
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wqzadq/is_leetcode_worth_it/",
+          "created_utc": 1790450931,
+          "score": 91,
+          "comments": 82
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wqz5ij/a_newsclustering_pipeline_reading_100k_articles_a/",
+          "created_utc": 1790450595,
+          "score": 0,
+          "comments": 12
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wqz5i8/i_opened_sourced_my_ai_harness_that_allows_me_to/",
+          "created_utc": 1790450594,
+          "score": 0,
+          "comments": 3
+        },
+        {
+          "url": "https://www.reddit.com/r/webdev/comments/1wqyl9w/github_mamundapisandagents_service_choreography/",
+          "created_utc": 1790449237,
+          "score": 0,
+          "comments": 0
+        }
+      ]
+    }
+  ],
+  "best_audits": [
+    {
+      "subreddit": "ValueInvesting",
+      "source_url": "https://www.reddit.com/r/ValueInvesting/best/",
+      "posts": [
+        {
+          "rank": 1,
+          "subject": "Yearly stock purchases",
+          "preview_type": "Text",
+          "source_line": 39
+        },
+        {
+          "rank": 2,
+          "subject": "Alphabet advertising risk",
+          "preview_type": "Text",
+          "source_line": 47
+        },
+        {
+          "rank": 3,
+          "subject": "Nike investment thoughts",
+          "preview_type": "Text",
+          "source_line": 56
+        },
+        {
+          "rank": 4,
+          "subject": "Nike price collapse",
+          "preview_type": "Text",
+          "source_line": 65
+        },
+        {
+          "rank": 5,
+          "subject": "Nike insider buying",
+          "preview_type": "Text",
+          "source_line": 77
+        },
+        {
+          "rank": 6,
+          "subject": "Recovery timing risk",
+          "preview_type": "Text",
+          "source_line": 85
+        },
+        {
+          "rank": 7,
+          "subject": "IPO cancellation news",
+          "preview_type": "Link",
+          "source_line": 96
+        },
+        {
+          "rank": 8,
+          "subject": "AI cash flow economics",
+          "preview_type": "Text",
+          "source_line": 105
+        },
+        {
+          "rank": 9,
+          "subject": "QQQ performance comparison",
+          "preview_type": "Text",
+          "source_line": 117
+        },
+        {
+          "rank": 10,
+          "subject": "Canadian FCF screen",
+          "preview_type": "Link",
+          "source_line": 127
+        },
+        {
+          "rank": 11,
+          "subject": "Buy and hold testing",
+          "preview_type": "Text",
+          "source_line": 137
+        },
+        {
+          "rank": 12,
+          "subject": "Buffett retirement news",
+          "preview_type": "Link",
+          "source_line": 146
+        },
+        {
+          "rank": 13,
+          "subject": "Housing contrarian case",
+          "preview_type": "Text",
+          "source_line": 160
+        },
+        {
+          "rank": 14,
+          "subject": "Waiting for corrections",
+          "preview_type": "Text",
+          "source_line": 169
+        },
+        {
+          "rank": 15,
+          "subject": "Duolingo thesis",
+          "preview_type": "Link",
+          "source_line": 179
+        },
+        {
+          "rank": 16,
+          "subject": "Indonesia market crash",
+          "preview_type": "Link",
+          "source_line": 190
+        },
+        {
+          "rank": 17,
+          "subject": "Idle cash management",
+          "preview_type": "Text",
+          "source_line": 204
+        },
+        {
+          "rank": 18,
+          "subject": "Company discovery methods",
+          "preview_type": "Text",
+          "source_line": 213
+        },
+        {
+          "rank": 19,
+          "subject": "Filtering investment noise",
+          "preview_type": "Text",
+          "source_line": 223
+        },
+        {
+          "rank": 20,
+          "subject": "Long horizon Nike",
+          "preview_type": "Text",
+          "source_line": 232
+        }
+      ]
+    },
+    {
+      "subreddit": "SideProject",
+      "source_url": "https://www.reddit.com/r/SideProject/best/",
+      "posts": [
+        {
+          "rank": 1,
+          "subject": "Job search launch update",
+          "preview_type": "Demo",
+          "source_line": 40
+        },
+        {
+          "rank": 2,
+          "subject": "Walking fog map",
+          "preview_type": "Demo",
+          "source_line": 52
+        },
+        {
+          "rank": 3,
+          "subject": "Interactive reading app",
+          "preview_type": "Demo",
+          "source_line": 63
+        },
+        {
+          "rank": 4,
+          "subject": "Form filler experiment",
+          "preview_type": "Demo",
+          "source_line": 74
+        },
+        {
+          "rank": 5,
+          "subject": "Drawing QR codes",
+          "preview_type": "Demo",
+          "source_line": 88
+        },
+        {
+          "rank": 6,
+          "subject": "Project evolution demo",
+          "preview_type": "Demo",
+          "source_line": 99
+        },
+        {
+          "rank": 7,
+          "subject": "Bird hobby milestone",
+          "preview_type": "Link",
+          "source_line": 111
+        },
+        {
+          "rank": 8,
+          "subject": "Zero revenue joke",
+          "preview_type": "Demo",
+          "source_line": 122
+        },
+        {
+          "rank": 9,
+          "subject": "Click recording guides",
+          "preview_type": "Demo",
+          "source_line": 133
+        },
+        {
+          "rank": 10,
+          "subject": "Plexo download manager",
+          "preview_type": "Demo",
+          "source_line": 145
+        },
+        {
+          "rank": 11,
+          "subject": "App security discussion",
+          "preview_type": "Text",
+          "source_line": 156
+        },
+        {
+          "rank": 12,
+          "subject": "Using your own app",
+          "preview_type": "Text",
+          "source_line": 175
+        },
+        {
+          "rank": 13,
+          "subject": "Robot brain demo",
+          "preview_type": "Demo",
+          "source_line": 184
+        },
+        {
+          "rank": 14,
+          "subject": "Programmer roof demo",
+          "preview_type": "Demo",
+          "source_line": 196
+        },
+        {
+          "rank": 15,
+          "subject": "Device safe areas",
+          "preview_type": "Demo",
+          "source_line": 208
+        },
+        {
+          "rank": 16,
+          "subject": "Builder motivation",
+          "preview_type": "Text",
+          "source_line": 219
+        },
+        {
+          "rank": 17,
+          "subject": "Camera feature update",
+          "preview_type": "Demo",
+          "source_line": 228
+        },
+        {
+          "rank": 18,
+          "subject": "Airgeek product demo",
+          "preview_type": "Demo",
+          "source_line": 240
+        },
+        {
+          "rank": 19,
+          "subject": "Nail sorting game",
+          "preview_type": "Demo",
+          "source_line": 251
+        },
+        {
+          "rank": 20,
+          "subject": "Product Hunt launch",
+          "preview_type": "Demo",
+          "source_line": 263
+        }
+      ]
+    },
+    {
+      "subreddit": "alphaandbetausers",
+      "source_url": "https://www.reddit.com/r/alphaandbetausers/best/",
+      "posts": [
+        {
+          "rank": 1,
+          "subject": "DesignWerks website offer",
+          "preview_type": "Link",
+          "source_line": 38
+        },
+        {
+          "rank": 2,
+          "subject": "Costume picker testing",
+          "preview_type": "Link",
+          "source_line": 48
+        },
+        {
+          "rank": 3,
+          "subject": "Objection handling trainer",
+          "preview_type": "Text",
+          "source_line": 57
+        },
+        {
+          "rank": 4,
+          "subject": "Written testing offer",
+          "preview_type": "Link",
+          "source_line": 68
+        },
+        {
+          "rank": 5,
+          "subject": "Fishing game testers",
+          "preview_type": "Link",
+          "source_line": 77
+        },
+        {
+          "rank": 6,
+          "subject": "Viravo beta",
+          "preview_type": "Link",
+          "source_line": 86
+        },
+        {
+          "rank": 7,
+          "subject": "Data deletion tool",
+          "preview_type": "Link",
+          "source_line": 96
+        },
+        {
+          "rank": 8,
+          "subject": "Aura messenger testing",
+          "preview_type": "Link",
+          "source_line": 109
+        },
+        {
+          "rank": 9,
+          "subject": "Raplika student feedback",
+          "preview_type": "Link",
+          "source_line": 123
+        },
+        {
+          "rank": 10,
+          "subject": "Ploy workflow discussion",
+          "preview_type": "Text",
+          "source_line": 134
+        },
+        {
+          "rank": 11,
+          "subject": "Founder testing offer",
+          "preview_type": "Text",
+          "source_line": 143
+        },
+        {
+          "rank": 12,
+          "subject": "Freelancer cash flow",
+          "preview_type": "Text",
+          "source_line": 152
+        },
+        {
+          "rank": 13,
+          "subject": "Feedback exchange",
+          "preview_type": "Link",
+          "source_line": 162
+        },
+        {
+          "rank": 14,
+          "subject": "QueuePilot beta",
+          "preview_type": "Link",
+          "source_line": 176
+        },
+        {
+          "rank": 15,
+          "subject": "Business Machine testers",
+          "preview_type": "Link",
+          "source_line": 185
+        },
+        {
+          "rank": 16,
+          "subject": "FIRE portfolio brief",
+          "preview_type": "Text",
+          "source_line": 196
+        },
+        {
+          "rank": 17,
+          "subject": "MTC audio player",
+          "preview_type": "Link",
+          "source_line": 208
+        },
+        {
+          "rank": 18,
+          "subject": "CardKoala testers",
+          "preview_type": "Link",
+          "source_line": 217
+        },
+        {
+          "rank": 19,
+          "subject": "Ogle beta",
+          "preview_type": "Link",
+          "source_line": 227
+        },
+        {
+          "rank": 20,
+          "subject": "Halo beta",
+          "preview_type": "Link",
+          "source_line": 236
+        }
+      ]
+    },
+    {
+      "subreddit": "webdev",
+      "source_url": "https://www.reddit.com/r/webdev/best/",
+      "posts": [
+        {
+          "rank": 1,
+          "subject": "Static generator comparison",
+          "preview_type": "Text",
+          "source_line": 41
+        },
+        {
+          "rank": 2,
+          "subject": "Mobile design problem",
+          "preview_type": "Demo",
+          "source_line": 50
+        },
+        {
+          "rank": 3,
+          "subject": "Source date question",
+          "preview_type": "Text",
+          "source_line": 61
+        },
+        {
+          "rank": 4,
+          "subject": "AI deployment tradeoffs",
+          "preview_type": "Text",
+          "source_line": 70
+        },
+        {
+          "rank": 5,
+          "subject": "Numeric IP tip",
+          "preview_type": "Link",
+          "source_line": 81
+        },
+        {
+          "rank": 6,
+          "subject": "Animation handoff question",
+          "preview_type": "Text",
+          "source_line": 95
+        },
+        {
+          "rank": 7,
+          "subject": "Page Rage demo",
+          "preview_type": "Demo",
+          "source_line": 105
+        },
+        {
+          "rank": 8,
+          "subject": "REST architecture question",
+          "preview_type": "Text",
+          "source_line": 117
+        },
+        {
+          "rank": 9,
+          "subject": "AI skills discussion",
+          "preview_type": "Demo",
+          "source_line": 126
+        },
+        {
+          "rank": 10,
+          "subject": "Client coding problem",
+          "preview_type": "Text",
+          "source_line": 137
+        },
+        {
+          "rank": 11,
+          "subject": "Free hosting proposal",
+          "preview_type": "Text",
+          "source_line": 151
+        },
+        {
+          "rank": 12,
+          "subject": "Programming motivation",
+          "preview_type": "Text",
+          "source_line": 160
+        },
+        {
+          "rank": 13,
+          "subject": "Accessibility learning",
+          "preview_type": "Text",
+          "source_line": 169
+        },
+        {
+          "rank": 14,
+          "subject": "Developer skills article",
+          "preview_type": "Link",
+          "source_line": 179
+        },
+        {
+          "rank": 15,
+          "subject": "Ownership article",
+          "preview_type": "Link",
+          "source_line": 190
+        },
+        {
+          "rank": 16,
+          "subject": "Example domain change",
+          "preview_type": "Demo",
+          "source_line": 202
+        },
+        {
+          "rank": 17,
+          "subject": "PayPal accessibility",
+          "preview_type": "Text",
+          "source_line": 213
+        },
+        {
+          "rank": 18,
+          "subject": "Frontend industry essay",
+          "preview_type": "Link",
+          "source_line": 222
+        },
+        {
+          "rank": 19,
+          "subject": "Learning before AI",
+          "preview_type": "Text",
+          "source_line": 234
+        },
+        {
+          "rank": 20,
+          "subject": "Autocomplete question",
+          "preview_type": "Text",
+          "source_line": 244
+        }
+      ]
+    }
+  ]
+}

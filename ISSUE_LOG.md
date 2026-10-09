@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-006 — Reddit research required explicit snapshot and activity definitions
+
+- **Status:** Resolved
+- **Opened:** 2026-10-09
+- **Resolved:** 2026-10-09
+- **Affected area:** `company-analyses/Stock_Value_Lens_Reddit_Promotion_Plan.md` and its dated research evidence.
+- **Problem and impact:** Unlabeled sidebar counts could be mistaken for membership, cached New listings could be presented as current daily activity, and visible promotional posts could be mistaken for moderator permission. These interpretations would distort community selection and posting risk.
+- **Root cause or hypothesis:** Indexed Reddit surfaces have different cache ages and ranking modes. Live browser access encountered a verification challenge, preventing a current 24-hour/seven-day census.
+- **Chosen solution:** Used the explicitly named `subscribers` field with provenance, saved 20-post timestamp spans and median comment counts for four candidate communities, audited the first 20 ordinary Best-feed posts for each, and distinguished observed promotional methods from permission under community rules. Marked live activity as unverified and added a live pre-post check.
+- **Rationale:** Preserves an actionable, auditable plan without inventing fresh counts, conversion results or permission from surviving posts. Resolution addresses the interpretation and documentation issue; live census remains unavailable.
+- **Alternatives considered:** Extrapolating daily/weekly rates from uneven snapshots would overstate comparability. Copying prohibited promotions because enforcement appears lax would not establish a permitted route.
+- **Follow-up/prevention:** Recheck rules, account eligibility and current feeds before posting. Obtain actual day/week counts when live access is available. Update this entry if the same provenance issue recurs; the root Five Forces methodology is unchanged.
+
 ## ISSUE-005 — Website refresh needed a reproducible input-reconciliation workflow
 
 - **Status:** Resolved
