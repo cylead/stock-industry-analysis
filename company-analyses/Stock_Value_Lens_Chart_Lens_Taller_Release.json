@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-09",
+  "origin": "https://stockvaluelens.com",
+  "version": "efcd6bc0-777a-4647-ae75-3eadc0ccb366",
+  "changes": {
+    "chartHeight": {
+      "before": 12,
+      "after": 15
+    },
+    "verticalScale": 1.25,
+    "ringHandleAndStrokeWeightsUnchanged": true
+  },
+  "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "changedSourceFiles": [
+    "web/logo-chart-lens.svg",
+    "VERIFICATION.md"
+  ],
+  "logoSha256": "9e1de59e368133cbd3915c154f36d66f332b68ba03a12f43df33b09352c6aa6b",
+  "buildComparison": {
+    "assetsCompared": 7563,
+    "changedAssets": [
+      "logo-chart-lens.svg"
+    ],
+    "allOtherAssetsUnchanged": true
+  },
+  "staticAudit": {
+    "htmlPages": 499,
+    "brandedHeaders": 498,
+    "companyJsonFilesUnchanged": 6551,
+    "chartScriptsUnchanged": true
+  },
+  "liveBrowser": [
+    {
+      "width": 1440,
+      "route": "/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 34,
+      "iconHeight": 34,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 1440,
+      "scrollWidth": 1440,
+      "brandFits": true,
+      "separated": true,
+      "chart": true
+    },
+    {
+      "width": 1440,
+      "route": "/guides/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 34,
+      "iconHeight": 34,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 1440,
+      "scrollWidth": 1440,
+      "brandFits": true,
+      "separated": true,
+      "chart": false
+    },
+    {
+      "width": 390,
+      "route": "/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 30,
+      "iconHeight": 30,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 390,
+      "scrollWidth": 390,
+      "brandFits": true,
+      "separated": true,
+      "chart": true
+    },
+    {
+      "width": 390,
+      "route": "/guides/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 30,
+      "iconHeight": 30,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 390,
+      "scrollWidth": 390,
+      "brandFits": true,
+      "separated": true,
+      "chart": false
+    },
+    {
+      "width": 320,
+      "route": "/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 30,
+      "iconHeight": 30,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 320,
+      "scrollWidth": 320,
+      "brandFits": true,
+      "separated": true,
+      "chart": true
+    },
+    {
+      "width": 320,
+      "route": "/guides/",
+      "loaded": true,
+      "src": "/logo-chart-lens.svg",
+      "iconWidth": 30,
+      "iconHeight": 30,
+      "wordmark": "Stock Value Lens",
+      "favicon": "/logo-chart-lens.svg",
+      "pageWidth": 320,
+      "scrollWidth": 320,
+      "brandFits": true,
+      "separated": true,
+      "chart": false
+    }
+  ],
+  "liveResources": [
+    {
+      "route": "/",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/html"
+    },
+    {
+      "route": "/stocks/aapl/",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/html"
+    },
+    {
+      "route": "/guides/",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/html"
+    },
+    {
+      "route": "/updates/",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/html"
+    },
+    {
+      "route": "/404.html",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/html"
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "text/css"
+    },
+    {
+      "route": "/logo-chart-lens.svg",
+      "status": 200,
+      "matchesBuild": true,
+      "contentType": "image/svg+xml"
+    }
+  ],
+  "browserErrors": [],
+  "assetErrors": [],
+  "visualInspectionSizes": [
+    128,
+    34,
+    30,
+    16
+  ],
+  "maintenanceLogReview": "Routine SVG proportion refinement; no project, issue or public-history entry required in either project.",
+  "versionControl": {
+    "websiteSource": "No Git repository; refined source saved locally and published to Cloudflare.",
+    "releaseEvidence": "Saved in stock-industry-analysis for ordinary commit and push."
+  }
+}

@@ -1,0 +1,17 @@
+--- a/web/logo-chart-lens.svg
++++ b/web/logo-chart-lens.svg
+@@ -5,2 +5,2 @@
+-  <path d="m15 31 6-8 6 9 8-12 4 7" stroke="#23634b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+-  <path d="m24.5 28.25 2.5 3.75 2.5-3.75" stroke="#ce8746" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
++  <path d="m15 32.25 6-10 6 11.25 8-15 4 8.75" stroke="#23634b" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
++  <path d="m24.5 28.8125 2.5 4.6875 2.5-4.6875" stroke="#ce8746" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,7 @@
++## Chart Lens taller chart — 2026-10-09
++
++- **Scope:** Increased the interior chart height from 12 to 15 SVG units (25%), centered around y=26. Applied the same vertical adjustment to the orange trough accent. Retained chart width, stroke weights, lens ring, handle, header dimensions and favicon asset. Clear interior margins remain.
++- **Checks:** Visually inspected before/after at 128, 34, 30 and 16 px. Production build passes existing asset limits. All 7,563 build assets compared with the preceding release: only `logo-chart-lens.svg` changed. All 499 favicon declarations and 498 branded headers remain valid. Homepage and guides verified at 1440, 390 and 320 px, with loaded artwork, no overlap/overflow and no browser script or asset errors; homepage chart renders. No new unit tests or repeat calculation tests were needed for the SVG-only change.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `efcd6bc0-777a-4647-ae75-3eadc0ccb366`. Seven live resources return HTTP 200 and match the tested build; SVG has image/svg+xml content type. Live homepage/guides checks pass at all three widths.
++- **Maintenance review:** Routine logo proportion refinement; no PROJECT_LOG, ISSUE_LOG or public-history entry required. Website source remains outside Git; the updated SVG, focused follow-up patch, before/after image and live verification are saved in stock-industry-analysis for commit/push.
++
