@@ -2,8 +2,8 @@
   "date": "2026-10-09",
   "feature": "Match P/E range height and styled hover details to valuation chart",
   "origin": "https://stockvaluelens.com",
-  "published": false,
-  "publicationBlocker": "Automatic approval review rejected production deployment: explicit authorization to publish is required.",
+  "published": true,
+  "publicationBlocker": null,
   "websiteSourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
   "testedStage": "/private/tmp/stock-pe-tooltip-sg73b318",
   "changes": [
@@ -62,5 +62,53 @@
     "publicHistory": "No update: minor maintenance",
     "analysisLogs": "No update: methodology unchanged; investigation recorded in website ISSUE-010"
   },
-  "versionControl": "Website source folder has no Git repository. Focused source patch, preview screenshot and this release record are saved in stock-industry-analysis for commit/push."
+  "versionControl": "Website source folder has no Git repository. Focused source patch, preview screenshot and this release record are saved in stock-industry-analysis for commit/push.",
+  "version": "87f7586d-915f-4266-b809-b57f5f49c0b1",
+  "publicationApproval": "User explicitly approved publication on 2026-10-09, resolving the earlier automatic-review rejection.",
+  "liveBuildMatches": [
+    {
+      "route": "/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/pe.js",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/styles.css",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/aapl/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/msft/",
+      "status": 200,
+      "matchesBuild": true
+    }
+  ],
+  "liveBrowser": {
+    "desktopRangeHeights": [
+      48,
+      48
+    ],
+    "narrowRangeHeights": [
+      64,
+      64
+    ],
+    "fiveYearStarts": [
+      "2021-05-07",
+      "2021-05-07"
+    ],
+    "fiveYearRows": 262,
+    "tooltipDate": "2024-09-13",
+    "dilutedPe": "36.1\u00d7",
+    "warningErrorLogs": []
+  },
+  "liveScreenshot": "company-analyses/Stock_Value_Lens_PE_Interaction_Live.jpg"
 }
