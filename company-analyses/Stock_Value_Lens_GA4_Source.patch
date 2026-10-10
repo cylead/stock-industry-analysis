@@ -1,0 +1,337 @@
+--- /dev/null
++++ b/web/analytics.js
+@@ -0,0 +1,72 @@
++const measurementId = "G-01JX9HZ5G9";
++const consentKey = "svl-analytics-consent";
++const maxAge = 180 * 24 * 60 * 60 * 1000;
++
++if (location.hostname === "stockvaluelens.com") {
++  let consent = null;
++  let loaded = false;
++  try {
++    const saved = JSON.parse(localStorage.getItem(consentKey));
++    if (saved && Date.now() - saved.at < maxAge && ["granted", "denied"].includes(saved.value)) consent = saved.value;
++  } catch {}
++
++  const banner = document.createElement("section");
++  banner.className = "analytics-consent";
++  banner.setAttribute("aria-label", "Analytics privacy choice");
++  banner.innerHTML = `<div><strong>Help us improve Stock Value Lens</strong><p>Allow Google Analytics cookies to measure visits, pages viewed and engagement? Your choice does not affect access to the website. <a href="/privacy/">Privacy details</a></p></div><div class="analytics-actions"><button type="button" data-consent="granted">Accept analytics</button><button type="button" data-consent="denied">Reject analytics</button></div>`;
++  document.body.append(banner);
++
++  function startAnalytics() {
++    if (loaded) return;
++    loaded = true;
++    window.dataLayer = window.dataLayer || [];
++    window.gtag = function () { window.dataLayer.push(arguments); };
++    window.gtag("consent", "default", {
++      analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied"
++    });
++    window.gtag("consent", "update", { analytics_storage: "granted" });
++    window.gtag("js", new Date());
++    window.gtag("config", measurementId, {
++      allow_google_signals: false,
++      allow_ad_personalization_signals: false,
++      page_location: location.origin + location.pathname,
++      page_referrer: document.referrer.split("?")[0].split("#")[0]
++    });
++    const tag = document.createElement("script");
++    tag.async = true;
++    tag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
++    document.head.append(tag);
++  }
++
++  function choose(value) {
++    consent = value;
++    try { localStorage.setItem(consentKey, JSON.stringify({ value, at: Date.now() })); } catch {}
++    banner.hidden = true;
++    if (value === "granted") startAnalytics();
++    else if (loaded) {
++      window[`ga-disable-${measurementId}`] = true;
++      for (const cookie of document.cookie.split(";")) {
++        const name = cookie.trim().split("=")[0];
++        if (name === "_ga" || name.startsWith("_ga_")) {
++          for (const domain of ["", `; domain=${location.hostname}`, `; domain=.${location.hostname}`]) {
++            document.cookie = `${name}=; Max-Age=0; path=/${domain}`;
++          }
++        }
++      }
++      location.reload();
++    }
++  }
++
++  banner.querySelectorAll("[data-consent]").forEach((button) => {
++    button.addEventListener("click", () => choose(button.dataset.consent));
++  });
++  document.querySelectorAll("[data-analytics-settings]").forEach((button) => {
++    button.addEventListener("click", () => {
++      banner.hidden = false;
++      banner.querySelector('[data-consent="denied"]').focus();
++    });
++    button.hidden = false;
++  });
++  banner.hidden = consent !== null;
++  if (consent === "granted") startAnalytics();
++}
+--- a/web/styles.css
++++ b/web/styles.css
+@@ -332,3 +332,10 @@
+ #pe-range-chart { touch-action: none; }
+ #pe-range-chart [role="slider"] { cursor: ew-resize; }
+ #pe-range-chart [role="slider"]:focus { outline: none; stroke: #ce8746; stroke-width: 3; }
++
++.analytics-consent { position: fixed; inset: auto 16px 16px; z-index: 100; margin: 0 auto; max-width: 850px; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); display: flex; gap: 20px; align-items: center; }
++.analytics-consent p { margin: 6px 0 0; }
++.analytics-actions { display: flex; gap: 8px; flex-shrink: 0; }
++.analytics-actions button { min-height: 44px; }
++.analytics-actions button[data-consent="granted"] { background: var(--green); color: #fff; }
++@media (max-width: 650px) { .analytics-consent { flex-direction: column; align-items: stretch; padding: 16px; } .analytics-actions { flex-wrap: wrap; } .analytics-actions button { flex: 1; } }
+--- a/web/_headers
++++ b/web/_headers
+@@ -2,7 +2,7 @@
+   Cache-Control: no-cache
+   X-Content-Type-Options: nosniff
+   Referrer-Policy: strict-origin-when-cross-origin
+-  Content-Security-Policy: default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
++  Content-Security-Policy: default-src 'self'; img-src 'self' blob: data: https://*.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'
+   Link: </llms.txt>; rel="describedby"; type="text/plain"
+
+ /*.md
+--- a/scripts/site.mjs
++++ b/scripts/site.mjs
+@@ -53,7 +53,7 @@
+   return `<header class="app-header${search ? " chart-header" : " content-header"}"><a class="brand" href="/" aria-label="Stock Value Lens home"><img class="brand-mark" src="/logo-chart-lens.svg" width="34" height="34" alt="" aria-hidden="true"><span><strong>Stock Value Lens</strong><small>Free historical stock research</small></span><span class="free-badge">100% free</span></a>${search ? `<div class="search-shell"><label class="sr-only" for="company-search">Search by ticker or company</label><input id="company-search" autocomplete="off" placeholder="Search ticker or company…" aria-controls="search-results"><div id="search-results" class="search-results" role="listbox" hidden></div></div>` : ""}<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-navigation">Menu</button><nav id="site-navigation" class="site-nav" aria-label="Main navigation">${links}</nav></header>`;
+ }
+ function footer(site) {
+-  return `<footer><nav aria-label="Footer navigation">${links}<a href="/guides/fiscal-year-dividend-yield/">Dividend yield guide</a><a href="/data-access/">AI &amp; data access</a></nav><p>100% free · Created and maintained by <a href="/about/">${e(site.author)}</a> · <a href="mailto:${e(site.contactEmail)}">Contact & corrections</a></p><p>Historical research tool. Not investment advice.</p></footer>`;
++  return `<footer><nav aria-label="Footer navigation">${links}<a href="/guides/fiscal-year-dividend-yield/">Dividend yield guide</a><a href="/data-access/">AI &amp; data access</a><a href="/privacy/">Privacy</a></nav><p><button type="button" data-analytics-settings hidden>Analytics settings</button></p><p>100% free · Created and maintained by <a href="/about/">${e(site.author)}</a> · <a href="mailto:${e(site.contactEmail)}">Contact & corrections</a></p><p>Historical research tool. Not investment advice.</p></footer>${site.preview ? "" : '<script src="/analytics.js" type="module"></script>'}`;
+ }
+ function metadata(site, path, title, description) {
+   const url = site.siteUrl + path, fullTitle = `${title} | Stock Value Lens`;
+@@ -184,7 +184,7 @@
+   const sectors = [...new Set(members.map((member) => member.sector).filter(Boolean))].sort();
+   const directoryControls = `<div class="directory-controls"><label>Find a company<input id="directory-search" type="search" placeholder="Search ticker or company…" aria-controls="directory-rows"></label><label>Sector<select id="directory-sector" aria-controls="directory-rows"><option value="">All sectors</option>${sectors.map((sector) => `<option>${e(sector)}</option>`).join("")}</select></label></div><p id="directory-count" class="directory-count" role="status">${members.length} securities</p>`;
+   await save("/stocks/", page(site, "/stocks/", "S&P 500 company financial history directory", "Browse free historical financial data and stock charts for available S&P 500 constituents, with dates and coverage gaps.", `<section class="card content-page directory-page"><p class="eyebrow">COMPANY DIRECTORY</p><h1>S&P 500 financial history</h1><p>${published.length} of ${members.length} constituent securities have company pages in this financial snapshot. <a href="/guides/pe-ratio-history/">P/E history using annual EPS</a> is available where positive EPS and eligible prices overlap. All ${index.companies.length.toLocaleString("en-US")} stocks remain searchable in the <a href="/">free chart tool</a>.</p><p>Membership as of ${e(site.membership.asOf)}, retrieved ${e(site.membership.retrievedAt)} from <a href="${e(site.membership.sourceUrl)}">Wikipedia revision ${e(site.membership.sourceRevision)}</a>. <a href="/sources/">Sources, dates & limitations</a>.</p>${directoryControls}<div class="table-scroll directory-table"><table><caption>Constituents listed alphabetically by ticker</caption><thead><tr><th scope="col">Ticker</th><th scope="col">Company</th><th scope="col">Sector</th><th scope="col">Coverage</th></tr></thead><tbody id="directory-rows">${directoryRows}</tbody></table></div><p id="directory-empty" hidden>No companies match these filters.</p></section>`));
+-  const documents = [...supportingPages(site, index, members), ["/data-access/", "AI and data access", "Public Markdown and JSON resources for LLMs and research tools, with schemas, source dates, and limitations.", accessDocumentation(site, index, members)]];
++  const documents = [...supportingPages(site, index, members), ["/privacy/", "Privacy and analytics", "How Stock Value Lens uses optional Google Analytics and how to change your choice.", `<h1>Privacy &amp; analytics</h1><p>Updated October 10, 2026. Stock Value Lens is maintained by ${e(site.author)}. Contact <a href="mailto:${e(site.contactEmail)}">${e(site.contactEmail)}</a> with privacy questions.</p><h2>Optional Google Analytics</h2><p>If you choose Accept analytics, Google Analytics 4 measures visits, pages viewed, approximate geographic information, browser/device information and engagement. It uses first-party cookies, including _ga, to distinguish browsers and returning visits. Google processes this information to provide website usage reports. This helps us understand which pages are useful and improve the website.</p><p>Google Analytics is blocked until you accept. Rejecting analytics does not affect charts, downloads or any other website feature. Advertising storage, advertising personalization and Google signals are disabled. We do not send names, email addresses, search input, chart settings or query strings through this integration.</p><h2>Your choice</h2><p>We remember your choice in this browser's local storage for up to 180 days. Use Analytics settings in the footer to change it at any time. Rejecting after accepting stops this integration, removes its accessible Google Analytics cookies and reloads the page. It does not erase data already collected. Browser blockers and rejected cookies mean reports do not count every visitor.</p><h2>Hosting and third parties</h2><p>Cloudflare hosts and protects this website and processes network requests, including IP addresses and technical request information. Rejecting optional Google Analytics does not stop the requests needed to serve and secure the website. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.</p><p>Google Analytics event data retention is set to two months; aggregated reports can be retained longer. See <a href="https://policies.google.com/privacy">Google's privacy policy</a> and <a href="https://support.google.com/analytics/answer/12017362">Google Analytics data safeguards</a> for details.</p>`], ["/data-access/", "AI and data access", "Public Markdown and JSON resources for LLMs and research tools, with schemas, source dates, and limitations.", accessDocumentation(site, index, members)]];
+   for (const [path, title, description, content] of documents) await save(path, page(site, path, title, description, `<article class="card content-page">${content}</article>`));
+   await save("/updates/", page(site, "/updates/", "Website updates and milestones", "Major updates, launch milestones, and events in the history of Stock Value Lens.", updateHistory(site)));
+   await generateAiFiles(staging, site, index, members, documents);
+--- a/tests/site.test.js
++++ b/tests/site.test.js
+@@ -49,7 +49,7 @@
+   try {
+     const report = await build(root, { siteUrl: "https://stocks.test" });
+     assert.equal(report.companyPages, 4);
+-    assert.equal(report.htmlPages, 17);
++    assert.equal(report.htmlPages, 18);
+     const html = await readFile(join(root, "dist/stocks/aapl/index.html"), "utf8");
+     assert.match(html, /A&amp;B &lt;Research&gt; &quot;Inc&quot;/);
+     assert.doesNotMatch(html, /A&B <Research>/);
+--- /dev/null
++++ b/tests/analytics.test.js
+@@ -0,0 +1,76 @@
++import test from "node:test";
++import assert from "node:assert/strict";
++import { readFile } from "node:fs/promises";
++import vm from "node:vm";
++
++const source = await readFile(new URL("../web/analytics.js", import.meta.url), "utf8");
++function browser({ hostname = "stockvaluelens.com", saved = null, unavailable = false } = {}) {
++  const scripts = [], cookies = [], stored = new Map(saved ? [["svl-analytics-consent", JSON.stringify(saved)]] : []);
++  const buttons = ["granted", "denied"].map((value) => ({ dataset: { consent: value }, addEventListener(_, callback) { this.click = callback; }, focus() { this.focused = true; } }));
++  const settings = { hidden: true, addEventListener(_, callback) { this.click = callback; } };
++  const banner = { hidden: false, setAttribute() {}, querySelectorAll() { return buttons; }, querySelector() { return buttons[1]; } };
++  const document = { referrer: "https://example.org/link?email=private#anchor", head: { append(tag) { scripts.push(tag); } }, body: { append() {} }, createElement(name) { return name === "section" ? banner : {}; }, querySelectorAll() { return [settings]; } };
++  Object.defineProperty(document, "cookie", { get() { return "_ga=123; _ga_01JX9HZ5G9=456; other=retain"; }, set(value) { cookies.push(value); } });
++  const location = { hostname, origin: `https://${hostname}`, pathname: "/stocks/aapl/", reload() { this.reloaded = true; } };
++  const window = {};
++  const localStorage = { getItem(key) { if (unavailable) throw Error("blocked"); return stored.get(key) || null; }, setItem(key, value) { if (unavailable) throw Error("blocked"); stored.set(key, value); } };
++  vm.runInNewContext(source, { document, location, localStorage, window, Date });
++  return { scripts, cookies, stored, buttons, settings, banner, location, window };
++}
++
++test("no Google tag loads before consent or after rejection, including a later visit", () => {
++  const state = browser();
++  assert.equal(state.scripts.length, 0);
++  assert.equal(state.banner.hidden, false);
++  state.buttons[1].click();
++  assert.equal(state.scripts.length, 0);
++  assert.equal(state.banner.hidden, true);
++  const next = browser({ saved: JSON.parse(state.stored.get("svl-analytics-consent")) });
++  assert.equal(next.scripts.length, 0);
++  assert.equal(next.banner.hidden, true);
++});
++
++test("acceptance loads once, strips URL parameters, and keeps advertising denied", () => {
++  const state = browser();
++  state.buttons[0].click();
++  state.buttons[0].click();
++  assert.equal(state.scripts.length, 1);
++  assert.match(state.scripts[0].src, /G-01JX9HZ5G9$/);
++  const commands = state.window.dataLayer.map((args) => Array.from(args));
++  assert.equal(commands[0][2].ad_user_data, "denied");
++  assert.equal(commands[1][2].analytics_storage, "granted");
++  const config = commands.find(([command]) => command === "config")[2];
++  assert.equal(config.page_location, "https://stockvaluelens.com/stocks/aapl/");
++  assert.equal(config.page_referrer, "https://example.org/link");
++  assert.equal(config.allow_google_signals, false);
++  assert.equal(config.allow_ad_personalization_signals, false);
++});
++
++test("settings allow withdrawal, removing only GA cookies and reloading", () => {
++  const state = browser({ saved: { value: "granted", at: Date.now() } });
++  assert.equal(state.scripts.length, 1);
++  state.settings.click();
++  assert.equal(state.banner.hidden, false);
++  assert.equal(state.buttons[1].focused, true);
++  state.buttons[1].click();
++  assert.equal(state.window["ga-disable-G-01JX9HZ5G9"], true);
++  assert.equal(state.location.reloaded, true);
++  assert.equal(state.cookies.length, 6);
++  assert.ok(state.cookies.every((cookie) => cookie.startsWith("_ga") && cookie.includes("Max-Age=0")));
++});
++
++test("expired consent prompts again and preview hosts never initialize tracking", () => {
++  const expired = browser({ saved: { value: "granted", at: Date.now() - 181 * 86400000 } });
++  assert.equal(expired.scripts.length, 0);
++  assert.equal(expired.banner.hidden, false);
++  const preview = browser({ hostname: "127.0.0.1", saved: { value: "granted", at: Date.now() } });
++  assert.equal(preview.scripts.length, 0);
++  assert.equal(preview.settings.hidden, true);
++});
++
++test("unavailable local storage does not prevent a visitor's choice", () => {
++  const state = browser({ unavailable: true });
++  assert.equal(state.scripts.length, 0);
++  state.buttons[0].click();
++  assert.equal(state.scripts.length, 1);
++});
+--- a/content/updates.json
++++ b/content/updates.json
+@@ -1,4 +1,14 @@
+ [
++  {
++    "date": "2026-10-10",
++    "type": "Privacy",
++    "title": "Optional analytics with visitor controls",
++    "summary": "Choose whether to allow analytics that helps us improve the website. Charts and downloads work with either choice.",
++    "items": [
++      "Accept or reject optional Google Analytics; change your choice using Analytics settings in the footer.",
++      "A new privacy page explains what analytics measures and how your choice is remembered."
++    ]
++  },
+   {
+     "date": "2026-10-09",
+     "type": "Data update",
+@@ -38,7 +48,7 @@
+     "title": "Explore annual P/E ratio history",
+     "summary": "Compare approximate fiscal-year-end P/E ratios using basic or diluted annual EPS on existing stock pages.",
+     "items": [
+-      "Choose diluted EPS, basic EPS, or both, with optional 15\u00d7, 20\u00d7 and 30\u00d7 comparison lines.",
++      "Choose diluted EPS, basic EPS, or both, with optional 15×, 20× and 30× comparison lines.",
+       "Use P/E CSV and PNG controls and read full annual P/E tables with eligible price dates and filing links.",
+       "A new P/E history guide explains annual frequency, adjusted-price approximations, missing-data gaps and retrospective timing."
+     ]
+@@ -60,8 +70,8 @@
+     "summary": "Verified stockvaluelens.com in Google Search Console and Bing Webmaster Tools and submitted its sitemap to both services.",
+     "items": [
+       "Bing processed the sitemap successfully and discovered all 497 listed pages.",
+-      "Google\u2019s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
+-      "Google\u2019s URL inspection confirms that the new-domain homepage is indexed.",
++      "Google’s live test successfully fetched the sitemap. Its sitemap-processing report still shows an initial fetch error.",
++      "Google’s URL inspection confirms that the new-domain homepage is indexed.",
+       "Indexing of the remaining pages and search rankings are not yet confirmed."
+     ]
+   },
+@@ -104,9 +114,9 @@
+     "title": "Direct access for AI research assistants",
+     "summary": "Added public resources that let LLMs and research tools read the website and financial snapshots without running the interactive chart.",
+     "items": [
+-      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock\u2019s JSON data.",
++      "Added an LLM navigation guide, Markdown company histories and documentation, and a catalog linking every stock’s JSON data.",
+       "Added an AI & data access guide in the footer, with schema, units, source dates, and interpretation limits.",
+-      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service\u2019s answers is not guaranteed."
++      "Financial data remains the historical snapshot. These resources improve access and discovery; inclusion in an AI service’s answers is not guaranteed."
+     ]
+   },
+   {
+@@ -125,7 +135,7 @@
+     "title": "Google Search Console connected",
+     "summary": "Connected the public site to Google Search Console to monitor search visibility and indexing.",
+     "items": [
+-      "Submitted the website sitemap to Google and confirmed that Google\u2019s live inspection can fetch it.",
++      "Submitted the website sitemap to Google and confirmed that Google’s live inspection can fetch it.",
+       "Sitemap processing and inclusion in search results are not yet confirmed."
+     ]
+   },
+--- a/README.md
++++ b/README.md
+@@ -22,6 +22,14 @@
+ Open <http://127.0.0.1:8787>. The prepared `data/` directory is already supplied in this local project. Neither preview nor deployment needs the original app or database to be running.
+
+ `npm run build:preview` produces a local-only, non-indexable preview. Production `npm run build` requires `SITE_URL` (see below) and produces `dist/` and reports company count, asset count, total bytes, and the largest file. It validates matching US company files and rejects assets exceeding Cloudflare Free limits: 20,000 files or 25 MiB per file.
++
++## Website audience analytics
++
++Stock Value Lens uses GA4 property `558359365` and web stream `16103138730` (measurement ID `G-01JX9HZ5G9`) under the owner's existing Analytics account. Open [the website dashboard](https://analytics.google.com/analytics/web/#/a361772430p558359365/reports/intelligenthome). Reporting uses Europe/Stockholm and USD. User/event retention is two months; reset on new activity is disabled.
++
++`web/analytics.js` loads Google's tag only on `stockvaluelens.com` after a visitor accepts analytics. Rejecting does not affect website features. The footer's Analytics settings lets visitors change their choice; consent expires after 180 days. The privacy page describes data collection. Advertising consent/signals are disabled, enhanced measurement is off, and page/referrer URLs exclude query strings and fragments. Local previews are untracked.
++
++Use GA4 Traffic acquisition for sessions and Pages and screens for page views. These measure consenting traffic from all channels, starting at installation. Search Console measures Google-search clicks; Cloudflare HTTP requests include technical/bot traffic and are not equivalent. Apply an ad network's own required analytics source, metric and period.
+
+ ## Deploy to Cloudflare
+
+--- a/PROJECT_LOG.md
++++ b/PROJECT_LOG.md
+@@ -9,6 +9,13 @@
+ - **Verification:** How the change was checked.
+ - **References:** Relevant files, tests, issues, or commits.
+ -->
++
++## 2026-10-10 — Optional GA4 audience measurement
++
++- **Summary:** Created the Stock Value Lens GA4 property and web stream; added consent-gated audience measurement, persistent Accept/Reject controls, a footer settings button and a privacy page across all 499 successful HTML pages.
++- **Impact:** Tracks consenting visits, page views and engagement only on the canonical production host. Google tags remain blocked before acceptance; advertising consent and Google signals stay disabled. Query strings/fragments are excluded from page and referrer URLs. Decisions expire after 180 days; withdrawal disables tracking, removes accessible GA cookies and reloads. Event/user retention is two months, without activity resets. GA4 counts are partial because of consent and browser blocking.
++- **Verification:** 42 Node and 5 Python tests pass, including five consent lifecycle tests. Production build passes asset limits; 6,551 company JSON hashes match the prior build. Live publication and Realtime evidence are recorded in VERIFICATION.md and the companion analysis repository's GA4 release record.
++- **References:** `web/analytics.js`, `web/_headers`, `web/styles.css`, `scripts/site.mjs`, `tests/analytics.test.js`, `content/updates.json`, ISSUE-013.
+
+ ## 2026-10-09 — Verified duplicate-storage cleanup
+
+--- a/ISSUE_LOG.md
++++ b/ISSUE_LOG.md
+@@ -16,6 +16,19 @@
+ - **References:** Related files or entries.
+ -->
+
++## ISSUE-013 — Adding GA4 requires consent and compatible script policy
++
++- **Date:** 2026-10-10
++- **Status:** Resolved
++- **Area:** Audience measurement, visitor privacy and Content Security Policy.
++- **Symptoms:** No stock-website GA4 property or tag existed. The site's self-only script policy would block Google's tag; no analytics choice or privacy page was present.
++- **Cause:** The original static site had no third-party analytics integration.
++- **Solution:** A separate GA4 property/web stream and basic consent integration. Load Google's tag only after acceptance, keep advertising features denied, strip URL parameters, offer withdrawal and publish a factual privacy page. Add only the Google tag/analytics hosts to the existing CSP directives; do not enable arbitrary or inline script execution. Local previews cannot initialize tracking.
++- **Why this solution:** Supports the requested traffic measurement while preserving a visitor's choice and the existing static architecture. Advanced consent mode would send cookieless pings before acceptance, so basic mode was selected. Resulting counts omit non-consenting/blocked visits and should not be compared directly with Cloudflare requests.
++- **Verification:** Five lifecycle tests cover no pre-consent loading, rejection persistence, one-time loading, URL redaction, withdrawal/cookie removal, expiry, preview isolation and blocked local storage. The full website suite and production build pass. Live observations are in VERIFICATION.md.
++- **Follow-up:** Use the precise metric and period requested by an ad network. Analytics is not a retrospective traffic history or an approval guarantee.
++- **References:** `web/analytics.js`, `web/_headers`, `scripts/site.mjs`, `tests/analytics.test.js`; [Google basic consent mode](https://developers.google.com/tag-platform/security/concepts/consent-mode).
++
+ ## ISSUE-012 — Duplicate refresh files consumed local storage
+
+ - **Date:** 2026-10-09
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -1,3 +1,12 @@
++## GA4 audience measurement — 2026-10-10
++
++- **Scope:** Created GA4 property `558359365`, stream `16103138730`, measurement ID `G-01JX9HZ5G9`, under the existing Analytics account. Sweden reporting time and USD. Event/user retention: two months; activity resets disabled. Enhanced measurement and Google signals/advertising features are disabled. Added basic consent, visitor controls and `/privacy/` to all 499 successful HTML pages; previews and the 404 page do not initialize GA4.
++- **Checks:** 42 Node + 5 Python tests pass, including five consent lifecycle tests. Production build: 6,551 securities, 485 company pages, 499 successful HTML pages, 7,566 assets; within hosting limits. All company-data hashes match the preceding build. Eight live resources return HTTP 200 and match the production build, including the homepage, loader, CSS, privacy, Apple, guides, updates and Apple JSON. Live CSP permits only the required Google tag/analytics hosts in addition to the prior sources, without inline/arbitrary script permission.
++- **Browser observations:** No Google tag script before consent; rejection remains after reload. Accepting loads exactly one tag; the decision persists to `/privacy/`. Footer withdrawal reloads with no Google tag. Homepage charts still render and no warning/error logs were observed. Consent banner and GA4 Realtime proof were saved in the companion repository.
++- **GA4 receipt:** Realtime showed one active user, the homepage title with one view, and `first_visit`, `page_view` and `session_start`, each with count 1. Test traffic is included in these initial counts. Standard processed reports can lag behind Realtime. The integration measures only consenting/unblocked visits, starting at installation.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `5770d5ff-495a-453e-88d2-7812f024ba20`.
++- **Maintenance review:** Added PROJECT_LOG, ISSUE-013, owner README guidance and public privacy-update history. The website source folder is outside Git; the focused source patch and actual release evidence are saved in stock-industry-analysis for commit/push. No Five Forces methodology or analysis workflow changes were required in that companion repository.
++
+ ## Chart Lens taller chart — 2026-10-09
+
+ - **Scope:** Increased the interior chart height from 12 to 15 SVG units (25%), centered around y=26. Applied the same vertical adjustment to the orange trough accent. Retained chart width, stroke weights, lens ring, handle, header dimensions and favicon asset. Clear interior margins remain.

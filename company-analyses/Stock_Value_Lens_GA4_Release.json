@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-10",
+  "site": "https://stockvaluelens.com",
+  "sourceFolder": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "analytics": {
+    "accountId": "361772430",
+    "propertyId": "558359365",
+    "propertyName": "Stock Value Lens",
+    "streamId": "16103138730",
+    "measurementId": "G-01JX9HZ5G9",
+    "dashboard": "https://analytics.google.com/analytics/web/#/a361772430p558359365/realtime/overview",
+    "timezone": "Europe/Stockholm",
+    "currency": "USD",
+    "eventRetentionMonths": 2,
+    "userRetentionMonths": 2,
+    "resetOnNewActivity": false,
+    "enhancedMeasurement": false
+  },
+  "consent": {
+    "mode": "basic",
+    "beforeConsentGoogleTagLoads": 0,
+    "afterRejectAndReloadGoogleTagLoads": 0,
+    "afterAcceptanceGoogleTagLoads": 1,
+    "acceptancePersistsAcrossPages": true,
+    "afterWithdrawalGoogleTagLoads": 0,
+    "choiceMaxAgeDays": 180,
+    "advertisingConsent": "denied",
+    "googleSignals": false,
+    "urlQueriesAndFragmentsExcluded": true,
+    "reportingLimitation": "Only consenting, unblocked visits starting at installation; not equivalent to Cloudflare requests or Search Console clicks."
+  },
+  "tests": {
+    "nodePassed": 42,
+    "pythonPassed": 5,
+    "consentLifecycleTests": 5,
+    "productionBuildPassed": true,
+    "companyDataHashesUnchanged": 6551,
+    "generatedHtmlPages": 499,
+    "companyPages": 485,
+    "assets": 7566
+  },
+  "deployment": {
+    "status": "published",
+    "versionId": "5770d5ff-495a-453e-88d2-7812f024ba20",
+    "liveChecks": [
+      {
+        "path": "/",
+        "status": 200,
+        "matchesBuild": true,
+        "contentSecurityPolicy": "default-src 'self'; img-src 'self' blob: data: https://*.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+      },
+      {
+        "path": "/analytics.js",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/styles.css",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/privacy/",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/stocks/aapl/",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/guides/",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/updates/",
+        "status": 200,
+        "matchesBuild": true
+      },
+      {
+        "path": "/data/companies/AAPL.json",
+        "status": 200,
+        "matchesBuild": true
+      }
+    ]
+  },
+  "realtimeProof": {
+    "activeUsers": 1,
+    "pageTitle": "Free historical stock charts, P/E history and EPS data | Stock Value Lens",
+    "pageViews": 1,
+    "events": {
+      "first_visit": 1,
+      "page_view": 1,
+      "session_start": 1
+    },
+    "note": "Initial verification traffic is included; standard reports may take longer to populate.",
+    "screenshot": "Stock_Value_Lens_GA4_Realtime_Live.jpg"
+  },
+  "sourceFiles": [
+    {
+      "path": "web/analytics.js",
+      "sha256": "080dd4d8df27ade64c08716e5a9f6a6312a965095b0b516addd102431fc9840b"
+    },
+    {
+      "path": "web/styles.css",
+      "sha256": "1716409fd661841b7fec09a405028d897b01188698c73aecd6c1d9a2071665c8"
+    },
+    {
+      "path": "web/_headers",
+      "sha256": "050de8dbd289aeda92cee5c22613c21816ecdde27437a2a2b1ff68898a1f8f07"
+    },
+    {
+      "path": "scripts/site.mjs",
+      "sha256": "85825dfa862186af62bf3ba56f62f746eba25ff5a1695e7e2c9b6e1982a13864"
+    },
+    {
+      "path": "tests/site.test.js",
+      "sha256": "752f6c1d9cb105eae08deb356b887d9c5d006575725374cbb9caa175ec063cda"
+    },
+    {
+      "path": "tests/analytics.test.js",
+      "sha256": "7521cb3f971cca2a19931713fd95ba2e531b9941a993917edb30291564da83aa"
+    },
+    {
+      "path": "content/updates.json",
+      "sha256": "f2b04b495cc241dfe240031f78e4edd1948b20ace4e2b2a87357becd18f03b1d"
+    },
+    {
+      "path": "README.md",
+      "sha256": "fb1ba1d86c41ad778e4246f5f168275bf0565c902907774cf1cc9605c056fb16"
+    },
+    {
+      "path": "PROJECT_LOG.md",
+      "sha256": "fb7dd8bbae6ebf6d28785a01a935791c78f2e4d804c86cf9e980bc8431dc910e"
+    },
+    {
+      "path": "ISSUE_LOG.md",
+      "sha256": "4f3a0f851e2905462fa11a1f01d8e80a88f09768b494753e14a415d63aba249e"
+    },
+    {
+      "path": "VERIFICATION.md",
+      "sha256": "4c6fb6165b4b3cf06dfb49786c3b1f83ce8931a59753794020d3d594eb6e959a"
+    }
+  ],
+  "maintenanceReview": {
+    "websiteProjectLogUpdated": true,
+    "websiteIssueLogUpdated": "ISSUE-013 Resolved",
+    "websitePublicHistoryUpdated": true,
+    "companionProjectLogRequired": false,
+    "companionIssueLogRequired": false,
+    "reason": "This is website setup, with its investigation and decisions recorded in the website logs; it does not change Five Forces methodology or the companion repository workflow."
+  },
+  "versionControl": {
+    "websiteSource": "Not a Git repository; changes archived in the companion repository source patch.",
+    "companionRepository": "Current branch main, configured upstream origin/main; commit and push follow this saved record."
+  }
+}
