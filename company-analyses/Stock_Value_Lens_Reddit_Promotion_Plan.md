@@ -4,9 +4,9 @@
 
 **Recommendation:** validate a narrow historical-research task before expanding promotion. Prioritize r/ValueInvesting when its one-time free-service route is confirmed. General developer testing is optional usability work. Recruit people because of their research behavior, not because they are active Reddit users.
 
-Use the [posts and messages](#posts-and-messages), [people and contact routes](#people-and-contact-routes), [validation study](#validation-study), and [frequency and calendar](#frequency-and-calendar). All drafts remain unsent. This revision replaces the earlier launch-first calendar and generic-tester recruitment priority.
+Use the [posts and messages](#posts-and-messages), [people and contact routes](#people-and-contact-routes), [validation study](#validation-study), and [frequency and calendar](#frequency-and-calendar). The assistant has sent no posts or messages; owner contact status is not tracked in this plan. This revision replaces the earlier launch-first calendar and generic-tester recruitment priority.
 
-The [twenty additional invitation drafts](Stock_Value_Lens_Reddit_Invitations.md), researched 2026-10-10, contain full website URLs, personalized messages and public source context. They are additional relevance candidates, not confirmed willing participants; the frequency and consent conditions below still apply.
+The [additional invitation drafts](Stock_Value_Lens_Reddit_Invitations.md), researched 2026-10-10, contain full website URLs and proposed public source context. One attribution was disputed and its invitation withdrawn; the other personalized openings require exact comment-and-author verification through a direct permalink before use. They are research leads, not confirmed willing participants; the frequency and consent conditions below still apply.
 
 ## Audience and recurring job
 

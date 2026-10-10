@@ -27,6 +27,19 @@ Use sequential IDs beginning with `ISSUE-001`. Create an entry as soon as a qual
 
 ## Recorded issues
 
+## ISSUE-008 — Cached comment attribution was treated as verified outreach context
+
+- **Status:** Resolved
+- **Opened:** 2026-10-10
+- **Resolved:** 2026-10-10
+- **Affected area:** Stock Value Lens Reddit invitation drafts and attribution verification.
+- **Problem and impact:** A recipient disputed the comment attributed to them in an invitation. The draft presented a cached thread association as a verified personal observation, risking inaccurate outreach and loss of trust.
+- **Root cause or hypothesis:** Candidate selection matched names and nearby text in indexed thread renderings without independently verifying the exact comment permalink and author profile. The cached rendering still showed the association during recheck, but direct comment/profile retrieval failed and targeted searches found no independent confirmation. The underlying authorship discrepancy remains unexplained.
+- **Chosen solution:** Withdrew the disputed invitation, replaced it with a brief correction reply, and held remaining personalized openings until exact author/text verification through a direct comment permalink. Updated the promotion plan to reflect that status; preserved research context as provisional rather than asserting authorship. No private message text or recipient conversation was committed.
+- **Rationale:** Corrects the actionable drafts without arguing with a recipient or using repeated cached output as independent confirmation. Resolution concerns the outreach workflow; it does not claim that the original comment's author was determined.
+- **Alternatives considered:** Repeating the cached attribution would not resolve the contradiction. Guessing another author would introduce a new unsupported claim. Continuing the product pitch in the correction would compound the trust problem.
+- **Follow-up/prevention:** Verify exact comment text, author handle and permalink together before personalizing. If verification is unavailable, omit the claimed personal context and qualify the research lead separately. Remaining openings are not cleared for use. No assistant messages were sent; the canonical Five Forces skill is unchanged, so PROJECT_LOG.md does not require an update.
+
 ## ISSUE-007 — Outreach plan mixed general testing with investor demand validation
 
 - **Status:** Resolved

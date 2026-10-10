@@ -2,9 +2,9 @@
 
 **Research date: 2026-10-10.** Twenty additional public Reddit handles, excluding ado136, Amazing_Main5874, SaltBat6229, mrmrmrj and al3shan. Objective: learn whether individual stock investors find the historical valuation and annual-financial views useful alongside their existing tools. This is outreach copy, not investment advice.
 
-Each personalization is grounded in the linked public thread. Those threads contain comments from March–September 2026; a recent crawler date is not a recent user activity date. **Current account activity, recipient availability and permission to receive promotional PMs are unverified. No message has been sent.** These are relevance candidates, not twenty confirmed qualified or willing participants. Recheck the source, handle and contact preferences before using a draft. Follow the [existing plan](Stock_Value_Lens_Reddit_Promotion_Plan.md) for frequency and consent; finding twenty candidates does not expand its outreach limits.
+Each proposed personalization was derived from a cached public thread. Those threads contain comments from March–September 2026; a recent crawler date is not a recent user activity date. **Attribution review, 2026-10-10:** a recipient disputed entry 19's attribution. That invitation is withdrawn. The other personalized openings are held until the exact comment text and author are verified together through a direct comment permalink. A thread URL or repeated cached rendering is insufficient. Current account activity, recipient availability and permission to receive promotional PMs remain unverified. The assistant has sent no messages; recipient contact status is not tracked here. These are research leads, not confirmed qualified or willing participants. Follow the [existing plan](Stock_Value_Lens_Reddit_Promotion_Plan.md) for frequency and consent; finding twenty candidates does not expand its outreach limits.
 
-The URL is written in full with https://. Every message ends with the requested sentence. The website’s historical P/E uses annual EPS retrospectively; it is not TTM/forward P/E or a point-in-time backtest. The short messages do not promise forecasts, normalized earnings calculations, an Earnings Power Value calculation or a DCF engine. Chart CSV is not a complete financial-statement/provenance export.
+The URL is written in full with https://. Every remaining invitation draft ends with the requested sentence; entry 19 contains only a correction reply. The website’s historical P/E uses annual EPS retrospectively; it is not TTM/forward P/E or a point-in-time backtest. The short messages do not promise forecasts, normalized earnings calculations, an Earnings Power Value calculation or a DCF engine. Chart CSV is not a complete financial-statement/provenance export.
 
 ## 1 Pretend-Character-47
 
@@ -154,9 +154,11 @@ The URL is written in full with https://. Every message ends with the requested 
 
 [Open profile](https://www.reddit.com/user/Mark420blazer/) · [Source discussion](https://www.reddit.com/r/ValueInvesting/comments/1ubw142/how_do_i_quickly_check_if_a_stock_is_expensive_or/)
 
-**Observed context:** Normalized earnings and cash-flow yields. Source crawler label at retrieval: 2 weeks ago; this is not the comment’s posting date.
+**Status:** Attribution disputed; invitation withdrawn. The cached thread associates financial-analysis text with this handle, but the individual [comment permalink](https://www.reddit.com/r/ValueInvesting/comments/1ubw142/comment/osz9q0l/) and profile could not be independently retrieved on 2026-10-10. Do not repeat the attribution or send another product pitch in response to the correction.
 
-> Hey, I saw your comment about checking earnings and cash flow when assessing valuation. I built https://stockvaluelens.com/ to explore their annual history alongside prices and historical valuation charts. It’s free, no signup. Would love to know whether it’s useful alongside your current tools.
+**Correction reply draft:**
+
+> My mistake, man—I shouldn't have attributed that comment to you. Sorry about that.
 
 ## 20 Comprehensive_Tea388
 
