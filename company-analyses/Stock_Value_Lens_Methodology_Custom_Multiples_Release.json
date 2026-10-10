@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-10",
+  "website": "https://stockvaluelens.com/",
+  "methodologyPage": "https://stockvaluelens.com/methodology/",
+  "changes": [
+    "Plain-language methodology covering EPS, FCF/share, P/E, CAGR, source/date limits and a checked formula example",
+    "10% business-metric annual-growth benchmark and 0.6 partial duration weighting explained without promising investment returns",
+    "Compound annual growth rate (CAGR) replaces the redundant growth label",
+    "Positive finite custom multiples have no 60x ceiling; automatic formula retains its 60x cap"
+  ],
+  "sourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "changedSourceFiles": [
+    "scripts/site.mjs",
+    "ISSUE_LOG.md",
+    "VERIFICATION.md",
+    "web/app.js",
+    "web/index.html",
+    "web/calculations.js",
+    "tests/calculations.test.js",
+    "tests/fixtures/README.md",
+    "tests/fixtures/reference.json",
+    "README.md",
+    "PROJECT_LOG.md",
+    "content/updates.json"
+  ],
+  "deployment": {
+    "status": "published",
+    "cloudflareVersion": "3d9ef4b0-19e4-4c2b-ab19-7b08070cb742",
+    "uploadedChangedAssets": 494
+  },
+  "tests": {
+    "nodePassed": 43,
+    "pythonPassed": 5,
+    "regressionReproducedBeforeFix": true,
+    "referenceFixtureChanges": "Two 100x custom cases intentionally differ from original Python custom clipping; other expected values preserved",
+    "automaticFormulaCapRetained": true
+  },
+  "buildReview": {
+    "changedAssets": 494,
+    "changedNonHtml": [
+      "calculations.js",
+      "app.js",
+      "methodology/index.md",
+      "updates/index.md",
+      "guides/stock-price-vs-earnings/index.md"
+    ],
+    "unchangedCompanyJsonFiles": 6551,
+    "workedExample": {
+      "growth": 0.2,
+      "years": 10,
+      "weightedYears": 6,
+      "multiple": 25.282651853365465,
+      "valueAtEps5": 126.41325926682732
+    },
+    "markdownAndLinksVerified": true
+  },
+  "browser": {
+    "desktop": "1440x900: readable methodology and compact label, no horizontal overflow",
+    "mobile": "390x844: methodology and compact label wrap without horizontal overflow",
+    "liveCustomInput100": "100.0×",
+    "resetOnLiveAmazonDefaultWindow": "60.0×",
+    "warningErrorLogs": [],
+    "savedBrowserExport": "Not independently checked; existing exporter uses applied-multiple points"
+  },
+  "liveBuildChecks": [
+    {
+      "route": "/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/methodology/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/methodology/index.md",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/guides/stock-price-vs-earnings/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/app.js",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/calculations.js",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/stocks/amzn/",
+      "status": 200,
+      "matchesBuild": true
+    },
+    {
+      "route": "/updates/",
+      "status": 200,
+      "matchesBuild": true
+    }
+  ],
+  "maintenanceLogReview": {
+    "websiteProjectLog": "New entry for changed custom-input behavior",
+    "websiteIssueLog": "ISSUE-014 resolved",
+    "publicUpdates": "New feature entry",
+    "analysisLogs": "No update: canonical analysis SKILL.md unchanged; website issue decision preserved in focused patch"
+  },
+  "rollbackBuild": "/tmp/stock-value-lens-methodology-2026-10-10/previous-dist",
+  "screenshots": [
+    "Stock_Value_Lens_Methodology_Live.jpg",
+    "Stock_Value_Lens_Custom_Multiple_Live.jpg"
+  ],
+  "sourcePatch": "Stock_Value_Lens_Methodology_Custom_Multiples_Source.patch",
+  "versionControl": "Website source directory has no Git repository; focused patch and release evidence are versioned in the analysis repository."
+}
