@@ -6,6 +6,8 @@
 
 Use the [posts and messages](#posts-and-messages), [people and contact routes](#people-and-contact-routes), [validation study](#validation-study), and [frequency and calendar](#frequency-and-calendar). All drafts remain unsent. This revision replaces the earlier launch-first calendar and generic-tester recruitment priority.
 
+The [twenty additional invitation drafts](Stock_Value_Lens_Reddit_Invitations.md), researched 2026-10-10, contain full website URLs, personalized messages and public source context. They are additional relevance candidates, not confirmed willing participants; the frequency and consent conditions below still apply.
+
 ## Audience and recurring job
 
 The primary hypothesis is **individual investors who regularly research US-listed operating businesses and want to inspect a company's long-term earnings and cash generation alongside price before deciding what to investigate in its filings**. They can already explain what EPS and cash flow mean; they need historical context, not a lesson in buying stocks.
