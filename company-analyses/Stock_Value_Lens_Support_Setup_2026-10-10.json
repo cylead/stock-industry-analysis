@@ -1,7 +1,7 @@
 {
   "date": "2026-10-10",
   "website": "https://stockvaluelens.com/",
-  "creatorPage": "https://buymeacoffee.com/neoy",
+  "creatorPage": "https://buymeacoffee.com/cheng123",
   "deployment": {
     "status": "published",
     "cloudflareVersion": "d2cccfab-f258-4956-9647-a9c2ee4de233",
@@ -89,5 +89,44 @@
     "analysisRepositoryLogs": "No methodology change or qualifying issue; unchanged"
   },
   "evidenceDirectory": "company-analyses/Stock_Value_Lens_Support_Setup_2026-10-10",
-  "sourcePatch": "company-analyses/Stock_Value_Lens_Support_Setup_2026-10-10/website-source.patch"
+  "sourcePatch": "company-analyses/Stock_Value_Lens_Support_Setup_2026-10-10/website-source.patch",
+  "creatorPageAtSetup": "https://buymeacoffee.com/neoy",
+  "supportLinkUpdate": {
+    "date": "2026-10-10",
+    "previousPage": "https://buymeacoffee.com/neoy",
+    "currentPage": "https://buymeacoffee.com/cheng123",
+    "status": "published",
+    "cloudflareVersion": "149de0ac-7e63-42ea-96b8-8c268751ac46",
+    "generatedSupportLinksVerified": 985,
+    "oldLinksInGeneratedHTML": 0,
+    "build": "passed",
+    "liveChecks": [
+      {
+        "path": "/",
+        "status": 200,
+        "matches_build": true,
+        "supportLink": "https://buymeacoffee.com/cheng123"
+      },
+      {
+        "path": "/stocks/aapl/",
+        "status": 200,
+        "matches_build": true,
+        "supportLink": "https://buymeacoffee.com/cheng123"
+      },
+      {
+        "path": "/stocks/msft/",
+        "status": 200,
+        "matches_build": true,
+        "supportLink": "https://buymeacoffee.com/cheng123"
+      },
+      {
+        "path": "/guides/pe-ratio-history/",
+        "status": 200,
+        "matches_build": true,
+        "supportLink": "https://buymeacoffee.com/cheng123"
+      }
+    ],
+    "logs": "Routine link-only correction; no PROJECT_LOG, ISSUE_LOG or public history changes required. Website VERIFICATION.md contains the follow-up.",
+    "analytics": "Existing G-01JX9HZ5G9 ID provided to owner; no BMC analytics changes performed."
+  }
 }
