@@ -1,0 +1,15 @@
+--- a/web/index.html
++++ b/web/index.html
+@@ -47 +47 @@
+-        <div class="stat card"><span>Annualized metric growth</span><strong id="stat-cagr">—</strong><small id="stat-years">Selected window</small></div>
++        <div class="stat card"><span>Annualized metric growth (CAGR)</span><strong id="stat-cagr">—</strong><small>Compound annual growth rate</small><small id="stat-years">Selected window</small></div>
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,7 @@
++## CAGR definition in the growth card — 2026-10-10
++
++- **Change:** Labeled the left summary card "Annualized metric growth (CAGR)" and added the visible expansion "Compound annual growth rate"; preserved its percentage and fiscal-date display.
++- **Verification:** All 10 existing site tests pass. Production build passes; exactly 486 homepage/company HTML assets change. All other assets, including 6,551 company JSON files and all calculation scripts, match the previous build. Amazon preview at 1440×900 and 390×844 shows the definition with no document horizontal overflow.
++- **Maintenance review:** Small wording refinement; no PROJECT_LOG.md, ISSUE_LOG.md or public-history update required.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `b75c7fb3-ea9b-4bcb-8caf-b83c7480bc3f`. Live Amazon card visibly shows the CAGR label and definition with 39.40% growth; no browser warning/error logs. Focused patch, release evidence and live screenshot are saved in the companion analysis repository.
++

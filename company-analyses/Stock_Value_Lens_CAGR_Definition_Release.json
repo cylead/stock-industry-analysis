@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-10",
+  "website": "https://stockvaluelens.com/",
+  "change": "Introduce CAGR in the left growth card",
+  "label": "Annualized metric growth (CAGR)",
+  "definition": "Compound annual growth rate",
+  "sourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "changedSourceFiles": [
+    "web/index.html",
+    "VERIFICATION.md"
+  ],
+  "deployment": {
+    "status": "published",
+    "cloudflareVersion": "b75c7fb3-ea9b-4bcb-8caf-b83c7480bc3f"
+  },
+  "verification": {
+    "existingSiteTestsPassed": 10,
+    "productionBuild": "passed",
+    "changedHtmlAssets": 486,
+    "unchangedOtherAssets": true,
+    "unchangedCompanyJsonFiles": 6551,
+    "desktopPreview": "1440x900: definition visible, no horizontal overflow",
+    "mobilePreview": "390x844: definition visible, no horizontal overflow",
+    "liveAmazonCardVerified": true,
+    "browserWarningErrorLogs": []
+  },
+  "maintenanceLogReview": "Small wording refinement: no project log, issue log or public-history entry required; analysis methodology unchanged.",
+  "rollbackBuild": "/tmp/stock-value-lens-cagr-copy-2026-10-10/previous-dist",
+  "screenshot": "Stock_Value_Lens_CAGR_Definition_Live.jpg",
+  "sourcePatch": "Stock_Value_Lens_CAGR_Definition_Source.patch",
+  "versionControl": "Website source folder has no Git repository; focused patch and evidence are versioned in the analysis repository."
+}
