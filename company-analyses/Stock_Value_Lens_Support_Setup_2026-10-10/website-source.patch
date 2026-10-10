@@ -1,0 +1,69 @@
+--- a/scripts/site.mjs
++++ b/scripts/site.mjs
+@@ -54,0 +55,3 @@
++function supportCard() {
++  return `<section class="card support-card" aria-labelledby="support-title"><div><h2 id="support-title">Did this research save you time?</h2><p>I build and maintain Stock Value Lens independently. If you found it useful, a coffee helps me maintain the tools and improve data updates.</p><p class="data-note">Support is completely optional. Charts and downloads remain free.</p></div><a class="support-button" href="https://buymeacoffee.com/neoy" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">☕</span> Buy me a coffee · €5<span class="sr-only"> (opens Buy Me a Coffee in a new tab)</span></a></section>`;
++}
+@@ -56 +59 @@
+-  return `<footer><nav aria-label="Footer navigation">${links}<a href="/guides/fiscal-year-dividend-yield/">Dividend yield guide</a><a href="/data-access/">AI &amp; data access</a><a href="/privacy/">Privacy</a></nav><p><button type="button" data-analytics-settings hidden>Analytics settings</button></p><p>100% free · Created and maintained by <a href="/about/">${e(site.author)}</a> · <a href="mailto:${e(site.contactEmail)}">Contact & corrections</a></p><p>Historical research tool. Not investment advice.</p></footer>${site.preview ? "" : '<script src="/analytics.js" type="module"></script>'}`;
++  return `<footer><nav aria-label="Footer navigation">${links}<a href="/guides/fiscal-year-dividend-yield/">Dividend yield guide</a><a href="/data-access/">AI &amp; data access</a><a href="/privacy/">Privacy</a><a href="https://buymeacoffee.com/neoy" target="_blank" rel="noopener noreferrer">Buy me a coffee<span class="sr-only"> (opens in a new tab)</span></a></nav><p><button type="button" data-analytics-settings hidden>Analytics settings</button></p><p>100% free · Created and maintained by <a href="/about/">${e(site.author)}</a> · <a href="mailto:${e(site.contactEmail)}">Contact & corrections</a></p><p>Historical research tool. Not investment advice.</p></footer>${site.preview ? "" : '<script src="/analytics.js" type="module"></script>'}`;
+@@ -169 +172 @@
+-  home = home.replace('\n  </main>', advantagesSection(site, index) + '\n  </main>');
++  home = home.replace('\n  </main>', advantagesSection(site, index) + supportCard() + '\n  </main>');
+@@ -181 +184 @@
+-    await save(member.path, page(site, member.path, title, `Explore ${member.name} annual ${subject}, with historical charts and filing sources. Free access and CSV/PNG exports without signup.`, welcome + workspace + overview(member, site, index) + '<noscript><p>Enable JavaScript to use the interactive chart. The annual table below is available without it.</p></noscript>' + history(member) + peHistory(member) + advantagesSection(site, index, member), { chart: true, ticker: member.ticker }));
++    await save(member.path, page(site, member.path, title, `Explore ${member.name} annual ${subject}, with historical charts and filing sources. Free access and CSV/PNG exports without signup.`, welcome + workspace + overview(member, site, index) + '<noscript><p>Enable JavaScript to use the interactive chart. The annual table below is available without it.</p></noscript>' + history(member) + peHistory(member) + advantagesSection(site, index, member) + supportCard(), { chart: true, ticker: member.ticker }));
+--- a/web/styles.css
++++ b/web/styles.css
+@@ -231,0 +232,7 @@
++.support-card { display: flex; align-items: center; gap: 24px; padding: 24px; margin-top: 18px; }
++.support-card h2 { margin: 0; font-size: 18px; font-weight: 650; }
++.support-card p { margin: 8px 0 0; }
++.support-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 12px 18px; border-radius: 8px; background: var(--green); color: #fff; font-weight: 650; text-decoration: none; white-space: nowrap; flex-shrink: 0; }
++.support-button:hover { background: var(--ink); }
++@media (max-width: 650px) { .support-card { flex-direction: column; align-items: stretch; padding: 20px; gap: 16px; } .support-button { white-space: normal; } }
++
+--- a/README.md
++++ b/README.md
+@@ -24,0 +25,6 @@
++
++## Optional supporter tips
++
++The homepage and company pages include a small support card below the research content, with a shared footer link on generated pages. Both open [Cheng's Buy Me a Coffee page](https://buymeacoffee.com/neoy) in a new tab. One coffee is €5; monthly support is disabled. Tips are optional and do not unlock paid content or affect free charts/downloads. The creator profile identifies Stock Value Lens and links back to the website.
++
++This is a plain external link: no payment widget, Buy Me a Coffee script, or payment details are loaded on Stock Value Lens. No new analytics events were added; completed support is recorded by Buy Me a Coffee rather than inferred from link clicks.
+--- a/PROJECT_LOG.md
++++ b/PROJECT_LOG.md
+@@ -11,0 +12,7 @@
++
++## 2026-10-10 — Optional Buy Me a Coffee support
++
++- **Summary:** Added a €5 Buy Me a Coffee support card below the homepage/company research content and an external support link in the shared footer. Updated the existing creator profile to identify Stock Value Lens, link back to the website and explain optional support; disabled monthly support and saved a personalized thank-you message.
++- **Impact:** Visitors can thank the creator with one-time support. Charts and downloads remain free. Plain links open Buy Me a Coffee in a new tab; the website loads no new third-party payment scripts, widgets or trackers. Existing writing biography and Medium link are preserved.
++- **Verification:** Existing website suite, production build, generated-link/data checks and desktop/mobile review are recorded in VERIFICATION.md. Live publication status is recorded separately there.
++- **References:** `scripts/site.mjs`, `web/styles.css`, `README.md`, `content/updates.json`, `VERIFICATION.md`; https://buymeacoffee.com/neoy.
+--- a/content/updates.json
++++ b/content/updates.json
+@@ -1,0 +2,10 @@
++  {
++    "date": "2026-10-10",
++    "type": "Feature",
++    "title": "Optional support for free research",
++    "summary": "If Stock Value Lens saves you time, you can now thank the creator with a one-time coffee.",
++    "items": [
++      "A small support card appears below the homepage and company research content, with a support link in the footer.",
++      "Support opens Buy Me a Coffee and is completely optional. Charts and downloads remain free without an account or subscription."
++    ]
++  },
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,9 @@
++## Optional Buy Me a Coffee support — 2026-10-10
++
++- **Creator settings:** Existing https://buymeacoffee.com/neoy profile updated to identify Stock Value Lens and link back to https://stockvaluelens.com/. Existing writing biography and Medium link preserved. Currency is EUR, standard coffee price €5, monthly support disabled. Credit-card fee coverage remains enabled; no membership or shop products created. Saved thank-you preview verified. Payout page reports an existing connected account; no payout/financial account changes or test payment performed.
++- **Website:** Plain external support links, with target=_blank and noopener/noreferrer. Support cards sit below homepage/company research content; shared footer link available across generated pages. No payment widgets/scripts, new analytics events, or CSP changes.
++- **Checks:** All 42 Node and five Python tests pass. Production build passes with 499 HTML routes, 485 company pages and 7,566 assets. Generated-link audit found exactly 486 support cards and 499 footer support links. All 6,551 company JSON files match the preceding build; app.js, calculations.js, pe.js, analytics.js, ui.js, _headers and data/index.json unchanged. Desktop screenshot reviewed; at 390×844 the card is 366 px wide, uses a column layout, has a 45 px button and no document horizontal overflow.
++- **Publication:** Published Cloudflare version `d2cccfab-f258-4956-9647-a9c2ee4de233` to https://stockvaluelens.com. Wrangler uploaded 501 changed assets. Seven live endpoints (homepage, Apple/Microsoft pages, styles, HTML/Markdown updates and Apple JSON) return HTTP 200 and exactly match the build. The live homepage visibly renders the support card; browser warning/error logs are empty.
++- **Evidence:** Desktop/mobile, creator-profile, support-settings and live website screenshots are retained with the companion repository release record.
++- **Logs:** PROJECT_LOG and public update history updated for this user-visible feature. No new defect or non-trivial issue was found, so ISSUE_LOG was assessed and left unchanged. The website source folder has no Git repository; the companion stock-industry-analysis repository retains the release evidence and source diff.
++

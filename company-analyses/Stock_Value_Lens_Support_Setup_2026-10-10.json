@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-10",
+  "website": "https://stockvaluelens.com/",
+  "creatorPage": "https://buymeacoffee.com/neoy",
+  "deployment": {
+    "status": "published",
+    "cloudflareVersion": "d2cccfab-f258-4956-9647-a9c2ee4de233",
+    "uploadedChangedAssets": 501
+  },
+  "buyMeACoffee": {
+    "currency": "EUR",
+    "pricePerCoffee": 5,
+    "layout": "standard coffee quantities",
+    "monthlySupport": false,
+    "creditCardFeeCoverage": "existing enabled setting preserved",
+    "profile": "Stock Value Lens introduction and website link added; existing writing biography and Medium link preserved",
+    "thankYouMessage": "Thank you for supporting my work! Your coffee helps me maintain Stock Value Lens and improve its free stock research tools and data updates. I really appreciate it. — Cheng",
+    "payoutConnection": "existing connection reported by dashboard; no account changes",
+    "paymentTest": "No transaction performed"
+  },
+  "websiteChanges": {
+    "supportCards": 486,
+    "footerLinks": 499,
+    "placement": "Homepage/company cards below research content; footer link on generated pages",
+    "paymentIntegration": "Plain external links with noopener/noreferrer; no widget/script or new tracking",
+    "freeAccess": "Charts and downloads remain free"
+  },
+  "verification": {
+    "nodeTestsPassed": 42,
+    "pythonTestsPassed": 5,
+    "productionBuild": "passed",
+    "mobileViewport": "390x844; 366px card width, 45px button height, no horizontal overflow",
+    "desktop": "support card visually reviewed",
+    "unchangedCompanyJSONs": 6551,
+    "unchangedAssets": [
+      "app.js",
+      "calculations.js",
+      "pe.js",
+      "analytics.js",
+      "ui.js",
+      "_headers",
+      "data/index.json"
+    ],
+    "liveChecks": [
+      {
+        "path": "/",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/stocks/aapl/",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/stocks/msft/",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/styles.css",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/updates/",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/updates/index.md",
+        "status": 200,
+        "matches_build": true
+      },
+      {
+        "path": "/data/companies/AAPL.json",
+        "status": 200,
+        "matches_build": true
+      }
+    ],
+    "liveBrowserWarningsErrors": []
+  },
+  "sourceFolder": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "sourceVersionControl": "Website folder is not a Git repository. Focused source patch and release evidence retained in companion repository.",
+  "logAssessment": {
+    "websiteProjectLog": "updated for visitor-facing support feature",
+    "websitePublicUpdates": "updated in published release",
+    "websiteIssueLog": "no qualifying issue found; unchanged",
+    "analysisRepositoryLogs": "No methodology change or qualifying issue; unchanged"
+  },
+  "evidenceDirectory": "company-analyses/Stock_Value_Lens_Support_Setup_2026-10-10",
+  "sourcePatch": "company-analyses/Stock_Value_Lens_Support_Setup_2026-10-10/website-source.patch"
+}
