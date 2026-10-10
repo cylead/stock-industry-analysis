@@ -1,0 +1,20 @@
+--- a/web/app.js
++++ b/web/app.js
+@@ -281 +281 @@
+-  $("#stat-formula").textContent = "Formula or custom · capped at 60×";
++  $("#stat-formula").textContent = "Formula: 15 × ((1 + CAGR) / 1.10)^(years × 0.6), or your custom input · capped at 60×";
+--- a/web/index.html
++++ b/web/index.html
+@@ -48 +48 @@
+-        <div class="stat card orange"><span>Applied multiple</span><strong id="stat-fair">—</strong><small id="stat-formula">Formula or custom · capped at 60×</small></div>
++        <div class="stat card orange"><span>Applied multiple</span><strong id="stat-fair">—</strong><small id="stat-formula" title="CAGR is expressed as a decimal. Years is the elapsed time between the first and last positive annual observations in the selected window.">Formula: 15 × ((1 + CAGR) / 1.10)^(years × 0.6), or your custom input · capped at 60×</small></div>
+--- a/VERIFICATION.md
++++ b/VERIFICATION.md
+@@ -0,0 +1,7 @@
++## Formula displayed beside the applied multiple — 2026-10-10
++
++- **Change:** Added the existing growth formula before the 60× cap/custom-input wording in the Applied multiple card, in both static markup and runtime text. Hover help defines CAGR as a decimal and years as elapsed time between positive annual endpoints.
++- **Verification:** 42 Node and 5 Python tests pass; production build passes with 6,551 company snapshots and 485 company pages. Amazon preview at 1440×900 and 390×844 shows the formula; no document horizontal overflow or browser warning/error logs. Calculation code, styles, index metadata and Amazon JSON match the previous build.
++- **Maintenance review:** Small copy refinement; no PROJECT_LOG.md, ISSUE_LOG.md or public-history update required. No financial-data or calculation change.
++- **Publication:** Published to https://stockvaluelens.com as Cloudflare version `fe44f90d-8fd1-46aa-963c-c8af36306098`; 487 changed assets uploaded. Live app.js exactly matches the tested build. Live Amazon chart renders 60.0× and the full formula, with no warning/error logs. Source patch, release record and live screenshot are retained in the companion analysis repository.
++

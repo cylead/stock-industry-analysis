@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-10",
+  "website": "https://stockvaluelens.com/",
+  "change": "Existing formula displayed in Applied multiple card before custom-input/cap wording",
+  "displayText": "Formula: 15 \u00d7 ((1 + CAGR) / 1.10)^(years \u00d7 0.6), or your custom input \u00b7 capped at 60\u00d7",
+  "sourceDirectory": "/Users/yangch/Downloads/investment/stock-valuation-public",
+  "changedSourceFiles": [
+    "web/app.js",
+    "web/index.html",
+    "VERIFICATION.md"
+  ],
+  "deployment": {
+    "status": "published",
+    "cloudflareVersion": "fe44f90d-8fd1-46aa-963c-c8af36306098",
+    "changedAssets": 487
+  },
+  "verification": {
+    "nodeTestsPassed": 42,
+    "pythonTestsPassed": 5,
+    "productionBuild": "passed",
+    "companyPages": 485,
+    "formulaCards": 486,
+    "unchangedCompanyJsonFiles": 6551,
+    "onlyChangedNonHtmlAsset": "app.js",
+    "calculationCodeUnchanged": true,
+    "desktopPreview": "1440x900: text visible, no horizontal overflow",
+    "mobilePreview": "390x844: text wraps, no horizontal overflow",
+    "liveScriptMatchesBuild": true,
+    "liveAmazon": {
+      "formulaVisible": true,
+      "appliedMultiple": "60.0\u00d7",
+      "chartChildren": 37,
+      "loading": false,
+      "warningErrorLogs": []
+    }
+  },
+  "maintenanceLogReview": {
+    "websiteProjectLog": "No update: small copy refinement",
+    "websiteIssueLog": "No update: straightforward presentation edit",
+    "publicUpdates": "No update: minor refinement",
+    "analysisLogs": "No update: analysis methodology unchanged; no qualifying issue"
+  },
+  "rollbackBuild": "/tmp/stock-value-lens-formula-copy-2026-10-10/previous-dist",
+  "sourcePatch": "Stock_Value_Lens_Formula_Copy_Source.patch",
+  "liveScreenshot": "Stock_Value_Lens_Formula_Copy_Live.jpg",
+  "versionControl": "Website source folder has no Git repository; source patch and release evidence are versioned in the analysis repository."
+}
